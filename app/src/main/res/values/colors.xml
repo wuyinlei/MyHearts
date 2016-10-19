@@ -9,4 +9,6 @@
     <color name="white">#ffffff</color>
     <color name="text_color_chengse">#FF8472</color>
     <color name="text_color_lightblack">#959595</color>
+
+    <color name="home_bg_title">#0E0E10</color>
 </resources>

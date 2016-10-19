@@ -21,10 +21,12 @@
             <include layout="@layout/left_menu"/>
 
             <LinearLayout
+                android:orientation="vertical"
                 android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-               <include layout="@layout/activity_menu"/>
+
+                <include layout="@layout/activity_menu"/>
             </LinearLayout>
         </LinearLayout>
 

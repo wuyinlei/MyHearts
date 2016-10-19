@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
 
     android:orientation="vertical">
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
     <FrameLayout
@@ -46,6 +50,7 @@
         android:background="@color/divider"
         android:layout_width="match_parent"
         android:layout_height="1px"/>
+
     <RadioGroup
         android:id="@+id/rgTabBar"
         android:layout_width="match_parent"
@@ -57,35 +62,35 @@
         android:layout_alignParentStart="true">
 
         <RadioButton
-            android:id="@+id/rbTabIndex"
+            android:id="@+id/rbTabHome"
             style="@style/TabButton"
             android:drawableTop="@drawable/ic_tab_home_selector"
-            android:text="菜单1" />
+            android:text="@string/home_tab" />
 
         <RadioButton
-            android:id="@+id/rbTabInvest"
+            android:id="@+id/rbTabAdvisory"
             style="@style/TabButton"
             android:drawableTop="@drawable/ic_tab_msg_selector"
-            android:text="菜单2" />
+            android:text="@string/advisory_tab" />
 
         <RadioButton
             android:id="@+id/rbTabMall"
             style="@style/TabButton"
             android:drawableTop="@drawable/ic_tab_home_selector"
-            android:text="菜单3"
+            android:text="@string/lord_tab"
             android:visibility="invisible" />
 
         <RadioButton
-            android:id="@+id/rbTabMine"
+            android:id="@+id/rbTabLord"
             style="@style/TabButton"
             android:drawableTop="@drawable/ic_tab_advice_selector"
-            android:text="菜单4" />
+            android:text="@string/lord_tab" />
 
         <RadioButton
-            android:id="@+id/rbTabMine_a"
+            android:id="@+id/rbTabThoughts"
             style="@style/TabButton"
             android:drawableTop="@drawable/ic_tab_dynamic_selector"
-            android:text="菜单4" />
+            android:text="@string/thoughts_tab" />
     </RadioGroup>
 
 </RelativeLayout>
