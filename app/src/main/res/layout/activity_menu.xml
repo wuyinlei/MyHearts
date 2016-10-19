@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:background="@color/white"
+        android:layout_marginBottom="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/img_live"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@drawable/spinner_live" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/img_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/spinner_img" />
+
+    </FrameLayout>
+
+    <View
+
+        android:layout_above="@+id/rgTabBar"
+        android:background="@color/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+    <RadioGroup
+        android:id="@+id/rgTabBar"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RadioButton
+            android:id="@+id/rbTabIndex"
+            style="@style/TabButton"
+            android:drawableTop="@drawable/ic_tab_home_selector"
+            android:text="菜单1" />
+
+        <RadioButton
+            android:id="@+id/rbTabInvest"
+            style="@style/TabButton"
+            android:drawableTop="@drawable/ic_tab_msg_selector"
+            android:text="菜单2" />
+
+        <RadioButton
+            android:id="@+id/rbTabMall"
+            style="@style/TabButton"
+            android:drawableTop="@drawable/ic_tab_home_selector"
+            android:text="菜单3"
+            android:visibility="invisible" />
+
+        <RadioButton
+            android:id="@+id/rbTabMine"
+            style="@style/TabButton"
+            android:drawableTop="@drawable/ic_tab_advice_selector"
+            android:text="菜单4" />
+
+        <RadioButton
+            android:id="@+id/rbTabMine_a"
+            style="@style/TabButton"
+            android:drawableTop="@drawable/ic_tab_dynamic_selector"
+            android:text="菜单4" />
+    </RadioGroup>
+
+</RelativeLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ruolan.com.myhearts.MainActivity">
+
+    <ruolan.com.myhearts.DragLayout
+        android:background="@mipmap/home_bg"
+        android:id="@+id/qq_slidding"
+        app:rigthtPadding="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/left_menu"/>
+
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+               <include layout="@layout/activity_menu"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ruolan.com.myhearts.DragLayout>
+
+</RelativeLayout>
