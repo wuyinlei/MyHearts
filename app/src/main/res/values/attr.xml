@@ -5,4 +5,19 @@
     <declare-styleable name="DragLayout">
         <attr name="rigthtPadding"/>
     </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="outCircleColor" format="color"/>
+        <attr name="outCircleWidth" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="FlyBanner">
+        <attr name="points_visibility" format="boolean"/>
+        <attr name="points_position" format="enum">
+            <enum name="CENTER" value="0"/>
+            <enum name="LEFT" value="1"/>
+            <enum name="RIGHT" value="2"/>
+        </attr>
+        <attr name="points_container_background" format="reference|color"/>
+    </declare-styleable>
 </resources>

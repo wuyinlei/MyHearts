@@ -232,31 +232,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      */
     private void initRadio() {
         mRadioGroup = (RadioGroup) findViewById(R.id.rgTabBar);
-        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rbTabHome:
-                        changeTab(TAB_HOME);
-                        //Toast.makeText(MainActivity.this, "home", Toast.LENGTH_SHORT).show();
-                        break;
+        mRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.rbTabHome:
+                    changeTab(TAB_HOME);
+                    //Toast.makeText(MainActivity.this, "home", Toast.LENGTH_SHORT).show();
+                    break;
 
-                    case R.id.rbTabAdvisory:
-                        changeTab(TAB_ADVISORY);
-                        // Toast.makeText(MainActivity.this, "advistory", Toast.LENGTH_SHORT).show();
-                        break;
+                case R.id.rbTabAdvisory:
+                    changeTab(TAB_ADVISORY);
+                    // Toast.makeText(MainActivity.this, "advistory", Toast.LENGTH_SHORT).show();
+                    break;
 
-                    case R.id.rbTabLord:
-                        changeTab(TAB_LORD);
-                        // Toast.makeText(MainActivity.this, "lord", Toast.LENGTH_SHORT).show();
-                        break;
+                case R.id.rbTabLord:
+                    changeTab(TAB_LORD);
+                    // Toast.makeText(MainActivity.this, "lord", Toast.LENGTH_SHORT).show();
+                    break;
 
-                    case R.id.rbTabThoughts:
-                        changeTab(TAB_THOURGHTS);
-                        //  Toast.makeText(MainActivity.this, "thoughts", Toast.LENGTH_SHORT).show();
-                        break;
+                case R.id.rbTabThoughts:
+                    changeTab(TAB_THOURGHTS);
+                    //  Toast.makeText(MainActivity.this, "thoughts", Toast.LENGTH_SHORT).show();
+                    break;
 
-                }
             }
         });
 

@@ -11,4 +11,9 @@
     <color name="text_color_lightblack">#959595</color>
 
     <color name="home_bg_title">#0E0E10</color>
+
+    <color name="home_title_color">#FD8474</color>
+
+    <color name="home_recomment_title_color">#7D7D7D</color>
+    <color name="home_text_des">#C0D0D0</color>
 </resources>

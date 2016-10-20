@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title_recomment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/x10"
+        android:text="每日~一测"
+        android:textSize="@dimen/text_size_middle"/>
+
+    <ImageView
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:layout_below="@+id/tv_title_recomment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x150"
+        android:id="@+id/imageView"/>
+
+    <TextView
+        android:layout_below="@+id/imageView"
+        android:id="@+id/tv_des_trecomment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/x10"
+        android:text="你算得上是一个优雅的人吗？"
+        android:textSize="@dimen/text_size_small"/>
+
+</RelativeLayout>

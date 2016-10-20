@@ -1,13 +1,301 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="ruolan.com.myhearts.fragment.HomeFragment">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context="ruolan.com.myhearts.fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Home"/>
+        android:orientation="vertical">
 
-</FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:background="@color/home_title_color">
+
+            <ruolan.com.myhearts.widget.CircleImageView
+                android:id="@+id/avator_img"
+                android:layout_width="@dimen/datepicker_header_height"
+                android:layout_height="@dimen/datepicker_header_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/text_size"
+                android:background="@drawable/img_default_head_pic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/home_tab"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_large"/>
+
+
+            <TextView
+                android:id="@+id/customer_service_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/text_size"
+                android:text="@string/customer_service"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_middle"/>
+        </RelativeLayout>
+
+        <ruolan.com.myhearts.widget.FlyBanner
+            android:id="@+id/fly_banner"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/divider"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <RelativeLayout
+                android:id="@+id/my_re_talk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_tall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/talk_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_tall"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/my_tall_icon"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/my_re_call"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/call_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_contact"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/my_contact_call"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/my_re_free"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_free"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/talk_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_free"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/my_free_icon"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/my_re_exam"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_exam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/talk_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_exam"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/my_exam_icon"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/divider"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/x10">
+
+            <ImageView
+                android:id="@+id/marquee_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x5"
+                android:background="@drawable/call_list_voice"/>
+
+            <com.sunfusheng.marqueeview.MarqueeView
+                android:id="@+id/marquee_view"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x5"
+                android:layout_toRightOf="@+id/marquee_img"
+                app:mvAnimDuration="1000"
+                app:mvInterval="3000"
+                app:mvSingleLine="true"
+                app:mvTextColor="@color/white"
+                app:mvTextSize="14sp"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x20"
+            android:background="@color/divider"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x30">
+
+            <View
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/x1"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_toLeftOf="@+id/recomment_master_tv"
+                android:background="@color/home_recomment_title_color"/>
+
+            <TextView
+                android:id="@+id/recomment_master_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/recomment_master"
+                android:textColor="@color/home_recomment_title_color"
+                android:textSize="@dimen/text_size_middle"/>
+
+            <View
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/x1"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_toRightOf="@+id/recomment_master_tv"
+                android:background="@color/home_recomment_title_color"/>
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/divider"/>
+
+        <include layout="@layout/activity_main_recomment_master"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x10"
+            android:background="@color/divider"/>
+
+        <ImageView
+            android:id="@+id/recomment_img_one"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x120"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x10"
+            android:background="@color/divider"/>
+
+        <include layout="@layout/activity_main_recomment_two"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x10"
+            android:background="@color/divider"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/x10">
+
+            <ImageView
+                android:id="@+id/hot_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x5"
+                android:background="@drawable/inf_comment_hot_head"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x5"
+                android:layout_toRightOf="@+id/hot_img"
+                android:text="热门百科"
+                />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/hot_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+</ScrollView>

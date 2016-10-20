@@ -6,6 +6,13 @@
 
     <string name="advisory_tab">咨询</string>
     <string name="home_tab">首页</string>
-    <string name="lord_tab">群主</string>
+    <string name="lord_tab">群组</string>
     <string name="thoughts_tab">心事</string>
+
+    <string name="customer_service">客服</string>
+    <string name="my_tall_icon">我要倾诉</string>
+    <string name="my_contact_call">我要咨询</string>
+    <string name="my_free_icon">免费体验</string>
+    <string name="my_exam_icon">心里测试</string>
+    <string name="recomment_master">推荐咨询师</string>
 </resources>

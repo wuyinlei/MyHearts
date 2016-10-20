@@ -10,7 +10,19 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //使用Jack编译器
+        jackOptions{
+            enabled true
+        }
     }
+
+    //使用Java1.8
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -26,11 +38,30 @@ dependencies {
     })
     compile files('libs/nineoldandroids-2.4.0.jar')
     compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support:recyclerview-v7:24.2.0'
+    compile 'com.android.support:cardview-v7:24.2.1'
     compile 'com.android.support:design:24.2.0'
     testCompile 'junit:junit:4.12'
+    //图片加载
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //注解框架
     compile 'com.jakewharton:butterknife:7.0.1'
+    //gson解析
     compile 'com.google.code.gson:gson:2.7'
+    //adapterHelper
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v2.0.7'
+    //网络框架
+    compile 'com.lzy.net:okgo:2.0.0'
+    //可以单独使用，不需要依赖下方的扩展包
+    compile 'com.lzy.net:okrx:0.1.0'
+    //RxJava扩展支持，根据需要添加
+    compile 'com.lzy.net:okserver:1.1.0'
+    //下载管理和上传管理扩展，根据需要添加
+    compile 'com.lzy.net:okrx:0.1.0'
+    //Rx扩展
+
+    //跑马灯
+    compile 'com.sunfusheng:marqueeview:1.1.0'
+
 }

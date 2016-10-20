@@ -17,7 +17,9 @@ import ruolan.com.myhearts.activity.guide.GuideActivity;
 
 public class SplashActivity extends BaseActivity {
 
-    private String splash_img_url = "https://s-media-cache-ak0.pinimg.com/564x/eb/cd/d8/ebcdd8bec538f433bf552cedff51f575.jpg";
+
+    //http://icon.xinliji.me/start_img_1080.jpg
+    private String splash_img_url = "http://icon.xinliji.me/start_img_1080.jpg";
 
     private RelativeLayout mReBg;
 
