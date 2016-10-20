@@ -14,6 +14,7 @@
         android:textSize="@dimen/text_size_middle"/>
 
     <ImageView
+        android:scaleType="fitXY"
         android:layout_marginLeft="@dimen/x10"
         android:layout_marginRight="@dimen/x10"
         android:layout_below="@+id/tv_title_recomment"

@@ -10,39 +10,6 @@
         android:layout_height="match_parent"/>
 
 
-    <FrameLayout
-        android:background="@color/white"
-        android:layout_marginBottom="3dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
-
-        <ImageView
-            android:id="@+id/img_live"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:background="@drawable/spinner_live" />
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_marginBottom="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
-
-        <ImageView
-            android:id="@+id/img_img"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/spinner_img" />
-
-    </FrameLayout>
 
     <View
 
@@ -53,6 +20,7 @@
 
     <RadioGroup
         android:id="@+id/rgTabBar"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:gravity="bottom|center_horizontal"
@@ -92,5 +60,40 @@
             android:drawableTop="@drawable/ic_tab_dynamic_selector"
             android:text="@string/thoughts_tab" />
     </RadioGroup>
+
+    <FrameLayout
+        android:background="@color/white"
+        android:layout_marginBottom="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/img_live"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@drawable/spinner_live" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/img_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/spinner_img" />
+
+    </FrameLayout>
+
 
 </RelativeLayout>

@@ -27,11 +27,11 @@ import ruolan.com.myhearts.activity.main.left.MoneyActivity;
 import ruolan.com.myhearts.activity.main.left.ReserveActivity;
 import ruolan.com.myhearts.activity.main.left.SettingActivity;
 import ruolan.com.myhearts.activity.main.left.WorryActivity;
-import ruolan.com.myhearts.fragment.AdvisoryFragment;
-import ruolan.com.myhearts.fragment.HomeFragment;
-import ruolan.com.myhearts.fragment.LiveFragment;
-import ruolan.com.myhearts.fragment.LordFragment;
-import ruolan.com.myhearts.fragment.ThoughtsFragment;
+import ruolan.com.myhearts.activity.main.fragment.AdvisoryFragment;
+import ruolan.com.myhearts.activity.main.fragment.home.HomeFragment;
+import ruolan.com.myhearts.activity.main.fragment.LiveFragment;
+import ruolan.com.myhearts.activity.main.fragment.LordFragment;
+import ruolan.com.myhearts.activity.main.fragment.ThoughtsFragment;
 import ruolan.com.myhearts.utils.TranslucentUtils;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {

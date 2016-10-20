@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.fragment;
+package ruolan.com.myhearts.activity.main.fragment;
 
 
 import android.os.Bundle;
@@ -12,19 +12,15 @@ import ruolan.com.myhearts.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LiveFragment extends Fragment {
+public class ThoughtsFragment extends Fragment {
 
-
-    public LiveFragment() {
-        // Required empty public constructor
-    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_live, container, false);
+        return inflater.inflate(R.layout.fragment_thoughts, container, false);
     }
 
 }

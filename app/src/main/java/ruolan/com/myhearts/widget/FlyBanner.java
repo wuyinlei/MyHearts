@@ -2,6 +2,7 @@ package ruolan.com.myhearts.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -21,6 +22,12 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.Transformation;
+import com.bumptech.glide.load.engine.Resource;
+import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -176,7 +183,7 @@ public class FlyBanner extends RelativeLayout {
      * 设置网络图片
      * @param urls
      */
-    public void setImagesUrl(List<String> urls, int width, int height) {
+    public void setImagesUrl(List<String> urls) {
         //加载网络图片
         mIsImageUrl = true;
         this.mImageUrls = urls;
@@ -185,8 +192,6 @@ public class FlyBanner extends RelativeLayout {
         //初始化ViewPager
         initViewPager();
 
-        this.mWidth = width;
-        this.mHeight = height;
     }
 
     /**
@@ -309,12 +314,9 @@ public class FlyBanner extends RelativeLayout {
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             ImageView imageView = new ImageView(getContext());
-            imageView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mOnItemClickListener != null) {
-                        mOnItemClickListener.onItemClick(toRealPosition(position));
-                    }
+            imageView.setOnClickListener(view -> {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(toRealPosition(position));
                 }
             });
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -323,6 +325,7 @@ public class FlyBanner extends RelativeLayout {
             //   LoadImageAndSet.setImg(imageView,mImageUrls.get(toRealPosition(position)),mWidth,mHeight,0.9f);
                 Glide.with(getContext())
                         .load(mImageUrls.get(toRealPosition(position)))
+                        //.centerInside()
                         .into(imageView);
             } else {
                 imageView.setImageResource(mImages.get(toRealPosition(position)));

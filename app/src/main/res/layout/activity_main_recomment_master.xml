@@ -61,7 +61,7 @@
         </LinearLayout>
 
         <View
-            android:layout_width="1px"
+            android:layout_width="2px"
             android:layout_height="match_parent"
             android:background="@color/divider"/>
 
@@ -69,11 +69,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="2">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -122,7 +124,7 @@
                 <ImageView
                     android:id="@+id/img_two"
                     android:layout_width="@dimen/x60"
-                    android:layout_height="@dimen/x70"
+                    android:layout_height="@dimen/x80"
                     android:layout_gravity="center"
                     android:layout_marginBottom="@dimen/x5"
                     android:layout_marginLeft="@dimen/x30"
@@ -132,11 +134,11 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
+                android:layout_height="2px"
                 android:background="@color/divider"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:orientation="horizontal">
@@ -149,8 +151,8 @@
 
                     <ImageView
                         android:id="@+id/img_three"
-                        android:layout_width="@dimen/x50"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/x50"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/x10"/>
 
@@ -181,6 +183,11 @@
                             android:textSize="@dimen/x10"/>
                     </LinearLayout>
                 </LinearLayout>
+                <View
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_width="2px"
+                    android:background="@color/divider"
+                    android:layout_height="match_parent"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -190,8 +197,8 @@
 
                     <ImageView
                         android:id="@+id/img_four"
-                        android:layout_width="@dimen/x50"
-                        android:layout_height="@dimen/x60"
+                        android:layout_width="@dimen/x40"
+                        android:layout_height="@dimen/x50"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/x10"/>
 
