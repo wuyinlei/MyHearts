@@ -33,10 +33,11 @@ import ruolan.com.myhearts.activity.main.fragment.LiveFragment;
 import ruolan.com.myhearts.activity.main.fragment.LordFragment;
 import ruolan.com.myhearts.activity.main.fragment.ThoughtsFragment;
 import ruolan.com.myhearts.utils.TranslucentUtils;
+import ruolan.com.myhearts.widget.MyDragLayout;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    private DragLayout mDragLayout;
+    private MyDragLayout mDragLayout;
     private ImageView mIvLive, mIvImg;
 
     private RadioButton mRadioHome, mRadioAdvisory, mRadioLord, mRadioThoughts, mRadioLive;
@@ -88,7 +89,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_one);
         ButterKnife.bind(this);
 
         TranslucentUtils.setColor(this, getResources().getColor(R.color.divider), 1);
@@ -135,7 +136,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void initView() {
 
 
-        mDragLayout = (DragLayout) findViewById(R.id.qq_slidding);
+      //  mDragLayout = (MyDragLayout) findViewById(R.id.qq_slidding);
 
         mIvLive = (ImageView) findViewById(R.id.img_live);
 
