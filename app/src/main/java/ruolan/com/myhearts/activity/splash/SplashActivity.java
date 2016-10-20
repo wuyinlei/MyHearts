@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.nineoldandroids.animation.Animator;
@@ -27,6 +29,14 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+          /*set it to be no title*/
+       // requestWindowFeature(Window.FEATURE_NO_TITLE);
+       /*set it to be full screen*/
+        /*全屏显示*/
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         //mReBg = (RelativeLayout) findViewById(R.id.activity_splash);
 

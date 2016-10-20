@@ -125,8 +125,18 @@ public class HomeFragment extends Fragment {
         initAdvisoryData();
         initRecommentOne();
         initRecommentTwo();
+        initData();
+
 
         return view;
+    }
+
+    /**
+     * 请求文档类型数据
+     */
+    private void initData() {
+
+
     }
 
     /**
