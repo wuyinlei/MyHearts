@@ -1,9 +1,8 @@
-package ruolan.com.myhearts;
+package ruolan.com.myhearts.activity.guide;
 
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,11 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuideActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
+import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.activity.main.MainActivity;
+import ruolan.com.myhearts.activity.base.BaseActivity;
+
+public class GuideActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
 
     //图片资源
     int [] images = new int[]{

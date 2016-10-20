@@ -1,4 +1,4 @@
-package ruolan.com.myhearts;
+package ruolan.com.myhearts.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,6 +12,8 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
 import com.nineoldandroids.view.ViewHelper;
+
+import ruolan.com.myhearts.R;
 
 /**
  *

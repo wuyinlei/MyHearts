@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/rl_login"
@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
-            android:background="@mipmap/avatar_bg" />
+            android:background="@mipmap/avatar_bg"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
             android:layout_toRightOf="@+id/img_avatar"
             android:text="尚未登录"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/tv_login"
@@ -37,7 +37,7 @@
             android:background="@drawable/left_login_bt_bg"
             android:gravity="center"
             android:text="点击登录"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"/>
 
     </RelativeLayout>
 
@@ -58,7 +58,7 @@
             <ImageView
                 android:layout_width="@dimen/left_img_width"
                 android:layout_height="@dimen/left_img_height"
-                android:background="@mipmap/uc_message" />
+                android:background="@mipmap/uc_message"/>
 
 
             <TextView
@@ -67,7 +67,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="我的消息"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_large"/>
 
         </LinearLayout>
 
@@ -82,7 +82,7 @@
             <ImageView
                 android:layout_width="@dimen/left_img_width"
                 android:layout_height="@dimen/left_img_height"
-                android:background="@mipmap/uc_reserve" />
+                android:background="@mipmap/uc_reserve"/>
 
 
             <TextView
@@ -91,7 +91,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="我的预约"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_large"/>
 
         </LinearLayout>
 
@@ -107,7 +107,7 @@
             <ImageView
                 android:layout_width="@dimen/left_img_width"
                 android:layout_height="@dimen/left_img_height"
-                android:background="@mipmap/uc_follow" />
+                android:background="@mipmap/uc_follow"/>
 
 
             <TextView
@@ -116,7 +116,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="关注咨询师"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_large"/>
 
         </LinearLayout>
 
@@ -132,7 +132,7 @@
             <ImageView
                 android:layout_width="@dimen/left_img_width"
                 android:layout_height="@dimen/left_img_height"
-                android:background="@mipmap/uc_reserve" />
+                android:background="@mipmap/uc_reserve"/>
 
 
             <TextView
@@ -141,7 +141,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="联系人"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_large"/>
 
         </LinearLayout>
 
@@ -152,7 +152,7 @@
             android:layout_below="@+id/my_contact"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:background="@color/white" />
+            android:background="@color/white"/>
 
         <LinearLayout
             android:id="@+id/my_money"
@@ -165,7 +165,7 @@
             <ImageView
                 android:layout_width="@dimen/left_img_width"
                 android:layout_height="@dimen/left_img_height"
-                android:background="@mipmap/uc_money" />
+                android:background="@mipmap/uc_money"/>
 
 
             <TextView
@@ -174,7 +174,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="我的财富"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_large"/>
 
         </LinearLayout>
 
@@ -189,7 +189,7 @@
             <ImageView
                 android:layout_width="@dimen/left_img_width"
                 android:layout_height="@dimen/left_img_height"
-                android:background="@mipmap/uc_gift" />
+                android:background="@mipmap/uc_gift"/>
 
 
             <TextView
@@ -198,7 +198,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="我的礼物"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_large"/>
 
         </LinearLayout>
 
@@ -213,7 +213,7 @@
             <ImageView
                 android:layout_width="@dimen/left_img_width"
                 android:layout_height="@dimen/left_img_height"
-                android:background="@mipmap/uc_worry" />
+                android:background="@mipmap/uc_worry"/>
 
 
             <TextView
@@ -222,7 +222,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="我的心事"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_large"/>
 
         </LinearLayout>
 
@@ -230,6 +230,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/re_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -240,7 +241,7 @@
             android:id="@+id/home_setting"
             android:layout_width="@dimen/left_img_width"
             android:layout_height="@dimen/left_img_height"
-            android:background="@mipmap/home_setting" />
+            android:background="@mipmap/home_setting"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -249,7 +250,7 @@
             android:layout_toRightOf="@+id/home_setting"
             android:text="设置"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_large"/>
     </RelativeLayout>
 
 

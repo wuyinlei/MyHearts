@@ -5,9 +5,9 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ruolan.com.myhearts.MainActivity">
+    tools:context="ruolan.com.myhearts.activity.main.MainActivity">
 
-    <ruolan.com.myhearts.DragLayout
+    <ruolan.com.myhearts.widget.DragLayout
         android:background="@mipmap/home_bg"
         android:id="@+id/qq_slidding"
         app:rigthtPadding="100dp"
@@ -30,6 +30,6 @@
             </LinearLayout>
         </LinearLayout>
 
-    </ruolan.com.myhearts.DragLayout>
+    </ruolan.com.myhearts.widget.DragLayout>
 
 </RelativeLayout>

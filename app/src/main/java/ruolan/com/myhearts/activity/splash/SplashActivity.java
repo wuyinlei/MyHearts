@@ -1,8 +1,7 @@
-package ruolan.com.myhearts;
+package ruolan.com.myhearts.activity.splash;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -11,7 +10,12 @@ import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorListenerAdapter;
 import com.nineoldandroids.animation.ObjectAnimator;
 
-public class SplashActivity extends AppCompatActivity {
+import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.activity.main.MainActivity;
+import ruolan.com.myhearts.activity.base.BaseActivity;
+import ruolan.com.myhearts.activity.guide.GuideActivity;
+
+public class SplashActivity extends BaseActivity {
 
     private String splash_img_url = "https://s-media-cache-ak0.pinimg.com/564x/eb/cd/d8/ebcdd8bec538f433bf552cedff51f575.jpg";
 
