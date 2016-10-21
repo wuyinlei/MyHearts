@@ -1,10 +1,12 @@
 package ruolan.com.myhearts.activity.main.fragment.home;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
@@ -33,12 +36,13 @@ import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.utils.Utils;
 import ruolan.com.myhearts.widget.CircleImageView;
 import ruolan.com.myhearts.widget.FlyBanner;
+import ruolan.com.myhearts.widget.FullyLinearLayoutManager;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     ScrollView mScrollView;
 
@@ -65,6 +69,8 @@ public class HomeFragment extends Fragment {
     TextView mTvDesTrecomment;
     ImageView mHotImg;
     RecyclerView mHotRecyclerView;
+    RelativeLayout mReLookMore;
+    private OrationAdapter mHomeNewAdapter;
 
 
     /**
@@ -108,6 +114,10 @@ public class HomeFragment extends Fragment {
         mImageView = (ImageView) view.findViewById(R.id.imageView);
         mHotImg = (ImageView) view.findViewById(R.id.hot_img);
         mHotRecyclerView = (RecyclerView) view.findViewById(R.id.hot_recycler_view);
+        mReLookMore = (RelativeLayout) view.findViewById(R.id.re_look_more);
+        mHotRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mHotRecyclerView.setLayoutManager(new FullyLinearLayoutManager(getContext()));
+
     }
 
 
@@ -118,6 +128,7 @@ public class HomeFragment extends Fragment {
 
         initBanner();
         initView(view);
+        initListener();
 
         //刚开始进入界面的时候显示开头
         mScrollView.smoothScrollTo(0, 0);
@@ -132,12 +143,41 @@ public class HomeFragment extends Fragment {
     }
 
     /**
+     * 设置事件监听
+     */
+    private void initListener() {
+
+
+        mReLookMore.setOnClickListener(this);
+    }
+
+    List<HomeNewsBean.ResultsBean> mHomeNewsData = new ArrayList<>();
+
+    /**
      * 请求文档类型数据
      */
     private void initData() {
+        OkGo.post(Contants.SCAN_MORE)
+                .params("userid","54442")
+                .getCall(StringConvert.create(),RxAdapter.<String>create())
+                .doOnSubscribe(()->{})
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s->{
+                    Type type = new TypeToken<HomeNewsBean>(){}.getType();
+                    HomeNewsBean bean = new Gson().fromJson(s,type);
+                    if (bean.getErrorCode()==0
+                            &&bean.getErrorStr().equals("success")
+                            &&bean.getResults().size()>0){
+                        mHomeNewsData = bean.getResults();
+                        mHomeNewAdapter = new OrationAdapter(getContext(),mHomeNewsData);
+                        mHotRecyclerView.setAdapter(mHomeNewAdapter);
+                    }
+                },throwable -> {
 
-
+                });
     }
+
+
 
     /**
      * 请求首页下面展示的图片的第一个banner
@@ -285,18 +325,6 @@ public class HomeFragment extends Fragment {
 
         MyThread thread = new MyThread();
         thread.run();
-//        OkGo.post(Contants.HOME_RECOMMENT_ONE_BANNER)
-//                .getCall(StringConvert.create(),RxAdapter.<String>create())
-//                .doOnSubscribe(()->{
-//
-//                })
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(s->{
-//
-//                },throwable -> {
-//
-//                });
-
 
     }
 
@@ -318,6 +346,20 @@ public class HomeFragment extends Fragment {
     };
 
     List<HomeBannerBean.ResultsBean> mHomeBanner = new ArrayList<>();
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.re_look_more:
+                Intent intent = new Intent(getActivity(),OrationActivity.class);
+                getActivity().startActivity(intent);
+                break;
+
+            default:
+                break;
+        }
+
+    }
 
     /**
      * 解析本地json文件

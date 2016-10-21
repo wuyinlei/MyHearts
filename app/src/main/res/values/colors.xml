@@ -16,4 +16,6 @@
 
     <color name="home_recomment_title_color">#7D7D7D</color>
     <color name="home_text_des">#C0D0D0</color>
+
+    <color name="load_more_color">#34E2CC</color>
 </resources>

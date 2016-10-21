@@ -8,9 +8,19 @@ import ruolan.com.myhearts.activity.base.BaseActivity;
 
 public class MessageActivity extends BaseActivity {
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_message);
+    protected int getResultId() {
+        return R.layout.activity_message;
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    public void initView() {
+
     }
 }

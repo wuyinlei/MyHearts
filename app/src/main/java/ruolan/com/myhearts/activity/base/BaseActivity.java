@@ -1,6 +1,8 @@
 package ruolan.com.myhearts.activity.base;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import ruolan.com.myhearts.application.MyApplication;
@@ -10,8 +12,29 @@ import ruolan.com.myhearts.activity.login.LoginActivity;
  * Created by Administrator on 2016/10/20.
  */
 
-public class BaseActivity extends AppCompatActivity{
+public abstract class BaseActivity extends AppCompatActivity{
     protected static final String TAG = BaseActivity.class.getSimpleName();
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(getResultId());
+        initView();
+        initListener();
+        initData();
+    }
+
+    protected abstract int getResultId();
+
+    public void initData() {
+
+    }
+
+    protected abstract void initListener();
+
+    public abstract void initView();
 
     public void startActivity(Intent intent, boolean isNeedLogin){
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -89,27 +90,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_one);
-        ButterKnife.bind(this);
+
 
         TranslucentUtils.setColor(this, getResources().getColor(R.color.divider), 1);
 
-        initView();
-
-        initAnimation();
+      //  initView();
 
 
-        initFragment();
-
-        addFragment();
-
-
-        initRadio();
-
-        mIvImg.setOnClickListener(this);
 
 
     }
+
+    @Override
+    protected int getResultId() {
+        return R.layout.activity_main_one;
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
 
     /**
      * 自己去调整
@@ -133,8 +134,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     /**
      * 初始化布局控件
      */
-    private void initView() {
-
+    public void initView() {
+        ButterKnife.bind(this);
 
       //  mDragLayout = (MyDragLayout) findViewById(R.id.qq_slidding);
 
@@ -148,6 +149,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mRadioThoughts = (RadioButton) findViewById(R.id.rbTabThoughts);
         mRadioLive = (RadioButton) findViewById(R.id.rbTabMall);
         mRadioHome.setChecked(true);
+
+        initAnimation();
+
+
+        initFragment();
+
+        addFragment();
+
+
+        initRadio();
+
+        mIvImg.setOnClickListener(this);
 
     }
 

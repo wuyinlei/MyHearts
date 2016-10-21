@@ -8,9 +8,19 @@ import ruolan.com.myhearts.activity.base.BaseActivity;
 
 public class GiftActivity extends BaseActivity {
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gift);
+    protected int getResultId() {
+        return R.layout.activity_gift;
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    public void initView() {
+
     }
 }

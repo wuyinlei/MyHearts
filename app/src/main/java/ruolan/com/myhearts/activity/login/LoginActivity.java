@@ -4,12 +4,23 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.activity.base.BaseActivity;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends BaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    protected int getResultId() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    public void initView() {
+
     }
 }

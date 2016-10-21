@@ -26,12 +26,19 @@ public class SplashActivity extends BaseActivity {
     private RelativeLayout mReBg;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+    protected int getResultId() {
+        return R.layout.activity_splash;
+    }
 
-          /*set it to be no title*/
-       // requestWindowFeature(Window.FEATURE_NO_TITLE);
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    public void initView() {
+      /*set it to be no title*/
+        // requestWindowFeature(Window.FEATURE_NO_TITLE);
        /*set it to be full screen*/
         /*全屏显示*/
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

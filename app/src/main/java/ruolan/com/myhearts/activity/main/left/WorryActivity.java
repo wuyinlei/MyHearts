@@ -8,9 +8,19 @@ import ruolan.com.myhearts.activity.base.BaseActivity;
 
 public class WorryActivity extends BaseActivity {
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_worry);
+    protected int getResultId() {
+        return R.layout.activity_worry;
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    public void initView() {
+
     }
 }

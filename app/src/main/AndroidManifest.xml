@@ -11,8 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.splash.SplashActivity"
-            >
+        <activity android:name=".activity.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -40,6 +39,8 @@
         <activity android:name=".activity.main.left.SettingActivity">
         </activity>
         <activity android:name=".activity.main.left.ReserveActivity">
+        </activity>
+        <activity android:name=".activity.main.fragment.home.OrationActivity">
         </activity>
     </application>
 

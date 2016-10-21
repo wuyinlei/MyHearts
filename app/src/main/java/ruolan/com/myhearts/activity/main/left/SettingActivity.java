@@ -8,9 +8,19 @@ import ruolan.com.myhearts.activity.base.BaseActivity;
 
 public class SettingActivity extends BaseActivity {
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+    protected int getResultId() {
+        return R.layout.activity_setting;
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    public void initView() {
+
     }
 }

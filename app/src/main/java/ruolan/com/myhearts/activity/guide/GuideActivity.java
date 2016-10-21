@@ -33,25 +33,14 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
     private ViewPager mViewPager;
     private Button btnStart;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guide);
-        initView();
-        initData();
-        MyViewPagerAdapter adapter = new MyViewPagerAdapter();
-        mViewPager.setAdapter(adapter);
-        mViewPager.setOnPageChangeListener(this);
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(GuideActivity.this,MainActivity.class));
-                finish();
-            }
-        });
+    protected int getResultId() {
+        return R.layout.activity_guide;
     }
 
-    private void initData() {
+    @Override
+    public void initData() {
         for (int i = 0; i < images.length; i++) {
             View inflate = getLayoutInflater().inflate(R.layout.guide_item, null);
             ImageView ivGuide = (ImageView) inflate.findViewById(R.id.iv_guide);
@@ -60,9 +49,23 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
         }
     }
 
-    private void initView() {
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    public void initView() {
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         btnStart = (Button) findViewById(R.id.btn_start);
+
+        MyViewPagerAdapter adapter = new MyViewPagerAdapter();
+        mViewPager.setAdapter(adapter);
+        mViewPager.setOnPageChangeListener(this);
+        btnStart.setOnClickListener(view -> {
+            startActivity(new Intent(GuideActivity.this,MainActivity.class));
+            finish();
+        });
     }
 
     @Override

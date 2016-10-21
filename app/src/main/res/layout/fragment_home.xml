@@ -1,9 +1,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:id="@+id/scrollView"
     >
 
     <LinearLayout
@@ -58,9 +58,9 @@
             android:background="@color/divider"/>
 
         <LinearLayout
-            android:layout_marginBottom="@dimen/x10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x10"
             android:orientation="horizontal"
             android:paddingTop="10dp">
 
@@ -253,8 +253,8 @@
         <ImageView
             android:id="@+id/recomment_img_one"
             android:layout_width="match_parent"
-            android:scaleType="fitXY"
-            android:layout_height="@dimen/x120"/>
+            android:layout_height="@dimen/x120"
+            android:scaleType="fitXY"/>
 
 
         <View
@@ -297,6 +297,28 @@
             android:id="@+id/hot_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+        <RelativeLayout
+            android:id="@+id/re_look_more"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x50"
+            android:layout_marginBottom="@dimen/x10"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+
+            android:layout_marginTop="@dimen/x10"
+            android:background="@drawable/home_look_more_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="查看更多"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_large"/>
+        </RelativeLayout>
+
 
     </LinearLayout>
 
