@@ -1,14 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ruolan.com.myhearts.activity.login.LoginActivity">
+    android:background="@mipmap/login_bg">
+
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:text="MyHearts"
+        android:textColor="@color/white"
+        android:textSize="@dimen/x40"/>
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="@dimen/x280"
+        android:layout_height="@dimen/x40"
+        android:layout_below="@+id/tv_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/x20"
+        android:background="@drawable/et_view_bg_layout"
+        android:hint="手机号码"
+        android:paddingLeft="@dimen/x20"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="@dimen/x280"
+        android:layout_height="@dimen/x40"
+        android:layout_below="@+id/et_phone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/x20"
+        android:background="@drawable/et_view_bg_layout"
+        android:hint="密        码"
+        android:paddingLeft="@dimen/x20"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_memory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/et_password"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ruolan.com.myhearts.widget.CheckBox
+            android:id="@+id/is_password_memory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x60"
+            android:padding="5dp"
+            app:check_style="hook"
+            app:check_text="记住密码"
+            app:color_after="@color/colorAccent"
+            app:color_before="@color/colorPrimary"
+            app:is_circle_border="true"
+            app:show_border="true"/>
+
+        <TextView
+            android:id="@+id/tv_forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x60"
+            android:gravity="center"
+
+            android:text="忘记密码"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_middle"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/re_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/re_look_more">
+
+        <TextView
+            android:id="@+id/register_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="94dp"
+            android:layout_marginStart="94dp"
+            android:layout_marginTop="7dp"
+            android:text="注册账号"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x18"/>
+
+        <TextView
+            android:id="@+id/application_consultant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/register_account"
+            android:layout_alignBottom="@+id/register_account"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="82dp"
+            android:layout_marginRight="82dp"
+            android:text="申请咨询师"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x18"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/re_look_more"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50"
+        android:layout_below="@+id/rl_memory"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x40"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/login_bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="登    录"
+            android:textColor="@color/load_more_color"
+            android:textSize="@dimen/x24"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/third_party_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/re_log"
+        android:layout_marginTop="@dimen/x20">
+
+
+        <View
+            android:layout_width="@dimen/x20"
+            android:layout_height="@dimen/x1"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_toLeftOf="@+id/recomment_master_tv"
+            android:background="@color/white"/>
+
+        <TextView
+            android:id="@+id/recomment_master_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="第三方登录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_middle"/>
+
+        <View
+            android:layout_width="@dimen/x20"
+            android:layout_height="@dimen/x1"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_toRightOf="@+id/recomment_master_tv"
+            android:background="@color/white"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/x240"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/third_party_login"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/x20"
+        android:weightSum="3">
+
+        <ImageView
+            android:id="@+id/qq_login"
+            android:layout_width="@dimen/x40"
+            android:layout_height="@dimen/x40"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="@dimen/x40"
+            android:background="@drawable/login_qq"/>
+
+        <ImageView
+            android:id="@+id/sina_login"
+            android:layout_width="@dimen/x40"
+            android:layout_height="@dimen/x40"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/login_sina"/>
+
+
+        <ImageView
+            android:id="@+id/wx_login"
+            android:layout_width="@dimen/x40"
+            android:layout_height="@dimen/x40"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/login_wx"/>
+
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

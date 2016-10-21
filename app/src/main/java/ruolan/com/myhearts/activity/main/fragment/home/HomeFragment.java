@@ -31,6 +31,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.activity.main.MainActivity;
 import ruolan.com.myhearts.activity.main.fragment.home.AdvisoryBean.ResultsBean;
 import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.utils.Utils;
@@ -71,7 +72,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     RecyclerView mHotRecyclerView;
     RelativeLayout mReLookMore;
     private OrationAdapter mHomeNewAdapter;
-
 
     /**
      * 初始化布局控件
@@ -126,17 +126,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        initBanner();
+
         initView(view);
         initListener();
 
         //刚开始进入界面的时候显示开头
         mScrollView.smoothScrollTo(0, 0);
+        initBanner();
         initMarqueeData();
         initAdvisoryData();
         initRecommentOne();
         initRecommentTwo();
         initData();
+
+
 
 
         return view;
@@ -147,7 +150,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
      */
     private void initListener() {
 
-
+        mAvatorImg.setOnClickListener(this);
         mReLookMore.setOnClickListener(this);
     }
 
@@ -158,25 +161,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
      */
     private void initData() {
         OkGo.post(Contants.SCAN_MORE)
-                .params("userid","54442")
-                .getCall(StringConvert.create(),RxAdapter.<String>create())
-                .doOnSubscribe(()->{})
+                .params("userid", "54442")
+                .getCall(StringConvert.create(), RxAdapter.<String>create())
+                .doOnSubscribe(() -> {
+                })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s->{
-                    Type type = new TypeToken<HomeNewsBean>(){}.getType();
-                    HomeNewsBean bean = new Gson().fromJson(s,type);
-                    if (bean.getErrorCode()==0
-                            &&bean.getErrorStr().equals("success")
-                            &&bean.getResults().size()>0){
+                .subscribe(s -> {
+                    Type type = new TypeToken<HomeNewsBean>() {
+                    }.getType();
+                    HomeNewsBean bean = new Gson().fromJson(s, type);
+                    if (bean.getErrorCode() == 0
+                            && bean.getErrorStr().equals("success")
+                            && bean.getResults().size() > 0) {
                         mHomeNewsData = bean.getResults();
-                        mHomeNewAdapter = new OrationAdapter(getContext(),mHomeNewsData);
+                        mHomeNewAdapter = new OrationAdapter(getContext(), mHomeNewsData);
                         mHotRecyclerView.setAdapter(mHomeNewAdapter);
                     }
-                },throwable -> {
+                }, throwable -> {
 
                 });
     }
-
 
 
     /**
@@ -349,10 +353,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.re_look_more:
-                Intent intent = new Intent(getActivity(),OrationActivity.class);
+                Intent intent = new Intent(getActivity(), OrationActivity.class);
                 getActivity().startActivity(intent);
+                break;
+
+            case R.id.avator_img:
+                ((MainActivity)getActivity()).getDragLayout().open();
                 break;
 
             default:

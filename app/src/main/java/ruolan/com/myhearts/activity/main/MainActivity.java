@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -13,10 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import ruolan.com.myhearts.widget.DragLayout;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.activity.base.BaseActivity;
 import ruolan.com.myhearts.activity.login.LoginActivity;
@@ -34,11 +30,11 @@ import ruolan.com.myhearts.activity.main.fragment.LiveFragment;
 import ruolan.com.myhearts.activity.main.fragment.LordFragment;
 import ruolan.com.myhearts.activity.main.fragment.ThoughtsFragment;
 import ruolan.com.myhearts.utils.TranslucentUtils;
+import ruolan.com.myhearts.widget.DragLayout;
 import ruolan.com.myhearts.widget.MyDragLayout;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    private MyDragLayout mDragLayout;
     private ImageView mIvLive, mIvImg;
 
     private RadioButton mRadioHome, mRadioAdvisory, mRadioLord, mRadioThoughts, mRadioLive;
@@ -61,42 +57,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private FrameLayout mFrameLayout;
 
-    /*左侧menu事件控件*/
-    @Bind(R.id.rl_login)
-     RelativeLayout mReLogin;
-
-    @Bind(R.id.my_message)
-     LinearLayout mLiReserve;
-
-    @Bind(R.id.my_follow)
-     LinearLayout mLiFollow;
-
-    @Bind(R.id.my_contact)
-     LinearLayout mLiContact;
-
-    @Bind(R.id.my_money)
-     LinearLayout mLiMoney;
-
-    @Bind(R.id.my_gift)
-     LinearLayout mLiGift;
-
-    @Bind(R.id.my_worry)
-     LinearLayout mLiWorry;
-
-    @Bind(R.id.re_setting)
-     RelativeLayout mReSetting;
+    private DragLayout mDragLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        TranslucentUtils.setColor(this, getResources().getColor(R.color.divider), 1);
-
-      //  initView();
-
-
+        //  initView();
 
 
     }
@@ -131,13 +99,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
+    public DragLayout getDragLayout() {
+        return mDragLayout;
+    }
+
     /**
      * 初始化布局控件
      */
     public void initView() {
         ButterKnife.bind(this);
 
-      //  mDragLayout = (MyDragLayout) findViewById(R.id.qq_slidding);
+        mDragLayout = (DragLayout) findViewById(R.id.drawer_layout);
+
+//        mDragLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+//
+//        final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDragLayout, null, R.string.open, R.string.close);
+//        mDragLayout.setDrawerListener(toggle);
+//        toggle.syncState();
+
+
+        //  mDragLayout = (MyDragLayout) findViewById(R.id.qq_slidding);
 
         mIvLive = (ImageView) findViewById(R.id.img_live);
 
@@ -149,6 +130,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mRadioThoughts = (RadioButton) findViewById(R.id.rbTabThoughts);
         mRadioLive = (RadioButton) findViewById(R.id.rbTabMall);
         mRadioHome.setChecked(true);
+        mReLogin = (RelativeLayout) findViewById(R.id.rl_login);
+        mReLogin.setOnClickListener(this);
+        mLiReserve = (LinearLayout) findViewById(R.id.my_message);
+        mLiReserve.setOnClickListener(this);
+        mLiFollow = (LinearLayout) findViewById(R.id.my_follow);
+        mLiFollow.setOnClickListener(this);
+        mLiContact = (LinearLayout) findViewById(R.id.my_contact);
+        mLiContact.setOnClickListener(this);
+        mLiMoney = (LinearLayout) findViewById(R.id.my_money);
+        mLiMoney.setOnClickListener(this);
+        mLiGift = (LinearLayout) findViewById(R.id.my_gift);
+        mLiGift.setOnClickListener(this);
+        mLiWorry = (LinearLayout) findViewById(R.id.my_worry);
+        mLiWorry.setOnClickListener(this);
+        mReSetting = (RelativeLayout) findViewById(R.id.re_setting);
+        mReSetting.setOnClickListener(this);
+
 
         initAnimation();
 
@@ -164,53 +162,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
-    @OnClick({
-            R.id.rl_login,
-            R.id.my_message,
-            R.id.my_contact,
-            R.id.my_follow,
-            R.id.my_money,
-            R.id.my_gift,
-            R.id.my_reserve,
-            R.id.my_worry,
-            R.id.re_setting})
-    public void leftMenuClick(View view) {
+    /*左侧menu事件控件*/
+    RelativeLayout mReLogin;
+    LinearLayout mLiReserve;
+    LinearLayout mLiFollow;
 
-        Intent intent = new Intent();
-        boolean isLogin = true;
+    LinearLayout mLiContact;
 
-        switch (view.getId()) {
-            case R.id.rl_login:
-                intent.setClass(MainActivity.this, LoginActivity.class);
-                isLogin = false;
-                break;
-            case R.id.my_message:
-                intent.setClass(MainActivity.this, MessageActivity.class);
-                break;
-            case R.id.my_contact:
-                intent.setClass(MainActivity.this, ContactActivity.class);
-                break;
-            case R.id.my_follow:
-                intent.setClass(MainActivity.this, FollowActivity.class);
-                break;
-            case R.id.my_money:
-                intent.setClass(MainActivity.this, MoneyActivity.class);
-                break;
-            case R.id.my_gift:
-                intent.setClass(MainActivity.this, GiftActivity.class);
-                break;
-            case R.id.my_reserve:
-                intent.setClass(MainActivity.this, ReserveActivity.class);
-                break;
-            case R.id.my_worry:
-                intent.setClass(MainActivity.this, WorryActivity.class);
-                break;
-            case R.id.re_setting:
-                intent.setClass(MainActivity.this, SettingActivity.class);
-                break;
-        }
-        startActivity(intent,isLogin);
-    }
+    LinearLayout mLiMoney;
+
+    LinearLayout mLiGift;
+
+    LinearLayout mLiWorry;
+
+    RelativeLayout mReSetting;
+
+
 
     /**
      * 添加fragment
@@ -366,6 +333,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
+        Intent intent = new Intent();
+        boolean isLogin = true;
         switch (v.getId()) {
             case R.id.img_img:
                 changeTab(TAB_LIVE);
@@ -373,6 +343,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 // Toast.makeText(this, "live", Toast.LENGTH_SHORT).show();
                 break;
 
+            case R.id.rl_login:
+                intent.setClass(MainActivity.this, LoginActivity.class);
+                isLogin = false;
+                break;
+            case R.id.my_message:
+                intent.setClass(MainActivity.this, MessageActivity.class);
+                break;
+            case R.id.my_contact:
+                intent.setClass(MainActivity.this, ContactActivity.class);
+                break;
+            case R.id.my_follow:
+                intent.setClass(MainActivity.this, FollowActivity.class);
+                break;
+            case R.id.my_money:
+                intent.setClass(MainActivity.this, MoneyActivity.class);
+                break;
+            case R.id.my_gift:
+                intent.setClass(MainActivity.this, GiftActivity.class);
+                break;
+            case R.id.my_reserve:
+                intent.setClass(MainActivity.this, ReserveActivity.class);
+                break;
+            case R.id.my_worry:
+                intent.setClass(MainActivity.this, WorryActivity.class);
+                break;
+            case R.id.re_setting:
+                intent.setClass(MainActivity.this, SettingActivity.class);
+                break;
         }
+        startActivity(intent, isLogin);
+
     }
 }

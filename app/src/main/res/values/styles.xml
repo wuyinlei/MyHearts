@@ -28,4 +28,12 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="checkbox_style">
+        <item name="android:background">@drawable/msg_tab_widget_sharp</item>
+        <item name="android:button" >@null</item>
+        <item name="android:textColor">#ff888888</item>
+        <item name="android:textSize" >16sp</item>
+        <item name="android:gravity" >center</item>
+    </style>
+
 </resources>

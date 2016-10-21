@@ -1,35 +1,51 @@
 package ruolan.com.myhearts.widget;
 
 import android.content.Context;
-import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.PorterDuff.Mode;
+import android.support.v4.view.GestureDetectorCompat;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
+import android.util.Log;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.nineoldandroids.view.ViewHelper;
 
 import ruolan.com.myhearts.R;
 
 /**
- *
+ * 使用ViewRragHelper实现侧滑效果功能
  */
-public class DragLayout extends HorizontalScrollView {
-
-    private LinearLayout mWapper;
-    private ViewGroup    mMenuViewGroup;
-    private ViewGroup    mContentViewGroup;
-
-    private int mScreenWidth;
-    private int mMenuRightPadding = 50;
-    private int mMenuWidth;
-
-    private boolean mIsOnce = true;
-    private boolean mIsOpen;
+public class DragLayout extends FrameLayout {
+    private boolean isShowShadow = true;
+    //手势处理类
+    private GestureDetectorCompat gestureDetector;
+    //视图拖拽移动帮助类
+    private ViewDragHelper dragHelper;
+    //滑动监听器
+    private DragListener dragListener;
+    //水平拖拽的距离
+    private int range;
+    //宽度
+    private int width;
+    //高度
+    private int height;
+    //main视图距离在ViewGroup距离左边的距离
+    private int mainLeft;
+    private Context context;
+    private ImageView iv_shadow;
+    //左侧布局
+    private RelativeLayout vg_left;
+    //右侧(主界面布局)
+    private CustomRelativeLayout vg_main;
+    //页面状态 默认为关闭
+    private Status status = Status.Close;
 
     public DragLayout(Context context) {
         this(context, null);
@@ -37,109 +53,375 @@ public class DragLayout extends HorizontalScrollView {
 
     public DragLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
+        this.context = context;
     }
 
-    public DragLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
-        mScreenWidth = displayMetrics.widthPixels;
-        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.DragLayout, defStyleAttr, 0);
-        int n = typedArray.length();
-        for (int i = 0; i < n; i++) {
-            int attr = typedArray.getIndex(i);
-            switch (attr) {
-                case R.styleable.DragLayout_rigthtPadding:
-                    mMenuRightPadding = typedArray.getDimensionPixelSize(
-                            attr,
-                            (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, context.getResources().getDisplayMetrics())
-                    );
-                    break;
-                default:
-                    break;
+    public DragLayout(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        gestureDetector = new GestureDetectorCompat(context, new YScrollDetector());
+        dragHelper = ViewDragHelper.create(this, dragHelperCallback);
+    }
+
+    class YScrollDetector extends SimpleOnGestureListener {
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float dx, float dy) {
+            Log.d("zttjiangqq", "dx=" + dx + ",dy=" + dy + ",isDrag:" + isDrag);
+            return (Math.abs(dy) <= Math.abs(dx) && isDrag != false);
+        }
+    }
+//  class YScrollDetector extends SimpleOnGestureListener {
+//    public boolean onScroll(MotionEvent e1, MotionEvent e2,
+//                            float distanceX, float distanceY) {
+//        if((Math.abs(distanceX) > Math.abs(distanceY))&&distanceX<0&&isDrag!=false&&status==Status.Close){
+//            return true;
+//        }else if((Math.abs(distanceX) > Math.abs(distanceY))&&distanceX>0&&isDrag!=false&&status==Status.Open){
+//            return true;
+//        }else {
+//            return false;
+//        }
+//    };
+//    }
+
+    /**
+     * 实现子View的拖拽滑动，实现Callback当中相关的方法
+     */
+    private ViewDragHelper.Callback dragHelperCallback = new ViewDragHelper.Callback() {
+        /**
+         * 水平方向移动
+         * @param child Child view being dragged
+         * @param left Attempted motion along the X axis
+         * @param dx Proposed change in position for left
+         * @return
+         */
+        @Override
+        public int clampViewPositionHorizontal(View child, int left, int dx) {
+            if (mainLeft + dx < 0) {
+                return 0;
+            } else if (mainLeft + dx > range) {
+                return range;
+            } else {
+                return left;
             }
         }
-        typedArray.recycle();
+
+        /**
+         * 拦截所有的子View
+         * @param child Child the user is attempting to capture
+         * @param pointerId ID of the pointer attempting the capture
+         * @return
+         */
+        @Override
+        public boolean tryCaptureView(View child, int pointerId) {
+            return true;
+        }
+
+        /**
+         * 设置水平方向滑动的最远距离
+         * @param child Child view to check  屏幕宽度
+         * @return
+         */
+        @Override
+        public int getViewHorizontalDragRange(View child) {
+            return width;
+        }
+
+        /**
+         * 当拖拽的子View，手势释放的时候回调的方法， 然后根据左滑或者右滑的距离进行判断打开或者关闭
+         * @param releasedChild
+         * @param xvel
+         * @param yvel
+         */
+        @Override
+        public void onViewReleased(View releasedChild, float xvel, float yvel) {
+            super.onViewReleased(releasedChild, xvel, yvel);
+            if (xvel > 0) {
+                open();
+            } else if (xvel < 0) {
+                close();
+            } else if (releasedChild == vg_main && mainLeft > range * 0.3) {
+                open();
+            } else if (releasedChild == vg_left && mainLeft > range * 0.7) {
+                open();
+            } else {
+                close();
+            }
+        }
+
+        /**
+         * 子View被拖拽 移动的时候回调的方法
+         * @param changedView View whose position changed
+         * @param left New X coordinate of the left edge of the view
+         * @param top New Y coordinate of the top edge of the view
+         * @param dx Change in X position from the last call
+         * @param dy Change in Y position from the last call
+         */
+        @Override
+        public void onViewPositionChanged(View changedView, int left, int top,
+                                          int dx, int dy) {
+            if (changedView == vg_main) {
+                mainLeft = left;
+            } else {
+                mainLeft = mainLeft + left;
+            }
+            if (mainLeft < 0) {
+                mainLeft = 0;
+            } else if (mainLeft > range) {
+                mainLeft = range;
+            }
+
+            if (isShowShadow) {
+                iv_shadow.layout(mainLeft, 0, mainLeft + width, height);
+            }
+            if (changedView == vg_left) {
+                vg_left.layout(0, 0, width, height);
+                vg_main.layout(mainLeft, 0, mainLeft + width, height);
+            }
+
+            dispatchDragEvent(mainLeft);
+        }
+    };
+
+    /**
+     * 滑动相关回调接口
+     */
+    public interface DragListener {
+        //界面打开
+        public void onOpen();
+
+        //界面关闭
+        public void onClose();
+
+        //界面滑动过程中
+        public void onDrag(float percent);
+    }
+
+    public void setDragListener(DragListener dragListener) {
+        this.dragListener = dragListener;
+    }
+
+    /**
+     * 布局加载完成回调
+     * 做一些初始化的操作
+     */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        if (isShowShadow) {
+            iv_shadow = new ImageView(context);
+            iv_shadow.setImageResource(R.drawable.shadow);
+            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+            addView(iv_shadow, 1, lp);
+        }
+        //左侧界面
+        vg_left = (RelativeLayout) getChildAt(0);
+        //右侧(主)界面
+        vg_main = (CustomRelativeLayout) getChildAt(isShowShadow ? 2 : 1);
+        vg_main.setDragLayout(this);
+        vg_left.setClickable(true);
+        vg_main.setClickable(true);
+    }
+
+    public ViewGroup getVg_main() {
+        return vg_main;
+    }
+
+    public ViewGroup getVg_left() {
+        return vg_left;
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (mIsOnce) {
-            mWapper = (LinearLayout) getChildAt(0);
-            mMenuViewGroup = (ViewGroup) mWapper.getChildAt(0);
-            mContentViewGroup = (ViewGroup) mWapper.getChildAt(1);
-            mMenuWidth = mMenuViewGroup.getLayoutParams().width = mScreenWidth - mMenuRightPadding;
-            mContentViewGroup.getLayoutParams().width = mScreenWidth;
-            mIsOnce = false;
-        }
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        width = vg_left.getMeasuredWidth();
+        height = vg_left.getMeasuredHeight();
+        //可以水平拖拽滑动的距离 一共为屏幕宽度的80%
+        range = (int) (width * 0.8f);
     }
 
+    /**
+     * 调用进行left和main 视图进行位置布局
+     *
+     * @param changed
+     * @param left
+     * @param top
+     * @param right
+     * @param bottom
+     */
     @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-        if (changed) {
-            this.scrollTo(mMenuWidth, 0);
-        }
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        vg_left.layout(0, 0, width, height);
+        vg_main.layout(mainLeft, 0, mainLeft + width, height);
     }
 
+    /**
+     * 拦截触摸事件
+     *
+     * @param ev
+     * @return
+     */
     @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        int action = ev.getAction();
-        switch (action) {
-            case MotionEvent.ACTION_UP:
-                int scrollX = getScrollX();
-                if (scrollX >= mMenuWidth / 2) {
-                    smoothScrollTo(mMenuWidth, 0);
-                    mIsOpen = false;
-                } else {
-                    smoothScrollTo(0, 0);
-                    mIsOpen = true;
-                }
-                return true;
-        }
-        return super.onTouchEvent(ev);
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return dragHelper.shouldInterceptTouchEvent(ev) && gestureDetector.onTouchEvent(ev);
     }
 
-    public void openMenu() {
-        if (mIsOpen)
+    /**
+     * 将拦截的到事件给ViewDragHelper进行处理
+     *
+     * @param e
+     * @return
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+        try {
+            dragHelper.processTouchEvent(e);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * 进行处理拖拽事件
+     *
+     * @param mainLeft
+     */
+    private void dispatchDragEvent(int mainLeft) {
+        if (dragListener == null) {
             return;
-        smoothScrollTo(0, 0);
-        mIsOpen = true;
+        }
+        float percent = mainLeft / (float) range;
+
+        Log.d("DragLayout", "percent:" + percent);
+        //根据滑动的距离的比例,进行带有动画的缩小和放大View
+        animateView(percent);
+        //进行回调滑动的百分比
+        dragListener.onDrag(percent);
+        Status lastStatus = status;
+        if (lastStatus != getStatus() && status == Status.Close) {
+            dragListener.onClose();
+        } else if (lastStatus != getStatus() && status == Status.Open) {
+            dragListener.onOpen();
+        }
     }
 
-    public void closeMenu() {
-        if (!mIsOpen)
-            return;
-        smoothScrollTo(mMenuWidth, 0);
-        mIsOpen = false;
+    /**
+     * 根据滑动的距离的比例,进行带有动画的缩小和放大View
+     *
+     * @param percent
+     */
+    private void animateView(float percent) {
+        float f1 = 1 - percent * 0.3f;
+        //vg_main水平方向 根据百分比缩放
+        ViewHelper.setScaleX(vg_main, f1);
+        //vg_main垂直方向，根据百分比缩放
+        ViewHelper.setScaleY(vg_main, f1);
+        //沿着水平X轴平移
+        ViewHelper.setTranslationX(vg_left, -vg_left.getWidth() / 2.3f + vg_left.getWidth() / 2.3f * percent);
+        //vg_left水平方向 根据百分比缩放
+        ViewHelper.setScaleX(vg_left, 0.5f + 0.5f * percent);
+        //vg_left垂直方向 根据百分比缩放
+        ViewHelper.setScaleY(vg_left, 0.5f + 0.5f * percent);
+        //vg_left根据百分比进行设置透明度
+        ViewHelper.setAlpha(vg_left, percent);
+        if (isShowShadow) {
+            //阴影效果视图大小进行缩放
+            ViewHelper.setScaleX(iv_shadow, f1 * 1.4f * (1 - percent * 0.12f));
+            ViewHelper.setScaleY(iv_shadow, f1 * 1.85f * (1 - percent * 0.12f));
+        }
+        getBackground().setColorFilter(evaluate(percent, Color.BLACK, Color.TRANSPARENT), Mode.SRC_OVER);
     }
 
-    public void toggleMenu() {
-        if (mIsOpen)
-            closeMenu();
-        else
-            openMenu();
+    private Integer evaluate(float fraction, Object startValue, Integer endValue) {
+        int startInt = (Integer) startValue;
+        int startA = (startInt >> 24) & 0xff;
+        int startR = (startInt >> 16) & 0xff;
+        int startG = (startInt >> 8) & 0xff;
+        int startB = startInt & 0xff;
+        int endInt = (Integer) endValue;
+        int endA = (endInt >> 24) & 0xff;
+        int endR = (endInt >> 16) & 0xff;
+        int endG = (endInt >> 8) & 0xff;
+        int endB = endInt & 0xff;
+        return (int) ((startA + (int) (fraction * (endA - startA))) << 24)
+                | (int) ((startR + (int) (fraction * (endR - startR))) << 16)
+                | (int) ((startG + (int) (fraction * (endG - startG))) << 8)
+                | (int) ((startB + (int) (fraction * (endB - startB))));
     }
 
+    /**
+     * 有加速度,当我们停止滑动的时候，该不会立即停止动画效果
+     */
     @Override
-    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        super.onScrollChanged(l, t, oldl, oldt);
-        float scale = l * 1.0f / mMenuWidth; // l: 1.0 ~ 0
-        ViewHelper.setTranslationX(mMenuViewGroup, mMenuWidth * scale * 0.7f);
+    public void computeScroll() {
+        if (dragHelper.continueSettling(true)) {
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
+    }
 
-        float rightScale = 0.7f + 0.3f * scale;
-        ViewHelper.setPivotX(mContentViewGroup, 0);
-        ViewHelper.setPivotY(mContentViewGroup, mContentViewGroup.getHeight() / 2);
-        ViewHelper.setScaleX(mContentViewGroup, rightScale);
-        ViewHelper.setScaleY(mContentViewGroup, rightScale);
+    /**
+     * 页面状态(滑动,打开,关闭)
+     */
+    public enum Status {
+        Drag, Open, Close
+    }
 
-        float leftScale = 1.0f - 0.3f * scale;
-        ViewHelper.setScaleX(mMenuViewGroup, leftScale);
-        ViewHelper.setScaleY(mMenuViewGroup, leftScale);
+    /**
+     * 页面状态设置
+     *
+     * @return
+     */
+    public Status getStatus() {
+        if (mainLeft == 0) {
+            status = Status.Close;
+        } else if (mainLeft == range) {
+            status = Status.Open;
+        } else {
+            status = Status.Drag;
+        }
+        return status;
+    }
 
-        float leftAlpha = 0.1f + 0.9f *(1 - scale);
-        ViewHelper.setAlpha(mMenuViewGroup, leftAlpha);
+    public void open() {
+        open(true);
+    }
+
+    public void open(boolean animate) {
+        if (animate) {
+            //继续滑动
+            if (dragHelper.smoothSlideViewTo(vg_main, range, 0)) {
+                ViewCompat.postInvalidateOnAnimation(this);
+            }
+        } else {
+            vg_main.layout(range, 0, range * 2, height);
+            dispatchDragEvent(range);
+        }
+    }
+
+    public void close() {
+        close(true);
+    }
+
+    public void close(boolean animate) {
+        if (animate) {
+            //继续滑动
+            if (dragHelper.smoothSlideViewTo(vg_main, 0, 0)) {
+                ViewCompat.postInvalidateOnAnimation(this);
+            }
+        } else {
+            vg_main.layout(0, 0, width, height);
+            dispatchDragEvent(0);
+        }
+    }
+
+    /**
+     * 设置是否允许拖拽状态标识，默认是允许
+     */
+    private boolean isDrag = true;
+
+    public void setDrag(boolean isDrag) {
+        this.isDrag = isDrag;
+        if (isDrag) {
+            dragHelper.abort();
+        }
     }
 }

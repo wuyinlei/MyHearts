@@ -15,4 +15,6 @@
     <string name="my_free_icon">免费体验</string>
     <string name="my_exam_icon">心里测试</string>
     <string name="recomment_master">推荐咨询师</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>

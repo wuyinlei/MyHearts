@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.application.MyApplication;
 import ruolan.com.myhearts.activity.login.LoginActivity;
+import ruolan.com.myhearts.utils.TranslucentUtils;
 
 /**
  * Created by Administrator on 2016/10/20.
@@ -21,6 +23,9 @@ public abstract class BaseActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         setContentView(getResultId());
+
+        TranslucentUtils.setColor(this, getResources().getColor(R.color.home_bg_title), 1);
+
         initView();
         initListener();
         initData();

@@ -2,7 +2,7 @@
 <resources>
     <attr name="rigthtPadding" format="dimension"/>
 
-    <declare-styleable name="DragLayout">
+    <declare-styleable name="DragLayoutOne">
         <attr name="rigthtPadding"/>
     </declare-styleable>
 
@@ -19,5 +19,17 @@
             <enum name="RIGHT" value="2"/>
         </attr>
         <attr name="points_container_background" format="reference|color"/>
+    </declare-styleable>
+
+    <declare-styleable name="BBox">
+        <attr name="check_style">
+            <enum name="fork" value="0" />
+            <enum name="hook" value="1" />
+        </attr>
+        <attr name="color_before" format="color" />
+        <attr name="color_after" format="color" />
+        <attr name="check_text" format="string" />
+        <attr name="show_border" format="boolean"/>
+        <attr name="is_circle_border" format="boolean"/>
     </declare-styleable>
 </resources>

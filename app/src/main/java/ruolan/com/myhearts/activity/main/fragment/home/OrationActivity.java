@@ -64,10 +64,6 @@ public class OrationActivity extends BaseActivity implements View.OnClickListene
                             && bean.getResults().size() > 0) {
                         mOrationDatas = bean.getResults();
                         mOrationAdapter.addData(mOrationDatas);
-
-                        // page++;
-
-
                     }
                 }, throwable -> {
 
@@ -94,16 +90,13 @@ public class OrationActivity extends BaseActivity implements View.OnClickListene
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
 
                 //一般加载数据都是在子线程中，这里我用到了handler
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Toast.makeText(MainActivity.this, "已经没有更多数据了", Toast.LENGTH_SHORT).show();
-                        /**
-                         * 刷新完成后调用此方法，要不然刷新效果不消失
-                         */
-                        initRefresh(materialRefreshLayout);
+                new Handler().postDelayed(() -> {
+                    //Toast.makeText(MainActivity.this, "已经没有更多数据了", Toast.LENGTH_SHORT).show();
+                    /**
+                     * 刷新完成后调用此方法，要不然刷新效果不消失
+                     */
+                    initRefresh(materialRefreshLayout);
 
-                    }
                 }, 3000);
 
             }
