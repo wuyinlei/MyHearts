@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/ic_back"
-            android:layout_width="@dimen/datepicker_header_height"
-            android:layout_height="@dimen/datepicker_header_height"
+            android:layout_width="@dimen/x25"
+            android:layout_height="@dimen/x25"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/text_size"
             android:background="@drawable/ic_back"

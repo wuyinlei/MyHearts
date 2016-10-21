@@ -24,14 +24,12 @@ import ruolan.com.myhearts.activity.main.left.MoneyActivity;
 import ruolan.com.myhearts.activity.main.left.ReserveActivity;
 import ruolan.com.myhearts.activity.main.left.SettingActivity;
 import ruolan.com.myhearts.activity.main.left.WorryActivity;
-import ruolan.com.myhearts.activity.main.fragment.AdvisoryFragment;
+import ruolan.com.myhearts.activity.main.fragment.advisory.AdvisoryFragment;
 import ruolan.com.myhearts.activity.main.fragment.home.HomeFragment;
 import ruolan.com.myhearts.activity.main.fragment.LiveFragment;
-import ruolan.com.myhearts.activity.main.fragment.LordFragment;
+import ruolan.com.myhearts.activity.main.fragment.lord.LordFragment;
 import ruolan.com.myhearts.activity.main.fragment.ThoughtsFragment;
-import ruolan.com.myhearts.utils.TranslucentUtils;
 import ruolan.com.myhearts.widget.DragLayout;
-import ruolan.com.myhearts.widget.MyDragLayout;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -110,12 +108,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ButterKnife.bind(this);
 
         mDragLayout = (DragLayout) findViewById(R.id.drawer_layout);
-
-//        mDragLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//
-//        final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDragLayout, null, R.string.open, R.string.close);
-//        mDragLayout.setDrawerListener(toggle);
-//        toggle.syncState();
 
 
         //  mDragLayout = (MyDragLayout) findViewById(R.id.qq_slidding);

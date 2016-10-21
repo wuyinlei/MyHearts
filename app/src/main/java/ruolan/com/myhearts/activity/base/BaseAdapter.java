@@ -25,7 +25,7 @@ public abstract class BaseAdapter <T,H extends BaseViewHolder> extends RecyclerV
 
     protected  int layoutResId;
 
-    protected List<T> datas;
+    public   List<T> datas;
 
 
     private OnItemClickListener mOnItemClickListener = null;
@@ -33,6 +33,7 @@ public abstract class BaseAdapter <T,H extends BaseViewHolder> extends RecyclerV
 
 
     public  interface OnItemClickListener {
+
         void onItemClick(View view, int position);
     }
 

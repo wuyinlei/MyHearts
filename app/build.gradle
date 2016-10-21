@@ -30,6 +30,10 @@ android {
         }
     }
 }
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')

@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.activity.main.fragment;
+package ruolan.com.myhearts.activity.main.fragment.advisory;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

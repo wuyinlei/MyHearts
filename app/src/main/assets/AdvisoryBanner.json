@@ -1,0 +1,81 @@
+{
+  "errorCode": 0,
+  "errorStr": "success",
+  "resultCount": 4,
+  "score": 0,
+  "balance": 0,
+  "results": [
+    {
+      "id": "20",
+      "icon": "http:\/\/image.xinliji.me\/http:\/\/7xi9a5.com2.z0.glb.qiniucdn.com\/o_1a4v3olibq2seo11f93bdj1i7ii.png",
+      "pic": "http:\/\/image.xinliji.me\/o_1av857mhb153bcpe1ekp4eihsin.jpg",
+      "title": "推荐咨询师No.1",
+      "subtitle": "推荐咨询师No.1",
+      "type": "appview_v2",
+      "url": "&token=",
+      "target": "",
+      "className": "counselor.ui.CounselorDetailActivity",
+      "params": [
+        {
+          "key": "counselorid",
+          "value": "58986"
+        }
+      ]
+    },
+    {
+      "id": "40",
+      "icon": "http:\/\/image.xinliji.me\/http:\/\/7xi9a5.com2.z0.glb.qiniucdn.com\/o_1a8d09m1pivt1r192njpr210cdi.png",
+      "pic": "http:\/\/image.xinliji.me\/o_1av897j9grrl1s7g131m12vb11sdi.png",
+      "title": "推荐咨询师No.2",
+      "subtitle": "推荐咨询师No.2",
+      "type": "appview_v2",
+      "url": "&token=",
+      "target": "",
+      "className": "counselor.ui.CounselorDetailActivity",
+      "params": [
+        {
+          "key": "counselorid",
+          "value": "28283"
+        }
+      ]
+    },
+    {
+      "id": "49",
+      "icon": "http:\/\/image.xinliji.me\/http:\/\/7xi9a5.com2.z0.glb.qiniucdn.com\/o_1ag9mocv8aue9q51idi19tmkgvn.jpg",
+      "pic": "http:\/\/image.xinliji.me\/o_1av899ps414li1tk72t1me812jmi.png",
+      "title": "推荐咨询师No.3",
+      "subtitle": "推荐咨询师No.3",
+      "type": "appview_v2",
+      "url": "&token=",
+      "target": "",
+      "className": "counselor.ui.CounselorDetailActivity",
+      "params": [
+        {
+          "key": "counselorid",
+          "value": "87538"
+        }
+      ]
+    },
+    {
+      "id": "50",
+      "icon": "http:\/\/image.xinliji.me\/http:\/\/7xi9a5.com2.z0.glb.qiniucdn.com\/o_1ag9mpftn1ds91h081p2rvbmqs7i.jpg",
+      "pic": "http:\/\/image.xinliji.me\/o_1av89ruin10ni1i3l12lp1bohiv6i.png",
+      "title": "推荐咨询师No.4",
+      "subtitle": "推荐咨询师No.4",
+      "type": "appview_v2",
+      "url": "&token=",
+      "target": "",
+      "className": "counselor.ui.CounselorDetailActivity",
+      "params": [
+        {
+          "key": "counselor.ui.CounselorDetailActivity",
+          "value": ""
+        },
+        {
+          "key": "counselorid",
+          "value": "88124"
+        }
+      ]
+    }
+  ]
+}
