@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/re_item_visible"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x105"
+        android:padding="@dimen/x10">
+
+        <ImageView
+
+            android:id="@+id/iv_tour"
+            android:layout_width="@dimen/x60"
+            android:layout_height="@dimen/x60"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_toRightOf="@+id/iv_tour"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="孩子来自天堂"
+                android:textColor="#000"
+                android:textSize="@dimen/x18" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x10"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/x20"
+                    android:layout_height="@dimen/x20"
+                    android:background="@drawable/icon_pop_1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginTop="@dimen/x2"
+                    android:text="30"
+                    android:id="@+id/tv_like_count"
+                    android:textSize="@dimen/x14" />
+
+                <ImageView
+                    android:layout_width="@dimen/x20"
+                    android:layout_height="@dimen/x20"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:background="@drawable/icon_location_1" />
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginTop="@dimen/x2"
+                    android:text="上海"
+                    android:textColor="@color/home_recomment_title_color"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/tv_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginTop="@dimen/x2"
+                    android:text="0.91km"
+                    android:textColor="@color/home_recomment_title_color"
+                    android:textSize="@dimen/x14" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_des"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x10"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="你好啊"
+                android:textColor="@color/home_recomment_title_color"
+                android:textSize="@dimen/x14" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:background="@color/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+    <RelativeLayout
+        android:id="@+id/loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_36"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="-- 没有更多数据了 --"
+            android:textColor="@android:color/darker_gray"/>
+    </RelativeLayout>
+
+</LinearLayout>

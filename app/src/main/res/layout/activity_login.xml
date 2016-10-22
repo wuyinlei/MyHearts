@@ -122,12 +122,10 @@
 
     <RelativeLayout
         android:id="@+id/re_look_more"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/x280"
         android:layout_height="@dimen/x50"
         android:layout_below="@+id/rl_memory"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/x40"
-        android:layout_marginRight="@dimen/x40"
         android:layout_marginTop="10dp"
         android:background="@drawable/login_bg">
 

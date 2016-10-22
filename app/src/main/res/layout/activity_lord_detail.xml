@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_oration"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/home_title_color">
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="@dimen/x25"
+            android:layout_height="@dimen/x25"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/text_size"
+            android:background="@drawable/ic_back"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="咨讯"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_large"/>
+
+    </RelativeLayout>
+
+    <com.cjj.MaterialRefreshLayout
+        android:id="@+id/refresh"
+       android:layout_weight="33"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/lord_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.cjj.MaterialRefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="-- 没有更多数据了 --"
+            android:textColor="@android:color/darker_gray"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 /**
  * Created by Administrator on 2016/10/21.
@@ -30,6 +31,8 @@ public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         return retrieveView(viewId);
     }
 
+
+
     public CheckBox getCheckBox(int viewId) {
         return retrieveView(viewId);
     }
@@ -43,6 +46,10 @@ public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     }
 
     public View getView(int viewId) {
+        return retrieveView(viewId);
+    }
+
+    public RelativeLayout getRelativeLayout(int viewId){
         return retrieveView(viewId);
     }
 

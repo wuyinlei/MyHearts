@@ -1,6 +1,7 @@
 package ruolan.com.myhearts.activity.main.fragment.lord;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -104,7 +105,10 @@ public class LordFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         mLordAdapter = new LordAdapter(getContext(), mLordDatas);
         mLordRecyclerView.setAdapter(mLordAdapter);
         mLordAdapter.setOnItemClickListener((view1, position) -> {
-            Toast.makeText(getContext(), mLordDatas.get(position).getLabel(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getContext(),LordDetailActivity.class);
+            intent.putExtra("title",mLordDatas.get(position).getLabel());
+            startActivity(intent);
+            //Toast.makeText(getContext(), mLordDatas.get(position).getLabel(), Toast.LENGTH_SHORT).show();
         });
 
 

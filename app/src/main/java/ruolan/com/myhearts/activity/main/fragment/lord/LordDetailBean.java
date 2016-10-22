@@ -126,6 +126,16 @@ public class LordDetailBean implements Serializable {
         private String isBlocked;
         private String gotyeGroupId;
 
+        private boolean isNoData;
+
+        public void setNoData(boolean hasData) {
+            isNoData = hasData;
+        }
+
+        public boolean isNoData() {
+            return isNoData;
+        }
+
         public String getId() {
             return id;
         }

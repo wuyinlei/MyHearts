@@ -54,4 +54,5 @@ public class Contants {
     // 心事   userid = 54442
     public static final String THOUGHTS_URL = BASE_URL + "social/nearuserevents_v3";
 
+    public static final String LORD_DETAIL_URL = BASE_URL + "social/loadGroupsByCatg";
 }
