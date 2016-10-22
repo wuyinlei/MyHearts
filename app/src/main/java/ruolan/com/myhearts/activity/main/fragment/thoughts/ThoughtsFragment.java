@@ -5,7 +5,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -23,6 +22,7 @@ import java.util.List;
 
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.activity.main.fragment.TabViewPagerAdapter;
+import ruolan.com.myhearts.widget.ThoughtViewPager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +30,7 @@ import ruolan.com.myhearts.activity.main.fragment.TabViewPagerAdapter;
 public class ThoughtsFragment extends Fragment implements View.OnClickListener {
 
 
-    private ViewPager mViewPager;
+    private ThoughtViewPager mViewPager;
     private TabLayout mTabLayout;
     private ImageView mIvRemind,mIvNote;
     private TextView mTvTitle;
@@ -76,7 +76,7 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
         mIvNote = (ImageView) inflate.findViewById(R.id.img_note);
         mIvRemind = (ImageView) inflate.findViewById(R.id.iv_remind);
         mTvTitle = (TextView) inflate.findViewById(R.id.tv_title);
-        mViewPager = (ViewPager) inflate.findViewById(R.id.viewpager);
+        mViewPager = (ThoughtViewPager) inflate.findViewById(R.id.viewpager);
         mTabLayout = (TabLayout) inflate.findViewById(R.id.tab_layout);
     }
 

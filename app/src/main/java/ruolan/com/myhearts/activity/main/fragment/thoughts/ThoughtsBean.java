@@ -25,6 +25,7 @@ public class ThoughtsBean implements Serializable {
     private int balance;
     /**
      * id : 25784
+     *
      * actId : 0
      * actName :
      * isAnon : 0

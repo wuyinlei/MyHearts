@@ -27,6 +27,10 @@ public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.Throug
     private List<ThoughtsBean.ResultsBean> mResultsBeen = new ArrayList<>();
     private Context mContext;
 
+    /**
+     *
+     * @param resultsBeen
+     */
     public void setResultsBeen(List<ThoughtsBean.ResultsBean> resultsBeen) {
         mResultsBeen = resultsBeen;
         notifyDataSetChanged();
@@ -50,7 +54,7 @@ public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.Throug
         ThoughtsBean.ResultsBean bean = mResultsBeen.get(position);
         Long addtime = Long.valueOf(bean.getCreatedDateTime());
         Long result_time = addtime * 1000;
-        String date = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(result_time);
+        String date = new java.text.SimpleDateFormat("MM-dd HH:mm").format(result_time);
         Glide.with(mContext).load(bean.getAvatar()).asBitmap()
                 .transform(new GlideCircleTransform(mContext))
                 .into(holder.mIvTour);
