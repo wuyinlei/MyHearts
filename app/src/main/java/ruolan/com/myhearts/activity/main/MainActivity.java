@@ -28,7 +28,7 @@ import ruolan.com.myhearts.activity.main.fragment.advisory.AdvisoryFragment;
 import ruolan.com.myhearts.activity.main.fragment.home.HomeFragment;
 import ruolan.com.myhearts.activity.main.fragment.LiveFragment;
 import ruolan.com.myhearts.activity.main.fragment.lord.LordFragment;
-import ruolan.com.myhearts.activity.main.fragment.ThoughtsFragment;
+import ruolan.com.myhearts.activity.main.fragment.thoughts.ThoughtsFragment;
 import ruolan.com.myhearts.widget.DragLayout;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {

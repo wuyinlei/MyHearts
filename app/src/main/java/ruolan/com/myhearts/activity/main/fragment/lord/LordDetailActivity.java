@@ -1,12 +1,6 @@
 package ruolan.com.myhearts.activity.main.fragment.lord;
 
-import android.graphics.Color;
 import android.os.Handler;
-import android.provider.SyncStateContract;
-import android.support.v4.animation.AnimatorCompatHelper;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -14,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;

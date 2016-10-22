@@ -305,7 +305,6 @@
             android:layout_marginBottom="@dimen/x10"
             android:layout_marginLeft="@dimen/x20"
             android:layout_marginRight="@dimen/x20"
-
             android:layout_marginTop="@dimen/x10"
             android:background="@drawable/home_look_more_bg">
 
