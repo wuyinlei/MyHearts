@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,21 +35,21 @@ import ruolan.com.myhearts.widget.GlideCircleTransform;
  * Created by wuyinlei on 2016/10/22.
  */
 
-public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.ThroughtViewHolder> {
+class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.ThroughtViewHolder> {
 
     private List<ThoughtsBean.ResultsBean> mResultsBeen = new ArrayList<>();
     private Context mContext;
 
     /**
      *
-     * @param resultsBeen
+     * @param resultsBeen  结果集
      */
-    public void setResultsBeen(List<ThoughtsBean.ResultsBean> resultsBeen) {
+    void setResultsBeen(List<ThoughtsBean.ResultsBean> resultsBeen) {
         mResultsBeen = resultsBeen;
         notifyDataSetChanged();
     }
 
-    public ThroughtAdapter(Context context, List<ThoughtsBean.ResultsBean> bean){
+    ThroughtAdapter(Context context, List<ThoughtsBean.ResultsBean> bean){
         this.mContext = context;
         this.mResultsBeen = bean;
     }
@@ -64,7 +65,7 @@ public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.Throug
     @Override
     public void onBindViewHolder(ThroughtViewHolder holder, int position) {
         ThoughtsBean.ResultsBean bean = mResultsBeen.get(position);
-        Long addtime = Long.valueOf(bean.getCreatedDateTime());
+        Long addtime = (long) bean.getCreatedDateTime();
         Long result_time = addtime * 1000;
         String date = new java.text.SimpleDateFormat("MM-dd HH:mm").format(result_time);
         Glide.with(mContext).load(bean.getAvatar()).asBitmap()
@@ -128,11 +129,11 @@ public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.Throug
         private ImageView mIvTour,mIvGender;
         private TextView mTvName,mTvTime,mTvContent,mTvCommentCount,mTvViewCount;
         private RecyclerView mCommentRecycler;
-        private RelativeLayout mCommentRe;
+        private LinearLayout mCommentRe;
         private NineGridView mPhotoRecycler;
 
 
-        public ThroughtViewHolder(View view) {
+        ThroughtViewHolder(View view) {
             super(view);
             mIvTour  = (ImageView) view.findViewById(R.id.iv_tour);
             mIvGender = (ImageView) view.findViewById(R.id.image_gender);
@@ -143,7 +144,7 @@ public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.Throug
             mTvViewCount = (TextView) view.findViewById(R.id.tv_view_count);
             mPhotoRecycler = (NineGridView) view.findViewById(R.id.nineGrid);
             mCommentRecycler = (RecyclerView) view.findViewById(R.id.recycler_view);
-            mCommentRe = (RelativeLayout) view.findViewById(R.id.re_comment);
+            mCommentRe = (LinearLayout) view.findViewById(R.id.re_comment);
         }
     }
 
@@ -152,7 +153,7 @@ public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.Throug
 
         private List<CommentsBean> mCommentsBeen = new ArrayList<>();
 
-        public CommentAdapter(List<CommentsBean> commentsBeen){
+        CommentAdapter(List<CommentsBean> commentsBeen){
             this.mCommentsBeen = commentsBeen;
         }
 
@@ -231,7 +232,7 @@ public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.Throug
 
             private TextView mTvCommentContent,mTvReplayName;
 
-            public CommentViewHolder(View itemView) {
+            CommentViewHolder(View itemView) {
                 super(itemView);
                 mTvCommentContent = (TextView) itemView.findViewById(R.id.tv_comment_content);
                 mTvReplayName = (TextView) itemView.findViewById(R.id.tv_replay_name);
