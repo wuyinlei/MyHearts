@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -50,7 +51,7 @@
                     android:background="@drawable/live_time_icon" />
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/image_gender"
                     android:layout_marginLeft="@dimen/x10"
                     android:layout_toRightOf="@+id/tv_name"
                     android:layout_width="wrap_content"
@@ -73,11 +74,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_view_photo"
-                    android:visibility="gone"
+                <com.lzy.ninegrid.NineGridView
+                    android:id="@+id/nineGrid"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    app:ngv_gridSpacing="3dp"
+                    app:ngv_maxSize="9"
+                    app:ngv_mode="grid"
+                    app:ngv_singleImageRatio="1"
+                    app:ngv_singleImageSize="250dp"/>
 
             </RelativeLayout>
 
@@ -136,27 +142,31 @@
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/divider" />
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1px"-->
+        <!--android:background="@color/divider" />-->
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:id="@+id/re_comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <View
+            android:layout_below="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="1px" />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
+            android:layout_marginTop="@dimen/x5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x20"
             android:layout_marginRight="@dimen/x20"
             android:padding="@dimen/x10" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px" />
-    </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -2,12 +2,14 @@ package ruolan.com.myhearts.activity.main.fragment.thoughts;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
@@ -23,6 +25,7 @@ import java.util.List;
 
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
+import ruolan.com.myhearts.widget.DividerItemDecoration;
 import ruolan.com.myhearts.widget.itemanimator.ScaleInOutItemAnimator;
 import rx.android.schedulers.AndroidSchedulers;
 
@@ -84,6 +87,8 @@ public class NewFragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setItemAnimator(new ScaleInOutItemAnimator(mRecyclerView));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
+                DividerItemDecoration.VERTICAL_LIST));
         mThroughtAdapter = new ThroughtAdapter(getContext(), mThroughtDatas);
         mRecyclerView.setAdapter(mThroughtAdapter);
         mRefreshLayout = (MaterialRefreshLayout) view.findViewById(R.id.refresh);
@@ -91,15 +96,49 @@ public class NewFragment extends Fragment {
         mRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
-
+                refreshData();
             }
 
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
                 super.onRefreshLoadMore(materialRefreshLayout);
+                new Handler().postDelayed(() -> lordMoreData(materialRefreshLayout),3000);
             }
         });
 
+    }
+
+    /**
+     * 上拉加载更多数据
+     * @param materialRefreshLayout
+     */
+    private void lordMoreData(MaterialRefreshLayout materialRefreshLayout) {
+        materialRefreshLayout.finishRefreshLoadMore();
+        Toast.makeText(getContext(), "没有更多数据了", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 刷新数据
+     */
+    private void refreshData() {
+        OkGo.post(Contants.THOUGHTS_URL)
+                .params("userid",54442)
+                .getCall(StringConvert.create(), RxAdapter.<String>create())
+                .doOnSubscribe(()->{})
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s->{
+                    Type type = new TypeToken<ThoughtsBean>(){}.getType();
+                    ThoughtsBean bean = new Gson().fromJson(s,type);
+                    if (bean.getErrorCode()==0
+                            &&bean.getResultCount()>0
+                            &&bean.getErrorStr().equals("success")){
+                        mThroughtDatas.clear();
+                        mRefreshLayout.finishRefresh();
+                        mThroughtDatas = bean.getResults();
+                        //mThroughtAdapter.notifyDataSetChanged();
+                        mThroughtAdapter.setResultsBeen(mThroughtDatas);
+                    }
+                },throwable -> {});
     }
 
 }

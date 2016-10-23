@@ -2,12 +2,14 @@ package ruolan.com.myhearts.activity.main.fragment.thoughts;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
@@ -23,6 +25,7 @@ import java.util.List;
 
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
+import ruolan.com.myhearts.widget.DividerItemDecoration;
 import ruolan.com.myhearts.widget.itemanimator.ScaleInOutItemAnimator;
 import rx.android.schedulers.AndroidSchedulers;
 
@@ -79,6 +82,8 @@ public class HotFragment extends Fragment {
     private void initView(View view) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
+                DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setItemAnimator(new ScaleInOutItemAnimator(mRecyclerView));
         mThroughtAdapter = new ThroughtAdapter(getContext(), mThroughtDatas);
         mRecyclerView.setAdapter(mThroughtAdapter);
@@ -93,9 +98,19 @@ public class HotFragment extends Fragment {
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
                 super.onRefreshLoadMore(materialRefreshLayout);
+                new Handler().postDelayed(() -> lordMoreData(materialRefreshLayout),3000);
             }
         });
 
+    }
+
+    /**
+     * 上拉加载更多数据
+     * @param materialRefreshLayout
+     */
+    private void lordMoreData(MaterialRefreshLayout materialRefreshLayout) {
+        materialRefreshLayout.finishRefreshLoadMore();
+        Toast.makeText(getContext(), "没有更多数据了", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -114,9 +129,10 @@ public class HotFragment extends Fragment {
                             &&bean.getResultCount()>0
                             &&bean.getErrorStr().equals("success")){
                         mThroughtDatas.clear();
+                        mRefreshLayout.finishRefresh();
                         mThroughtDatas = bean.getResults();
-                        mThroughtAdapter.notifyDataSetChanged();
-                        //mThroughtAdapter.setResultsBeen(mThroughtDatas);
+                        //mThroughtAdapter.notifyDataSetChanged();
+                        mThroughtAdapter.setResultsBeen(mThroughtDatas);
                     }
                 },throwable -> {});
     }

@@ -3,12 +3,17 @@ package ruolan.com.myhearts.application;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.lzy.ninegrid.NineGridView;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.store.PersistentCookieStore;
 
+import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.User;
 
 /**
@@ -35,6 +40,8 @@ public class MyApplication
         super.onCreate();
 
         mInstance = this;
+
+        NineGridView.setImageLoader(new PicassoImageLoader());
 
         OkGo.init(this);
 
@@ -83,6 +90,25 @@ public class MyApplication
         }
        // initUser();
       //  Fresco.initialize(this);
+    }
+
+
+
+    /** Picasso 加载 */
+    private class PicassoImageLoader implements NineGridView.ImageLoader {
+
+        @Override
+        public void onDisplayImage(Context context, ImageView imageView, String url) {
+            Glide.with(context).load(url)//
+                    .placeholder(R.drawable.ic_default_image)//
+                    .error(R.drawable.ic_default_image)//
+                    .into(imageView);
+        }
+
+        @Override
+        public Bitmap getCacheImage(String url) {
+            return null;
+        }
     }
 
 

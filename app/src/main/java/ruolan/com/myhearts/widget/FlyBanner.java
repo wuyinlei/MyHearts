@@ -40,7 +40,7 @@ public class FlyBanner extends RelativeLayout {
 
     private LinearLayout mPointRealContainerLl;
 
-    private ViewPager mViewPager;
+    private ThoughtViewPager mViewPager;
     //本地图片资源
     private List<Integer> mImages;
     //网络图片资源
@@ -118,7 +118,7 @@ public class FlyBanner extends RelativeLayout {
             mPointContainerBackgroundDrawable = new ColorDrawable(Color.parseColor("#00aaaaaa"));
         }
         //添加ViewPager
-        mViewPager = new ViewPager(context);
+        mViewPager = new ThoughtViewPager(context);
         addView(mViewPager, new LayoutParams(RMP, RMP));
         //设置指示器背景容器
         RelativeLayout pointContainerRl = new RelativeLayout(context);
