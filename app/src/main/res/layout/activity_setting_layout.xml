@@ -23,13 +23,13 @@
 
         <ImageView
             android:id="@+id/img_back"
+            android:src="@drawable/ic_back"
             android:layout_width="@dimen/x25"
             android:layout_height="@dimen/x25"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginRight="@dimen/text_size"
-            android:background="@drawable/ic_back"
             android:text="@string/customer_service"/>
     </RelativeLayout>
 

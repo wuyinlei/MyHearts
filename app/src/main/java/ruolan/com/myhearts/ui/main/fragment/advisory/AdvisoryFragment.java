@@ -88,7 +88,12 @@ public class AdvisoryFragment extends Fragment {
     }
 
     private void initListener() {
-        mDataList.setLayoutManager(new LinearLayoutManager(getContext()));
+        mDataList.setLayoutManager(new LinearLayoutManager(getContext()){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
         mDataList.setItemAnimator(new SlideInOutTopItemAnimator(mDataList));
         mDataList.addItemDecoration(new DividerItemDecoration(getContext(),
                 DividerItemDecoration.VERTICAL_LIST));
