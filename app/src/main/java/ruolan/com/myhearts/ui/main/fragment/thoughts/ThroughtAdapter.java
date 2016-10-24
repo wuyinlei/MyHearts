@@ -86,6 +86,7 @@ class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.ThroughtViewH
         List<String> images = bean.getPhotos();
         if (images != null) {
             for (String image : images) {
+                //ImageInfo 是他的实体类,用于image的地址
                 ImageInfo info = new ImageInfo();
                 info.setThumbnailUrl(image);
                 info.setBigImageUrl(image);
@@ -170,11 +171,10 @@ class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.ThroughtViewH
 
             StringBuffer sb = new StringBuffer();
 
-
             sb.append(profileName);
             sb.append(" ");
             String replay = mContext.getResources().getString(R.string.replay_comment);
-            if (!replayName.equals("")) {
+            if (!replayName.equals("")) {  //判断是否有被回复的,没有就是默认发帖者
                 sb.append(replay);
                 sb.append(replayName);
             }
