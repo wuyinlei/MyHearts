@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ruolan.com.myhearts">
+          package="ruolan.com.myhearts">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
 
     <application
         android:name=".application.MyApplication"
@@ -11,26 +12,30 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.splash.SplashActivity">
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.main.MainActivity"></activity>
-        <activity android:name=".activity.guide.GuideActivity"></activity>
-        <activity android:name=".activity.login.LoginActivity"></activity>
-        <activity android:name=".activity.main.left.MessageActivity"></activity>
-        <activity android:name=".activity.main.left.FollowActivity"></activity>
-        <activity android:name=".activity.main.left.ContactActivity"></activity>
-        <activity android:name=".activity.main.left.MoneyActivity"></activity>
-        <activity android:name=".activity.main.left.GiftActivity"></activity>
-        <activity android:name=".activity.main.left.WorryActivity"></activity>
-        <activity android:name=".activity.main.left.SettingActivity"></activity>
-        <activity android:name=".activity.main.left.ReserveActivity"></activity>
-        <activity android:name=".activity.main.fragment.home.OrationActivity"></activity>
-        <activity android:name=".activity.main.fragment.lord.LordDetailActivity"></activity>
+        <activity android:name=".ui.main.MainActivityDrawerLayout"/>
+        <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.guide.GuideActivity"/>
+        <activity android:name=".ui.login.LoginActivity"/>
+        <activity android:name=".ui.main.left.MessageActivity"/>
+        <activity android:name=".ui.main.left.FollowActivity"/>
+        <activity android:name=".ui.main.left.ContactActivity"/>
+        <activity android:name=".ui.main.left.MoneyActivity"/>
+        <activity android:name=".ui.main.left.GiftActivity"/>
+        <activity android:name=".ui.main.left.WorryActivity"/>
+        <activity android:name=".ui.main.left.setting.SettingActivity"/>
+        <activity android:name=".ui.main.left.ReserveActivity"/>
+        <activity android:name=".ui.main.fragment.home.OrationActivity"/>
+        <activity android:name=".ui.main.fragment.lord.LordDetailActivity"/>
+        <activity android:name=".ui.main.left.setting.WebActivity"
+           android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

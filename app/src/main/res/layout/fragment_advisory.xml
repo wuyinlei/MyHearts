@@ -2,7 +2,8 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".activity.main.fragment.advisory.AdvisoryFragment">
+             android:background="@color/white"
+             tools:context=".ui.main.fragment.advisory.AdvisoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

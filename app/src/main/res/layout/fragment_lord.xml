@@ -3,7 +3,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                tools:context=".activity.main.fragment.lord.LordFragment">
+                android:background="@color/white"
+                tools:context=".ui.main.fragment.lord.LordFragment">
 
 
     <RelativeLayout

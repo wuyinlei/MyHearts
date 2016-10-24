@@ -17,4 +17,27 @@
     <string name="recomment_master">推荐咨询师</string>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="setting_gesture_state_off">关闭</string>
+
+    <string name="replay_comment">回复</string>
+
+    <string name="hot_fragment">热门</string>
+    <string name="time_fragment">最新</string>
+
+
+    <!--{"全部","亲子教育","青春成长","情绪困扰","婚恋情感"
+    ,"社交职场","心里障碍","我的想法","其他"};-->
+
+    <string name="all_thought">全部</string>
+    <string name="parenting_thought">亲子教育</string>
+    <string name="youth_growth_thought">青春成长</string>
+    <string name="emotional_disturbance_thought">情绪困扰</string>
+    <string name="romantic_attachment_thought">婚恋情感</string>
+    <string name="friends_pay_thought">社交职场</string>
+    <string name="psychological_disorders_thought">心里障碍</string>
+    <string name="my_thought">我的想法</string>
+    <string name="other_thought">其他</string>
+    <string name="setting">设置</string>
+
+
 </resources>

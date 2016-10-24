@@ -1,29 +1,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_height="match_parent"
-    tools:context=".activity.main.fragment.thoughts.ThoughtsFragment">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical"
+              tools:context=".ui.main.fragment.thoughts.ThoughtsFragment">
 
 
     <RelativeLayout
         android:id="@+id/title_re"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
-        android:background="@color/white"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/iv_remind"
-            android:layout_marginLeft="@dimen/x10"
-            android:layout_centerInParent="true"
-            android:background="@drawable/remind_topic_normal"
-            android:layout_alignParentLeft="true"
             android:layout_width="@dimen/x30"
-            android:layout_height="@dimen/x30" />
+            android:layout_height="@dimen/x30"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:background="@drawable/remind_topic_normal"/>
 
         <TextView
             android:id="@+id/tv_title"
@@ -36,12 +37,12 @@
             android:textSize="@dimen/text_size_large"/>
 
         <ImageView
-            android:layout_toRightOf="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:background="@drawable/ic_arrow_drop_down_black_24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_toRightOf="@+id/tv_title"
+            android:background="@drawable/ic_arrow_drop_down_black_24dp"/>
 
 
         <ImageView
@@ -58,27 +59,25 @@
     </RelativeLayout>
 
     <View
-        android:background="@color/divider"
         android:layout_width="match_parent"
-        android:layout_height="1px"/>
+        android:layout_height="1px"
+        android:background="@color/divider"/>
 
     <android.support.design.widget.TabLayout
-        app:tabTextColor="@color/colorPrimary"
         android:id="@+id/tab_layout"
-        app:tabTextAppearance="@android:style/TextAppearance.Holo.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:tabIndicatorColor="@android:color/holo_orange_light"
         app:tabSelectedTextColor="@android:color/holo_orange_light"
+        app:tabTextAppearance="@android:style/TextAppearance.Holo.Large"
+        app:tabTextColor="@color/colorPrimary"/>
+
+    <ruolan.com.myhearts.widget.ThoughtViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-        <ruolan.com.myhearts.widget.ThoughtViewPager
-            android:id="@+id/viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="13"
-            android:background="@android:color/white" />
-
-
+        android:layout_height="match_parent"
+        android:layout_weight="13"
+        android:background="@android:color/white"/>
 
 
 </LinearLayout>
