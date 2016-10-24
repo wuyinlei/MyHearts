@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/counselor_bottom_button_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_btn_bar"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="5.0dip"
+        android:paddingRight="5.0dip">
+
+        <LinearLayout
+            android:id="@+id/action_chat_layout"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5.0dip"
+            android:layout_weight="3.0"
+            android:background="@drawable/consultant_button_oval_o"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_widthPercent="20.000004%">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/action_chat_icon"/>
+
+            <TextView
+                android:id="@+id/action_chat_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5.0dip"
+                android:gravity="center"
+                android:paddingBottom="8.0dip"
+                android:paddingTop="8.0dip"
+                android:text="微聊"
+                android:textColor="@color/reserve_green"
+                android:textSize="16.0sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/action_webcall_layout"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5.0dip"
+            android:layout_toRightOf="@id/action_chat_layout"
+            android:layout_weight="4.0"
+            android:background="@drawable/consultant_button_oval"
+            android:gravity="center"
+            app:layout_widthPercent="39.999996%">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/action_call_icon"/>
+
+            <TextView
+                android:id="@+id/action_webcall_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5.0dip"
+                android:gravity="center"
+                android:paddingBottom="8.0dip"
+                android:paddingTop="8.0dip"
+                android:text="我要倾诉"
+                android:textColor="@color/white"
+                android:textSize="16.0sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/action_reserve_layout"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/action_webcall_layout"
+            android:layout_weight="4.0"
+            android:background="@drawable/consultant_button_oval"
+            android:gravity="center"
+            app:layout_widthPercent="39.999996%">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/action_reserve_icon"/>
+
+            <TextView
+                android:id="@+id/action_reserve_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5.0dip"
+                android:gravity="center"
+                android:paddingBottom="8.0dip"
+                android:paddingTop="8.0dip"
+                android:text="我要咨询"
+                android:textColor="@color/white"
+                android:textSize="16.0sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/notice_txt"
+        android:orientation="vertical">
+
+        <include layout="@layout/user_details_scrollview"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/content_head_view"
+        android:layout_width="fill_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/action_back_btn"
+            android:layout_width="?actionBarSize"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent"
+            android:src="@drawable/return_btn_white"/>
+
+        <TextView
+            android:id="@+id/action_title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="咨询师"
+            android:textColor="@android:color/white"
+            android:textSize="17.0sp"/>
+
+        <ImageButton
+            android:id="@+id/action_share_btn_txt"
+            android:layout_width="?actionBarSize"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent"
+            android:src="@drawable/share"
+            android:visibility="visible"/>
+
+        <View
+            android:id="@+id/action_bottom_line"
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/notice_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="1"
+        android:paddingBottom="3.0dip"
+        android:paddingTop="3.0dip"
+        android:text="*请勿留下您的联系方式，否则平台将无法保障您的咨询费用。"
+        android:textColor="#ff666666"
+        android:textSize="13.0sp"
+        android:layout_above="@+id/counselor_bottom_button_layout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"/>
+</RelativeLayout>

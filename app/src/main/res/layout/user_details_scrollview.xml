@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.ksoichiro.android.observablescrollview.ObservableScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                                                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                                        android:id="@+id/content_scroll_view"
+                                                                        android:layout_width="fill_parent"
+                                                                        android:layout_height="fill_parent"
+                                                                        android:orientation="vertical"
+                                                                        android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/counselor_avatar_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="180.0dip"
+                android:layout_centerHorizontal="true"
+                android:background="@color/white"
+                android:gravity="center_horizontal"
+                android:scaleType="fitXY"
+                android:src="@drawable/counselor_detail_head_bg"/>
+
+            <LinearLayout
+                android:id="@+id/counselor_head_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/counselor_avatar_layout"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingBottom="10.0dip"
+                    android:paddingLeft="20.0dip"
+                    android:paddingRight="20.0dip">
+
+                    <RelativeLayout
+                        android:id="@+id/counselor_name_layout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10.0dip">
+
+                        <TextView
+                            android:id="@+id/counselor_name_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="20.0dip"
+                            android:layout_marginRight="20.0dip"
+                            android:alpha="0.9"
+                            android:textColor="#ff333333"
+                            android:textSize="20.0sp"/>
+
+                        <TextView
+                            android:id="@+id/counselor_address_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@id/counselor_name_txt"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:textColor="#ff666666"/>
+
+                        <ImageButton
+                            android:id="@+id/follow_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@id/counselor_name_txt"
+                            android:src="@drawable/follow_icon"/>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/counselor_slogan_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10.0dip"
+                        android:textColor="#ff999999"
+                        android:textSize="12.0sp"/>
+
+                    <LinearLayout
+                        android:id="@+id/tags_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/counselor_tag_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/counselor_details_tag_bg"
+                            android:gravity="center"
+                            android:textColor="#ff999999"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/counselor_tag_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15.0dip"
+                            android:background="@drawable/counselor_details_tag_bg"
+                            android:gravity="center"
+                            android:textColor="#ff999999"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/counselor_tag_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15.0dip"
+                            android:background="@drawable/counselor_details_tag_bg"
+                            android:gravity="center"
+                            android:textColor="#ff999999"
+                            android:visibility="gone"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="1.0dip"
+                    android:background="@color/white"
+                    android:paddingBottom="10.0dip"
+                    android:paddingLeft="20.0dip"
+                    android:paddingRight="20.0dip"
+                    android:paddingTop="10.0dip">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/certificate_tip_icon"
+                        android:drawablePadding="5.0dip"
+                        android:text="我心认证"
+                        android:textColor="#ffffa734"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10.0dip"
+                        android:drawableLeft="@drawable/certificate_tip_icon"
+                        android:drawablePadding="5.0dip"
+                        android:text="平台交易担保"
+                        android:textColor="#ffffa734"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/counselor_avatar_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/counselor_avatar_layout"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/avatar_shadow_bg">
+
+                <ImageView
+                    android:id="@+id/counselor_avatar"
+                    android:layout_width="80.0dip"
+                    android:layout_height="80.0dip"
+                    android:scaleType="centerCrop"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/like_cnt_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/counselor_avatar_wrapper"
+                android:layout_centerVertical="true"
+                android:background="@drawable/half_corner"
+                android:drawableLeft="@drawable/button_like"
+                android:gravity="center_vertical"
+                android:textColor="#ffffffff"
+                android:textSize="14.0sp"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10.0dip"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="20.0dip">
+
+            <TextView
+                android:id="@+id/counselor_studio_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/blue_point"
+                android:drawablePadding="5.0dip"
+                android:text="心理工作室"
+                android:textColor="#ff8d8d8e"
+                android:textSize="12.0sp"/>
+
+            <TextView
+                android:id="@+id/counselor_qualification_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5.0dip"
+                android:layout_marginTop="5.0dip"
+                android:drawableLeft="@drawable/blue_point"
+                android:drawablePadding="5.0dip"
+                android:drawableRight="@drawable/counselor_hounr_image"
+                android:text="国家二级心理咨询师"
+                android:textColor="#ff8d8d8e"
+                android:textSize="12.0sp"/>
+
+            <TextView
+                android:id="@+id/counselor_resume_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.0dip"
+                android:ellipsize="end"
+                android:lineSpacingExtra="2.0dip"
+                android:lineSpacingMultiplier="0.8"
+                android:maxLines="5"
+                android:textColor="@color/home_recomment_title_color"
+                android:textSize="12.0sp"/>
+
+            <Button
+                android:id="@+id/more_resume_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="10.0dip"
+                android:background="@drawable/counselor_details_read_more"
+                android:gravity="center"
+                android:minHeight="0.0dip"
+                android:padding="5.0dip"
+                android:text="阅读全文"
+                android:textColor="#ff35e3cd"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/counselor_live_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10.0dip"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="10.0dip"
+                android:paddingLeft="20.0dip"
+                android:paddingRight="20.0dip"
+                android:paddingTop="10.0dip">
+
+                <TextView
+                    android:id="@+id/counselor_live_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="直播回放（0）"
+                    android:textColor="@color/home_recomment_title_color"
+                    android:textSize="14.0sp"/>
+
+                <TextView
+                    android:id="@+id/counselor_live_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawablePadding="5.0dip"
+                    android:drawableRight="@drawable/grey_right"
+                    android:gravity="center"
+                    android:padding="5.0dip"
+                    android:text="查看更多"
+                    android:textColor="#ffffa734"
+                    android:textSize="14.0sp"/>
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/counselor_live_list"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="10.0dip"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10.0dip"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1.0dip"
+                android:background="@color/white"
+                android:paddingBottom="10.0dip"
+                android:paddingLeft="20.0dip"
+                android:paddingRight="20.0dip"
+                android:paddingTop="10.0dip">
+
+                <TextView
+                    android:id="@+id/user_comment_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="用户评价（0）"
+                    android:textColor="@color/home_recomment_title_color"
+                    android:textSize="14.0sp"/>
+
+                <TextView
+                    android:id="@+id/more_comments_btn_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawablePadding="5.0dip"
+                    android:drawableRight="@drawable/grey_right"
+                    android:gravity="center"
+                    android:padding="5.0dip"
+                    android:text="全部评论"
+                    android:textColor="#ffffa734"
+                    android:textSize="14.0sp"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/no_comment_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10.0dip"
+                    android:paddingLeft="20.0dip"
+                    android:paddingRight="20.0dip"
+                    android:paddingTop="10.0dip"
+                    android:text="暂无评价"
+                    android:textColor="@color/home_recomment_title_color"/>
+
+                <LinearLayout
+                    android:id="@+id/counselor_detail_comment_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10.0dip"
+            android:layout_marginTop="10.0dip"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="20.0dip">
+
+            <TextView
+                android:id="@+id/gift_count_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20.0dip"
+                android:text="礼物列表（0）"
+                android:textColor="@color/home_recomment_title_color"
+                android:textSize="14.0sp"/>
+
+            <RelativeLayout
+                android:id="@+id/gift_list_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout_touch_effect_selector"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/gift_btn_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5.0dip"
+                    android:drawableTop="@drawable/gift_img"
+                    android:text="送礼物"
+                    android:textColor="#ff666666"/>
+
+                <ImageView
+                    android:id="@+id/gift_layout_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/grey_right"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/gift_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/gift_btn_txt"
+                    android:layout_alignTop="@id/gift_btn_txt"
+                    android:layout_marginLeft="10.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:layout_toRightOf="@id/gift_btn_txt"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</com.github.ksoichiro.android.observablescrollview.ObservableScrollView>

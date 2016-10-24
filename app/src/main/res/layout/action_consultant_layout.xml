@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/action_consultant_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_alignParentTop="true"
+                android:background="@color/action_bar_color"
+                android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="60.0dip"
+        android:layout_height="fill_parent"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/action_consultant_tittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="咨询"
+        android:textColor="@color/action_title_color"
+        android:textSize="@dimen/action_title"/>
+
+    <ImageButton
+        android:id="@+id/action_search_view"
+        android:layout_width="?actionBarSize"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:background="@color/transparent"
+        android:src="@drawable/counselor_f_search"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:layout_alignParentBottom="true"
+        android:background="#ffcccccc"/>
+</RelativeLayout>

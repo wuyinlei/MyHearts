@@ -3,38 +3,93 @@
                 android:oneshot="false">
     <item
         android:drawable="@mipmap/main_layout_center_image_1"
-        android:duration="200"/>
+        android:duration="100"/>
     <item
         android:drawable="@mipmap/main_layout_center_image_2"
-        android:duration="200"/>
+        android:duration="100"/>
     <item
         android:drawable="@mipmap/main_layout_center_image_3"
-        android:duration="200"/>
+        android:duration="100"/>
     <item
         android:drawable="@mipmap/main_layout_center_image_4"
-        android:duration="200"/>
+        android:duration="100"/>
     <item
         android:drawable="@mipmap/main_layout_center_image_5"
-        android:duration="200"/>
+        android:duration="100"/>
     <item
         android:drawable="@mipmap/main_layout_center_image_6"
-        android:duration="200"/>
+        android:duration="100"/>
     <item
         android:drawable="@mipmap/main_layout_center_image_7"
-        android:duration="200"/>
-    <item
-        android:drawable="@mipmap/main_layout_center_image_7"
-        android:duration="200"/>
+        android:duration="100"/>
     <item
         android:drawable="@mipmap/main_layout_center_image_8"
-        android:duration="200"/>
+        android:duration="100"/>
     <item
         android:drawable="@mipmap/main_layout_center_image_9"
-        android:duration="200"/>
+        android:duration="100"/>
     <item
         android:drawable="@mipmap/main_layout_center_image_10"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_11"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_11"
         android:duration="200"/>
     <item
         android:drawable="@mipmap/main_layout_center_image_11"
         android:duration="200"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_11"
+        android:duration="200"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_11"
+        android:duration="200"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_11"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_10"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_9"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_8"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_7"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_6"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_5"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_4"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_3"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_2"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_1"
+        android:duration="100"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_1"
+        android:duration="200"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_1"
+        android:duration="200"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_1"
+        android:duration="200"/>
+    <item
+        android:drawable="@mipmap/main_layout_center_image_1"
+        android:duration="200"/>
+
 </animation-list>

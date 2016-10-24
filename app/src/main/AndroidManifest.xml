@@ -33,8 +33,11 @@
         <activity android:name=".ui.main.left.ReserveActivity"/>
         <activity android:name=".ui.main.fragment.home.OrationActivity"/>
         <activity android:name=".ui.main.fragment.lord.LordDetailActivity"/>
-        <activity android:name=".ui.main.left.setting.WebActivity"
-           android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".ui.main.left.setting.WebActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".ui.main.fragment.advisory.UserDetailActivity">
         </activity>
     </application>
 
