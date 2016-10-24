@@ -21,8 +21,8 @@
 
     <color name="Blue">#ff55a5e3</color>
     <color name="black">#000000</color>
-    <color name="gray">6D6D6D</color>
-    <color name="reserve_green">329c8f</color>
+    <color name="gray">#6D6D6D</color>
+    <color name="reserve_green">#329c8f</color>
 
     <color name="transparent">#00000000</color>
     <color name="action_bar_color">#ffffffff</color>
@@ -33,4 +33,6 @@
     <color name="text_color_2">#ff666666</color>
 
     <color name="black595959">#ff595959</color>
+
+    <color name="advisory_money_tv_color">#ff6565</color>
 </resources>

@@ -26,7 +26,7 @@
             android:background="@drawable/consultant_button_oval_o"
             android:gravity="center"
             android:orientation="horizontal"
-            app:layout_widthPercent="20.000004%">
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
             android:layout_weight="4.0"
             android:background="@drawable/consultant_button_oval"
             android:gravity="center"
-            app:layout_widthPercent="39.999996%">
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
             android:layout_weight="4.0"
             android:background="@drawable/consultant_button_oval"
             android:gravity="center"
-            app:layout_widthPercent="39.999996%">
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
         android:id="@+id/refresh_layout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@id/notice_txt"
+        android:layout_above="@+id/notice_txt"
         android:orientation="vertical">
 
         <include layout="@layout/user_details_scrollview"/>

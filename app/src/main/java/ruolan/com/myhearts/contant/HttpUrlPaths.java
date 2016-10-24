@@ -14,7 +14,7 @@ public class HttpUrlPaths {
     /**
      * userid=54442&cuserid=54442
      */
-    public static final String USER_INFO = BASE_URL + "consultant/consultantProfile";
+    public static final String USER_DETAIL_INFO = BASE_URL + "consultant/consultantProfile";
 
     //首页推荐咨询师   http://api.xinliji.me/consultant/loadRecommendedConsultants
     public static final String HOME_RECOMMENT = BASE_URL + "consultant/loadRecommendedConsultants";

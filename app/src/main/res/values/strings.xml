@@ -39,5 +39,11 @@
     <string name="other_thought">其他</string>
     <string name="setting">设置</string>
 
+    <string name="direct_sedding">直播回放($)</string>
+
+    <string name="user_comment">用户评论($)</string>
+
+    <string name="gif_count">TA的礼物($)</string>
+
 
 </resources>
