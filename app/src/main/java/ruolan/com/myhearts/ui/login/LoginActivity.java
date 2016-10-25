@@ -1,15 +1,25 @@
 package ruolan.com.myhearts.ui.login;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import cn.bmob.v3.BmobUser;
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.ui.base.BaseActivity;
+import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
 import ruolan.com.myhearts.ui.register.RegisterActivity;
+import ruolan.com.myhearts.utils.PreferencesUtils;
+import ruolan.com.myhearts.utils.RegularUtils;
 import ruolan.com.myhearts.widget.CheckBox;
+import rx.Subscriber;
+import rx.subjects.Subject;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
@@ -24,6 +34,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     ImageView mQqLogin;  //qq登录
     ImageView mSinaLogin;  //新浪登录
     ImageView mWxLogin;  //微信登录
+    private String mUserName;
+    private String mPassWord;
+
+    private RelativeLayout mReLogin;
+    private String mName;
+    private String mPwd;
 
 
     @Override
@@ -39,11 +55,60 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void initData() {
+        mUserName = PreferencesUtils.getString(this, Contants.USER_NAME);
+        mPassWord = PreferencesUtils.getString(this, Contants.USER_PASSWORD);
+        if (!TextUtils.isEmpty(mUserName)){
+            mEtPhone.setText(mUserName);
+        }
+        if (!TextUtils.isEmpty(mPassWord)){
+            mEtPassword.setText(mPassWord);
+        }
+
+        mName = mEtPhone.getText().toString().trim();
+//        if (!RegularUtils.isMobileExact(name)){
+//            Toast.makeText(this, getResources().getString(R.string.is_not_phone), Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+
+        mPwd = mEtPassword.getText().toString().trim();
+
+       // toLogin(name,pwd);
+
+    }
+
+    private void toLogin(String name, String pwd) {
+        final BmobUser bmobUser = new BmobUser();
+        bmobUser.setUsername(name);
+        bmobUser.setPassword(pwd);
+
+        bmobUser.loginObservable(BmobUser.class).subscribe(new Subscriber<BmobUser>() {
+            @Override
+            public void onCompleted() {
+                Toast.makeText(LoginActivity.this,
+                        getResources().getString(R.string.login_success),
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(BmobUser bmobUser) {
+                Intent intent = new Intent(LoginActivity.this, MainActivityDrawerLayout.class);
+                intent.putExtra(Contants.IS_COME_FROM_LOGIN,true);
+                startActivity(intent);
+            }
+
+        });
 
     }
 
     @Override
     public void initView() {
+        mReLogin = (RelativeLayout) findViewById(R.id.re_login);
+        mReLogin.setOnClickListener(this);
         mEtPhone = (EditText) findViewById(R.id.et_phone);
         mEtPassword = (EditText) findViewById(R.id.et_password);
         mIsPasswordMemory = (CheckBox) findViewById(R.id.is_password_memory);
@@ -63,6 +128,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             case R.id.register_account:
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.re_login:
+                if (!TextUtils.isEmpty(mName)&&!TextUtils.isEmpty(mPwd))
+                toLogin(mName,mPwd);
                 break;
         }
     }

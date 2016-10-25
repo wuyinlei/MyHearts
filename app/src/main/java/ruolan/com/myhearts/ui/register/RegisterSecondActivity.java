@@ -1,23 +1,33 @@
 package ruolan.com.myhearts.ui.register;
 
+import android.content.Intent;
+import android.provider.SyncStateContract;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.utils.SMSLog;
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.ui.base.BaseActivity;
+import ruolan.com.myhearts.ui.login.LoginActivity;
 import ruolan.com.myhearts.utils.CountTimerView;
 import ruolan.com.myhearts.utils.ManifestUtil;
+import ruolan.com.myhearts.utils.PreferencesUtils;
+import ruolan.com.myhearts.utils.RegularUtils;
 import ruolan.com.myhearts.utils.ToastUtils;
 import ruolan.com.myhearts.widget.ClearEditText;
 
@@ -29,6 +39,7 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
     TextView mTxtTip;
     ClearEditText mEdittxtCode;
     Button mBtnReSend;
+    ClearEditText mEditName;
 
     private String phone;
     private String pwd;
@@ -55,6 +66,9 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
         mTxtTip = (TextView) findViewById(R.id.txtTip);
         mEdittxtCode = (ClearEditText) findViewById(R.id.edittxt_code);
         mBtnReSend = (Button) findViewById(R.id.btn_reSend);
+        mEditName = (ClearEditText) findViewById(R.id.edittxt_name);
+
+
     }
 
     @Override
@@ -87,7 +101,9 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
     private SMSEvenHanlder evenHanlder;
 
 
-    /** 分割电话号码 */
+    /**
+     * 分割电话号码
+     */
     private String splitPhoneNum(String phone) {
         StringBuilder builder = new StringBuilder(phone);
         builder.reverse();
@@ -102,7 +118,7 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
     /**
      * 提交验证码验证
      */
-    private  void submitCode(){
+    private void submitCode() {
 
         String vCode = mEdittxtCode.getText().toString().trim();
 
@@ -110,7 +126,7 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
             ToastUtils.show(this, R.string.smssdk_write_identify_code);
             return;
         }
-        SMSSDK.submitVerificationCode(countryCode,phone,vCode);
+        SMSSDK.submitVerificationCode(countryCode, phone, vCode);
         //dialog.show();
     }
 
@@ -148,13 +164,13 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
                     if (result == SMSSDK.RESULT_COMPLETE) {
                         if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
 
-                             HashMap<String,Object> phoneMap = (HashMap<String, Object>) data;
-                             String country = (String) phoneMap.get("country");
-                             String phone = (String) phoneMap.get("phone");
+                            HashMap<String, Object> phoneMap = (HashMap<String, Object>) data;
+                            String country = (String) phoneMap.get("country");
+                            String phone = (String) phoneMap.get("phone");
 
                             doRegister();
-                           // dialog.setMessage("正在提交注册信息");
-                           // dialog.show();;
+                            // dialog.setMessage("正在提交注册信息");
+                            // dialog.show();;
                         }
                     } else {
 
@@ -180,8 +196,30 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
         }
     }
 
+    /**
+     * 进行注册
+     */
     private void doRegister() {
-
+        String userName = mEditName.getText().toString().trim();
+        final MyUser myUser = new MyUser();
+        if (RegularUtils.isUsername(userName)) {
+            myUser.setUsername(userName);
+            myUser.setPassword(pwd);
+            myUser.setMobilePhoneNumber(phone);
+            addSubscription(myUser.signUp(new SaveListener<MyUser>() {
+                @Override
+                public void done(MyUser myUser, BmobException e) {
+                    if (e == null) {
+                        Toast.makeText(RegisterSecondActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+                        PreferencesUtils.putString(RegisterSecondActivity.this,Contants.USER_NAME,userName);
+                        PreferencesUtils.putString(RegisterSecondActivity.this,Contants.USER_PASSWORD,pwd);
+                        startActivity(new Intent(RegisterSecondActivity.this, LoginActivity.class));
+                    } else {
+                        //注册失败
+                    }
+                }
+            }));
+        }
 
     }
 

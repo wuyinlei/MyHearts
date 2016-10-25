@@ -51,5 +51,9 @@
 
     <string name="agree_user_argument">请同意用户协议</string>
 
+    <string name="is_not_phone">输入的手机号码不正确</string>
 
+    <string name="login_success">登录成功</string>
+
+    <string name="login_out">退出登录</string>
 </resources>

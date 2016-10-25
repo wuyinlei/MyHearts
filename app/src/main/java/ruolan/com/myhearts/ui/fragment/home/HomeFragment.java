@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,9 +30,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.ui.main.MainActivity;
 import ruolan.com.myhearts.ui.fragment.home.AdvisoryBean.ResultsBean;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
+import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
+import ruolan.com.myhearts.utils.PreferencesUtils;
 import ruolan.com.myhearts.utils.Utils;
 import ruolan.com.myhearts.widget.CircleImageView;
 import ruolan.com.myhearts.widget.FlyBanner;
@@ -62,6 +66,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     TextView mRecommentMasterTv;
 
 
+    ImageView mImgOne;
+    TextView mTvNameOne;
+    TextView mTvLevelOne;
+    TextView mTvDesOne;
+    TextView mTvNameSecond;
+    TextView mTvLevelTwo;
+    TextView mTvDesTwo;
+    ImageView mImgTwo;
+    ImageView mImgThree;
+    TextView mTvNameThree;
+    TextView mTvDesThree;
+    ImageView mImgFour;
+    TextView mTvNameFour;
+    TextView mTvDesFour;
     ImageView mRecommentImgOne;
     TextView mTvTitleRecomment;
     ImageView mImageView;
@@ -136,8 +154,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         initRecommentOne();
         initRecommentTwo();
         initData();
-
-
 
 
         return view;
@@ -305,20 +321,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    ImageView mImgOne;
-    TextView mTvNameOne;
-    TextView mTvLevelOne;
-    TextView mTvDesOne;
-    TextView mTvNameSecond;
-    TextView mTvLevelTwo;
-    TextView mTvDesTwo;
-    ImageView mImgTwo;
-    ImageView mImgThree;
-    TextView mTvNameThree;
-    TextView mTvDesThree;
-    ImageView mImgFour;
-    TextView mTvNameFour;
-    TextView mTvDesFour;
 
     /**
      * 请求首页顶部轮播图
@@ -327,6 +329,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         MyThread thread = new MyThread();
         thread.run();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        boolean isLogin = PreferencesUtils.getBoolean(getContext(), Contants.IS_LOGIN);
+        if (isLogin) {
+           // String name = PreferencesUtils.getString(getContext(), Contants.USER_NAME);
+          //  updateUi(name);
+            if (mAvatorImg !=null){
+                Glide.with(getContext())
+                        .load(R.drawable.user_avatour)
+                        .asBitmap().into(mAvatorImg);
+            }
+        }
 
     }
 
@@ -358,7 +376,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.avator_img:
-                ((MainActivity)getActivity()).getDragLayout().open();
+                ((MainActivityDrawerLayout) getActivity())
+                        .getDragLayout()
+                        .closeDrawer(GravityCompat.START);
                 break;
 
             default:

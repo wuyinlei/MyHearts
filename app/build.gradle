@@ -2,6 +2,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
+
+    //**兼容Android6.0系统所需，如果这句话报错，可在dependencies标签下使用compile 'cn.bmob.android:http-legacy:1.0'**
+    useLibrary 'org.apache.http.legacy'
+
+
     defaultConfig {
         applicationId "ruolan.com.myhearts"
         minSdkVersion 15
@@ -89,4 +94,7 @@ dependencies {
     compile 'com.lzy.widget:ninegridview:0.2.0'
 
     compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
+
+   // compile 'cn.bmob.android:bmob-sdk:3.5.1'
+
 }

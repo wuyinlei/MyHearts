@@ -13,6 +13,7 @@ import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.store.PersistentCookieStore;
 
+import cn.bmob.v3.Bmob;
 import cn.smssdk.SMSSDK;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.User;
@@ -44,6 +45,8 @@ public class MyApplication
         mInstance = this;
 
         NineGridView.setImageLoader(new PicassoImageLoader());
+
+        Bmob.initialize(this, "6d7ed6a006f2606890427bf70345cdb9");
 
 
         //短信验证

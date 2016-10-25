@@ -70,6 +70,25 @@
 
         >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+
+
+            >
+
+            <ruolan.com.myhearts.widget.ClearEditText
+                android:id="@+id/edittxt_name"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                style="@style/editText_base"
+                android:hint="请输入用户名  (用户名必须是6-20位)"
+                android:maxLength="20"/>
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"

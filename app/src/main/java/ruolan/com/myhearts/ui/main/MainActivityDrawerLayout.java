@@ -17,6 +17,7 @@ import com.nineoldandroids.view.ViewHelper;
 
 import butterknife.ButterKnife;
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.ui.fragment.LiveFragment;
 import ruolan.com.myhearts.ui.fragment.advisory.AdvisoryFragment;
@@ -24,6 +25,7 @@ import ruolan.com.myhearts.ui.fragment.home.HomeFragment;
 import ruolan.com.myhearts.ui.fragment.lord.LordFragment;
 import ruolan.com.myhearts.ui.fragment.thoughts.ThoughtsFragment;
 import ruolan.com.myhearts.ui.left.LeftFragment;
+import ruolan.com.myhearts.utils.PreferencesUtils;
 import ruolan.com.myhearts.widget.DragLayout;
 
 public class MainActivityDrawerLayout extends BaseActivity implements View.OnClickListener {
@@ -54,15 +56,6 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
 
     private DragLayout mDragLayout;
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //  initView();
-
-
-    }
 
     @Override
     protected int getResultId() {
@@ -155,6 +148,11 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
      */
     public void initView() {
         ButterKnife.bind(this);
+
+        boolean isLogin = getIntent().getBooleanExtra(Contants.IS_COME_FROM_LOGIN, false);
+        if (isLogin){  //登录状态
+            PreferencesUtils.putBoolean(this,Contants.IS_LOGIN,true);
+        }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 

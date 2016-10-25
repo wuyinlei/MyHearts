@@ -8,13 +8,20 @@ import android.support.v4.view.GravityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.ui.login.LoginActivity;
 import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
 import ruolan.com.myhearts.ui.left.setting.SettingActivity;
+import ruolan.com.myhearts.utils.PreferencesUtils;
+import ruolan.com.myhearts.widget.GlideCircleTransform;
 
 /**
  * Created by Administrator on 2016/10/24.
@@ -38,6 +45,42 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
 
     RelativeLayout mReSetting;
 
+    private TextView mTvName,mBtLogin;
+    private ImageView mIvTour;
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        boolean isLogin = PreferencesUtils.getBoolean(getContext(), Contants.IS_LOGIN);
+        if (isLogin){
+            String name = PreferencesUtils.getString(getContext(),Contants.USER_NAME);
+            updateUi(name);
+        }
+    }
+
+    private void updateUi(String name) {
+        if (mTvName!=null){
+            mTvName.setText(name);
+        }
+        if (mBtLogin != null){
+            String loginOut = getContext().getResources()
+                    .getString(R.string.login_out);
+            mBtLogin.setText(loginOut);
+        }
+        if (mIvTour!=null){
+            Glide.with(getContext()).load(R.drawable.user_avatour)
+                    .asBitmap().transform(new GlideCircleTransform(getContext()))
+                    .into(mIvTour);
+        }
+    }
 
     @Nullable
     @Override
@@ -49,6 +92,9 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
 
     private void initView(View view) {
         mReLogin = (RelativeLayout) view.findViewById(R.id.rl_login);
+        mTvName = (TextView) view.findViewById(R.id.tv_name);
+        mBtLogin = (TextView) view.findViewById(R.id.tv_login);
+        mIvTour = (ImageView) view.findViewById(R.id.img_avatar);
         mReLogin.setOnClickListener(this);
         mLiReserve = (LinearLayout) view.findViewById(R.id.my_message);
         mLiReserve.setOnClickListener(this);
