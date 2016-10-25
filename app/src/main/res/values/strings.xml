@@ -56,4 +56,5 @@
     <string name="login_success">登录成功</string>
 
     <string name="login_out">退出登录</string>
+    <string name="login_in">点击登录</string>
 </resources>

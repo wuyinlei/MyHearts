@@ -15,8 +15,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.greenrobot.eventbus.EventBus;
+
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
+import ruolan.com.myhearts.event.LoginOut;
 import ruolan.com.myhearts.ui.login.LoginActivity;
 import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
 import ruolan.com.myhearts.ui.left.setting.SettingActivity;
@@ -45,7 +48,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
 
     RelativeLayout mReSetting;
 
-    private TextView mTvName,mBtLogin;
+    private TextView mTvName, mBtLogin;
     private ImageView mIvTour;
 
     @Override
@@ -60,22 +63,41 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
         super.onResume();
 
         boolean isLogin = PreferencesUtils.getBoolean(getContext(), Contants.IS_LOGIN);
-        if (isLogin){
-            String name = PreferencesUtils.getString(getContext(),Contants.USER_NAME);
+        if (isLogin) {
+            String name = PreferencesUtils.getString(getContext(), Contants.USER_NAME);
             updateUi(name);
+        } else {
+            //loginOutUi();
+        }
+    }
+
+    private void loginOutUi() {
+        PreferencesUtils.putBoolean(getContext(), Contants.IS_LOGIN, false);
+        if (mTvName != null) {
+            mTvName.setText("");
+        }
+        if (mBtLogin != null) {
+            String loginOut = getContext().getResources()
+                    .getString(R.string.login_in);
+            mBtLogin.setText(loginOut);
+        }
+        if (mIvTour != null) {
+            Glide.with(getContext()).load(R.drawable.login_out)
+                    .asBitmap().transform(new GlideCircleTransform(getContext()))
+                    .into(mIvTour);
         }
     }
 
     private void updateUi(String name) {
-        if (mTvName!=null){
+        if (mTvName != null) {
             mTvName.setText(name);
         }
-        if (mBtLogin != null){
+        if (mBtLogin != null) {
             String loginOut = getContext().getResources()
                     .getString(R.string.login_out);
             mBtLogin.setText(loginOut);
         }
-        if (mIvTour!=null){
+        if (mIvTour != null) {
             Glide.with(getContext()).load(R.drawable.user_avatour)
                     .asBitmap().transform(new GlideCircleTransform(getContext()))
                     .into(mIvTour);
@@ -86,6 +108,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_left, container, false);
+
         initView(view);
         return view;
     }
@@ -94,6 +117,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
         mReLogin = (RelativeLayout) view.findViewById(R.id.rl_login);
         mTvName = (TextView) view.findViewById(R.id.tv_name);
         mBtLogin = (TextView) view.findViewById(R.id.tv_login);
+        mBtLogin.setOnClickListener(this);
         mIvTour = (ImageView) view.findViewById(R.id.img_avatar);
         mReLogin.setOnClickListener(this);
         mLiReserve = (LinearLayout) view.findViewById(R.id.my_message);
@@ -116,6 +140,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Intent intent = new Intent();
+        boolean isTologin = false;
         switch (v.getId()) {
 
             case R.id.rl_login:
@@ -146,10 +171,29 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
             case R.id.re_setting:
                 intent.setClass(getContext(), SettingActivity.class);
                 break;
+
+            case R.id.tv_login:
+                //退出登录
+                if (mBtLogin.getText().equals(getContext().getResources()
+                        .getString(R.string.login_out))) {
+                    loginOutUi();
+                    EventBus.getDefault().post(new LoginOut(true));
+                    isTologin = true;
+                } else if (mBtLogin.getText().equals(getContext().getResources()
+                        .getString(R.string.login_in))) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                }
+                break;
+
+
         }
-        ((MainActivityDrawerLayout)getActivity())
+        ((MainActivityDrawerLayout) getActivity())
                 .getDragLayout()
                 .closeDrawer(GravityCompat.START);
-        startActivity(intent);
+        if (!isTologin) {
+            startActivity(intent);
+        }
+
     }
+
 }

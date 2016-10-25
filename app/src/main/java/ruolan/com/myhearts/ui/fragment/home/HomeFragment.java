@@ -25,12 +25,17 @@ import com.lzy.okgo.convert.StringConvert;
 import com.lzy.okrx.RxAdapter;
 import com.sunfusheng.marqueeview.MarqueeView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
+import ruolan.com.myhearts.event.LoginOut;
 import ruolan.com.myhearts.ui.main.MainActivity;
 import ruolan.com.myhearts.ui.fragment.home.AdvisoryBean.ResultsBean;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
@@ -142,6 +147,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        EventBus.getDefault().register(this);
 
         initView(view);
         initListener();
@@ -321,7 +327,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
     /**
      * 请求首页顶部轮播图
      */
@@ -337,15 +342,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         super.onResume();
         boolean isLogin = PreferencesUtils.getBoolean(getContext(), Contants.IS_LOGIN);
         if (isLogin) {
-           // String name = PreferencesUtils.getString(getContext(), Contants.USER_NAME);
-          //  updateUi(name);
-            if (mAvatorImg !=null){
+            // String name = PreferencesUtils.getString(getContext(), Contants.USER_NAME);
+            //  updateUi(name);
+            if (mAvatorImg != null) {
                 Glide.with(getContext())
                         .load(R.drawable.user_avatour)
                         .asBitmap().into(mAvatorImg);
             }
         }
-
     }
 
     Handler mHandler = new Handler() {
@@ -367,6 +371,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     List<HomeBannerBean.ResultsBean> mHomeBanner = new ArrayList<>();
 
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN )
+    public void LoginOut(LoginOut loginOut){
+            if (loginOut.isLogin){
+                if (mAvatorImg != null) {
+                    Glide.with(getContext())
+                            .load(R.drawable.login_out)
+                            .asBitmap().into(mAvatorImg);
+                }
+            }
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -378,7 +395,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.avator_img:
                 ((MainActivityDrawerLayout) getActivity())
                         .getDragLayout()
-                        .closeDrawer(GravityCompat.START);
+                        .openDrawer(GravityCompat.START);
                 break;
 
             default:
@@ -443,5 +460,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }
