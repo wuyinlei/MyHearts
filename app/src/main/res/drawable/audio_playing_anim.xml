@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="300" android:drawable="@drawable/audio_playing_1" />
+    <item android:duration="300" android:drawable="@drawable/audio_playing_2" />
+</animation-list>

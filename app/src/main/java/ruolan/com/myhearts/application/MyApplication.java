@@ -16,7 +16,6 @@ import com.lzy.okgo.cookie.store.PersistentCookieStore;
 import cn.bmob.v3.Bmob;
 import cn.smssdk.SMSSDK;
 import ruolan.com.myhearts.R;
-import ruolan.com.myhearts.User;
 import ruolan.com.myhearts.utils.ManifestUtil;
 
 /**
@@ -26,7 +25,6 @@ import ruolan.com.myhearts.utils.ManifestUtil;
 public class MyApplication
         extends Application {
 
-    private User user;
 
 
     private static MyApplication mInstance;
@@ -53,8 +51,6 @@ public class MyApplication
 
         SMSSDK.initSDK(this, ManifestUtil.getMetaDataValue(this, "mob_sms_appKey"),
                 ManifestUtil.getMetaDataValue(this,"mob_sms_appSecrect"));
-
-
 
 
         OkGo.init(this);

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/white"
+              android:baselineAligned="false"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whitef5f5f5">
+
+        <EditText
+            android:id="@+id/search_et"
+            android:layout_width="fill_parent"
+            android:layout_height="45.0dip"
+            android:layout_margin="5.0dip"
+            android:background="@drawable/advice_serch_bg"
+            android:cursorVisible="true"
+            android:drawableLeft="@drawable/search_grey"
+            android:hint="输入咨询师的名字(可不填)"
+            android:maxLength="20"
+            android:paddingLeft="10.0dip"
+            android:singleLine="true"
+            android:textColor="@color/black555555"
+            android:textColorHint="#ffbfbfbf"
+            android:textCursorDrawable="@null"
+            android:textSize="12.0sp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="15.0dip"
+        android:text="我要寻找咨询师"
+        android:textColor="@color/black_a3a3a3"
+        android:textSize="14.0sp"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.100000024dip"
+        android:background="@color/line_color"/>
+
+    <RelativeLayout
+        android:id="@+id/catg_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15.0dip"
+        android:paddingLeft="20.0dip"
+        android:paddingRight="20.0dip"
+        android:paddingTop="15.0dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="擅长"
+            android:textColor="@color/text_color_1"
+            android:textSize="15.0sp"/>
+
+        <TextView
+            android:id="@+id/catg_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="5.0dip"
+            android:drawableRight="@drawable/grey_right"
+            android:hint="全部"
+            android:text=""
+            android:textColor="@color/text_color_2"
+            android:textColorHint="@color/text_color_3"
+            android:textSize="14.0sp"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:layout_marginLeft="20.0dip"
+        android:layout_marginRight="20.0dip"
+        android:background="@color/line_color"/>
+
+    <RelativeLayout
+        android:id="@+id/city_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15.0dip"
+        android:paddingLeft="20.0dip"
+        android:paddingRight="20.0dip"
+        android:paddingTop="15.0dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="城市"
+            android:textColor="@color/text_color_1"
+            android:textSize="15.0sp"/>
+
+        <TextView
+            android:id="@+id/city_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="5.0dip"
+            android:drawableRight="@drawable/grey_right"
+            android:hint="所在城市"
+            android:text=""
+            android:textColor="@color/text_color_2"
+            android:textColorHint="@color/text_color_3"
+            android:textSize="14.0sp"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:layout_marginLeft="20.0dip"
+        android:layout_marginRight="20.0dip"
+        android:background="@color/line_color"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15.0dip"
+        android:paddingLeft="20.0dip"
+        android:paddingRight="20.0dip"
+        android:paddingTop="15.0dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="性别"
+            android:textColor="@color/text_color_1"
+            android:textSize="15.0sp"/>
+
+        <RadioGroup
+            android:id="@+id/gender_rg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/gender_male"
+                style="@style/psych_radio_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10.0dip"
+                android:paddingLeft="10.0dip"
+                android:text="男"
+                android:textColor="@color/black77777"/>
+
+            <RadioButton
+                android:id="@+id/gender_female"
+                style="@style/psych_radio_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10.0dip"
+                android:paddingLeft="10.0dip"
+                android:text="女"
+                android:textColor="@color/black77777"/>
+
+            <RadioButton
+                android:id="@+id/gender_all"
+                style="@style/psych_radio_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:paddingLeft="10.0dip"
+                android:text="不限"
+                android:textColor="@color/black77777"/>
+        </RadioGroup>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:layout_marginLeft="20.0dip"
+        android:layout_marginRight="20.0dip"
+        android:background="@color/line_color"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15.0dip"
+        android:paddingLeft="20.0dip"
+        android:paddingRight="20.0dip"
+        android:paddingTop="15.0dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="资质"
+            android:textColor="@color/text_color_1"
+            android:textSize="15.0sp"/>
+
+        <RadioGroup
+            android:id="@+id/qualification_rg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/c_zh_2"
+                style="@style/psych_radio_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10.0dip"
+                android:checked="true"
+                android:paddingLeft="10.0dip"
+                android:text="国二"
+                android:textColor="@color/black77777"/>
+
+            <RadioButton
+                android:id="@+id/c_zh_3"
+                style="@style/psych_radio_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10.0dip"
+                android:paddingLeft="10.0dip"
+                android:text="国三"
+                android:textColor="@color/black77777"/>
+
+            <RadioButton
+                android:id="@+id/c_zh_other"
+                style="@style/psych_radio_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:paddingLeft="10.0dip"
+                android:text="不限"
+                android:textColor="@color/black77777"/>
+        </RadioGroup>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:layout_marginLeft="20.0dip"
+        android:layout_marginRight="20.0dip"
+        android:background="@color/line_color"/>
+</LinearLayout>

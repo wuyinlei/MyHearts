@@ -57,4 +57,7 @@
 
     <string name="login_out">退出登录</string>
     <string name="login_in">点击登录</string>
+    <string name="my_send">我送出的</string>
+    <string name="my_accepted">我收到的</string>
+    <string name="redeem_coin">兑换心币</string>
 </resources>

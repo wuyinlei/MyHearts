@@ -45,4 +45,16 @@
     <color name="green_btn_color_pressed">#ff298409</color>
     <item type="color" name="green_btn_color_normal">@color/app_green</item>
     <color name="app_green">#ff45c01a</color>
+    <color name="whitef5f5f5">#fff5f5f5</color>
+    <color name="black555555">#ff555555</color>
+    <color name="black_a3a3a3">#ffa3a3a3</color>
+    <color name="line_color">#ff00aaff</color>
+    <color name="text_color_1">#ff333333</color>
+    <color name="text_color_3">#ff999999</color>
+    <color name="black77777">#ff777777</color>
+    <color name="black2">#ff292929</color>
+    <color name="main_content">#fff5f5f5</color>
+    <color name="button_button2">#00000000</color>
+    <color name="button_pressed2">#10000000</color>
+    <color name="red_ff986f">#ffff986f</color>
 </resources>

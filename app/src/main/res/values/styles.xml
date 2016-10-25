@@ -99,4 +99,8 @@
     </style>
 
 
+    <style name="psych_radio_style">
+        <item name="android:button">@drawable/psych_radio_style</item>
+    </style>
+
 </resources>
