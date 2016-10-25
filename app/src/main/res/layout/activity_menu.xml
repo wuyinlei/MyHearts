@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-    android:orientation="vertical">
+                android:orientation="vertical">
+
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
@@ -11,79 +12,78 @@
         android:layout_above="@+id/rgTabBar"/>
 
 
-
     <View
 
-        android:layout_above="@+id/rgTabBar"
-        android:background="@color/divider"
         android:layout_width="match_parent"
-        android:layout_height="1px"/>
+        android:layout_height="1px"
+        android:layout_above="@+id/rgTabBar"
+        android:background="@color/divider"/>
 
     <RadioGroup
         android:id="@+id/rgTabBar"
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:gravity="bottom|center_horizontal"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:background="@color/white"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/rbTabHome"
             style="@style/TabButton"
             android:drawableTop="@drawable/ic_tab_home_selector"
-            android:text="@string/home_tab" />
+            android:text="@string/home_tab"/>
 
         <RadioButton
             android:id="@+id/rbTabAdvisory"
             style="@style/TabButton"
             android:drawableTop="@drawable/ic_tab_msg_selector"
-            android:text="@string/advisory_tab" />
+            android:text="@string/advisory_tab"/>
 
         <RadioButton
             android:id="@+id/rbTabMall"
             style="@style/TabButton"
             android:drawableTop="@drawable/ic_tab_home_selector"
             android:text="@string/lord_tab"
-            android:visibility="invisible" />
+            android:visibility="invisible"/>
 
         <RadioButton
             android:id="@+id/rbTabLord"
             style="@style/TabButton"
             android:drawableTop="@drawable/ic_tab_advice_selector"
-            android:text="@string/lord_tab" />
+            android:text="@string/lord_tab"/>
 
         <RadioButton
             android:id="@+id/rbTabThoughts"
             style="@style/TabButton"
             android:drawableTop="@drawable/ic_tab_dynamic_selector"
-            android:text="@string/thoughts_tab" />
+            android:text="@string/thoughts_tab"/>
     </RadioGroup>
 
     <FrameLayout
-        android:layout_marginBottom="3dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="3dp">
 
         <ImageView
             android:id="@+id/img_live"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:background="@drawable/spinner_live" />
+            android:background="@drawable/spinner_live"/>
 
     </FrameLayout>
 
     <FrameLayout
-        android:layout_marginBottom="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp">
 
         <ImageView
             android:id="@+id/img_img"
@@ -91,7 +91,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/spinner_img" />
+            android:background="@drawable/spinner_img"/>
 
     </FrameLayout>
 

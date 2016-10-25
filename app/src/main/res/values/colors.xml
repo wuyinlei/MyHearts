@@ -35,4 +35,14 @@
     <color name="black595959">#ff595959</color>
 
     <color name="advisory_money_tv_color">#ff6565</color>
+
+    <color name="border_color">#a9b7b7</color>
+    <color name="bg_color">#f1f1f1</color>
+    <color name="grey_btn_color_normal">#fff1f1f1</color>
+
+    <item type="color" name="green_btn_color_disable">@color/app_green_alpha</item>
+    <color name="app_green_alpha">#7f45c01a</color>
+    <color name="green_btn_color_pressed">#ff298409</color>
+    <item type="color" name="green_btn_color_normal">@color/app_green</item>
+    <color name="app_green">#ff45c01a</color>
 </resources>

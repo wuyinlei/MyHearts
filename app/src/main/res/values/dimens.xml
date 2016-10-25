@@ -15,6 +15,19 @@
     <dimen name="text_size_large">22sp</dimen>
     <dimen name="text_size_small">14sp</dimen>
 
+
+    <dimen name="bigButtonTextSize">18.0dip</dimen>
+    <dimen name="normalButtonTextSize">16.0dip</dimen>
+    <dimen name="smallButtonTextSize">14.0dip</dimen>
+    <dimen name="largePadding">16.0dip</dimen>
+    <dimen name="buttonCornerSize">2.0dip</dimen>
+    <dimen name="smallPadding">8.0dip</dimen>
+    <dimen name="smallButtonWidth">48.0dip</dimen>
+    <dimen name="smallButtonHeight">32.0dip</dimen>
+
+    <dimen name="normalButtonHeight">48.0dip</dimen>
+    <dimen name="normalButtonWidth">80.0dip</dimen>
+
     <dimen name="title_height">50dp</dimen>
 
     <dimen name="sp_timepicker_radial_picker_dimen">296.0dip</dimen>

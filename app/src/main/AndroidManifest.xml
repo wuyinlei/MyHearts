@@ -5,6 +5,18 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
 
+
+    <!--短信验证SDK-->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".application.MyApplication"
         android:allowBackup="true"
@@ -23,22 +35,41 @@
         <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".ui.guide.GuideActivity"/>
         <activity android:name=".ui.login.LoginActivity"/>
-        <activity android:name=".ui.main.left.MessageActivity"/>
-        <activity android:name=".ui.main.left.FollowActivity"/>
-        <activity android:name=".ui.main.left.ContactActivity"/>
-        <activity android:name=".ui.main.left.MoneyActivity"/>
-        <activity android:name=".ui.main.left.GiftActivity"/>
-        <activity android:name=".ui.main.left.WorryActivity"/>
-        <activity android:name=".ui.main.left.setting.SettingActivity"/>
-        <activity android:name=".ui.main.left.ReserveActivity"/>
-        <activity android:name=".ui.main.fragment.home.OrationActivity"/>
-        <activity android:name=".ui.main.fragment.lord.LordDetailActivity"/>
+        <activity android:name=".ui.left.MessageActivity"/>
+        <activity android:name=".ui.left.FollowActivity"/>
+        <activity android:name=".ui.left.ContactActivity"/>
+        <activity android:name=".ui.left.MoneyActivity"/>
+        <activity android:name=".ui.left.GiftActivity"/>
+        <activity android:name=".ui.left.WorryActivity"/>
+        <activity android:name=".ui.left.setting.SettingActivity"/>
+        <activity android:name=".ui.left.ReserveActivity"/>
+        <activity android:name=".ui.fragment.home.OrationActivity"/>
+        <activity android:name=".ui.fragment.lord.LordDetailActivity"/>
         <activity
-            android:name=".ui.main.left.setting.WebActivity"
+            android:name=".ui.left.setting.WebActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".ui.main.fragment.advisory.UserDetailActivity">
+        <activity android:name=".ui.fragment.advisory.UserDetailActivity">
         </activity>
+        <activity android:name=".ui.register.RegisterActivity">
+        </activity>
+        <activity android:name=".ui.register.RegisterSecondActivity">
+        </activity>
+
+
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+
+
+        <meta-data
+            android:name="mob_sms_appKey"
+            android:value="184c536d59f39" />
+        <meta-data
+            android:name="mob_sms_appSecrect"
+            android:value="a1efccaec8cb511df0c9928f4025ea42" />
     </application>
 
 </manifest>

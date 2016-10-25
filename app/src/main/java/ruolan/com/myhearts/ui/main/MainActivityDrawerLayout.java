@@ -18,12 +18,12 @@ import com.nineoldandroids.view.ViewHelper;
 import butterknife.ButterKnife;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.ui.base.BaseActivity;
-import ruolan.com.myhearts.ui.main.fragment.LeftFragment;
-import ruolan.com.myhearts.ui.main.fragment.LiveFragment;
-import ruolan.com.myhearts.ui.main.fragment.advisory.AdvisoryFragment;
-import ruolan.com.myhearts.ui.main.fragment.home.HomeFragment;
-import ruolan.com.myhearts.ui.main.fragment.lord.LordFragment;
-import ruolan.com.myhearts.ui.main.fragment.thoughts.ThoughtsFragment;
+import ruolan.com.myhearts.ui.fragment.LiveFragment;
+import ruolan.com.myhearts.ui.fragment.advisory.AdvisoryFragment;
+import ruolan.com.myhearts.ui.fragment.home.HomeFragment;
+import ruolan.com.myhearts.ui.fragment.lord.LordFragment;
+import ruolan.com.myhearts.ui.fragment.thoughts.ThoughtsFragment;
+import ruolan.com.myhearts.ui.left.LeftFragment;
 import ruolan.com.myhearts.widget.DragLayout;
 
 public class MainActivityDrawerLayout extends BaseActivity implements View.OnClickListener {

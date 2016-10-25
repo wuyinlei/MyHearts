@@ -1,14 +1,17 @@
 package ruolan.com.myhearts.ui.login;
 
+import android.content.Intent;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.ui.base.BaseActivity;
+import ruolan.com.myhearts.ui.register.RegisterActivity;
 import ruolan.com.myhearts.widget.CheckBox;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
 
     EditText mEtPhone;  //手机号
@@ -23,7 +26,6 @@ public class LoginActivity extends BaseActivity {
     ImageView mWxLogin;  //微信登录
 
 
-
     @Override
     protected int getResultId() {
         return R.layout.activity_login;
@@ -31,6 +33,12 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
+        mQqLogin.setOnClickListener(this);
+        mRegisterAccount.setOnClickListener(this);
+    }
+
+    @Override
+    public void initData() {
 
     }
 
@@ -49,8 +57,13 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-
-
-
-
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.register_account:
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
 }

@@ -88,15 +88,16 @@ public class CheckBox extends View implements Checkable{
     public CheckBox(Context context, AttributeSet attrs) {
         super(context, attrs);
         mPaint = new Paint();
-
+        int textColor = 0;
         if(attrs != null){
             TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.BBox);
             int colorAfter = array.getColor(R.styleable.BBox_color_after,Color.GRAY);
             int colorBefore = array.getColor(R.styleable.BBox_color_before,Color.GRAY);
-
+            textColor = array.getColor(R.styleable.BBox_text_color,Color.BLUE);
             redAfter = (colorAfter & 0xff0000) >> 16;
             greenAfter = (colorAfter & 0x00ff00) >> 8;
             blueAfter = (colorAfter & 0x0000ff);
+
 
             redBefore = (colorBefore & 0xff0000) >> 16;
             greenBefore = (colorBefore & 0x00ff00) >> 8;
@@ -121,7 +122,12 @@ public class CheckBox extends View implements Checkable{
 
         mPaintText = new Paint();
 
-        mPaintText.setColor(Color.WHITE);
+        if (textColor==0){
+            mPaintText.setColor(Color.WHITE);
+        } else {
+            mPaintText.setColor(textColor);
+        }
+
 //        mPaintText.setStrokeWidth(strokeWidth);
         mPaintText.setAntiAlias(true);
         mPaintText.setStyle(Paint.Style.STROKE);

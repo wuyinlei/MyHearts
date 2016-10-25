@@ -13,8 +13,10 @@ import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.store.PersistentCookieStore;
 
+import cn.smssdk.SMSSDK;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.User;
+import ruolan.com.myhearts.utils.ManifestUtil;
 
 /**
  * Created by Administrator on 2016/10/20.
@@ -42,6 +44,15 @@ public class MyApplication
         mInstance = this;
 
         NineGridView.setImageLoader(new PicassoImageLoader());
+
+
+        //短信验证
+
+        SMSSDK.initSDK(this, ManifestUtil.getMetaDataValue(this, "mob_sms_appKey"),
+                ManifestUtil.getMetaDataValue(this,"mob_sms_appSecrect"));
+
+
+
 
         OkGo.init(this);
 

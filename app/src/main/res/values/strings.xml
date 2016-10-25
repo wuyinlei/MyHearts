@@ -39,11 +39,17 @@
     <string name="other_thought">其他</string>
     <string name="setting">设置</string>
 
-    <string name="direct_sedding">直播回放($)</string>
+    <string name="direct_sedding">直播回放(</string>
 
-    <string name="user_comment">用户评论($)</string>
+    <string name="user_comment">用户评论(</string>
 
-    <string name="gif_count">TA的礼物($)</string>
+    <string name="gif_count">TA的礼物(</string>
+
+    <string name="tag1">婚恋情感</string>
+    <string name="tag2">情绪困扰</string>
+    <string name="tag3">亲子教育</string>
+
+    <string name="agree_user_argument">请同意用户协议</string>
 
 
 </resources>

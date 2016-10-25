@@ -119,6 +119,7 @@
     <RelativeLayout
         android:id="@+id/content_head_view"
         android:layout_width="fill_parent"
+        android:background="@color/transparent"
         android:layout_height="?actionBarSize"
         android:layout_alignParentTop="true"
         android:gravity="center_vertical"
@@ -131,7 +132,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:background="@color/transparent"
-            android:src="@drawable/return_btn_white"/>
+            android:src="@drawable/ic_back"/>
 
         <TextView
             android:id="@+id/action_title_txt"
@@ -150,7 +151,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@color/transparent"
-            android:src="@drawable/share"
+            android:src="@drawable/share_black"
             android:visibility="visible"/>
 
         <View

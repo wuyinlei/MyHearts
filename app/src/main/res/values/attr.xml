@@ -27,6 +27,7 @@
             <enum name="hook" value="1" />
         </attr>
         <attr name="color_before" format="color" />
+        <attr name="text_color" format="color"></attr>
         <attr name="color_after" format="color" />
         <attr name="check_text" format="string" />
         <attr name="show_border" format="boolean"/>

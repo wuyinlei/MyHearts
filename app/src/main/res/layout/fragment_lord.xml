@@ -4,7 +4,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:background="@color/white"
-                tools:context=".ui.main.fragment.lord.LordFragment">
+                tools:context=".ui.fragment.lord.LordFragment">
 
 
     <RelativeLayout
