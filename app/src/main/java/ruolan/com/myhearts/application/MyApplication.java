@@ -12,6 +12,7 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.store.PersistentCookieStore;
+import com.tencent.tauth.Tencent;
 
 import cn.bmob.v3.Bmob;
 import cn.smssdk.SMSSDK;
@@ -28,6 +29,7 @@ public class MyApplication
 
 
     private static MyApplication mInstance;
+    private Tencent mTencent;
 
 
     public static MyApplication getInstance() {
@@ -100,6 +102,12 @@ public class MyApplication
         }
        // initUser();
       //  Fresco.initialize(this);
+
+//ID1105704769
+
+        mTencent = Tencent.createInstance("1105704769", this);
+
+
     }
 
 

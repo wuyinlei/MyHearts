@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content">
 
                 <ruolan.com.myhearts.widget.CircleImageView
-                    android:id="@id/user_detail_avatar"
+                    android:id="@+id/user_detail_avatar"
                     android:layout_width="80.0dip"
                     android:layout_height="80.0dip"
                     android:layout_centerInParent="true"

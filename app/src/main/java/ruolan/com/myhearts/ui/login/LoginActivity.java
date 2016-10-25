@@ -1,13 +1,22 @@
 package ruolan.com.myhearts.ui.login;
 
 import android.content.Intent;
+import android.os.SystemClock;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.tencent.connect.auth.QQAuth;
+import com.tencent.open.utils.Util;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.UiError;
+
+import org.json.JSONObject;
 
 import cn.bmob.v3.BmobUser;
 import ruolan.com.myhearts.R;
@@ -40,6 +49,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private RelativeLayout mReLogin;
     private String mName;
     private String mPwd;
+    private QQAuth mTencent;
+    private BaseUiListener mUiListener;
 
 
     @Override
@@ -115,6 +126,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         });
 
+        mUiListener = new BaseUiListener() {
+
+        };
+
     }
 
     @Override
@@ -146,6 +161,37 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 if (!TextUtils.isEmpty(mName) && !TextUtils.isEmpty(mPwd))
                     toLogin(mName, mPwd);
                 break;
+
+            case R.id.qq_login:
+                    //onClickLogin();
+
+                mTencent.login(this, "all", mUiListener);
+                break;
+
         }
     }
+
+
+
+
+    private class BaseUiListener implements IUiListener {
+
+
+        @Override
+        public void onComplete(Object o) {
+
+        }
+
+        @Override
+        public void onError(UiError uiError) {
+
+        }
+
+        @Override
+        public void onCancel() {
+
+        }
+    }
+
+
 }

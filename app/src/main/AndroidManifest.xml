@@ -73,6 +73,20 @@
         <meta-data
             android:name="mob_sms_appSecrect"
             android:value="a1efccaec8cb511df0c9928f4025ea42" />
+
+
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent1105704769" />
+                <!-- 100380359 100381104 222222 -->
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
