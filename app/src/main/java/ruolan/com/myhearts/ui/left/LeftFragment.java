@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
+import ruolan.com.myhearts.event.LoginEvent;
 import ruolan.com.myhearts.event.LoginOut;
 import ruolan.com.myhearts.ui.login.LoginActivity;
 import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
@@ -65,7 +69,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
         boolean isLogin = PreferencesUtils.getBoolean(getContext(), Contants.IS_LOGIN);
         if (isLogin) {
             String name = PreferencesUtils.getString(getContext(), Contants.USER_NAME);
-            updateUi(name);
+           // updateUi(name);
         } else {
             //loginOutUi();
         }
@@ -88,6 +92,26 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void LoginInEvent(LoginEvent event){
+        mTvName.setText(event.mMyUser.getUsername());
+        if (event.mMyUser.getImgurl()==null){
+            Glide.with(getContext()).load(R.drawable.user_avatour)
+                    .asBitmap().transform(new GlideCircleTransform(getContext()))
+                    .into(mIvTour);
+        } else {
+            Glide.with(getContext()).load(event.mMyUser.getImgurl())
+                    .asBitmap().transform(new GlideCircleTransform(getContext()))
+                    .into(mIvTour);
+        }
+        if (mBtLogin != null) {
+            String loginOut = getContext().getResources()
+                    .getString(R.string.login_out);
+            mBtLogin.setText(loginOut);
+        }
+
+    }
+
     private void updateUi(String name) {
         if (mTvName != null) {
             mTvName.setText(name);
@@ -108,7 +132,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_left, container, false);
-
+        EventBus.getDefault().register(this);
         initView(view);
         return view;
     }
@@ -196,4 +220,9 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

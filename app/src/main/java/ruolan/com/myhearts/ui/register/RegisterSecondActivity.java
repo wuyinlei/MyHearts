@@ -1,7 +1,6 @@
 package ruolan.com.myhearts.ui.register;
 
 import android.content.Intent;
-import android.provider.SyncStateContract;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,7 +13,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import cn.smssdk.EventHandler;
@@ -22,10 +20,10 @@ import cn.smssdk.SMSSDK;
 import cn.smssdk.utils.SMSLog;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
+import ruolan.com.myhearts.entity.MyUser;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.ui.login.LoginActivity;
 import ruolan.com.myhearts.utils.CountTimerView;
-import ruolan.com.myhearts.utils.ManifestUtil;
 import ruolan.com.myhearts.utils.PreferencesUtils;
 import ruolan.com.myhearts.utils.RegularUtils;
 import ruolan.com.myhearts.utils.ToastUtils;

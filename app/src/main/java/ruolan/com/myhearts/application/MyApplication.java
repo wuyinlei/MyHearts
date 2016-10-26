@@ -105,7 +105,7 @@ public class MyApplication
 
 //ID1105704769
 
-        mTencent = Tencent.createInstance("1105704769", this);
+    //    mTencent = Tencent.createInstance("1105704769", this);
 
 
     }

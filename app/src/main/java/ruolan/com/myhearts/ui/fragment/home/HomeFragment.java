@@ -35,6 +35,7 @@ import java.util.List;
 
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
+import ruolan.com.myhearts.event.LoginEvent;
 import ruolan.com.myhearts.event.LoginOut;
 import ruolan.com.myhearts.ui.main.MainActivity;
 import ruolan.com.myhearts.ui.fragment.home.AdvisoryBean.ResultsBean;
@@ -340,16 +341,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        boolean isLogin = PreferencesUtils.getBoolean(getContext(), Contants.IS_LOGIN);
-        if (isLogin) {
+       // boolean isLogin = PreferencesUtils.getBoolean(getContext(), Contants.IS_LOGIN);
+      //  if (isLogin) {
             // String name = PreferencesUtils.getString(getContext(), Contants.USER_NAME);
             //  updateUi(name);
-            if (mAvatorImg != null) {
-                Glide.with(getContext())
-                        .load(R.drawable.user_avatour)
-                        .asBitmap().into(mAvatorImg);
-            }
-        }
+           // if (mAvatorImg != null) {
+           //     Glide.with(getContext())
+            //            .load(R.drawable.user_avatour)
+            //            .asBitmap().into(mAvatorImg);
+           // }
+      //  }
     }
 
     Handler mHandler = new Handler() {
@@ -382,6 +383,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             .asBitmap().into(mAvatorImg);
                 }
             }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void LoginInEvent(LoginEvent loginEvent){
+        if (loginEvent.mMyUser.getImgurl()==null){
+            if (mAvatorImg != null) {
+                Glide.with(getContext())
+                        .load(R.drawable.user_avatour)
+                        .asBitmap().into(mAvatorImg);
+            }
+        } else {
+            if (mAvatorImg != null) {
+                Glide.with(getContext())
+                        .load(loginEvent.mMyUser.getImgurl())
+                        .asBitmap().into(mAvatorImg);
+            }
+        }
     }
 
     @Override

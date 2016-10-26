@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.ui.register;
+package ruolan.com.myhearts.entity;
 
 import cn.bmob.v3.BmobUser;
 
@@ -13,6 +13,24 @@ public class MyUser extends BmobUser{
     private Integer num;
     private Boolean sex;
 
+    private String imgurl;
+    private String instance;
+
+    public void setInstance(String instance) {
+        this.instance = instance;
+    }
+
+    public String getInstance() {
+        return instance;
+    }
+
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
+    }
+
+    public String getImgurl() {
+        return imgurl;
+    }
 
     public Boolean getSex() {
         return sex;
