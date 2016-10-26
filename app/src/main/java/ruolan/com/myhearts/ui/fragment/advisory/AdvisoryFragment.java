@@ -153,8 +153,8 @@ public class AdvisoryFragment extends Fragment {
         public void run() {
             String result = Utils.getJson(getContext(), "UserList.json");
             Gson gson = new Gson();
-            AdvisoryBean bannerBean = null;
-            bannerBean = gson.fromJson(result, new TypeToken<AdvisoryBean>() {
+            AdvisoryFragmentBean bannerBean = null;
+            bannerBean = gson.fromJson(result, new TypeToken<AdvisoryFragmentBean>() {
             }.getType());
             if (bannerBean.getErrorStr().equals("success") && bannerBean.getErrorCode() == 0) {
                 Message message = Message.obtain();

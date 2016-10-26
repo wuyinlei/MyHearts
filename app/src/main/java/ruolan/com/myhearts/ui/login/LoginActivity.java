@@ -1,6 +1,5 @@
 package ruolan.com.myhearts.ui.login;
 
-import android.app.DownloadManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Handler;
@@ -278,6 +277,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     user.setInstance(location);
                     user.setSex(sex);
 
+
 //                    ThirdPartUser thirdPartUser = new ThirdPartUser();
 //                    thirdPartUser.setUsername(nickname);
 //                    thirdPartUser.setCity(location);
@@ -301,6 +301,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
 
                     });
+
+                    PreferencesUtils.putString(LoginActivity.this,
+                            Contants.USER_NAME,nickname);
+                    PreferencesUtils.putString(LoginActivity.this,
+                            Contants.USER_PASSWORD,"123456asd");
+
 
 //                    addSubscription(user.signUp(new SaveListener<MyUser>() {
 //                        @Override

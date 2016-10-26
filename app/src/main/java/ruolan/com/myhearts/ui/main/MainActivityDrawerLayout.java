@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -153,14 +154,13 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
      */
     public void initView() {
         ButterKnife.bind(this);
-
-        EventBus.getDefault().register(this);
-
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+
+        //  EventBus.getDefault().register(this);
         if (myUser != null){
             EventBus.getDefault().post(new LoginEvent(myUser));
+            Log.d("SplashActivity", "myUser:" + myUser);
         }
-
 
         boolean isLogin = getIntent().getBooleanExtra(Contants.IS_COME_FROM_LOGIN, false);
         if (isLogin){  //登录状态
