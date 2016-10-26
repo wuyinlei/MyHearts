@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.ui.fragment.advisory;
+package ruolan.com.myhearts.adapter;
 
 import android.content.Context;
 
@@ -7,6 +7,8 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.entity.AdvisoryBean;
+import ruolan.com.myhearts.entity.AdvisoryFragmentBean;
 import ruolan.com.myhearts.ui.base.BaseViewHolder;
 import ruolan.com.myhearts.ui.base.SimpleAdapter;
 import ruolan.com.myhearts.widget.GlideCircleTransform;
@@ -15,13 +17,13 @@ import ruolan.com.myhearts.widget.GlideCircleTransform;
  * Created by Administrator on 2016/10/24.
  */
 
-public class AdvisoryAdapter extends SimpleAdapter<AdvisoryBean.ResultsBean> {
-    public AdvisoryAdapter(Context context, List<AdvisoryBean.ResultsBean> datas) {
+public class AdvisoryAdapter extends SimpleAdapter<AdvisoryFragmentBean.ResultsBean> {
+    public AdvisoryAdapter(Context context, List<AdvisoryFragmentBean.ResultsBean> datas) {
         super(context, R.layout.advice_item, datas);
     }
 
     @Override
-    protected void convert(BaseViewHolder viewHoder, AdvisoryBean.ResultsBean item) {
+    protected void convert(BaseViewHolder viewHoder, AdvisoryFragmentBean.ResultsBean item) {
         Glide.with(context).load(item.getAvatar())
                 .asBitmap()
                 .transform(new GlideCircleTransform(context))

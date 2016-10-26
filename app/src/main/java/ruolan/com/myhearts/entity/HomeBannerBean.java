@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.ui.fragment.home;
+package ruolan.com.myhearts.entity;
 
 import java.io.Serializable;
 import java.util.List;

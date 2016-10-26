@@ -28,6 +28,7 @@ import java.lang.reflect.Type;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
+import ruolan.com.myhearts.entity.UserDetailBean;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.utils.CommemUtils;
 import ruolan.com.myhearts.widget.GlideCircleTransform;

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +70,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
         boolean isLogin = PreferencesUtils.getBoolean(getContext(), Contants.IS_LOGIN);
         if (isLogin) {
             String name = PreferencesUtils.getString(getContext(), Contants.USER_NAME);
-           // updateUi(name);
+            // updateUi(name);
         } else {
             //loginOutUi();
         }
@@ -93,13 +94,14 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void LoginInEvent(LoginEvent event){
+    public void LoginInEvent(LoginEvent event) {
         mTvName.setText(event.mMyUser.getUsername());
-        if (event.mMyUser.getImgurl()==null){
+        if (event.mMyUser.getImgurl() == null) {
             Glide.with(getContext()).load(R.drawable.user_avatour)
                     .asBitmap().transform(new GlideCircleTransform(getContext()))
                     .into(mIvTour);
         } else {
+            Log.d("LeftFragment", "imgurl" + event.mMyUser.getImgurl());
             Glide.with(getContext()).load(event.mMyUser.getImgurl())
                     .asBitmap().transform(new GlideCircleTransform(getContext()))
                     .into(mIvTour);

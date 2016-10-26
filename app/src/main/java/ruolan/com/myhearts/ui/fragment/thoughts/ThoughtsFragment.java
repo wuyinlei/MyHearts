@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
-import ruolan.com.myhearts.ui.guide.TabViewPagerAdapter;
+import ruolan.com.myhearts.adapter.TabViewPagerAdapter;
 import ruolan.com.myhearts.widget.ThoughtViewPager;
 
 /**

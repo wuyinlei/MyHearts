@@ -1,10 +1,10 @@
-package ruolan.com.myhearts.ui.fragment.home;
+package ruolan.com.myhearts.entity;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/10/20.
+ * Created by Administrator on 2016/10/21.
  */
 
 public class AdvisoryBean implements Serializable {

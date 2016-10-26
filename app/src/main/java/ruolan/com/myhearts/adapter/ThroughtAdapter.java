@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.ui.fragment.thoughts;
+package ruolan.com.myhearts.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -24,7 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
-import ruolan.com.myhearts.ui.fragment.thoughts.ThoughtsBean.ResultsBean.CommentsBean;
+import ruolan.com.myhearts.entity.ThoughtsBean;
+import ruolan.com.myhearts.entity.ThoughtsBean.ResultsBean.CommentsBean;
 import ruolan.com.myhearts.widget.GlideCircleTransform;
 
 
@@ -32,7 +33,7 @@ import ruolan.com.myhearts.widget.GlideCircleTransform;
  * Created by wuyinlei on 2016/10/22.
  */
 
-class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.ThroughtViewHolder> {
+public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.ThroughtViewHolder> {
 
     private List<ThoughtsBean.ResultsBean> mResultsBeen = new ArrayList<>();
     private Context mContext;
@@ -40,12 +41,12 @@ class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.ThroughtViewH
     /**
      * @param resultsBeen 结果集
      */
-    void setResultsBeen(List<ThoughtsBean.ResultsBean> resultsBeen) {
+    public void setResultsBeen(List<ThoughtsBean.ResultsBean> resultsBeen) {
         mResultsBeen = resultsBeen;
         notifyDataSetChanged();
     }
 
-    ThroughtAdapter(Context context, List<ThoughtsBean.ResultsBean> bean) {
+    public ThroughtAdapter(Context context, List<ThoughtsBean.ResultsBean> bean) {
         this.mContext = context;
         this.mResultsBeen = bean;
     }
@@ -182,7 +183,7 @@ class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.ThroughtViewH
             String commentContent = bean.getContent();
             sb.append(commentContent);
 
-           // String result = ;
+            // String result = ;
 
             SpannableString msp = new SpannableString(sb.toString());
 
@@ -234,7 +235,7 @@ class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.ThroughtViewH
 //                String content = bean.getContent();
 //                holder.mTvReplayName.setVisibility(View.VISIBLE);
 //                holder.mTvReplayName.setText(" " + content);
-           // }
+            // }
 
 
         }

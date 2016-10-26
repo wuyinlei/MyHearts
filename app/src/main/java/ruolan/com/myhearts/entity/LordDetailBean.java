@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.ui.fragment.lord;
+package ruolan.com.myhearts.entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,6 +8,7 @@ import java.util.List;
  */
 
 public class LordDetailBean implements Serializable {
+
 
     /**
      * errorCode : 0

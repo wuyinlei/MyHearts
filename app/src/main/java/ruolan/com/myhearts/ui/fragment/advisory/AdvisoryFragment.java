@@ -24,8 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.adapter.AdvisoryAdapter;
 import ruolan.com.myhearts.contant.Contants;
-import ruolan.com.myhearts.ui.fragment.advisory.AdvisoryBannerBean.ResultsBean;
+import ruolan.com.myhearts.entity.AdvisoryBannerBean;
+import ruolan.com.myhearts.entity.AdvisoryBannerBean.ResultsBean;
+import ruolan.com.myhearts.entity.AdvisoryBean;
+import ruolan.com.myhearts.entity.AdvisoryFragmentBean;
 import ruolan.com.myhearts.utils.Utils;
 import ruolan.com.myhearts.widget.DividerItemDecoration;
 import ruolan.com.myhearts.widget.FlyBanner;
@@ -62,7 +66,7 @@ public class AdvisoryFragment extends Fragment {
     MaterialRefreshLayout mRefreshLayout;
 
     private List<ResultsBean> mAdvisoryDatas = new ArrayList<>();
-    private List<AdvisoryBean.ResultsBean> mDatas = new ArrayList<>();
+    private List<AdvisoryFragmentBean.ResultsBean> mDatas = new ArrayList<>();
     private AdvisoryAdapter mAdvisoryAdapter;
 
     @Override
@@ -93,7 +97,7 @@ public class AdvisoryFragment extends Fragment {
         mAdvisoryAdapter = new AdvisoryAdapter(getContext(), mDatas);
         mAdvisoryAdapter.setOnItemClickListener((view, position) -> {
             int index = mDatas.size()-position-1;  //不太明白，为什么显示的是倒叙
-            AdvisoryBean.ResultsBean resultsBean = mDatas.get(index);
+            AdvisoryFragmentBean.ResultsBean resultsBean = mDatas.get(index);
             String userid = resultsBean.getUserid();
             Intent intent = new Intent(getActivity(), UserDetailActivity.class);
             intent.putExtra(Contants.USER_ID, userid);
@@ -134,7 +138,7 @@ public class AdvisoryFragment extends Fragment {
             super.handleMessage(msg);
            // mUserDatas = (UserDetailBean.ResultsBean) msg.obj;
            // updateUi(mUserDatas);
-            mDatas = (List<AdvisoryBean.ResultsBean>) msg.obj;
+            mDatas = (List<AdvisoryFragmentBean.ResultsBean>) msg.obj;
             //mDatas = bean.getResults();
             mAdvisoryAdapter.addData(mDatas);
         }

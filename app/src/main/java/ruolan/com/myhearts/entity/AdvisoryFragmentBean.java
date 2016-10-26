@@ -1,13 +1,13 @@
-package ruolan.com.myhearts.ui.fragment.advisory;
+package ruolan.com.myhearts.entity;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/10/21.
+ * Created by Administrator on 2016/10/26.
  */
 
-public class AdvisoryBean implements Serializable {
+public class AdvisoryFragmentBean implements Serializable {
 
     /**
      * errorCode : 0

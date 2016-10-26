@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.ui.fragment.home;
+package ruolan.com.myhearts.adapter;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.entity.HomeNewsBean;
 import ruolan.com.myhearts.ui.base.BaseViewHolder;
 import ruolan.com.myhearts.ui.base.SimpleAdapter;
 

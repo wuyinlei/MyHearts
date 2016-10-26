@@ -24,7 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.adapter.ThroughtAdapter;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
+import ruolan.com.myhearts.entity.ThoughtsBean;
 import ruolan.com.myhearts.widget.DividerItemDecoration;
 import ruolan.com.myhearts.widget.itemanimator.ScaleInOutItemAnimator;
 import rx.android.schedulers.AndroidSchedulers;

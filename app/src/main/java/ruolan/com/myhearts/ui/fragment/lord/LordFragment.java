@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.adapter.LordAdapter;
+import ruolan.com.myhearts.entity.LordBean;
 import ruolan.com.myhearts.ui.base.BaseFragment;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
 import rx.android.schedulers.AndroidSchedulers;

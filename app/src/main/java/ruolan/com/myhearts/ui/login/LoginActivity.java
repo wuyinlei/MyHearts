@@ -30,6 +30,7 @@ import cn.bmob.v3.listener.SaveListener;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.entity.MyUser;
+import ruolan.com.myhearts.entity.ThirdPartUser;
 import ruolan.com.myhearts.event.LoginEvent;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
@@ -129,7 +130,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public void onNext(BmobUser bmobUser) {
 
 
-
                 if (!mIsPasswordMemory.isChecked()) {  //如果用户没有点击记住密码  那就清除密码
                     PreferencesUtils.putString(LoginActivity.this, Contants.USER_PASSWORD, "");
                 } else { //否则就保存密码
@@ -188,7 +188,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
             case R.id.qq_login:
-                    //onClickLogin();
+                //onClickLogin();
 
                 mTencent.login(this, "all", loginListener);
 
@@ -212,12 +212,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     msg.obj = response;
                     msg.what = 0;
                     mHandler.sendMessage(msg);
-                    new Thread(){
+                    new Thread() {
 
                         @Override
                         public void run() {
-                            JSONObject json = (JSONObject)response;
-                            if(json.has("figureurl")){
+                            JSONObject json = (JSONObject) response;
+                            if (json.has("figureurl")) {
                                 Bitmap bitmap = null;
                                 try {
                                     bitmap = Util.getbitmap(json.getString("figureurl_qq_2"));
@@ -273,7 +273,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     Log.d("ruolanmingyue", "response:" + response);
                     nickname = response.getString("nickname");
                     imgurl = response.getString("figureurl_qq_2");
-                    sex = response.getString("gender").equals("男")? true:false;
+                    sex = response.getString("gender").equals("男") ? true : false;
                     location = response.getString("city");
                     MyUser user = new MyUser();
                     user.setUsername(nickname);
@@ -281,30 +281,47 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     user.setInstance(location);
                     user.setSex(sex);
 
-                    addSubscription(user.signUp(new SaveListener<MyUser>() {
+                    ThirdPartUser thirdPartUser = new ThirdPartUser();
+                    thirdPartUser.setUsername(nickname);
+                    thirdPartUser.setCity(location);
+                    thirdPartUser.setSex(sex == false ? "1" : "0");
+                    thirdPartUser.setImgUrl(imgurl);
+
+                    thirdPartUser.save(new SaveListener<String>() {
                         @Override
-                        public void done(MyUser myUser, BmobException e) {
+                        public void done(String o, BmobException e) {
                             if (e == null) {
-    //                            Toast.makeText(LoginActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
-  //                              PreferencesUtils.putString(LoginActivity.this,Contants.USER_NAME,userName);
-//                                startActivity(new Intent(LoginActivity.this, LoginActivity.class));
-                            } else {
-                                //注册失败
+
                             }
                         }
-                    }));
+
+
+                    });
+
+//                    addSubscription(user.signUp(new SaveListener<MyUser>() {
+//                        @Override
+//                        public void done(MyUser myUser, BmobException e) {
+//                            if (e == null) {
+//    //                            Toast.makeText(LoginActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+//  //                              PreferencesUtils.putString(LoginActivity.this,Contants.USER_NAME,userName);
+////                                startActivity(new Intent(LoginActivity.this, LoginActivity.class));
+//                            } else {
+//                                //注册失败
+//                            }
+//                        }
+//                    }));
 
                     Log.d("ruolanmingyue", nickname);
-                    PreferencesUtils.putBoolean(LoginActivity.this,Contants.IS_LOGIN,true);
+                    PreferencesUtils.putBoolean(LoginActivity.this, Contants.IS_LOGIN, true);
                     EventBus.getDefault().post(new LoginEvent(user));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-            }else if(msg.what == 1){
-                Bitmap bitmap = (Bitmap)msg.obj;
+            } else if (msg.what == 1) {
+                Bitmap bitmap = (Bitmap) msg.obj;
                 Log.d("ruolan", "msg.obj:" + msg.obj);
-               // EventBus.getDefault().post(bitmap);
+                // EventBus.getDefault().post(bitmap);
 //                mUserLogo.setImageBitmap(bitmap);
 //                mUserLogo.setVisibility(android.view.View.VISIBLE);
             }
@@ -314,16 +331,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("ruolan", "-->onActivityResult " + requestCode  + " resultCode=" + resultCode);
+        Log.d("ruolan", "-->onActivityResult " + requestCode + " resultCode=" + resultCode);
         if (requestCode == Constants.REQUEST_LOGIN ||
                 requestCode == Constants.REQUEST_APPBAR) {
-            Tencent.onActivityResultData(requestCode,resultCode,data,loginListener);
+            Tencent.onActivityResultData(requestCode, resultCode, data, loginListener);
         }
 
         super.onActivityResult(requestCode, resultCode, data);
     }
-
-
 
 
     IUiListener loginListener = new BaseUiListener() {
@@ -392,7 +407,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         //进行反注册
         EventBus.getDefault().unregister(this);
     }
-
 
 
 }

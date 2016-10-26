@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.adapter.LordDetailAdapter;
+import ruolan.com.myhearts.entity.LordDetailBean;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
 import ruolan.com.myhearts.widget.DividerItemDecoration;
@@ -35,7 +37,6 @@ public class LordDetailActivity extends BaseActivity implements View.OnClickList
     private ImageView mIcBack;
     private TextView mTvTitle;
 
-    private RelativeLayout mNoData;
 
     private List<LordDetailBean.ResultsBean> mLordDetailDatas = new ArrayList<>();
 
@@ -158,7 +159,6 @@ public class LordDetailActivity extends BaseActivity implements View.OnClickList
         detailAdapter = new LordDetailAdapter(this, mLordDetailDatas);
         mLordDetailRecyclerView.setAdapter(detailAdapter);
 
-        mNoData = (RelativeLayout) findViewById(R.id.loading_view);
 
         mTitle = getIntent().getStringExtra("title");
         if (mTitle != null && !TextUtils.isEmpty(mTitle)) {

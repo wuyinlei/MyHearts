@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.ui.fragment.home;
+package ruolan.com.myhearts.entity;
 
 import java.io.Serializable;
 
@@ -6,15 +6,15 @@ import java.io.Serializable;
  * Created by Administrator on 2016/10/20.
  */
 
-public class HomeBannerOne implements Serializable {
+public class HomeBannerTwo implements Serializable {
 
     /**
      * errorCode : 0
      * errorStr : success
-     * resultCount : 3
+     * resultCount : 4
      * score : 0
      * balance : 0
-     * results : {"id":"1480","banner":"http://image.xinliji.me/o_1avee70m4m4covv1ifd1su56l114.png","state":"N"}
+     * results : {"id":"495","title":"你算得上是一个优雅的人吗？","instro":"","image":"http://image.xinliji.me/o_1avamvfk41nrr704npka0d1ne7n.jpg"}
      */
 
     private int errorCode;
@@ -23,9 +23,10 @@ public class HomeBannerOne implements Serializable {
     private int score;
     private int balance;
     /**
-     * id : 1480
-     * banner : http://image.xinliji.me/o_1avee70m4m4covv1ifd1su56l114.png
-     * state : N
+     * id : 495
+     * title : 你算得上是一个优雅的人吗？
+     * instro :
+     * image : http://image.xinliji.me/o_1avamvfk41nrr704npka0d1ne7n.jpg
      */
 
     private ResultsBean results;
@@ -80,8 +81,9 @@ public class HomeBannerOne implements Serializable {
 
     public static class ResultsBean {
         private String id;
-        private String banner;
-        private String state;
+        private String title;
+        private String instro;
+        private String image;
 
         public String getId() {
             return id;
@@ -91,20 +93,28 @@ public class HomeBannerOne implements Serializable {
             this.id = id;
         }
 
-        public String getBanner() {
-            return banner;
+        public String getTitle() {
+            return title;
         }
 
-        public void setBanner(String banner) {
-            this.banner = banner;
+        public void setTitle(String title) {
+            this.title = title;
         }
 
-        public String getState() {
-            return state;
+        public String getInstro() {
+            return instro;
         }
 
-        public void setState(String state) {
-            this.state = state;
+        public void setInstro(String instro) {
+            this.instro = instro;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
         }
     }
 }

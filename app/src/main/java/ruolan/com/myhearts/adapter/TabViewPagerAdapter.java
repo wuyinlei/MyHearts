@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.ui.guide;
+package ruolan.com.myhearts.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

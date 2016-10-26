@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.ui.fragment.lord;
+package ruolan.com.myhearts.adapter;
 
 import android.content.Context;
 
@@ -9,6 +9,7 @@ import java.util.List;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.ui.base.BaseViewHolder;
 import ruolan.com.myhearts.ui.base.SimpleAdapter;
+import ruolan.com.myhearts.entity.LordBean;
 import ruolan.com.myhearts.widget.GlideCircleTransform;
 
 /**

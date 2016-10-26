@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.ui.fragment.lord;
+package ruolan.com.myhearts.entity;
 
 import java.util.List;
 
