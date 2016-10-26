@@ -78,6 +78,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
 
     private void loginOutUi() {
         PreferencesUtils.putBoolean(getContext(), Contants.IS_LOGIN, false);
+        mReLogin.setClickable(true);
         if (mTvName != null) {
             mTvName.setText("");
         }
@@ -95,17 +96,29 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void LoginInEvent(LoginEvent event) {
+
+        if (event!=null) {
+            mReLogin.setClickable(false);
+        }
+
         mTvName.setText(event.mMyUser.getUsername());
+        mTvName.setClickable(true);
+        mTvName.setOnClickListener(this);
         if (event.mMyUser.getImgurl() == null) {
             Glide.with(getContext()).load(R.drawable.user_avatour)
                     .asBitmap().transform(new GlideCircleTransform(getContext()))
                     .into(mIvTour);
+
         } else {
             Log.d("LeftFragment", "imgurl" + event.mMyUser.getImgurl());
             Glide.with(getContext()).load(event.mMyUser.getImgurl())
                     .asBitmap().transform(new GlideCircleTransform(getContext()))
                     .into(mIvTour);
+
+
         }
+        mIvTour.setClickable(true);
+        mIvTour.setOnClickListener(this);
         if (mBtLogin != null) {
             String loginOut = getContext().getResources()
                     .getString(R.string.login_out);
@@ -142,9 +155,11 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
     private void initView(View view) {
         mReLogin = (RelativeLayout) view.findViewById(R.id.rl_login);
         mTvName = (TextView) view.findViewById(R.id.tv_name);
+        mTvName.setClickable(false);
         mBtLogin = (TextView) view.findViewById(R.id.tv_login);
         mBtLogin.setOnClickListener(this);
         mIvTour = (ImageView) view.findViewById(R.id.img_avatar);
+        mIvTour.setClickable(false);
         mReLogin.setOnClickListener(this);
         mLiReserve = (LinearLayout) view.findViewById(R.id.my_message);
         mLiReserve.setOnClickListener(this);
@@ -209,6 +224,10 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
                         .getString(R.string.login_in))) {
                     intent.setClass(getActivity(), LoginActivity.class);
                 }
+                break;
+            case R.id.img_avatar:
+            case R.id.tv_name:
+                intent.setClass(getActivity(),UserActivity.class);
                 break;
 
 

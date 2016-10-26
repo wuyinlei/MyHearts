@@ -15,9 +15,14 @@ import android.widget.RadioGroup;
 
 import com.nineoldandroids.view.ViewHelper;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
+import cn.bmob.v3.BmobUser;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
+import ruolan.com.myhearts.entity.MyUser;
+import ruolan.com.myhearts.event.LoginEvent;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.ui.fragment.LiveFragment;
 import ruolan.com.myhearts.ui.fragment.advisory.AdvisoryFragment;
@@ -148,6 +153,14 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
      */
     public void initView() {
         ButterKnife.bind(this);
+
+        EventBus.getDefault().register(this);
+
+        MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+        if (myUser != null){
+            EventBus.getDefault().post(new LoginEvent(myUser));
+        }
+
 
         boolean isLogin = getIntent().getBooleanExtra(Contants.IS_COME_FROM_LOGIN, false);
         if (isLogin){  //登录状态
@@ -381,5 +394,11 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
         }
         startActivity(intent, isLogin);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

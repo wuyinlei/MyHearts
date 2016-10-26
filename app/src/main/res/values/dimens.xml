@@ -272,7 +272,7 @@
     <dimen name="group_list_magin_left_top_bottom">17.0dip</dimen>
     <dimen name="header_footer_left_right_padding">24.0dip</dimen>
     <dimen name="header_footer_top_bottom_padding">12.0dip</dimen>
-    <dimen name="header_height">300.0dip</dimen>
+    <dimen name="header_height">280.0dip</dimen>
     <dimen name="heart_anim_bezier_x_rand">50.0dip</dimen>
     <dimen name="heart_anim_init_x">50.0dip</dimen>
     <dimen name="heart_anim_init_y">25.0dip</dimen>

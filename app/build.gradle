@@ -97,4 +97,6 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile files('libs/open_sdk_r5756.jar')
     compile files('libs/mta-sdk-1.6.2.jar')
+
+    compile 'com.dalong:cardvoucher:1.0.0'
 }

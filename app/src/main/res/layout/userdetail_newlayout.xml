@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:layout_width="fill_parent"
-             android:layout_height="fill_parent"
-             android:background="@color/main_content">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/main_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
 
     <RelativeLayout
@@ -58,23 +63,245 @@
         android:layout_width="fill_parent"
         android:layout_height="@dimen/header_height">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+        </FrameLayout>
 
-        <include layout="@layout/userdetail_head_layout"
-                 android:layout_width="wrap_content"
-                 android:layout_height="294dp"/>
+        <include
+            layout="@layout/userdetail_head_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="294dp"/>
 
     </FrameLayout>
 
-    <FrameLayout
-        android:layout_gravity="center_vertical"
+
+    <com.dalong.cardvoucherlayout.CardVoucherLayout
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="280dp"
+        android:background="@color/text_color_blue"
+        android:gravity="center"
+        app:CardVoucher_Color="@color/colorPrimary"
+        app:CardVoucher_Orientation="vertical"
+        app:CardVoucher_Radius="19"
+        app:CardVoucher_Shape="circle"
+        app:CardVoucher_Spacing="0">
+
+        <include layout="@layout/detail_item_layout"
+            />
+    </com.dalong.cardvoucherlayout.CardVoucherLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="255dp"
+        >
+
         <ImageView
-            android:layout_alignParentRight="true"
+            android:id="@+id/imageView2"
             android:layout_width="@dimen/x50"
             android:layout_height="@dimen/x50"
             app:srcCompat="@drawable/modify_info"
-            android:id="@+id/imageView2"/>
+            />
     </FrameLayout>
 
-</FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/card_view"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/blacklist"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:background="@drawable/list_item_selector"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="20.0dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="城市"
+                android:textColor="@color/black"
+                android:textSize="15.0sp"/>
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"/>
+
+            <TextView
+                android:id="@+id/tv_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15.0dip"
+                android:text="北京"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:background="@drawable/line"/>
+
+        <LinearLayout
+            android:id="@+id/goupdate_password"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:background="@drawable/list_item_selector"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="20.0dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="60.0dip"
+                android:gravity="center_vertical"
+                android:text="职业"
+                android:textColor="@color/black"
+                android:textSize="15.0sp"/>
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"/>
+
+            <TextView
+                android:id="@+id/tv_profession"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15.0dip"
+                android:text="IT"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:background="@drawable/line"/>
+
+        <LinearLayout
+            android:id="@+id/goupdate_cleanmsg"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:background="@drawable/list_item_selector"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="20.0dip">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="60.0dip"
+                android:gravity="center_vertical"
+                android:text="血型"
+                android:textColor="@color/black"
+                android:textSize="15.0sp"/>
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"/>
+
+            <TextView
+                android:id="@+id/tv_blood_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15.0dip"
+                android:text="B型"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:background="@drawable/line"/>
+
+
+        <LinearLayout
+            android:id="@+id/goupdate_love"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:background="@drawable/list_item_selector"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="20.0dip">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="60.0dip"
+                android:gravity="center_vertical"
+                android:text="爱好"
+                android:textColor="@color/black"
+                android:textSize="15.0sp"/>
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"/>
+
+
+            <TextView
+                android:id="@+id/tv_love"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15.0dip"
+                android:text="睡觉"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:background="@drawable/line"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="14.0dip"
+            android:background="@color/divider"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:background="@drawable/list_item_selector"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="20.0dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="60.0dip"
+                android:gravity="center_vertical"
+                android:text="个人标签"
+                android:textColor="@color/black"
+                android:textSize="15.0sp"/>
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

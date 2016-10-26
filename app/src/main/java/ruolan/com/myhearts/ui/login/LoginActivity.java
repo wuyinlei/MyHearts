@@ -1,5 +1,6 @@
 package ruolan.com.myhearts.ui.login;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Handler;
@@ -30,18 +31,14 @@ import cn.bmob.v3.listener.SaveListener;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.entity.MyUser;
-import ruolan.com.myhearts.entity.ThirdPartUser;
 import ruolan.com.myhearts.event.LoginEvent;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
 import ruolan.com.myhearts.ui.register.RegisterActivity;
-import ruolan.com.myhearts.ui.register.RegisterSecondActivity;
 import ruolan.com.myhearts.utils.PreferencesUtils;
-import ruolan.com.myhearts.utils.RegularUtils;
 import ruolan.com.myhearts.utils.Util;
 import ruolan.com.myhearts.widget.CheckBox;
 import rx.Subscriber;
-import rx.subjects.Subject;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
@@ -281,17 +278,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     user.setInstance(location);
                     user.setSex(sex);
 
-                    ThirdPartUser thirdPartUser = new ThirdPartUser();
-                    thirdPartUser.setUsername(nickname);
-                    thirdPartUser.setCity(location);
-                    thirdPartUser.setSex(sex == false ? "1" : "0");
-                    thirdPartUser.setImgUrl(imgurl);
+//                    ThirdPartUser thirdPartUser = new ThirdPartUser();
+//                    thirdPartUser.setUsername(nickname);
+//                    thirdPartUser.setCity(location);
+//                    thirdPartUser.setSex(sex == false ? "1" : "0");
+//                    thirdPartUser.setImgUrl(imgurl);
+//
+//                    BmobQuery<ThirdPartUser> query = new BmobQuery<>();
+//                   // query.
+//                    thirdPartUser.
 
-                    thirdPartUser.save(new SaveListener<String>() {
+                    user.setPassword("123456asd");  //如果是第三方进入的，默认密码123456asd
+                    user.signUp(new SaveListener<MyUser>() {
                         @Override
-                        public void done(String o, BmobException e) {
+                        public void done(MyUser o, BmobException e) {
                             if (e == null) {
 
+                            } else {
+                                Toast.makeText(LoginActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
                             }
                         }
 

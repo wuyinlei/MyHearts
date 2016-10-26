@@ -23,13 +23,13 @@
 
         <ImageView
             android:id="@+id/img_back"
-            android:src="@drawable/ic_back"
             android:layout_width="@dimen/x25"
             android:layout_height="@dimen/x25"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginRight="@dimen/text_size"
+            android:src="@drawable/ic_back"
             android:text="@string/customer_service"/>
     </RelativeLayout>
 
@@ -182,13 +182,13 @@
                     android:paddingLeft="20.0dip">
 
                     <TextView
+                        android:id="@+id/textView"
                         android:layout_width="wrap_content"
                         android:layout_height="60.0dip"
                         android:gravity="center_vertical"
                         android:text="清空消息"
                         android:textColor="@color/black"
-                        android:textSize="15.0sp"
-                        android:id="@+id/textView"/>
+                        android:textSize="15.0sp"/>
 
                     <LinearLayout
                         android:layout_width="0.0dip"
@@ -290,14 +290,14 @@
 
                     <TextView
                         android:id="@+id/current_cache"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/x10"
-                        android:layout_centerInParent="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="当前缓存：20.0MB"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    </RelativeLayout>
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="@dimen/x10"
+                        android:text="当前缓存：20.0MB"/>
+                </RelativeLayout>
 
                 <ImageView
                     android:layout_width="wrap_content"
