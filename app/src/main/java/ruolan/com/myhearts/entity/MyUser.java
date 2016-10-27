@@ -10,19 +10,19 @@ import cn.bmob.v3.datatype.BmobFile;
 public class MyUser extends BmobUser{
 
     private static final long serialVersionUID = 1L;
-    private Integer age;
-    private Integer num;
-    private Boolean sex;
+    private Integer age;  //年龄
+    private Integer num;  //
+    private Boolean sex;  //性别
 
-    private String imgurl;
-    private String instance;
-    private String profession;
-    private String bloodtype;
-    private String love;
-    private String des;
-    private int userfans;
-    private String constellation;
-    private String label;
+    private String imgurl;  //图片地址
+    private String instance;  //地址
+    private String profession;  //职业
+    private String bloodtype;  //血型
+    private String love;  //爱好
+    private String des;  //描述
+    private int userfans;  //fans数量
+    private String constellation;  //星座
+    private String label;  //标签
 
     public void setLabel(String label) {
         this.label = label;

@@ -22,6 +22,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
+import ruolan.com.myhearts.entity.MyUser;
 import ruolan.com.myhearts.event.LoginEvent;
 import ruolan.com.myhearts.event.LoginOut;
 import ruolan.com.myhearts.ui.login.LoginActivity;
@@ -218,6 +219,11 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
                 if (mBtLogin.getText().equals(getContext().getResources()
                         .getString(R.string.login_out))) {
                     loginOutUi();
+                    MyUser.logOut();
+                    PreferencesUtils.putString(getActivity(),
+                            Contants.USER_NAME,"");
+                    PreferencesUtils.putString(getContext(),
+                            Contants.USER_PASSWORD,"");
                     EventBus.getDefault().post(new LoginOut(true));
                     isTologin = true;
                 } else if (mBtLogin.getText().equals(getContext().getResources()

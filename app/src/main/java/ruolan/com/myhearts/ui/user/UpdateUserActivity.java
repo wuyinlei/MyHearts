@@ -174,29 +174,29 @@ public class UpdateUserActivity extends BaseActivity implements View.OnClickList
         }
         String instance = mSettingCity.getText().toString();
         if (!TextUtils.isEmpty(instance))
-        user.setInstance(instance);
+            user.setInstance(instance);
 
         String bloodtype = mBloodType.getText().toString();
         if (!TextUtils.isEmpty(bloodtype))
-        user.setBloodtype(bloodtype);
+            user.setBloodtype(bloodtype);
         String slogn = mSettingSlogn.getText().toString();
         if (!TextUtils.isEmpty(slogn))
-        user.setDes(slogn);
+            user.setDes(slogn);
         String constellation = mConstellation.getText().toString();
         if (!TextUtils.isEmpty(constellation))
-        user.setConstellation(constellation);
+            user.setConstellation(constellation);
         String profession = mSettingOcc.getText().toString();
         if (!TextUtils.isEmpty(profession))
-        user.setProfession(profession);
+            user.setProfession(profession);
         String username = mSettingNickename.getText().toString();
         if (!TextUtils.isEmpty(username))
-        user.setUsername(username);
+            user.setUsername(username);
         String love = mSettingLike.getText().toString();
-        if (!TextUtils.isEmpty(love))        user.setLove(love);
+        if (!TextUtils.isEmpty(love)) user.setLove(love);
 
         String label = mSettingSlogn.getText().toString();
         if (!TextUtils.isEmpty(label))
-        user.setLabel(label);
+            user.setLabel(label);
         user.update(objectId, new UpdateListener() {
             @Override
             public void done(BmobException e) {
