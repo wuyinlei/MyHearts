@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50">
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:paddingLeft="@dimen/x10"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back"
+            android:layout_width="@dimen/x30"
+            android:layout_height="@dimen/x30"/>
+
+        <TextView
+            android:text="修改信息"
+            android:textSize="@dimen/x22"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/update"
+            android:paddingRight="@dimen/x10"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/tick_icon"
+            android:layout_width="@dimen/x30"
+            android:layout_height="@dimen/x30"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="false"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="昵称"
+                    android:textColor="@color/black2"
+                    android:textSize="15.0sp"/>
+
+                <EditText
+                    android:id="@+id/setting_nickename"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="25.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:background="@null"
+                    android:cursorVisible="false"
+                    android:drawablePadding="5.0dip"
+                    android:drawableRight="@drawable/weight_returnkey"
+                    android:gravity="center|right"
+                    android:hint="请选择"
+                    android:lines="1"
+                    android:maxLength="10"
+                    android:textColor="@color/text_detail_gray"
+                    android:textColorHint="@color/text_detail_gray"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/detail_text_h2"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:background="@drawable/line"/>
+
+            <RelativeLayout
+                android:id="@+id/setting_agelayout"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/setting_age$astor_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="年龄"
+                    android:textColor="@color/black2"
+                    android:textSize="15.0sp"/>
+
+                <TextView
+                    android:id="@+id/setting_astor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10.0dip"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:drawablePadding="5.0dip"
+                    android:drawableRight="@drawable/weight_returnkey"
+                    android:gravity="center|right"
+                    android:lines="1"
+                    android:maxLength="10"
+                    android:textColor="@color/text_detail_gray"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/detail_text_h2"/>
+
+                <TextView
+                    android:id="@+id/setting_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="25.0dip"
+                    android:layout_toLeftOf="@+id/setting_astor"
+                    android:layout_toRightOf="@+id/setting_age$astor_label"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:drawablePadding="5.0dip"
+                    android:gravity="center|right"
+                    android:hint="请选择"
+                    android:lines="1"
+                    android:maxLength="10"
+                    android:textColor="@color/text_detail_gray"
+                    android:textColorHint="@color/text_detail_gray"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/detail_text_h2"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:background="@drawable/line"/>
+
+            <LinearLayout
+                android:id="@+id/constellation_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="星座"
+                    android:textColor="@color/black2"
+                    android:textSize="15.0sp"/>
+
+                <TextView
+                    android:id="@+id/constellation"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="25.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:drawablePadding="5.0dip"
+                    android:drawableRight="@drawable/weight_returnkey"
+                    android:gravity="center|right"
+                    android:hint="请选择"
+                    android:lines="1"
+                    android:maxLength="10"
+                    android:textColor="@color/text_detail_gray"
+                    android:textColorHint="@color/text_detail_gray"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/detail_text_h2"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:background="@drawable/line"/>
+
+
+            <LinearLayout
+                android:id="@+id/blood_type_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="血型"
+                    android:textColor="@color/black2"
+                    android:textSize="15.0sp"/>
+
+                <TextView
+                    android:id="@+id/blood_type"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="25.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:drawablePadding="5.0dip"
+                    android:drawableRight="@drawable/weight_returnkey"
+                    android:gravity="center|right"
+                    android:hint="请选择"
+                    android:lines="1"
+                    android:maxLength="10"
+                    android:textColor="@color/text_detail_gray"
+                    android:textColorHint="@color/text_detail_gray"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/detail_text_h2"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:background="@drawable/line"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="爱好"
+                    android:textColor="@color/black2"
+                    android:textSize="15.0sp"/>
+
+                <EditText
+                    android:id="@+id/setting_like"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="25.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:drawablePadding="5.0dip"
+                    android:drawableRight="@drawable/weight_returnkey"
+                    android:gravity="center|right"
+                    android:hint="请填写爱好"
+                    android:lines="1"
+                    android:maxLength="20"
+                    android:textColor="@color/text_detail_gray"
+                    android:textColorHint="@color/text_detail_gray"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/detail_text_h2"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:background="@drawable/line"/>
+
+            <LinearLayout
+                android:id="@+id/setting_occ_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="职业"
+                    android:textColor="@color/black2"
+                    android:textSize="15.0sp"/>
+
+                <TextView
+                    android:id="@+id/setting_occ"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="25.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:drawablePadding="5.0dip"
+                    android:drawableRight="@drawable/weight_returnkey"
+                    android:gravity="center|right"
+                    android:hint="请选择"
+                    android:lines="1"
+                    android:maxLength="10"
+                    android:textColor="@color/text_detail_gray"
+                    android:textColorHint="@color/text_detail_gray"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/detail_text_h2"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:background="@drawable/line"/>
+
+            <LinearLayout
+                android:id="@+id/setting_citylayout"
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="城市"
+                    android:textColor="@color/black2"
+                    android:textSize="15.0sp"/>
+
+                <TextView
+                    android:id="@+id/setting_city"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="25.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:drawablePadding="5.0dip"
+                    android:drawableRight="@drawable/weight_returnkey"
+                    android:gravity="center|right"
+                    android:hint="请选择"
+                    android:lines="1"
+                    android:maxLength="10"
+                    android:textColor="@color/text_detail_gray"
+                    android:textColorHint="@color/text_detail_gray"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/detail_text_h2"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:background="@drawable/line"/>
+
+            <LinearLayout
+                android:id="@+id/setting_slogn_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginTop="10.0dip"
+                android:layout_weight="1.0"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="个性签名"
+                    android:textColor="@color/black2"/>
+
+                <TextView
+                    android:id="@+id/setting_slogn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="10.0dip"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:drawablePadding="5.0dip"
+                    android:drawableRight="@drawable/weight_returnkey"
+                    android:gravity="left"
+                    android:hint="请输入"
+                    android:maxLength="100"
+                    android:textColor="@color/text_detail_gray"
+                    android:textColorHint="@color/text_detail_gray"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/detail_text_h2"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_marginTop="10.0dip"
+                android:background="@drawable/line"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30.0dip"
+                android:layout_marginBottom="3.0dip"
+                android:layout_marginLeft="10.0dip"
+                android:gravity="bottom"
+                android:text="个人标签"
+                android:textColor="@color/text_red"
+                android:textSize="12.0sp"/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:background="@drawable/line_red"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/setting_lable"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10.0dip"
+                    android:layout_weight="1.0"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/settinglable_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginTop="5.0dip"
+                        android:background="@color/text_red"
+                        android:gravity="center"
+                        android:paddingBottom="6.0dip"
+                        android:paddingLeft="3.0dip"
+                        android:paddingRight="3.0dip"
+                        android:paddingTop="6.0dip"
+                        android:text="点击选择标签"
+                        android:textColor="@color/white"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:background="@drawable/weight_returnkey"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="100.0dip"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

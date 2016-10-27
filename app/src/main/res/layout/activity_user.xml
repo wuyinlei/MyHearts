@@ -5,7 +5,7 @@
     android:id="@+id/activity_user"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ruolan.com.myhearts.ui.left.UserActivity">
+    tools:context="ruolan.com.myhearts.ui.user.UserActivity">
 
     <include layout="@layout/userdetail_newlayout"/>
 </RelativeLayout>

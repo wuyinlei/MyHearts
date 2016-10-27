@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="occ">
+        <item>IT/互联网</item>
+        <item>学生</item>
+        <item>会计/金融</item>
+        <item>艺术/设计</item>
+        <item>新闻/媒体</item>
+        <item>教育/培训</item>
+        <item>军人/国防</item>
+        <item>政府/公务员</item>
+        <item>制作/生产</item>
+        <item>医疗/卫生</item>
+        <item>律师</item>
+        <item>销售/广告</item>
+        <item>失业/待业中</item>
+        <item>自由职业</item>
+
+
+
+    </string-array>
+</resources>

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
 
     <RelativeLayout
-        android:id="@+id/userdetail_head_layout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1.0"
@@ -43,45 +41,19 @@
                     android:layout_toRightOf="@+id/user_detail_avatar"/>
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/audio_play_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10.0dip"
-                android:background="@drawable/profile_audio_bobble"
-                android:gravity="center"
-                android:visibility="gone">
 
-                <TextView
-                    android:id="@+id/audio_length_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0''"
-                    android:textColor="@color/white"/>
-
-                <ImageButton
-                    android:id="@+id/audio_play_btn"
-                    android:layout_width="30.0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5.0dip"
-                    android:background="@drawable/audio_play"
-                    android:src="@null"/>
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80.0dip"
-            android:gravity="center">
+            android:layout_height="50dp"
+            android:padding="@dimen/x10">
 
             <ImageView
-                android:id="@+id/audio_playing_bobble"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="80.0dip"
-                android:src="@drawable/audio_playing_anim"
-                android:visibility="gone"/>
+                android:id="@+id/ic_back"
+                android:layout_width="@dimen/x30"
+                android:layout_height="@dimen/x30"
+                android:src="@drawable/ic_back"></ImageView>
         </LinearLayout>
 
         <TextView
@@ -92,7 +64,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="95.0dip"
             android:background="@drawable/half_corner"
-            android:drawableLeft="@drawable/button_unlike"
+            android:drawableLeft="@drawable/button_like"
             android:gravity="center_vertical"
             android:paddingRight="5.0dip"
             android:paddingTop="5.0dip"

@@ -60,4 +60,19 @@
     <string name="my_send">我送出的</string>
     <string name="my_accepted">我收到的</string>
     <string name="redeem_coin">兑换心币</string>
+
+    <string name="pop_photo">拍照</string>
+    <string name="pop_choose">从相册中选择</string>
+    <string name="pop_close">取消</string>
+
+    <string name="occ_title">职业选择</string>
+
+
+    <string name="beijing">北京</string>
+    <string name="shanghai">上海</string>
+    <string name="guangzhou">广州</string>
+    <string name="shengzhen">深圳</string>
+    <string name="tianjin">天津</string>
+    <string name="updating">更新中。。。</string>
+
 </resources>

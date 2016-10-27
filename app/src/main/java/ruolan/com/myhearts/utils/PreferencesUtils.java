@@ -2,6 +2,7 @@ package ruolan.com.myhearts.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 /**
  * Created by Administrator on 2016/10/20.
@@ -219,5 +220,16 @@ public class PreferencesUtils {
     public static boolean getBoolean(Context context, String key, boolean defaultValue) {
         SharedPreferences settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
         return settings.getBoolean(key, defaultValue);
+    }
+
+    /**
+     * 保存用户选择的城市
+     */
+    public static void saveCityName(Context context, String cityName) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString("cityName", cityName).commit();
+    }
+
+    public static String getCityName(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("cityName", "北京");
     }
 }

@@ -5,6 +5,15 @@
               android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tv_name"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/tv_des"
+        android:layout_marginBottom="@dimen/x20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_des"
         android:text="这个人很懒，什么都么有留下"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"

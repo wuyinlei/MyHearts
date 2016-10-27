@@ -57,4 +57,14 @@
     <color name="button_button2">#00000000</color>
     <color name="button_pressed2">#10000000</color>
     <color name="red_ff986f">#ffff986f</color>
+
+    <color name="base_color_text_black">#3e3e39</color>
+    <color name="base_color_text_white">#ffffff</color>
+    <color name="text_detail_gray">#ff777777</color>
+    <color name="text_red">#ffe7533e</color>
+
+    <color name="dialog_bg">#414141</color>
+    <color name="bg">#4d4d4d</color>
+    <color name="listview_driver">#eeeeee</color>
+    <color name="green">#e581ff02</color>
 </resources>

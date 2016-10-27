@@ -17,6 +17,7 @@ import com.tencent.tauth.Tencent;
 import cn.bmob.v3.Bmob;
 import cn.smssdk.SMSSDK;
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.db.DBManager;
 import ruolan.com.myhearts.utils.ManifestUtil;
 
 /**
@@ -31,6 +32,9 @@ public class MyApplication
     private static MyApplication mInstance;
     private Tencent mTencent;
 
+    private DBManager dbManager;
+
+
 
     public static MyApplication getInstance() {
 
@@ -43,6 +47,9 @@ public class MyApplication
         super.onCreate();
 
         mInstance = this;
+
+        dbManager=new DBManager(getApplicationContext());
+        dbManager.openDatabase();
 
         NineGridView.setImageLoader(new PicassoImageLoader());
 
@@ -145,6 +152,13 @@ public class MyApplication
 
         context.startActivity(intent);
         this.intent = null;
+    }
+
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        dbManager.closeDatabase();
     }
 
 }

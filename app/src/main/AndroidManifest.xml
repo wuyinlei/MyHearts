@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
@@ -89,7 +90,13 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="behind"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        <activity android:name=".ui.left.UserActivity">
+        <activity android:name=".ui.user.UserActivity">
+        </activity>
+        <activity android:name=".ui.user.UpdateUserActivity">
+        </activity>
+        <activity android:name=".ui.user.CityActivity">
+        </activity>
+        <activity android:name=".ui.user.IndividualityActivity">
         </activity>
     </application>
 

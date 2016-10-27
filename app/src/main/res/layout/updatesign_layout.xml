@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:layout_marginTop="10.0dip"
+        android:background="@drawable/textarea"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/usercenter_sign"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="true"
+            android:gravity="top"
+            android:hint="写出自己的个性，秀出你的生活..."
+            android:maxLength="150"
+            android:minLines="8"
+            android:padding="5.0dip"
+            android:textColor="@color/black2"
+            android:textCursorDrawable="@null"
+            android:textSize="15.0sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="10.0dip"
+        android:layout_marginTop="5.0dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最多可输入150字,"
+            android:textColor="@color/text_detail_gray"
+            android:textSize="11.0sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="剩余"
+            android:textColor="@color/text_detail_gray"
+            android:textSize="11.0sp"/>
+
+        <TextView
+            android:id="@+id/updatesign_textnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="150"
+            android:textColor="@color/text_detail_gray"
+            android:textSize="11.0sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="字"
+            android:textColor="@color/text_detail_gray"
+            android:textSize="11.0sp"/>
+    </LinearLayout>
+</LinearLayout>

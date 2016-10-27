@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +27,7 @@ import ruolan.com.myhearts.event.LoginOut;
 import ruolan.com.myhearts.ui.login.LoginActivity;
 import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
 import ruolan.com.myhearts.ui.left.setting.SettingActivity;
+import ruolan.com.myhearts.ui.user.UserActivity;
 import ruolan.com.myhearts.utils.PreferencesUtils;
 import ruolan.com.myhearts.widget.GlideCircleTransform;
 
