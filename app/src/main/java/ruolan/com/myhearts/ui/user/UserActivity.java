@@ -135,6 +135,9 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
         if (!TextUtils.isEmpty(city)) {
             mTvCity.setText(city);
         }
+        if (!TextUtils.isEmpty(blood)){
+            mTvBloodType.setText(blood);
+        }
 
         if (!TextUtils.isEmpty(love)) {
             mTvLove.setText(love);
@@ -155,6 +158,13 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mCurrentUser!=null){
+            mCurrentUser = MyUser.getCurrentUser(MyUser.class);
+        }
+    }
 
     @Override
     protected void onDestroy() {
@@ -311,6 +321,8 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
                         setPicToView(data);
                     }
                     break;
+
+
             }
         }
 

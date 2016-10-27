@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import ruolan.com.myhearts.entity.MyUser;
+
 /**
  * Created by Administrator on 2016/10/20.
  */
@@ -232,4 +234,17 @@ public class PreferencesUtils {
     public static String getCityName(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString("cityName", "北京");
     }
+
+    /**
+     * 保存用户选择的城市
+     */
+    public static void saveSlognName(Context context, String slognName) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString("slognName", slognName).commit();
+    }
+
+    public static String getSlognName(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("slognName","睡觉");
+    }
+
+
 }

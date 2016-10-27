@@ -37,7 +37,7 @@ public class UpdateUserActivity extends BaseActivity implements View.OnClickList
             mSettingOcc;
     private MyUser mCurrentUser;
 
-    private ImageView mIcBack,mUpdate;
+    private ImageView mIcBack, mUpdate;
 
 
     @Override
@@ -55,31 +55,32 @@ public class UpdateUserActivity extends BaseActivity implements View.OnClickList
 
     /**
      * 填充ui
+     *
      * @param user
      */
     private void updateUI(MyUser user) {
-        if (!TextUtils.isEmpty(user.getUsername())){
+        if (!TextUtils.isEmpty(user.getUsername())) {
             mSettingNickename.setText(user.getUsername());
         }
-        if (!TextUtils.isEmpty(user.getLove())){
+        if (!TextUtils.isEmpty(user.getLove())) {
             mSettingLike.setText(user.getLove());
         }
-        if (!TextUtils.isEmpty(user.getInstance())){
+        if (!TextUtils.isEmpty(user.getInstance())) {
             mSettingCity.setText(user.getInstance());
         }
-        if (!TextUtils.isEmpty(user.getDes())){
+        if (!TextUtils.isEmpty(user.getDes())) {
             mSettingSlogn.setText(user.getDes());
         }
-        if (!TextUtils.isEmpty(user.getBloodtype())){
+        if (!TextUtils.isEmpty(user.getBloodtype())) {
             mBloodType.setText(user.getBloodtype());
         }
-        if (!TextUtils.isEmpty(user.getProfession())){
+        if (!TextUtils.isEmpty(user.getProfession())) {
             mSettingOcc.setText(user.getProfession());
         }
-        if (!TextUtils.isEmpty(user.getAge()+"")){
-            mSettingAge.setText(user.getAge()+"");
+        if (!TextUtils.isEmpty(user.getAge() + "")) {
+            mSettingAge.setText(user.getAge() + "");
         }
-        if (!TextUtils.isEmpty(user.getConstellation())){
+        if (!TextUtils.isEmpty(user.getConstellation())) {
             mConstellation.setText(user.getConstellation());
         }
 
@@ -115,12 +116,12 @@ public class UpdateUserActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.setting_city:
                 onCitySelect();
                 break;
             case R.id.setting_slogn:
-
+                onSlognEdit();
                 break;
             case R.id.setting_age:
                 onYearMonthDayPicker();
@@ -151,27 +152,58 @@ public class UpdateUserActivity extends BaseActivity implements View.OnClickList
     }
 
     /**
+     * 个性签名编辑
+     */
+    private void onSlognEdit() {
+        Intent intent = new Intent(this, IndividualityActivity.class);
+        startActivityForResult(intent, REQUEST_DES_CODE);
+    }
+
+    /**
      * 更新用户信息
      */
     private void updateUesrInfo() {
-        CustomPrograss.show(this,getResources().getString(R.string.updating),true,null);
+        CustomPrograss.show(this, getResources().getString(R.string.updating), true, null);
         String objectId = mCurrentUser.getObjectId();
         MyUser user = new MyUser();
-        int age = Integer.parseInt(mSettingAge.getText().toString());
-        user.setAge(age);
-        user.setInstance(mSettingCity.getText().toString());
-        user.setBloodtype(mBloodType.getText().toString());
-        user.setDes(mSettingSlogn.getText().toString());
-        user.setConstellation(mConstellation.getText().toString());
-        user.setProfession(mSettingOcc.getText().toString());
-        user.setUsername(mSettingNickename.getText().toString());
-        user.setLove(mSettingLike.getText().toString());
-        user.setLabel(mSettingSlogn.getText().toString());
+
+        String ageString = mSettingAge.getText().toString();
+        if (!TextUtils.isEmpty(ageString)) {
+            int age = Integer.parseInt(ageString);
+            user.setAge(age);
+        }
+        String instance = mSettingCity.getText().toString();
+        if (!TextUtils.isEmpty(instance))
+        user.setInstance(instance);
+
+        String bloodtype = mBloodType.getText().toString();
+        if (!TextUtils.isEmpty(bloodtype))
+        user.setBloodtype(bloodtype);
+        String slogn = mSettingSlogn.getText().toString();
+        if (!TextUtils.isEmpty(slogn))
+        user.setDes(slogn);
+        String constellation = mConstellation.getText().toString();
+        if (!TextUtils.isEmpty(constellation))
+        user.setConstellation(constellation);
+        String profession = mSettingOcc.getText().toString();
+        if (!TextUtils.isEmpty(profession))
+        user.setProfession(profession);
+        String username = mSettingNickename.getText().toString();
+        if (!TextUtils.isEmpty(username))
+        user.setUsername(username);
+        String love = mSettingLike.getText().toString();
+        if (!TextUtils.isEmpty(love))        user.setLove(love);
+
+        String label = mSettingSlogn.getText().toString();
+        if (!TextUtils.isEmpty(label))
+        user.setLabel(label);
         user.update(objectId, new UpdateListener() {
             @Override
             public void done(BmobException e) {
-                if (e == null){
+                if (e == null) {
                     CustomPrograss.disMiss();
+
+
                 }
             }
         });
@@ -180,26 +212,27 @@ public class UpdateUserActivity extends BaseActivity implements View.OnClickList
 
 
     //返回码
-    private final int RESULT_CODE=100;
+    private final int RESULT_CODE = 100;
     //请求码
-    private final int REQUEST_CODE=101;
+    private final int REQUEST_CODE = 101;
 
     private final int REQUEST_DES_CODE = 102;
 
 
-
-
-
     private void onCitySelect() {
-        Intent intent=new Intent(this, CityActivity.class);
-        startActivityForResult(intent,REQUEST_CODE);
+        Intent intent = new Intent(this, CityActivity.class);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode==REQUEST_CODE&&resultCode==RESULT_CODE){
-            String cityName= PreferencesUtils.getCityName(this);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_CODE) {
+            String cityName = PreferencesUtils.getCityName(this);
             mSettingCity.setText(cityName);
+        }
+        if (requestCode == REQUEST_DES_CODE && resultCode == RESULT_CODE) {
+            String slognName = PreferencesUtils.getSlognName(this);
+            mSettingSlogn.setText(slognName);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -214,7 +247,7 @@ public class UpdateUserActivity extends BaseActivity implements View.OnClickList
                 .items(R.array.occ)
                 .backgroundColor(getResources().getColor(R.color.dialog_bg))
                 .itemsCallback((dialog, itemView, position, text) -> mSettingOcc.setText(text))
-        .show();
+                .show();
     }
 
     /**
@@ -228,7 +261,7 @@ public class UpdateUserActivity extends BaseActivity implements View.OnClickList
         picker.setSubmitTextColor(0xFF33B5E5);
         picker.setTextColor(0xFFFF0000, 0xFFCCCCCC);
         picker.setLineColor(0xFFEE0000);
-        picker.setSelectedItem("未知");
+        picker.setSelectedItem("UnKnow");
         picker.setOnOptionPickListener(option -> {
             //showToast(option);
             mBloodType.setText(option);
@@ -250,7 +283,7 @@ public class UpdateUserActivity extends BaseActivity implements View.OnClickList
             Calendar ca = Calendar.getInstance();
             int curYear = ca.get(Calendar.YEAR);//获取年份
             int age = curYear - yearOld;
-            mSettingAge.setText(age+"");
+            mSettingAge.setText(age + "");
         });
         picker.show();
 

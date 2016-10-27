@@ -179,23 +179,15 @@ public class CityActivity extends BaseActivity {
             }
         });
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                String cityName = hotCity.get(position).getName();
-                if (cityName != null && cityName.length() > 0) {
-                    Toast.makeText(CityActivity.this, cityName, Toast.LENGTH_SHORT).show();
-                    KeyBoard.closeSoftKeyboard(CityActivity.this);
-                    PreferencesUtils.saveCityName(CityActivity.this, cityName);
-                    Intent intent = new Intent();
-                    setResult(100, intent);
-                    new Handler().postDelayed(new Runnable() {
-                        public void run() {
-                            finish();
-                        }
-                    }, 500);
-                }
+        gridView.setOnItemClickListener((parent, view, position, id) -> {
+            String cityName1 = hotCity.get(position).getName();
+            if (cityName1 != null && cityName1.length() > 0) {
+                Toast.makeText(CityActivity.this, cityName1, Toast.LENGTH_SHORT).show();
+                KeyBoard.closeSoftKeyboard(CityActivity.this);
+                PreferencesUtils.saveCityName(CityActivity.this, cityName1);
+                Intent intent = new Intent();
+                setResult(100, intent);
+                new Handler().postDelayed(() -> finish(), 500);
             }
         });
     }

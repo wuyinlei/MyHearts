@@ -5,6 +5,37 @@
               android:background="@color/white"
               android:orientation="vertical">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50">
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:paddingLeft="@dimen/x10"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back"
+            android:layout_width="@dimen/x30"
+            android:layout_height="@dimen/x30"/>
+
+        <TextView
+            android:text="编辑签名"
+            android:textSize="@dimen/x22"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/iv_finish"
+            android:paddingRight="@dimen/x10"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/tick_icon"
+            android:layout_width="@dimen/x30"
+            android:layout_height="@dimen/x30"/>
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
