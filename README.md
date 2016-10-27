@@ -66,10 +66,18 @@ compile 'com.github.bumptech.glide:glide:3.7.0'
 
 ####后面如果有时间，会对其进行分析(应该没吧。。。)
 
-
 ###2016-10-26日更新
 * 1、集成QQ登录完成
 * 2、注册登录实现（利用Bmob作为后台，mob的短信验证）
+
+###2016-10-27日更新
+* 1、用户详情界面
+* 2、更新用户信息界面
+#####图展示
+![](http://ww2.sinaimg.cn/mw690/006jcGvzgw1f97047vblrj30u01hck1r.jpg)
+![](http://ww1.sinaimg.cn/mw690/006jcGvzgw1f9705oy34aj30u01hcq5r.jpg)
+![](http://ww2.sinaimg.cn/mw690/006jcGvzgw1f9705xndnoj30u01hc777.jpg)
+![](http://ww3.sinaimg.cn/mw690/006jcGvzgw1f9706446j4j30u01hcadr.jpg)
 
 ###如何运行此项目
 * 第一步：下载此项目的zip包到本地，并进行解压

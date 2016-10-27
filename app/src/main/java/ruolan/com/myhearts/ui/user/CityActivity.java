@@ -124,18 +124,14 @@ public class CityActivity extends BaseActivity {
     @Override
     protected void initListener() {
         //设置右侧触摸监听
-        sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
-
-            @Override
-            public void onTouchingLetterChanged(String s) {
-                KeyBoard.closeSoftKeyboard(CityActivity.this);
-                //该字母首次出现的位置
-                int position = adapter.getPositionForSection(s.charAt(0));
-                if (position != -1) {
-                    sortListView.setSelection(position);
-                }
-
+        sideBar.setOnTouchingLetterChangedListener(s -> {
+            KeyBoard.closeSoftKeyboard(CityActivity.this);
+            //该字母首次出现的位置
+            int position = adapter.getPositionForSection(s.charAt(0));
+            if (position != -1) {
+                sortListView.setSelection(position);
             }
+
         });
 
         sortListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
