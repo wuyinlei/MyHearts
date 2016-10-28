@@ -22,9 +22,14 @@ public class HttpUrlPaths {
     //首页跑马灯    http://api.xinliji.me/com/loadActionLabels
     public static final String HOME_MARQUEE = BASE_URL + "com/loadActionLabels";
 
-
     //查看更多   userid=54442   分页加载  page
     public static final String SCAN_MORE = BASE_URL + "psychology/loadency";
+
+    //查看更多详情用户  userid=54442   id
+    public static final String NEWS_USER_DETAIL = BASE_URL + "psychology/encydetail";
+
+    //查看更多详情用户  userid=54442   id
+    public static final String NEWS_DETAIL = "http://console.xinliji.me/psychology/encypage";
 
 
     //首页  推荐两个

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x200"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x200"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+            <ImageView
+                android:id="@+id/img_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                android:src="@mipmap/login_bg"/>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/x40"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left|center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="田埂上的梦"
+                        android:textColor="@color/action_bar_color"
+                        android:textSize="@dimen/x20"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x20"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="分类："
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/x5"
+                            android:text="人格成长"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/x40"
+                            android:text="游览量："
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_view_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/x5"
+                            android:text="1000"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <WebView
+            android:id="@+id/web_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></WebView>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

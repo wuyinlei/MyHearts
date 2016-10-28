@@ -1,5 +1,6 @@
 package ruolan.com.myhearts.ui.fragment.home;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -22,6 +23,7 @@ import ruolan.com.myhearts.adapter.OrationAdapter;
 import ruolan.com.myhearts.entity.HomeNewsBean;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
+import ruolan.com.myhearts.ui.base.BaseAdapter;
 import ruolan.com.myhearts.widget.FullyLinearLayoutManager;
 import ruolan.com.myhearts.widget.itemanimator.SlideInOutLeftItemAnimator;
 import rx.android.schedulers.AndroidSchedulers;
@@ -83,6 +85,15 @@ public class OrationActivity extends BaseActivity implements View.OnClickListene
         mOrationRecyclerView.setLayoutManager(new FullyLinearLayoutManager(this));
         mOrationAdapter = new OrationAdapter(this, mOrationDatas);
         mOrationRecyclerView.setAdapter(mOrationAdapter);
+        mOrationAdapter.setOnItemClickListener((view, position) -> {
+            int index = mOrationDatas.size()-position-1;
+            HomeNewsBean.ResultsBean resultsBean = mOrationDatas.get(index);
+            Intent intent = new Intent(OrationActivity.this,NewsActivity.class);
+            intent.putExtra("id",resultsBean.getId());
+            intent.putExtra("userid","54442");
+            startActivity(intent);
+        });
+
         mMaterialRefreshLayout = (MaterialRefreshLayout) findViewById(R.id.refresh);
 
         mMaterialRefreshLayout.setLoadMore(isLoadMore);
@@ -139,7 +150,7 @@ public class OrationActivity extends BaseActivity implements View.OnClickListene
                             && bean.getResults().size() > 0) {
                         List<HomeNewsBean.ResultsBean> resultData = bean.getResults();
 
-                       // mOrationDatas.addAll(resultData);
+                        mOrationDatas.addAll(resultData);
                         mOrationAdapter.addData(mOrationAdapter.getDatas().size(),resultData);
                         mOrationAdapter.notifyDataSetChanged();
                         mMaterialRefreshLayout.finishRefreshLoadMore();

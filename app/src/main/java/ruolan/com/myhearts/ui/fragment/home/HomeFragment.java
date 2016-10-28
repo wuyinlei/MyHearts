@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,7 @@ import ruolan.com.myhearts.entity.MarqueeBean;
 import ruolan.com.myhearts.event.LoginEvent;
 import ruolan.com.myhearts.event.LoginOut;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
+import ruolan.com.myhearts.ui.base.BaseAdapter;
 import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
 import ruolan.com.myhearts.utils.Utils;
 import ruolan.com.myhearts.widget.CircleImageView;
@@ -142,7 +144,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mHotRecyclerView = (RecyclerView) view.findViewById(R.id.hot_recycler_view);
         mReLookMore = (RelativeLayout) view.findViewById(R.id.re_look_more);
         mHotRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mHotRecyclerView.setLayoutManager(new FullyLinearLayoutManager(getContext()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext()){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+        mHotRecyclerView.setLayoutManager(layoutManager);
 
     }
 
@@ -201,6 +209,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         mHomeNewsData = bean.getResults();
                         mHomeNewAdapter = new OrationAdapter(getContext(), mHomeNewsData);
                         mHotRecyclerView.setAdapter(mHomeNewAdapter);
+                        mHomeNewAdapter.setOnItemClickListener((view, position) -> {
+                            HomeNewsBean.ResultsBean resultsBean = mHomeNewsData.get(position);
+                            Intent intent = new Intent(getActivity(),NewsActivity.class);
+                            intent.putExtra("id",resultsBean.getId());
+                            intent.putExtra("userid","54442");
+                            startActivity(intent);
+                        });
                     }
                 }, throwable -> {
 
