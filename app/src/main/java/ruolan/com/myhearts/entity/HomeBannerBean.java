@@ -86,7 +86,7 @@ public class HomeBannerBean implements Serializable{
         this.results = results;
     }
 
-    public static class ResultsBean {
+    public static class ResultsBean implements Serializable{
         private String id;
         private String icon;
         private String pic;

@@ -19,7 +19,7 @@
         android:layout_marginRight="@dimen/x10"
         android:layout_below="@+id/tv_title_recomment"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x150"
+        android:layout_height="@dimen/x180"
         android:id="@+id/imageView"/>
 
     <TextView

@@ -16,6 +16,9 @@ public class HttpUrlPaths {
      */
     public static final String USER_DETAIL_INFO = BASE_URL + "consultant/consultantProfile";
 
+    //首页轮播图  type=consultant
+    public static final String HOME_BANNER = BASE_URL + "com/loadBanner_v2";
+
     //首页推荐咨询师   http://api.xinliji.me/consultant/loadRecommendedConsultants
     public static final String HOME_RECOMMENT = BASE_URL + "consultant/loadRecommendedConsultants";
 
@@ -25,10 +28,10 @@ public class HttpUrlPaths {
     //查看更多   userid=54442   分页加载  page
     public static final String SCAN_MORE = BASE_URL + "psychology/loadency";
 
-    //查看更多详情用户  userid=54442   id
+    //新闻详情  userid=54442   id
     public static final String NEWS_USER_DETAIL = BASE_URL + "psychology/encydetail";
 
-    //查看更多详情用户  userid=54442   id
+    //新闻webview  userid=54442   id
     public static final String NEWS_DETAIL = "http://console.xinliji.me/psychology/encypage";
 
 

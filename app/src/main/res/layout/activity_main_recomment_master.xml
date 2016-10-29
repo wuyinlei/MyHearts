@@ -11,6 +11,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/ll_adversory_one"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -73,6 +74,7 @@
             android:weightSum="2">
 
             <LinearLayout
+                android:id="@+id/ll_adversory_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -144,6 +146,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/ll_adversory_three"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -190,6 +193,7 @@
                     android:layout_height="match_parent"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_adversory_four"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

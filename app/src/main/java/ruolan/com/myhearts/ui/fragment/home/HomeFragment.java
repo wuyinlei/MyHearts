@@ -2,11 +2,13 @@ package ruolan.com.myhearts.ui.fragment.home;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -36,17 +39,20 @@ import java.util.List;
 
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.adapter.OrationAdapter;
+import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.entity.AdvisoryBean;
 import ruolan.com.myhearts.entity.AdvisoryBean.ResultsBean;
 import ruolan.com.myhearts.entity.HomeBannerBean;
 import ruolan.com.myhearts.entity.HomeBannerOne;
 import ruolan.com.myhearts.entity.HomeBannerTwo;
 import ruolan.com.myhearts.entity.HomeNewsBean;
+import ruolan.com.myhearts.entity.LordBean;
 import ruolan.com.myhearts.entity.MarqueeBean;
 import ruolan.com.myhearts.event.LoginEvent;
 import ruolan.com.myhearts.event.LoginOut;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
 import ruolan.com.myhearts.ui.base.BaseAdapter;
+import ruolan.com.myhearts.ui.fragment.advisory.UserDetailActivity;
 import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
 import ruolan.com.myhearts.utils.Utils;
 import ruolan.com.myhearts.widget.CircleImageView;
@@ -57,7 +63,7 @@ import rx.android.schedulers.AndroidSchedulers;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     ScrollView mScrollView;
 
@@ -100,7 +106,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     RecyclerView mHotRecyclerView;
     RelativeLayout mReLookMore;
     private OrationAdapter mHomeNewAdapter;
+    SwipeRefreshLayout mRefreshLayout;
 
+    LinearLayout mLlOne,mLlTwo,mLlThree,mLlFour;
     /**
      * 初始化布局控件
      *
@@ -144,13 +152,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mHotRecyclerView = (RecyclerView) view.findViewById(R.id.hot_recycler_view);
         mReLookMore = (RelativeLayout) view.findViewById(R.id.re_look_more);
         mHotRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext()){
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext()) {
             @Override
             public boolean canScrollVertically() {
                 return false;
             }
         };
         mHotRecyclerView.setLayoutManager(layoutManager);
+        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
+        mRefreshLayout.setColorSchemeColors(Color.RED, Color.BLUE, Color.GREEN);
+        mRefreshLayout.setOnRefreshListener(this);
+
+        mLlOne = (LinearLayout) view.findViewById(R.id.ll_adversory_one);
+        mLlTwo = (LinearLayout) view.findViewById(R.id.ll_adversory_two);
+
+        mLlThree= (LinearLayout) view.findViewById(R.id.ll_adversory_three);
+
+        mLlFour= (LinearLayout) view.findViewById(R.id.ll_adversory_four);
 
     }
 
@@ -211,9 +229,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         mHotRecyclerView.setAdapter(mHomeNewAdapter);
                         mHomeNewAdapter.setOnItemClickListener((view, position) -> {
                             HomeNewsBean.ResultsBean resultsBean = mHomeNewsData.get(position);
-                            Intent intent = new Intent(getActivity(),NewsActivity.class);
-                            intent.putExtra("id",resultsBean.getId());
-                            intent.putExtra("userid","54442");
+                            Intent intent = new Intent(getActivity(), NewsActivity.class);
+                            intent.putExtra("id", resultsBean.getId());
+                            intent.putExtra("userid", "54442");
                             startActivity(intent);
                         });
                     }
@@ -344,6 +362,44 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mTvNameFour.setText(four.getNickname());
         mTvDesFour.setText(four.getQualification());
 
+        ResultsBean finalOne = one;
+        mLlOne.setOnClickListener(v -> {
+
+
+            String userid = finalOne.getUserid();
+            Intent intent = new Intent(getActivity(), UserDetailActivity.class);
+            intent.putExtra(Contants.USER_ID, userid);
+            intent.putExtra(Contants.C_USER_ID, userid);
+            startActivity(intent);
+        });
+        ResultsBean finalTwo = two;
+        mLlTwo.setOnClickListener(v -> {
+
+            String userid = finalTwo.getUserid();
+            Intent intent = new Intent(getActivity(), UserDetailActivity.class);
+            intent.putExtra(Contants.USER_ID, userid);
+            intent.putExtra(Contants.C_USER_ID, userid);
+            startActivity(intent);
+        });
+        ResultsBean finalThree = three;
+        mLlThree.setOnClickListener(v -> {
+
+            String userid = finalThree.getUserid();
+            Intent intent = new Intent(getActivity(), UserDetailActivity.class);
+            intent.putExtra(Contants.USER_ID, userid);
+            intent.putExtra(Contants.C_USER_ID, userid);
+            startActivity(intent);
+        });
+        ResultsBean finalFour = four;
+        mLlFour.setOnClickListener(v -> {
+
+            String userid = finalFour.getUserid();
+            Intent intent = new Intent(getActivity(), UserDetailActivity.class);
+            intent.putExtra(Contants.USER_ID, userid);
+            intent.putExtra(Contants.C_USER_ID, userid);
+            startActivity(intent);
+        });
+
     }
 
 
@@ -352,24 +408,58 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
      */
     private void initBanner() {
 
-        MyThread thread = new MyThread();
-        thread.run();
+        OkGo.post(HttpUrlPaths.HOME_BANNER)
+                .params("type", "consultant")
+                .getCall(StringConvert.create(), RxAdapter.<String>create())
+                .doOnSubscribe(() -> {
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+                    Type type = new TypeToken<HomeBannerBean>() {
+                    }.getType();
+                    HomeBannerBean bean = new Gson().fromJson(s, type);
+                    if (bean.getErrorStr().equals("success")
+                            && bean.getResultCount() > 0
+                            && bean.getErrorCode() == 0) {
+                        mHomeBanner = bean.getResults();
+                        List<String> imgBanner = new ArrayList<>();
+                        for (HomeBannerBean.ResultsBean resultsBean : mHomeBanner) {
+                            imgBanner.add(resultsBean.getPic());
+                        }
+                        mFlyBanner.setImagesUrl(imgBanner);
+                        mFlyBanner.setOnItemClickListener(position -> {
+                            HomeBannerBean.ResultsBean resultsBean;//  根据这个来进行跳转
+                            resultsBean = mHomeBanner.get(position);
+
+                            Intent intent = new Intent(getContext(), BannerDetailActivity.class);
+                            intent.putExtra("result", resultsBean);
+                            startActivity(intent);
+
+                        });
+
+                    }
+                }, throwable -> {
+                });
+
+
+        //  MyThread thread = new MyThread();
+        // thread.run();
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-       // boolean isLogin = PreferencesUtils.getBoolean(getContext(), Contants.IS_LOGIN);
-      //  if (isLogin) {
-            // String name = PreferencesUtils.getString(getContext(), Contants.USER_NAME);
-            //  updateUi(name);
-           // if (mAvatorImg != null) {
-           //     Glide.with(getContext())
-            //            .load(R.drawable.user_avatour)
-            //            .asBitmap().into(mAvatorImg);
-           // }
-      //  }
+        // boolean isLogin = PreferencesUtils.getBoolean(getContext(), Contants.IS_LOGIN);
+        //  if (isLogin) {
+        // String name = PreferencesUtils.getString(getContext(), Contants.USER_NAME);
+        //  updateUi(name);
+        // if (mAvatorImg != null) {
+        //     Glide.with(getContext())
+        //            .load(R.drawable.user_avatour)
+        //            .asBitmap().into(mAvatorImg);
+        // }
+        //  }
     }
 
     Handler mHandler = new Handler() {
@@ -392,21 +482,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     List<HomeBannerBean.ResultsBean> mHomeBanner = new ArrayList<>();
 
 
-
-    @Subscribe(threadMode = ThreadMode.MAIN )
-    public void LoginOut(LoginOut loginOut){
-            if (loginOut.isLogin){
-                if (mAvatorImg != null) {
-                    Glide.with(getContext())
-                            .load(R.drawable.login_out)
-                            .asBitmap().into(mAvatorImg);
-                }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void LoginOut(LoginOut loginOut) {
+        if (loginOut.isLogin) {
+            if (mAvatorImg != null) {
+                Glide.with(getContext())
+                        .load(R.drawable.login_out)
+                        .asBitmap().into(mAvatorImg);
             }
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void LoginInEvent(LoginEvent loginEvent){
-        if (loginEvent.mMyUser.getImgurl()==null){
+    public void LoginInEvent(LoginEvent loginEvent) {
+        if (loginEvent.mMyUser.getImgurl() == null) {
             if (mAvatorImg != null) {
                 Glide.with(getContext())
                         .load(R.drawable.user_avatour)
@@ -440,6 +529,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
 
     }
+
+    @Override
+    public void onRefresh() {
+        // new Handler().postDelayed(() -> refreshData(),3000);
+        new Handler().postDelayed(() -> {
+            refreshData();
+            mRefreshLayout.setRefreshing(false);
+        }, 3000);
+
+
+    }
+
+    private void refreshData() {
+        mHomeBanner.clear();  //清空数据
+        initBanner(); //在次请求
+        mHomeNewsData.clear();
+        initData();
+
+
+    }
+
 
     /**
      * 解析本地json文件
