@@ -15,6 +15,8 @@ import com.lzy.okgo.cookie.store.PersistentCookieStore;
 import com.tencent.tauth.Tencent;
 
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.update.BmobUpdateAgent;
+import cn.jpush.android.api.JPushInterface;
 import cn.smssdk.SMSSDK;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.db.DBManager;
@@ -28,12 +30,12 @@ public class MyApplication
         extends Application {
 
 
-
     private static MyApplication mInstance;
     private Tencent mTencent;
 
     private DBManager dbManager;
 
+    private boolean flag = true;
 
 
     public static MyApplication getInstance() {
@@ -48,18 +50,25 @@ public class MyApplication
 
         mInstance = this;
 
-        dbManager=new DBManager(getApplicationContext());
+        dbManager = new DBManager(getApplicationContext());
         dbManager.openDatabase();
 
         NineGridView.setImageLoader(new PicassoImageLoader());
 
         Bmob.initialize(this, "6d7ed6a006f2606890427bf70345cdb9");
 
+        if (flag == true) {
+            flag = false;
+            BmobUpdateAgent.initAppVersion();
+        }
+
+        JPushInterface.init(this);     		// 初始化 JPush
+
 
         //短信验证
 
         SMSSDK.initSDK(this, ManifestUtil.getMetaDataValue(this, "mob_sms_appKey"),
-                ManifestUtil.getMetaDataValue(this,"mob_sms_appSecrect"));
+                ManifestUtil.getMetaDataValue(this, "mob_sms_appSecrect"));
 
 
         OkGo.init(this);
@@ -86,14 +95,14 @@ public class MyApplication
 
                     //如果不想让框架管理cookie,以下不需要
 //                .setCookieStore(new MemoryCookieStore())                //cookie使用内存缓存（app退出后，cookie消失）
-                    .setCookieStore(new PersistentCookieStore())  ;        //cookie持久化存储，如果cookie不过期，则一直有效
+                    .setCookieStore(new PersistentCookieStore());        //cookie持久化存储，如果cookie不过期，则一直有效
 
-                    //可以设置https的证书,以下几种方案根据需要自己设置
+            //可以设置https的证书,以下几种方案根据需要自己设置
 //                    .setCertificates()                                  //方法一：信任所有证书（选一种即可）
 //                    .setCertificates(getAssets().open("srca.cer"))      //方法二：也可以自己设置https证书（选一种即可）
 //                    .setCertificates(getAssets().open("aaaa.bks"), "123456", getAssets().open("srca.cer"))//方法三：传入bks证书,密码,和cer证书,支持双向加密
 
-                    //可以添加全局拦截器,不会用的千万不要传,错误写法直接导致任何回调不执行
+            //可以添加全局拦截器,不会用的千万不要传,错误写法直接导致任何回调不执行
 //                .addInterceptor(new Interceptor() {
 //                    @Override
 //                    public Response intercept(Chain chain) throws IOException {
@@ -101,25 +110,26 @@ public class MyApplication
 //                    }
 //                })
 
-                    //这两行同上,不需要就不要传
-                   // .addCommonHeaders(headers)                                         //设置全局公共头
-                   // .addCommonParams(params);                                          //设置全局公共参数
+            //这两行同上,不需要就不要传
+            // .addCommonHeaders(headers)                                         //设置全局公共头
+            // .addCommonParams(params);                                          //设置全局公共参数
         } catch (Exception e) {
             e.printStackTrace();
         }
-       // initUser();
-      //  Fresco.initialize(this);
+        // initUser();
+        //  Fresco.initialize(this);
 
 //ID1105704769
 
-    //    mTencent = Tencent.createInstance("1105704769", this);
+        //    mTencent = Tencent.createInstance("1105704769", this);
 
 
     }
 
 
-
-    /** Picasso 加载 */
+    /**
+     * Picasso 加载
+     */
     private class PicassoImageLoader implements NineGridView.ImageLoader {
 
         @Override
@@ -135,7 +145,6 @@ public class MyApplication
             return null;
         }
     }
-
 
 
     private Intent intent;

@@ -1,6 +1,9 @@
 package ruolan.com.myhearts.ui.main;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -20,6 +23,8 @@ import org.greenrobot.eventbus.EventBus;
 
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.update.BmobUpdateAgent;
+import cn.jpush.android.api.JPushInterface;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.entity.MyUser;
@@ -31,6 +36,7 @@ import ruolan.com.myhearts.ui.fragment.home.HomeFragment;
 import ruolan.com.myhearts.ui.fragment.lord.LordFragment;
 import ruolan.com.myhearts.ui.fragment.thoughts.ThoughtsFragment;
 import ruolan.com.myhearts.ui.left.LeftFragment;
+import ruolan.com.myhearts.utils.ExampleUtil;
 import ruolan.com.myhearts.utils.PreferencesUtils;
 import ruolan.com.myhearts.widget.DragLayout;
 
@@ -126,6 +132,13 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
     }
 
 
+    // 初始化 JPush。如果已经初始化，但没有登录成功，则执行重新登录。
+    private void init(){
+        JPushInterface.init(getApplicationContext());
+    }
+
+
+
     /**
      * 自己去调整
      */
@@ -154,6 +167,10 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
      */
     public void initView() {
         ButterKnife.bind(this);
+
+        BmobUpdateAgent.setUpdateOnlyWifi(false);  //判断是否是wifi网络
+        BmobUpdateAgent.update(this); //检测是否有更新
+
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
 
         //  EventBus.getDefault().register(this);
@@ -194,6 +211,8 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
         initRadio();
 
         mIvImg.setOnClickListener(this);
+
+        registerMessageReceiver();  // used for receive msg
 
     }
 
@@ -396,9 +415,63 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
 
     }
 
+
+    //for receive customer msg from jpush server
+    private MessageReceiver mMessageReceiver;
+    public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_MESSAGE = "message";
+    public static final String KEY_EXTRAS = "extras";
+    public static boolean isForeground = false;
+
+
+    public void registerMessageReceiver() {
+        mMessageReceiver = new MessageReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(MESSAGE_RECEIVED_ACTION);
+        registerReceiver(mMessageReceiver, filter);
+    }
+
+    public class MessageReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
+                String messge = intent.getStringExtra(KEY_MESSAGE);
+                String extras = intent.getStringExtra(KEY_EXTRAS);
+                StringBuilder showMsg = new StringBuilder();
+                showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
+                if (!ExampleUtil.isEmpty(extras)) {
+                    showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
+                }
+              //  setCostomMsg(showMsg.toString());
+            }
+        }
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        isForeground = true;
+        super.onResume();
+    }
+
+
+    @Override
+    protected void onPause() {
+        isForeground = false;
+        super.onPause();
+    }
+
+
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unregisterReceiver(mMessageReceiver);
         EventBus.getDefault().unregister(this);
     }
 }
