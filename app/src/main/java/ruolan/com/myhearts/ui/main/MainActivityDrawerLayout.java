@@ -84,8 +84,7 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
                 float scale = 1 - slideOffset;
                 float rightScale = 0.8f + scale * 0.2f;
 
-                if (drawerView.getTag().equals("LEFT"))
-                {
+                if (drawerView.getTag().equals("LEFT")) {
 
                     float leftScale = 1 - 0.3f * scale;
 
@@ -100,8 +99,7 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
                     mContent.invalidate();
                     ViewHelper.setScaleX(mContent, rightScale);
                     ViewHelper.setScaleY(mContent, rightScale);
-                } else
-                {
+                } else {
                     ViewHelper.setTranslationX(mContent,
                             -mMenu.getMeasuredWidth() * slideOffset);
                     ViewHelper.setPivotX(mContent, mContent.getMeasuredWidth());
@@ -133,10 +131,9 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
 
 
     // 初始化 JPush。如果已经初始化，但没有登录成功，则执行重新登录。
-    private void init(){
+    private void init() {
         JPushInterface.init(getApplicationContext());
     }
-
 
 
     /**
@@ -174,14 +171,14 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
 
         //  EventBus.getDefault().register(this);
-        if (myUser != null){
+        if (myUser != null) {
             EventBus.getDefault().post(new LoginEvent(myUser));
             Log.d("SplashActivity", "myUser:" + myUser);
         }
 
         boolean isLogin = getIntent().getBooleanExtra(Contants.IS_COME_FROM_LOGIN, false);
-        if (isLogin){  //登录状态
-            PreferencesUtils.putBoolean(this,Contants.IS_LOGIN,true);
+        if (isLogin) {  //登录状态
+            PreferencesUtils.putBoolean(this, Contants.IS_LOGIN, true);
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -402,17 +399,19 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
     public void onClick(View v) {
 
         Intent intent = new Intent();
-        boolean isLogin = true;
+        // boolean isLogin = true;
+        boolean isLogin = PreferencesUtils.getBoolean(this, Contants.IS_LOGIN, false);
+
         switch (v.getId()) {
             case R.id.img_img:
-                changeTab(TAB_LIVE);
 
+                changeTab(TAB_LIVE);
+             //   intent.setClass(MainActivityDrawerLayout.this, LiveFragment.class);
                 // Toast.makeText(this, "live", Toast.LENGTH_SHORT).show();
                 break;
 
         }
-        startActivity(intent, isLogin);
-
+//
     }
 
 
@@ -445,11 +444,10 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
                 if (!ExampleUtil.isEmpty(extras)) {
                     showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
                 }
-              //  setCostomMsg(showMsg.toString());
+                //  setCostomMsg(showMsg.toString());
             }
         }
     }
-
 
 
     @Override
@@ -464,8 +462,6 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
         isForeground = false;
         super.onPause();
     }
-
-
 
 
     @Override

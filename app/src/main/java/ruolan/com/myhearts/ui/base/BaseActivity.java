@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.ui.login.LoginActivity;
+import ruolan.com.myhearts.utils.PreferencesUtils;
 import ruolan.com.myhearts.utils.TranslucentUtils;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -66,26 +68,11 @@ public abstract class BaseActivity extends AppCompatActivity{
     public void startActivity(Intent intent, boolean isNeedLogin){
 
 
-        if(isNeedLogin){
-
-         //   User user = MyApplication.getInstance().getUser();
-            if(false){
-                super.startActivity(intent);
-            }
-            else{
-
-                //MyApplication.getInstance().putIntent(intent);
+        if(isNeedLogin){  //登录逻辑
                 Intent loginIntent = new Intent(this
                         , LoginActivity.class);
                 super.startActivity(loginIntent);
-
-            }
-
         }
-        else{
-            super.startActivity(intent);
-        }
-
     }
 
 }

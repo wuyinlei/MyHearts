@@ -20,5 +20,5 @@ public class Contants {
     //判断是否是来自login，如果是登录界面过来的，就更新UI
     public static final String IS_COME_FROM_LOGIN = "is_come_from_login";
 
-    public static final String IS_LOGIN =  "i_login";
+    public static final String IS_LOGIN =  "is_login";
 }

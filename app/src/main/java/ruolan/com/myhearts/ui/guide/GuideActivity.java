@@ -20,7 +20,7 @@ import ruolan.com.myhearts.ui.base.BaseActivity;
 public class GuideActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
 
     //图片资源
-    int [] images = new int[]{
+    int[] images = new int[]{
             R.mipmap.welcome_1,
             R.mipmap.welcome_2,
             R.mipmap.welcome_3,
@@ -46,6 +46,9 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
             ImageView ivGuide = (ImageView) inflate.findViewById(R.id.iv_guide);
             ivGuide.setBackgroundResource(images[i]);
             mViews.add(inflate);
+            //The application's PagerAdapter changed the adapter's contents without calling
+            // PagerAdapter#notifyDataSetChanged!
+            mPagerAdapter.notifyDataSetChanged();
         }
     }
 
@@ -59,11 +62,12 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         btnStart = (Button) findViewById(R.id.btn_start);
 
-        mPagerAdapter = new MyViewPagerAdapter();
+        mPagerAdapter = new MyViewPagerAdapter(mViews);
         mViewPager.setAdapter(mPagerAdapter);
         mViewPager.setOnPageChangeListener(this);
+        mViewPager.setCurrentItem(0);
         btnStart.setOnClickListener(view -> {
-            startActivity(new Intent(GuideActivity.this,MainActivity.class));
+            startActivity(new Intent(GuideActivity.this, MainActivity.class));
             finish();
         });
     }
@@ -77,9 +81,9 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
     public void onPageSelected(int position) {
 
         //The application's PagerAdapter changed the adapter's contents without calling PagerAdapter#notifyDataSetChanged!
-        mPagerAdapter.notifyDataSetChanged();
+        //mPagerAdapter.notifyDataSetChanged();
 
-        if (position == images.length - 1){
+        if (position == images.length - 1) {
             btnStart.setVisibility(View.VISIBLE);
             Animation animation = AnimationUtils.loadAnimation(GuideActivity.this, R.anim.anim_guide_btn_start);
             btnStart.startAnimation(animation);
@@ -94,11 +98,19 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
     }
 
     class MyViewPagerAdapter extends PagerAdapter {
+
+        List<View> mViews;
+
+        MyViewPagerAdapter(List<View> views){
+            this.mViews = views;
+        }
+
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
 
             View view = mViews.get(position);
             container.addView(view);
+
             return view;
         }
 
@@ -110,7 +122,7 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
 
         @Override
         public int getCount() {
-            return mViews== null?0:mViews.size();
+            return mViews == null ? 0 : mViews.size();
         }
 
         @Override

@@ -102,6 +102,8 @@ public class SplashActivity extends BaseActivity {
                         if(user!=null){
                             Log.i("smile","用户登陆成功");
                             EventBus.getDefault().post(new LoginEvent(user));
+                            PreferencesUtils.putBoolean(SplashActivity.this
+                            ,Contants.IS_LOGIN,true);
                         }
                     }
                 });

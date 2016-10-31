@@ -46,7 +46,7 @@
             android:id="@+id/rbTabMall"
             style="@style/TabButton"
             android:drawableTop="@drawable/ic_tab_home_selector"
-            android:text="@string/lord_tab"
+            android:text="@string/live_tab"
             android:visibility="invisible"/>
 
         <RadioButton
