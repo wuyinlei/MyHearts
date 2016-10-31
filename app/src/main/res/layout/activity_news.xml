@@ -25,8 +25,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:visibility="gone"
-                android:src="@mipmap/login_bg"/>
+                android:src="@mipmap/login_bg"
+                android:visibility="gone"/>
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -34,23 +35,34 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
+            <ProgressBar
+                android:id="@+id/index_progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="5dp"
+                android:progress="0"
+
+                android:secondaryProgress="0"
+                android:visibility="gone"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:layout_marginTop="@dimen/x40"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="left|center"
+                    android:layout_marginTop="@dimen/x40"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical">
+
 
                     <TextView
                         android:id="@+id/tv_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:maxLines="1"
                         android:text="田埂上的梦"
                         android:textColor="@color/action_bar_color"
                         android:textSize="@dimen/x20"/>
@@ -100,10 +112,12 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
         <WebView
             android:id="@+id/web_view"

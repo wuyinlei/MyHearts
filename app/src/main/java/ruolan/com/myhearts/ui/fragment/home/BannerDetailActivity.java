@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -62,19 +63,19 @@ public class BannerDetailActivity extends BaseActivity {
         mWebView.loadUrl(url);
     }
 
-    String url,title,subtitle;
+    String url, title, subtitle;
 
     HomeBannerBean.ResultsBean mResultsBean;
 
     @Override
     public void initView() {
         TranslucentUtils.setColor(this, getResources().getColor(R.color.colorPrimary), 1);
-       // id = getIntent().getStringExtra("id");
-       // userid = getIntent().getStringExtra("userid");
+        // id = getIntent().getStringExtra("id");
+        // userid = getIntent().getStringExtra("userid");
 
         mResultsBean = (HomeBannerBean.ResultsBean) getIntent().getSerializableExtra("result");
 
-        if (mResultsBean != null){
+        if (mResultsBean != null) {
             url = mResultsBean.getUrl();
             title = mResultsBean.getTitle();
             subtitle = mResultsBean.getSubtitle();
@@ -83,9 +84,12 @@ public class BannerDetailActivity extends BaseActivity {
         mToolbar.setTitle(getResources().getString(R.string.news_detail));
         mTvTitle = (TextView) findViewById(R.id.tv_title);
         mTvCategory = (TextView) findViewById(R.id.tv_category);
-       // mTvViewCount = (TextView) findViewById(R.id.tv_view_count);
+        // mTvViewCount = (TextView) findViewById(R.id.tv_view_count);
         mCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         mWebView = (WebView) findViewById(R.id.web_view);
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
         mImgBg = (ImageView) findViewById(R.id.img_bg);
         setSupportActionBar(mToolbar);
 

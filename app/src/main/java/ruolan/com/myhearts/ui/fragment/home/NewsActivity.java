@@ -4,10 +4,14 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -31,6 +35,7 @@ import rx.android.schedulers.AndroidSchedulers;
 public class NewsActivity extends BaseActivity {
 
 
+
     @Override
     protected int getResultId() {
         return R.layout.activity_news;
@@ -51,6 +56,18 @@ public class NewsActivity extends BaseActivity {
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 view.loadUrl(url);
                 return true;
+            }
+
+        });
+
+        //在这里可以设置加载进度条
+        mWebView.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+               // mProgressBar.setProgress(newProgress);
+                if (newProgress>=100){
+                   // mProgressBar.setVisibility(View.GONE);
+                }
             }
         });
 
@@ -116,11 +133,14 @@ public class NewsActivity extends BaseActivity {
         mTvViewCount = (TextView) findViewById(R.id.tv_view_count);
         mCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         mWebView = (WebView) findViewById(R.id.web_view);
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
         mImgBg = (ImageView) findViewById(R.id.img_bg);
         setSupportActionBar(mToolbar);
 
         //        设置返回箭头
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mProgressBar = (ProgressBar) findViewById(R.id.index_progressBar);
     }
 
     @Override
@@ -141,4 +161,5 @@ public class NewsActivity extends BaseActivity {
     TextView mTvViewCount;
     CollapsingToolbarLayout mCollapsingToolbar;
     WebView mWebView;
+    ProgressBar mProgressBar;
 }

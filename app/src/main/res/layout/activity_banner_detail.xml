@@ -52,6 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="田埂上的梦"
+                        android:maxLines="1"
                         android:textColor="@color/action_bar_color"
                         android:textSize="@dimen/x20"/>
 
