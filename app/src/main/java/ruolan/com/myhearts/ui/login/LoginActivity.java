@@ -295,7 +295,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             if (e == null) {
 
                             } else {
-                                Toast.makeText(LoginActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, getResources().getString(R.string.register_failed), Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -383,12 +383,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         @Override
         public void onComplete(Object response) {
             if (null == response) {
-                Util.showResultDialog(LoginActivity.this, "返回为空", "登录失败");
+               // Util.showResultDialog(LoginActivity.this, "返回为空", "登录失败");
                 return;
             }
             JSONObject jsonResponse = (JSONObject) response;
             if (null != jsonResponse && jsonResponse.length() == 0) {
-                Util.showResultDialog(LoginActivity.this, "返回为空", "登录失败");
+              //  Util.showResultDialog(LoginActivity.this, "返回为空", "登录失败");
                 return;
             }
             doComplete((JSONObject) response);

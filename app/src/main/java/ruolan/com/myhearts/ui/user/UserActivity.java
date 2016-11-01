@@ -180,7 +180,7 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.user_detail_avatar:
                 showMyDialog();
-                Toast.makeText(this, "弹框", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "弹框", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ic_back:
                 finish();
@@ -284,7 +284,8 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
         String state = Environment.getExternalStorageState();
         if (state.equals(Environment.MEDIA_MOUNTED)) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            File file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+            File file = Environment
+                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
             if (!file.exists()) {
                 file.mkdirs();
             }
@@ -293,7 +294,9 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
             intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
             startActivityForResult(intent, REQUESTCODE_CAM);
         } else {
-            Toast.makeText(this, "请确认已经插入SD卡", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources()
+                    .getString(R.string.please_insert_sd_card),
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

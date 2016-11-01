@@ -78,4 +78,19 @@
     <string name="news_detail">咨询详情</string>
     <string name="live_tab">直播</string>
 
+    <string name="add_lord">添加分组</string>
+    <string name="search_lord">搜索分组</string>
+    <string name="has_not_more_data">没有更多数据了</string>
+
+    <string name="register_failed">注册失败</string>
+
+    <string name="phone_num_is_not_empty">手机号不能为空</string>
+    <string name="phone_num_length_is_error">手机号码长度不对</string>
+    <string name="check_your_phone_format">请检查您的手机号格式是否正确</string>
+    <string name="register_success">注册成功</string>
+
+
+    <string name="input_correct_key">您输入的关键字有误，请重新输入！</string>
+    <string name="please_insert_sd_card">请确认已经插入SD卡</string>
+
 </resources>

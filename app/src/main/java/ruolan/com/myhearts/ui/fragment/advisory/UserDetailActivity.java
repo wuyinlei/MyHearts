@@ -238,13 +238,10 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
         mActionBackBtn.setOnClickListener(this);
         mActionShareBtnTxt.setOnClickListener(this);
         mMoreResumeBtn.setOnClickListener(this);
-        mCounselorAvatar.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
+        mCounselorAvatar.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
 
-                height = mCounselorAvatar.getHeight();
-                mContentScrollView.setScrollViewCallbacks(UserDetailActivity.this);
-            }
+            height = mCounselorAvatar.getHeight();
+            mContentScrollView.setScrollViewCallbacks(UserDetailActivity.this);
         });
     }
 

@@ -226,13 +226,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         }
 
         if (TextUtils.isEmpty(phone)) {
-            ToastUtils.show(this, "请输入手机号码");
+            ToastUtils.show(this, getResources().getString(R.string.phone_num_is_not_empty));
             return;
         }
 
         if (code == "86") {
             if (phone.length() != 11) {
-                ToastUtils.show(this, "手机号码长度不对");
+                ToastUtils.show(this, getResources().getString(R.string.phone_num_length_is_error));
                 return;
             }
         }
@@ -241,7 +241,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         Matcher m = p.matcher(phone);
 
         if (!m.matches()) {
-            ToastUtils.show(this, "您输入的手机号码格式不正确");
+            ToastUtils.show(this, getResources().getString(R.string.check_your_phone_format));
             return;
         }
     }

@@ -154,9 +154,9 @@ public class LordFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         if (v.getId() == R.id.img_group_list){
             mPopupWindow.showAsDropDown(v);
         } else if (v.getId() == R.id.re_add_group){
-            Toast.makeText(getContext(), "添加分组", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getActivity().getResources().getString(R.string.add_lord), Toast.LENGTH_SHORT).show();
         } else if (v.getId() == R.id.re_search_group){
-            Toast.makeText(getContext(), "搜索分组", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getActivity().getResources().getString(R.string.search_lord), Toast.LENGTH_SHORT).show();
         }
     }
 

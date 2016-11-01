@@ -208,7 +208,7 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
                 @Override
                 public void done(MyUser myUser, BmobException e) {
                     if (e == null) {
-                        Toast.makeText(RegisterSecondActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterSecondActivity.this,getResources().getString(R.string.register_success), Toast.LENGTH_SHORT).show();
                         PreferencesUtils.putString(RegisterSecondActivity.this,Contants.USER_NAME,userName);
                         PreferencesUtils.putString(RegisterSecondActivity.this,Contants.USER_PASSWORD,pwd);
                         startActivity(new Intent(RegisterSecondActivity.this, LoginActivity.class));

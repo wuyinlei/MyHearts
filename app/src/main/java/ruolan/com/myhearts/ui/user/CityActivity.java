@@ -283,7 +283,9 @@ public class CityActivity extends BaseActivity {
                     }
                     if(filterDateList.size()==0){
                         //数据库中无法找到对应的信息，提示错误信息
-                        Toast.makeText(CityActivity.this,"您输入的关键字有误，请重新输入！",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CityActivity.this,
+                                getResources().getString(R.string.input_correct_key),
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
             }

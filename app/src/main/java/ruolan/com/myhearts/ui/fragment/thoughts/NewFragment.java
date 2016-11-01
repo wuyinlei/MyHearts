@@ -116,7 +116,7 @@ public class NewFragment extends Fragment {
      */
     private void lordMoreData(MaterialRefreshLayout materialRefreshLayout) {
         materialRefreshLayout.finishRefreshLoadMore();
-        Toast.makeText(getContext(), "没有更多数据了", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), getActivity().getResources().getString(R.string.has_not_more_data), Toast.LENGTH_SHORT).show();
     }
 
     /**
