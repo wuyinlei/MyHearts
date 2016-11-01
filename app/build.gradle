@@ -4,6 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
 
+
     //**兼容Android6.0系统所需，如果这句话报错，可在dependencies标签下使用compile 'cn.bmob.android:http-legacy:1.0'**
     useLibrary 'org.apache.http.legacy'
 
@@ -113,13 +114,10 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile files('libs/open_sdk_r5756.jar')
     compile files('libs/mta-sdk-1.6.2.jar')
-
     compile 'com.dalong:cardvoucher:1.0.0'
-
-
     compile 'cn.qqtheme.framework:WheelPicker:1.1.2'
-
     compile 'com.afollestad.material-dialogs:commons:0.9.0.2'
-
-    compile 'cn.jiguang:jpush:2.1.8'  // 此处以SDK 2.1.8版本为例
+    compile 'cn.jiguang:jpush:2.1.8'
+    // 此处以SDK 2.1.8版本为例
+    compile files('libs/ShareSDK-Core-2.7.8.jar')
 }
