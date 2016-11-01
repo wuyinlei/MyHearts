@@ -18,8 +18,14 @@ import java.util.List;
 
 public class TabViewPagerAdapter extends FragmentPagerAdapter {
 
-    private final List<Fragment> mFragments = new ArrayList<>();
-    private final List<String> mFragmentTitles = new ArrayList<>();
+    private  List<Fragment> mFragments = new ArrayList<>();
+    private  List<String> mFragmentTitles = new ArrayList<>();
+
+    public TabViewPagerAdapter(FragmentManager fm,List<Fragment> fragments,List<String> strings) {
+        super(fm);
+        this.mFragments = fragments;
+        this.mFragmentTitles = strings;
+    }
 
     public TabViewPagerAdapter(FragmentManager fm) {
         super(fm);

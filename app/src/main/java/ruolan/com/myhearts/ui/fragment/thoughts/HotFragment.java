@@ -72,6 +72,8 @@ public class HotFragment extends Fragment {
                             &&bean.getErrorStr().equals("success")){
                         mThroughtDatas = bean.getResults();
                         mThroughtAdapter.setResultsBeen(mThroughtDatas);
+                        mRefreshLayout.setClickable(true);
+                        mRefreshLayout.setLoadMore(true);
                     }
                 },throwable -> {});
     }
@@ -90,7 +92,8 @@ public class HotFragment extends Fragment {
         mThroughtAdapter = new ThroughtAdapter(getContext(), mThroughtDatas);
         mRecyclerView.setAdapter(mThroughtAdapter);
         mRefreshLayout = (MaterialRefreshLayout) view.findViewById(R.id.refresh);
-        mRefreshLayout.setLoadMore(true);
+        mRefreshLayout.setLoadMore(false);
+        mRefreshLayout.setClickable(false);
         mRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {

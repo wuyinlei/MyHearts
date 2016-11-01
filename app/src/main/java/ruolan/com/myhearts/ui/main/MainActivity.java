@@ -26,7 +26,7 @@ import ruolan.com.myhearts.ui.left.setting.SettingActivity;
 import ruolan.com.myhearts.ui.left.WorryActivity;
 import ruolan.com.myhearts.ui.fragment.advisory.AdvisoryFragment;
 import ruolan.com.myhearts.ui.fragment.home.HomeFragment;
-import ruolan.com.myhearts.ui.fragment.LiveFragment;
+import ruolan.com.myhearts.ui.fragment.live.LiveFragment;
 import ruolan.com.myhearts.ui.fragment.lord.LordFragment;
 import ruolan.com.myhearts.ui.fragment.thoughts.ThoughtsFragment;
 import ruolan.com.myhearts.widget.DragLayout;

@@ -103,6 +103,7 @@ public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.Throug
             //holder.mPhotoRecycler.setSingleImageRatio(images.get(0).width * 1.0f / images.get(0).height);
         }
 
+        holder.mCommentRe.setVisibility(View.GONE);
         List<CommentsBean> comments = bean.getComments();
         if (comments != null && comments.size() > 0) {
             CommentAdapter adapter = new CommentAdapter(comments);

@@ -49,11 +49,8 @@ public class NewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_new, container, false);
-
         initView(view);
         initData();
-
-
         return view;
     }
 
@@ -76,6 +73,8 @@ public class NewFragment extends Fragment {
                             &&bean.getErrorStr().equals("success")){
                         mThroughtDatas = bean.getResults();
                         mThroughtAdapter.setResultsBeen(mThroughtDatas);
+                        mRefreshLayout.setLoadMore(true);
+                        mRefreshLayout.setClickable(true);
                     }
                 },throwable -> {});
     }
@@ -94,7 +93,8 @@ public class NewFragment extends Fragment {
         mThroughtAdapter = new ThroughtAdapter(getContext(), mThroughtDatas);
         mRecyclerView.setAdapter(mThroughtAdapter);
         mRefreshLayout = (MaterialRefreshLayout) view.findViewById(R.id.refresh);
-        mRefreshLayout.setLoadMore(true);
+        mRefreshLayout.setLoadMore(false);
+        mRefreshLayout.setClickable(false);
         mRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {

@@ -21,4 +21,6 @@ public class Contants {
     public static final String IS_COME_FROM_LOGIN = "is_come_from_login";
 
     public static final String IS_LOGIN =  "is_login";
+
+    public static final String INDEX = "index";
 }
