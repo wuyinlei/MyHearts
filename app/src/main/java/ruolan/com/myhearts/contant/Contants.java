@@ -23,4 +23,6 @@ public class Contants {
     public static final String IS_LOGIN =  "is_login";
 
     public static final String INDEX = "index";
+
+    public static final String VIDEO_PATH="videoName";
 }

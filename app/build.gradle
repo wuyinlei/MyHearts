@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "ruolan.com.myhearts"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 24
         versionCode 12
         versionName "1.0.1"
@@ -119,7 +119,6 @@ dependencies {
     compile 'com.afollestad.material-dialogs:commons:0.9.0.2'
     compile 'cn.jiguang:jpush:2.1.8'
     testCompile 'junit:junit:4.12'
-
-
-
+    compile project(':vitamio')
+    compile 'com.github.ctiao:DanmakuFlameMaster:0.4.5'
 }

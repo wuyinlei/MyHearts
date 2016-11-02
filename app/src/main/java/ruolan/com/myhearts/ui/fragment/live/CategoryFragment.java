@@ -1,6 +1,7 @@
 package ruolan.com.myhearts.ui.fragment.live;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +29,8 @@ import ruolan.com.myhearts.adapter.CategoryAdapter;
 import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
 import ruolan.com.myhearts.entity.RoomInfo;
+import ruolan.com.myhearts.ui.play.VideoViewActivity;
+import ruolan.com.myhearts.ui.play.VideoViewLiveActivity;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
@@ -42,8 +45,10 @@ public class CategoryFragment extends Fragment implements SwipeRefreshLayout.OnR
     private SwipeRefreshLayout mSwipeRefresh;
     private CategoryAdapter mCategoryAdapter;
 
-    private int limit = 20;
+    private int limit = 21;  //为了好看
     private int offset = 0;
+
+    private int lordMoreNum = 20;
 
     private List<RoomInfo.DataEntity> mDataEntities = new ArrayList<>();
 
@@ -97,8 +102,17 @@ public class CategoryFragment extends Fragment implements SwipeRefreshLayout.OnR
         mRecyclerview.setLayoutManager(gridLayoutManager);
         mRecyclerview.setAdapter(mCategoryAdapter);
         mCategoryAdapter.setOnItemClickListener((view1, position, dataEntity) -> {
-
+            if (position%2==0) {
+                Intent intent = new Intent(getActivity(), VideoViewActivity.class);
+                intent.putExtra(Contants.VIDEO_PATH, "http://125.39.142.86/data2/video09/2016/03/01/3871799-102-1615.mp4");
+                getActivity().startActivity(intent);
+            } else {
+                Intent intent = new Intent(getActivity(), VideoViewLiveActivity.class);
+                intent.putExtra(Contants.VIDEO_PATH,"rtmp://live.hkstv.hk.lxdns.com/live/hks");
+                getActivity().startActivity(intent);
+            }
         });
+
 
         mRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -130,7 +144,7 @@ public class CategoryFragment extends Fragment implements SwipeRefreshLayout.OnR
      */
     private void getMoreData() {
         offset += limit;
-        limit += 20;
+        limit += lordMoreNum;
         if (mIndex == 0) {
             url = HttpUrlPaths.getDouyuLiveChannel(limit, offset);
         } else {
@@ -164,7 +178,7 @@ public class CategoryFragment extends Fragment implements SwipeRefreshLayout.OnR
      * @param url url
      */
     private void requestData(String url) {
-        limit = 20;
+        limit = lordMoreNum;
         offset = 0;
         if (mIndex == 0) {
             url = HttpUrlPaths.getDouyuLiveChannel(limit, offset);
