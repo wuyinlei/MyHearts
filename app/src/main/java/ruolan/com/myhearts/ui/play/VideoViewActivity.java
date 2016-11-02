@@ -83,6 +83,10 @@ public class VideoViewActivity extends BaseActivity {
 
     }
 
+    public VideoView getVideoView() {
+        return mVideoView;
+    }
+
     @Override
     public void initView() {
         this.mLoadinglinearlayout = (LinearLayout) findViewById(R.id.loading_LinearLayout);

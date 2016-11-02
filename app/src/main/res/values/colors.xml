@@ -74,4 +74,6 @@
     <color name="video_bottom_color">#2ea18f</color>
     <color name="video_red_color">#CC0000</color>
     <color name="video_gray_color">#BFBFBF</color>
+    <color name="bg_normal">#f5f5f5</color>
+    <color name="edit_text_color">#ff212121</color>
 </resources>

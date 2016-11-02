@@ -71,9 +71,9 @@ public class LiveFragment extends Fragment implements View.OnClickListener {
     private void initTitles() {
         strings = new String[]{
                 getActivity().getResources().getString(R.string.recomment),
-                getActivity().getResources().getString(R.string.dota2),
                 getActivity().getResources().getString(R.string.lol),
-                getActivity().getResources().getString(R.string.lushi)
+                getActivity().getResources().getString(R.string.lushi),
+                getActivity().getResources().getString(R.string.dota2)
         };
 
         for (String s : strings) {

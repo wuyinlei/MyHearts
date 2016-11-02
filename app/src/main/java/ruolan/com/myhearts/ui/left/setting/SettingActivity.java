@@ -1,5 +1,6 @@
 package ruolan.com.myhearts.ui.left.setting;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -7,7 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.contant.Contants;
+import ruolan.com.myhearts.entity.MyUser;
 import ruolan.com.myhearts.ui.base.BaseActivity;
+import ruolan.com.myhearts.ui.login.LoginActivity;
 import ruolan.com.myhearts.utils.DataCleanManager;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
@@ -75,7 +79,15 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
 
             case R.id.setting_opinion:
-
+                Intent intent = new Intent();
+                MyUser myUser = MyUser.getCurrentUser(MyUser.class);
+                if (myUser==null){
+                    intent.setClass(this, LoginActivity.class);
+                } else {
+                    intent.setClass(this,FeedActivity.class);
+                    intent.putExtra(Contants.USER_NAME,myUser.getUsername());
+                }
+                startActivity(intent);
                 break;
 
             case R.id.setting_share:

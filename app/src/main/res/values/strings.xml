@@ -101,4 +101,10 @@
     <string name="video_image">视频截图</string>
     <string name="num_people">位观众</string>
 
+    <string name="feedback_contact_hint">您的邮箱 (必填)</string>
+    <string name="feedback_content_hint">写下您的需求和建议</string>
+    <string name="feedback_phone_hint">手机号码  (必填)</string>
+    <string name="request_not_empty">需求和建议不能为空</string>
+    <string name="submit_success">提交成功，谢谢您的建议和需求，我们会尽快改正！！！</string>
+
 </resources>

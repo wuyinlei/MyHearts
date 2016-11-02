@@ -7,7 +7,7 @@
         layout="@layout/video_adjust_layout"></include>
     <include
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignParentTop="true"
         layout="@layout/video_title"></include>
     <LinearLayout

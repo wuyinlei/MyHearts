@@ -24,6 +24,7 @@ import android.widget.TextView;
 import java.io.File;
 
 import io.vov.vitamio.widget.MediaController;
+import io.vov.vitamio.widget.VideoView;
 import master.flame.danmaku.controller.IDanmakuView;
 import master.flame.danmaku.danmaku.model.android.DanmakuContext;
 import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
@@ -55,27 +56,27 @@ public class CustomMediaController extends MediaController {
     private ImageView mediacontroller_screen_fit;
     /**
      * public static final int VIDEO_LAYOUT_ORIGIN
-     缩放参数，原始画面大小。
-     常量值：0
-
-     public static final int VIDEO_LAYOUT_SCALE
-     缩放参数，画面全屏。
-     常量值：1
-
-     public static final int VIDEO_LAYOUT_STRETCH
-     缩放参数，画面拉伸。
-     常量值：2
-
-     public static final int VIDEO_LAYOUT_ZOOM
-     缩放参数，画面裁剪。
-     常量值：3
+     * 缩放参数，原始画面大小。
+     * 常量值：0
+     * <p>
+     * public static final int VIDEO_LAYOUT_SCALE
+     * 缩放参数，画面全屏。
+     * 常量值：1
+     * <p>
+     * public static final int VIDEO_LAYOUT_STRETCH
+     * 缩放参数，画面拉伸。
+     * 常量值：2
+     * <p>
+     * public static final int VIDEO_LAYOUT_ZOOM
+     * 缩放参数，画面裁剪。
+     * 常量值：3
      */
-    private String[] strDialogs=new String[]{"100%","全屏","拉伸","裁剪"};
-    private int[] imgs=new int[]{R.drawable.mediacontroller_sreen_size_100,
+    private String[] strDialogs = new String[]{"100%", "全屏", "拉伸", "裁剪"};
+    private int[] imgs = new int[]{R.drawable.mediacontroller_sreen_size_100,
             R.drawable.mediacontroller_screen_fit,
             R.drawable.mediacontroller_screen_size,
             R.drawable.mediacontroller_sreen_size_crop};
-    private int mCurrentPageSize=2;
+    private int mCurrentPageSize = 2;
 
     private TextView currenttime_tv;
 
@@ -99,7 +100,7 @@ public class CustomMediaController extends MediaController {
     public CustomMediaController(Context context) {
         super(context);
         this.mContext = context;
-        activity=(VideoViewActivity)context;
+        activity = (VideoViewActivity) context;
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         mMaxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         mGestureDetector = new GestureDetector(mContext, new VolumeBrightnesGestureListener());
@@ -112,39 +113,41 @@ public class CustomMediaController extends MediaController {
                         mContext.getPackageName()), this);
     }
 
+    boolean isPortrait=true;
+
     @Override
     protected void initOtherView() {
-        mtanMuSwitch= (Switch) mRoot.findViewById(R.id.switch_tanmu);
+        mtanMuSwitch = (Switch) mRoot.findViewById(R.id.switch_tanmu);
         mtanMuSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     mtanMuSwitch.setBackgroundColor(getResources().getColor(R.color.video_red_color));
                     //开启弹幕
                     mDanmakuView.prepare(mParser, mDanmakuContext);
                     mDanmakuView.show();
-                }else{
+                } else {
                     mtanMuSwitch.setBackgroundColor(getResources().getColor(R.color.video_gray_color));
                     //关闭弹幕
                     mDanmakuView.hide();
                 }
             }
         });
-        mediacontroller_snapshot= (ImageView) mRoot.findViewById(R.id.mediacontroller_snapshot);
-        mediacontroller_previous= (ImageView) mRoot.findViewById(R.id.mediacontroller_previous);
-        mediacontroller_next= (ImageView) mRoot.findViewById(R.id.mediacontroller_next);
-        mediacontroller_screen_fit= (ImageView) mRoot.findViewById(R.id.mediacontroller_screen_fit);
+        mediacontroller_snapshot = (ImageView) mRoot.findViewById(R.id.mediacontroller_snapshot);
+        mediacontroller_previous = (ImageView) mRoot.findViewById(R.id.mediacontroller_previous);
+        mediacontroller_next = (ImageView) mRoot.findViewById(R.id.mediacontroller_next);
+        mediacontroller_screen_fit = (ImageView) mRoot.findViewById(R.id.mediacontroller_screen_fit);
         mediacontroller_snapshot.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bitmap currentFrame = activity.getCurrentFrame();
                 //保存到本地
-                String picturnPath= activity.getExternalCacheDir()+File.separator+ RandomUtil.getRandomLetters(6)+".jpg";
+                String picturnPath = activity.getExternalCacheDir() + File.separator + RandomUtil.getRandomLetters(6) + ".jpg";
                 boolean saveSuccess = BitmapUtil.saveBitmap(currentFrame, new File(picturnPath));
-                if(saveSuccess){
-                   // T.showLong(activity,"截屏保存到"+picturnPath);
-                }else{
-                   // T.showLong(activity,"截屏失败");
+                if (saveSuccess) {
+                    // T.showLong(activity,"截屏保存到"+picturnPath);
+                } else {
+                    // T.showLong(activity,"截屏失败");
                 }
             }
         });
@@ -152,20 +155,20 @@ public class CustomMediaController extends MediaController {
         mediacontroller_next.setOnClickListener(v -> activity.speedVideo());
         mediacontroller_screen_fit.setOnClickListener(v -> {
             mCurrentPageSize++;
-            if(mCurrentPageSize>3){
-                mCurrentPageSize=0;
+            if (mCurrentPageSize > 3) {
+                mCurrentPageSize = 0;
             }
             //T.showToastMsgShort(activity,strDialogs[mCurrentPageSize]);
             mediacontroller_screen_fit.setBackground(getResources().getDrawable(imgs[mCurrentPageSize]));
             activity.setVideoPageSize(mCurrentPageSize);
         });
-        currenttime_tv=(TextView) mRoot.findViewById(R.id.currenttime_tv);
-        
+        currenttime_tv = (TextView) mRoot.findViewById(R.id.currenttime_tv);
+
         mVolumeBrightnessLayout = mRoot.findViewById(R.id.operation_volume_brightness);
         mOperationBg = (ImageView) mRoot.findViewById(R.id.operation_bg);
         mOperationPercent = (ImageView) mRoot.findViewById(R.id.operation_percent);
         mRoot.setOnTouchListener((v, event) -> {
-           // LogUtils.i(LogUtils.LOG_TAG, "onTouchEvent");
+            // LogUtils.i(LogUtils.LOG_TAG, "onTouchEvent");
             if (mGestureDetector.onTouchEvent(event)) {
                 return true;
             }
@@ -188,10 +191,10 @@ public class CustomMediaController extends MediaController {
         mDismissHandler.sendEmptyMessageDelayed(0, 500);
     }
 
-    public void setTanMuView(IDanmakuView tanMuView,DanmakuContext mDanmakuContext,BaseDanmakuParser mParser ) {
+    public void setTanMuView(IDanmakuView tanMuView, DanmakuContext mDanmakuContext, BaseDanmakuParser mParser) {
         this.mDanmakuView = tanMuView;
-        this.mDanmakuContext=mDanmakuContext;
-        this.mParser=mParser;
+        this.mDanmakuContext = mDanmakuContext;
+        this.mParser = mParser;
     }
 
     private class VolumeBrightnesGestureListener extends GestureDetector.SimpleOnGestureListener {

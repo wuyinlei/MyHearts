@@ -295,7 +295,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             if (e == null) {
 
                             } else {
-                                Toast.makeText(LoginActivity.this, getResources().getString(R.string.register_failed), Toast.LENGTH_SHORT).show();
+
+                                //Toast.makeText(LoginActivity.this, getResources().getString(R.string.register_failed), Toast.LENGTH_SHORT).show();
                             }
                         }
 

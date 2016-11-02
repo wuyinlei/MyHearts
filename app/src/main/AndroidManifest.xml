@@ -47,36 +47,73 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.splash.SplashActivity">
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.MainActivityDrawerLayout"/>
-        <activity android:name=".ui.main.MainActivity"/>
-        <activity android:name=".ui.guide.GuideActivity"/>
-        <activity android:name=".ui.login.LoginActivity"/>
-        <activity android:name=".ui.left.MessageActivity"/>
-        <activity android:name=".ui.left.FollowActivity"/>
-        <activity android:name=".ui.left.ContactActivity"/>
-        <activity android:name=".ui.left.MoneyActivity"/>
-        <activity android:name=".ui.left.GiftActivity"/>
-        <activity android:name=".ui.left.WorryActivity"/>
-        <activity android:name=".ui.left.setting.SettingActivity"/>
-        <activity android:name=".ui.left.ReserveActivity"/>
-        <activity android:name=".ui.fragment.home.OrationActivity"/>
-        <activity android:name=".ui.fragment.lord.LordDetailActivity"/>
+        <activity
+            android:name=".ui.main.MainActivityDrawerLayout"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.guide.GuideActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.left.MessageActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.left.FollowActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.left.ContactActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.left.MoneyActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.left.GiftActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.left.WorryActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.left.setting.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.left.ReserveActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.fragment.home.OrationActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.fragment.lord.LordDetailActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.left.setting.WebActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".ui.fragment.advisory.UserDetailActivity">
+        <activity
+            android:name=".ui.fragment.advisory.UserDetailActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.register.RegisterActivity">
+        <activity
+            android:name=".ui.register.RegisterActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.register.RegisterSecondActivity">
+        <activity
+            android:name=".ui.register.RegisterSecondActivity"
+            android:screenOrientation="portrait">
         </activity>
 
         <meta-data
@@ -105,17 +142,29 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="behind"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        <activity android:name=".ui.user.UserActivity">
+        <activity
+            android:name=".ui.user.UserActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.user.UpdateUserActivity">
+        <activity
+            android:name=".ui.user.UpdateUserActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.user.CityActivity">
+        <activity
+            android:name=".ui.user.CityActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.user.IndividualityActivity">
+        <activity
+            android:name=".ui.user.IndividualityActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.fragment.home.NewsActivity">
+        <activity
+            android:name=".ui.fragment.home.NewsActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.fragment.home.BannerDetailActivity">
+        <activity
+            android:name=".ui.fragment.home.BannerDetailActivity"
+            android:screenOrientation="portrait">
         </activity>
 
         <!-- Bmob自动更新 -->
@@ -243,9 +292,15 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.play.VideoViewActivity">
+        <activity
+            android:name=".ui.play.VideoViewActivity"
+            android:configChanges="orientation|keyboardHidden">
         </activity>
-        <activity android:name=".ui.play.VideoViewLiveActivity"/>
+        <activity
+            android:name=".ui.play.VideoViewLiveActivity"
+            android:configChanges="orientation|keyboardHidden"/>
+        <activity android:name=".ui.left.setting.FeedActivity">
+        </activity>
     </application>
 
 </manifest>
