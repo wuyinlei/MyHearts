@@ -25,4 +25,5 @@ public class Contants {
     public static final String INDEX = "index";
 
     public static final String VIDEO_PATH="videoName";
+    public static final String OBJECT_ID = "object_id";
 }

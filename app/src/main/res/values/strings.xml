@@ -106,5 +106,9 @@
     <string name="feedback_phone_hint">手机号码  (必填)</string>
     <string name="request_not_empty">需求和建议不能为空</string>
     <string name="submit_success">提交成功，谢谢您的建议和需求，我们会尽快改正！！！</string>
+    <string name="change_success">修改密码成功</string>
+
+    <string name="change_password">修改密码</string>
+    <string name="new_function">新功能在计划中,请耐心等候。。。</string>
 
 </resources>

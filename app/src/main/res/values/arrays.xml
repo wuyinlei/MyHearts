@@ -16,4 +16,10 @@
         <item>失业/待业中</item>
         <item>自由职业</item>
     </string-array>
+
+    <string-array name="password">
+        <item>通过手机</item>
+        <item>通过邮箱</item>
+        <item>通过密保</item>
+    </string-array>
 </resources>

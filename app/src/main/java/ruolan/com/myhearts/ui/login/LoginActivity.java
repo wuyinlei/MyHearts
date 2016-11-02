@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
@@ -73,6 +74,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void initListener() {
         mQqLogin.setOnClickListener(this);
         mRegisterAccount.setOnClickListener(this);
+        mTvForgetPassword.setOnClickListener(this);
     }
 
     @Override
@@ -183,6 +185,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     toLogin(mName, mPwd);
                 break;
 
+            case R.id.tv_forget_password:
+                changePassword();
+                break;
+
             case R.id.qq_login:
                 //onClickLogin();
 
@@ -191,6 +197,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
         }
+    }
+
+    /**
+     * 忘记密码之后修改密码
+     * <p>
+     * 只对于注册用户，如果是第三方登录的用户，可以自己去修改第三方
+     * 密码之后再进行登录
+     */
+    private void changePassword() {
+        new MaterialDialog.Builder(this)
+                .title(getResources().getString(R.string.change_password))
+                .items(R.array.password)
+                .backgroundColor(getResources().getColor(R.color.dialog_bg))
+                .itemsCallback((dialog, itemView, position, text) -> {
+                    if (position == 0) {
+                        Intent intent = new Intent(LoginActivity.this, CorrectPasswordFirst.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(LoginActivity.this,
+                                getResources().getString(R.string.new_function),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }).show();
     }
 
     private void updateUserInfo() {
@@ -304,9 +333,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     });
 
                     PreferencesUtils.putString(LoginActivity.this,
-                            Contants.USER_NAME,nickname);
+                            Contants.USER_NAME, nickname);
                     PreferencesUtils.putString(LoginActivity.this,
-                            Contants.USER_PASSWORD,"123456asd");
+                            Contants.USER_PASSWORD, "123456asd");
 
 
 //                    addSubscription(user.signUp(new SaveListener<MyUser>() {
@@ -384,12 +413,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         @Override
         public void onComplete(Object response) {
             if (null == response) {
-               // Util.showResultDialog(LoginActivity.this, "返回为空", "登录失败");
+                // Util.showResultDialog(LoginActivity.this, "返回为空", "登录失败");
                 return;
             }
             JSONObject jsonResponse = (JSONObject) response;
             if (null != jsonResponse && jsonResponse.length() == 0) {
-              //  Util.showResultDialog(LoginActivity.this, "返回为空", "登录失败");
+                //  Util.showResultDialog(LoginActivity.this, "返回为空", "登录失败");
                 return;
             }
             doComplete((JSONObject) response);

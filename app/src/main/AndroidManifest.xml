@@ -301,6 +301,10 @@
             android:configChanges="orientation|keyboardHidden"/>
         <activity android:name=".ui.left.setting.FeedActivity">
         </activity>
+        <activity android:name=".ui.password.ChangePasswordActivity">
+        </activity>
+        <activity android:name=".ui.login.CorrectPasswordFirst">
+        </activity>
     </application>
 
 </manifest>

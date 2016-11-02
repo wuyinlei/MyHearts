@@ -113,7 +113,9 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
         mIcBack = (ImageView) findViewById(R.id.ic_back);
         mIcBack.setOnClickListener(this);
 
-        updateUi(mCurrentUser);
+        if (mCurrentUser !=null) {
+            updateUi(mCurrentUser);
+        }
     }
 
     private void updateUi(MyUser currentUser) {
