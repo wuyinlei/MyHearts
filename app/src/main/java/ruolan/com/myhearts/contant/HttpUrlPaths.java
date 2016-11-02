@@ -65,30 +65,33 @@ public class HttpUrlPaths {
     public static final String LORD_DETAIL_URL = BASE_URL + "social/loadGroupsByCatg";
 
 
-
     //直播url
     public static final String DOUYU_API = "http://capi.douyucdn.cn/api/v1/";
 
 
     /**
      * lol  dota2  炉石
+     *
      * @param channelTag
      * @return
      */
-    public static String getDouyuSubChannelBaseTag(int channelTag) {
-        return DOUYU_API + "live/" + channelTag + "?&limit=20&offset=0";
+    public static String getDouyuSubChannelBaseTag(int channelTag, int limit, int offset) {
+        return DOUYU_API + "live/" + channelTag + "?&limit=" + limit + "&offset=" + offset;
     }
 
     /**
      * 推荐直播api
+     *
      * @return
      */
-    public static String getDouyuLiveChannel() {
-        return DOUYU_API + "live?&limit=30&offset=0";
+    public static String getDouyuLiveChannel(int limit, int offset) {
+        return DOUYU_API + "live?&limit=" + limit + "&offset=" + offset;
     }
+
 
     /**
      * 所有api
+     *
      * @return
      */
     public static String getDouyuAllSubChannels() {

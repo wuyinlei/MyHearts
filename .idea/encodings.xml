@@ -3,6 +3,8 @@
   <component name="Encoding" native2AsciiForPropertiesFiles="false" defaultCharsetForPropertiesFiles="GBK">
     <file url="file://$PROJECT_DIR$/app/build.gradle" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/ruolan/com/myhearts/db/DBManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/abc_ic_ab_back_top.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/ic_action_new.png" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

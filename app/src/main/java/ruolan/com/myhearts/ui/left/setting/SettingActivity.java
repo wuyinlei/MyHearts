@@ -92,7 +92,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
 
             case R.id.setting_byme:
-                StringBuffer sb = new StringBuffer();
+               // StringBuffer sb = new StringBuffer();
 
                 WebActivity.runActivity(this, "My Github,Welcome star", "https://github.com/wuyinlei");
                 break;

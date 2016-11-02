@@ -1,5 +1,6 @@
 package ruolan.com.myhearts.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,15 +26,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static final int TYPE_HEADER = 0;
     public static final int TYPE_NORMAL = 1;
     private static final int TYPE_FOOTER = 2;
+    private Context mContext;
 
     private List<RoomInfo.DataEntity> mDataEntities = new ArrayList<>();
 
-    private View mHeaderView;
-
-    public void setHeaderView(View headerView) {
-        mHeaderView = headerView;
-        notifyItemInserted(0);
-    }
 
     @Override
     public int getItemViewType(int position) {
@@ -42,14 +40,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return TYPE_NORMAL;
     }
 
-    public View getHeaderView() {
-        return mHeaderView;
+    public void clearData(){
+        mDataEntities.clear();
     }
 
-    public CategoryAdapter(List<RoomInfo.DataEntity> dataEntities) {
-        this.mDataEntities = dataEntities;
+    public CategoryAdapter(Context context) {
+        mContext = context;
     }
 
+    public void setDataEntities(List<RoomInfo.DataEntity> dataEntities) {
+        mDataEntities = dataEntities;
+        notifyDataSetChanged();
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -63,30 +65,40 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (getItemViewType(position) == TYPE_HEADER) return;
-        final int pos = getRealPosition(holder);
-        if (holder instanceof ViewHolder) {
-        }
-    }
 
-    public int getRealPosition(RecyclerView.ViewHolder holder) {
-        int position = holder.getLayoutPosition();
-        return mHeaderView == null ? position : position - 1;
+        if (holder instanceof ViewHolder) {
+            ViewHolder viewHolder = (ViewHolder) holder;
+            RoomInfo.DataEntity entity = mDataEntities.get(position);
+            viewHolder.nickname.setText(entity.getNickname());
+            String online = entity.getOnline() + mContext.getResources().getString(R.string.num_people);
+            viewHolder.online.setText(online);
+            Glide.with(mContext)
+                    .load(entity.getRoom_src())
+                    .asBitmap().into(viewHolder.roomSrc);
+            viewHolder.roomSrc.setOnClickListener(v -> {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.OnItemClick(v, position, entity);
+                }
+            });
+        }
     }
 
 
     @Override
     public int getItemCount() {
-
-
-        return mHeaderView == null ?0 : mDataEntities.size()+1;
+        return mDataEntities == null ? 0 : mDataEntities.size() + 1;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView roomSrc;
+        TextView nickname;
+        TextView online;
 
         public ViewHolder(View itemView) {
             super(itemView);
-
+            roomSrc = (ImageView) itemView.findViewById(R.id.iv_room);
+            nickname = (TextView) itemView.findViewById(R.id.nickname);
+            online = (TextView) itemView.findViewById(R.id.online);
         }
     }
 
@@ -104,7 +116,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mOnItemClickListener = onItemClickListener;
     }
 
-    interface OnItemClickListener {
+    public interface OnItemClickListener {
         void OnItemClick(View view, int position, RoomInfo.DataEntity dataEntity);
     }
 }
