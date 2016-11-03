@@ -110,5 +110,14 @@
 
     <string name="change_password">修改密码</string>
     <string name="new_function">新功能在计划中,请耐心等候。。。</string>
+    <string name="clear_success">清理成功</string>
+    <string name="clear_tip">提示</string>
+    <string name="ok">确定</string>
+    <string name="notification">通知</string>
+    <string name="notification_content">热爱编程的小白\r\n\r\n
+QQ:1069584784(爱好交友)\r\n\r\n
+CSDN地址：http://blog.csdn.net/wuyinlei\r\n\r\n
+GitHub地址：https://github.com/wuyinlei\r\n\r\n
+欢迎访问和Fork</string>
 
 </resources>

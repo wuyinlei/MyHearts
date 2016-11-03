@@ -3,12 +3,16 @@ package ruolan.com.myhearts.ui.left.setting;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.List;
 
@@ -95,6 +99,12 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         mUpdatePassword = (LinearLayout) findViewById(R.id.goupdate_password);
     }
 
+    /**
+     * 获取当前版本号码
+     *
+     * @return 当前版本号
+     * @throws Exception
+     */
     private String getVersionName() throws Exception {
         // 获取packagemanager的实例
         PackageManager packageManager = getPackageManager();
@@ -109,7 +119,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.ic_back:
+            case R.id.img_back:
                 finish();
                 break;
 
@@ -153,10 +163,9 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 } else {
                     intent.setClass(this, ChangePasswordActivity.class);
                     intent.putExtra(Contants.USER_NAME, mMyUser.getUsername());
-                    intent.putExtra(Contants.OBJECT_ID,mMyUser.getObjectId());
+                    intent.putExtra(Contants.OBJECT_ID, mMyUser.getObjectId());
                 }
                 startActivity(intent);
-
                 break;
 
             case R.id.version_check:
@@ -164,8 +173,12 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
 
             case R.id.clear_cache:
-                DataCleanManager.clearAllCache(this);
-                mCurrentCache.setText("0 KB");
+                DataCleanManager.clearAllCache(this);  //清理app缓存
+                new MaterialDialog.Builder(this)
+                        .title(getResources().getString(R.string.clear_tip))
+                        .content(getResources().getString(R.string.clear_success))
+                        .positiveText(getResources().getString(R.string.ok))
+                        .onPositive((dialog, which) -> mCurrentCache.setText("0 KB")).show();
                 break;
 
             case R.id.setting_byme:
@@ -181,5 +194,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
 
         }
+
     }
 }

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -21,6 +22,8 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -203,6 +206,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
 
         mAvatorImg.setOnClickListener(this);
         mReLookMore.setOnClickListener(this);
+        mCustomerServiceTv.setOnClickListener(this);
     }
 
     List<HomeNewsBean.ResultsBean> mHomeNewsData = new ArrayList<>();
@@ -522,6 +526,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                 ((MainActivityDrawerLayout) getActivity())
                         .getDragLayout()
                         .openDrawer(GravityCompat.START);
+                break;
+
+            case R.id.customer_service_tv:
+                new MaterialDialog.Builder(getActivity())
+                        .title(getActivity().getResources().getString(R.string.notification))
+                        .content(getActivity().getResources().getString(R.string.notification_content))
+                        .positiveText(getActivity().getResources().getString(R.string.ok))
+                        .onPositive((dialog, which) -> {
+
+                        }).show();
                 break;
 
             default:

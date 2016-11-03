@@ -98,7 +98,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void LoginInEvent(LoginEvent event) {
 
-        if (event!=null) {
+        if (event != null) {
             mReLogin.setClickable(false);
         }
 
@@ -221,9 +221,10 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
                     loginOutUi();
                     MyUser.logOut();
                     PreferencesUtils.putString(getActivity(),
-                            Contants.USER_NAME,"");
+                            Contants.USER_NAME, "");
                     PreferencesUtils.putString(getContext(),
-                            Contants.USER_PASSWORD,"");
+                            Contants.USER_PASSWORD, "");
+                    mTvName.setText(getActivity().getResources().getString(R.string.login_in));
                     EventBus.getDefault().post(new LoginOut(true));
                     isTologin = true;
                 } else if (mBtLogin.getText().equals(getContext().getResources()
@@ -233,7 +234,13 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.img_avatar:
             case R.id.tv_name:
-                intent.setClass(getActivity(),UserActivity.class);
+                if (mBtLogin.getText().equals(getContext().getResources()
+                        .getString(R.string.login_in))) {
+                    intent.setClass(getActivity(), LoginActivity.class);
+                } else if (mBtLogin.getText().equals(getContext().getResources()
+                        .getString(R.string.login_out))) {
+                    intent.setClass(getActivity(), UserActivity.class);
+                }
                 break;
 
 

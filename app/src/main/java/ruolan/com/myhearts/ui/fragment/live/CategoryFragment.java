@@ -1,14 +1,12 @@
 package ruolan.com.myhearts.ui.fragment.live;
 
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +27,6 @@ import ruolan.com.myhearts.adapter.CategoryAdapter;
 import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
 import ruolan.com.myhearts.entity.RoomInfo;
-import ruolan.com.myhearts.ui.play.VideoViewActivity;
-import ruolan.com.myhearts.ui.play.VideoViewLiveActivity;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
