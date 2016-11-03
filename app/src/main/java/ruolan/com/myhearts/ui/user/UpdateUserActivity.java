@@ -49,8 +49,9 @@ public class UpdateUserActivity extends BaseActivity implements View.OnClickList
     public void initData() {
         super.initData();
         mCurrentUser = MyUser.getCurrentUser(MyUser.class);
-        updateUI(mCurrentUser);
-
+        if (mCurrentUser!=null) {  //如果能够找到当前的用户信息，就去更新ui，如果没有那就代表没有登录过
+            updateUI(mCurrentUser);
+        }
     }
 
     /**

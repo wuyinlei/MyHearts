@@ -102,15 +102,16 @@ public class CategoryFragment extends Fragment implements SwipeRefreshLayout.OnR
         mRecyclerview.setLayoutManager(gridLayoutManager);
         mRecyclerview.setAdapter(mCategoryAdapter);
         mCategoryAdapter.setOnItemClickListener((view1, position, dataEntity) -> {
-            if (position%2==0) {
-                Intent intent = new Intent(getActivity(), VideoViewActivity.class);
-                intent.putExtra(Contants.VIDEO_PATH, "http://125.39.142.86/data2/video09/2016/03/01/3871799-102-1615.mp4");
-                getActivity().startActivity(intent);
-            } else {
-                Intent intent = new Intent(getActivity(), VideoViewLiveActivity.class);
-                intent.putExtra(Contants.VIDEO_PATH,"rtmp://live.hkstv.hk.lxdns.com/live/hks");
-                getActivity().startActivity(intent);
-            }
+            // TODO: 2016/11/3 先禁止观看   等优化好之后再次开放 
+//            if (position%2==0) {
+//                Intent intent = new Intent(getActivity(), VideoViewActivity.class);
+//                intent.putExtra(Contants.VIDEO_PATH, "http://125.39.142.86/data2/video09/2016/03/01/3871799-102-1615.mp4");
+//                getActivity().startActivity(intent);
+//            } else {
+//                Intent intent = new Intent(getActivity(), VideoViewLiveActivity.class);
+//                intent.putExtra(Contants.VIDEO_PATH,"rtmp://live.hkstv.hk.lxdns.com/live/hks");
+//                getActivity().startActivity(intent);
+//            }
         });
 
 
