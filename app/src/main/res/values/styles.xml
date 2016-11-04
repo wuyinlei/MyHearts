@@ -142,4 +142,18 @@
     </style>
 
 
+    <style name="group_textview_style">
+        <item name="android:textSize">@dimen/detail_text_h2</item>
+        <item name="android:textColor">@color/text_detail_gray</item>
+        <item name="android:layout_marginLeft">20.0dip</item>
+        <item name="android:layout_marginRight">25.0dip</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="group_textview_style2">
+        <item name="android:textSize">@dimen/detail_text_h2</item>
+        <item name="android:textColor">@color/black2</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+
 </resources>

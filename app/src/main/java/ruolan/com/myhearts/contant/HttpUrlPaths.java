@@ -39,6 +39,9 @@ public class HttpUrlPaths {
     public static final String HOME_RECOMMENT_ONE_BANNER = BASE_URL + "multimedia/recommandLiveShow";
     public static final String HOME_RECOMMENT_TWO_BANNER = BASE_URL + "psychology/dailyExam";
 
+    //首页我要倾诉  咨询url
+    public static final String HOME_POUR_OUT_CONSULT_URL=BASE_URL+"consultant/loadWebcallConsultants";
+
 
     //tag  http://api.xinliji.me/consultant/loadTags  分类
     public static final String ALL_CATEGORY_TAG = BASE_URL + "consultant/loadTags";
@@ -60,10 +63,29 @@ public class HttpUrlPaths {
     public static final String LORD_BANNER = BASE_URL + "social/loadRecommendGroups";
 
     // 心事   userid = 54442
+    //labelid=0&type=1&page=1&userid=0  最新
+    //labelid=0&type=2&page=1&userid=0
+
+    //labelid=2&type=1&page=1&userid=0
+    //labelid=1&type=1&page=1&userid=0  其他
     public static final String THOUGHTS_URL = BASE_URL + "social/nearuserevents_v3";
 
+
+    //page=1&userid=0&searchtype=0  亲子教育
+    //catgId=1&page=1&userid=0 情绪困扰
+    //catgId=4&page=1&userid=0 青春成长
+    //catgId=5&page=1&userid=0
+    //catgId=1&page=2&userid=0
     public static final String LORD_DETAIL_URL = BASE_URL + "social/loadGroupsByCatg";
 
+    //?userid=0&groupid=309   群组详情
+    public static final String LORD_GROUP_DETAIL_URL = BASE_URL+"social/groupinfo?userid=0&groupid=309";
+
+    //群成员url   page=1&groupid=309
+    public static final String LORD_MEMBER_DETAILE_URL = BASE_URL +"social/groupmembers?page=1&groupid=309";
+
+    //群成员详情 cuserid=0&userid=112730
+    public static final String LORD_GROUP_MEMBER_DETAIL ="user/profile?cuserid=0&userid=112730";
 
     //直播url
     public static final String DOUYU_API = "http://capi.douyucdn.cn/api/v1/";

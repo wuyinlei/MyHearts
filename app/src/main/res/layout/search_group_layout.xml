@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whitef5f5f5">
+
+        <EditText
+            android:id="@id/search_et"
+            android:layout_width="fill_parent"
+            android:layout_height="45.0dip"
+            android:layout_margin="5.0dip"
+            android:background="@drawable/advice_serch_bg"
+            android:cursorVisible="true"
+            android:drawableLeft="@drawable/search_grey"
+            android:hint="请输入群组名称或群组类别"
+            android:maxLength="20"
+            android:paddingLeft="10.0dip"
+            android:singleLine="true"
+            android:textColor="@color/black555555"
+            android:textColorHint="#ffbfbfbf"
+            android:textCursorDrawable="@null"
+            android:textSize="12.0sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_recycler_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:cacheColorHint="@null"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:stackFromBottom="false"/>
+    </LinearLayout>
+</LinearLayout>

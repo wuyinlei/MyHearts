@@ -119,5 +119,13 @@ QQ:1069584784(爱好交友)\r\n\r\n
 CSDN地址：http://blog.csdn.net/wuyinlei\r\n\r\n
 GitHub地址：https://github.com/wuyinlei\r\n\r\n
 欢迎访问和Fork</string>
+    <string name="group_winer">群主</string>
+    <string name="group_code">群组号</string>
+    <string name="group_address">群地址</string>
+    <string name="group_cag">群类别</string>
+    <string name="group_member">群成员</string>
+    <string name="group_check">审         核</string>
+    <string name="group_introduce">群介绍</string>
+    <string name="back">返回</string>
 
 </resources>
