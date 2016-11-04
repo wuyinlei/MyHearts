@@ -127,6 +127,8 @@ public class MyApplication
     }
 
 
+
+
     /**
      * Picasso 加载
      */

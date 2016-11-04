@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -105,6 +106,19 @@ public class AdvisoryFragment extends Fragment {
             startActivity(intent);
         });
         mDataList.setAdapter(mAdvisoryAdapter);
+        mRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
+            @Override
+            public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
+                refreshData();
+            }
+        });
+    }
+
+    /**
+     * 刷新数据
+     */
+    private void refreshData() {
+        new Handler().postDelayed(() -> mRefreshLayout.autoRefresh(),3000);
     }
 
     private void initAdvisoryDatas() {
