@@ -60,8 +60,13 @@ public class NewFragment extends Fragment {
      * 请求数据
      */
     private void initData() {
+
+        //labelid=0&type=1&page=1&userid=0
         OkGo.post(HttpUrlPaths.THOUGHTS_URL)
                 .params("userid",54442)
+                .params("labelid",0)
+                .params("type",1)
+                .params("page",1)
                 .getCall(StringConvert.create(), RxAdapter.<String>create())
                 .doOnSubscribe(()->{})
                 .observeOn(AndroidSchedulers.mainThread())

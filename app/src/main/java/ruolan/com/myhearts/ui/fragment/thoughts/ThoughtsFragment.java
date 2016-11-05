@@ -11,6 +11,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -154,6 +155,7 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
         mPopupAdapter.setOnItemClick((v, i, data) -> {
             mPopupAdapter.setPosition(i);
             mPopupAdapter.notifyDataSetChanged();
+
             Toast.makeText(getContext(), data, Toast.LENGTH_SHORT).show();
         });
         mPopupRecylerView.setAdapter(mPopupAdapter);
@@ -168,6 +170,17 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
         mPopupWindow.setTouchable(true);
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable(getContext().getResources()));
+
+
+        // 设置背景颜色变暗
+        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        lp.alpha = 0.7f;
+        getActivity().getWindow().setAttributes(lp);
+        mPopupWindow.setOnDismissListener(() -> {
+            WindowManager.LayoutParams lp1 = getActivity().getWindow().getAttributes();
+            lp1.alpha = 1f;
+            getActivity().getWindow().setAttributes(lp1);
+        });
     }
 
     @Override

@@ -44,6 +44,9 @@ public class LordDetailActivity extends BaseActivity implements View.OnClickList
     private boolean isLordMore = true;
 
     String mTitle;
+
+    String catgId;  //分类id
+    int page = 1;
     private LordDetailAdapter detailAdapter;
 
 
@@ -77,16 +80,53 @@ public class LordDetailActivity extends BaseActivity implements View.OnClickList
                 isLordMore = false;
                 new Handler().postDelayed(() -> {
                     //mNoData.setVisibility(View.VISIBLE);
-                   // mLordRefresh.setLoadMore(false);
-                   // detailAdapter.notifyDataSetChanged();
-                   // mLordRefresh.finishRefreshLoadMore();
+                    // mLordRefresh.setLoadMore(false);
+                    // detailAdapter.notifyDataSetChanged();
+                    // mLordRefresh.finishRefreshLoadMore();
+                    loadMoreData();
+                    //mLordRefresh.autoRefreshLoadMore();
                 }, 3000);
             }
         });
     }
 
-    private void initRefresh(MaterialRefreshLayout materialRefreshLayout) {
+    /**
+     * 加载更多的数据
+     */
+    private void loadMoreData() {
+
+        page++; //重置  在刷新的时候
         OkGo.post(HttpUrlPaths.LORD_DETAIL_URL)
+                .params("catgId", catgId)
+                .params("page", page)
+                .params("userid", 0)
+                .getCall(StringConvert.create(), RxAdapter.<String>create())
+                .doOnSubscribe(() -> {
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+                    Type type = new TypeToken<LordDetailBean>() {
+                    }.getType();
+                    LordDetailBean bean = new Gson().fromJson(s, type);
+                    if (bean.getErrorStr().equals("success")
+                            && bean.getErrorCode() == 0
+                            && bean.getResultCount() > 0) {
+                        //mLordDetailDatas.clear();
+                        //mLordDetailDatas.addAll(bean.getResults());
+                        detailAdapter.addData(mLordDetailDatas.size(),bean.getResults());
+                        detailAdapter.notifyDataSetChanged();
+                        mLordRefresh.autoRefreshLoadMore();
+                    }
+                }, throwable -> {
+                });
+    }
+
+    private void initRefresh(MaterialRefreshLayout materialRefreshLayout) {
+        page = 1; //重置  在刷新的时候
+        OkGo.post(HttpUrlPaths.LORD_DETAIL_URL)
+                .params("catgId", catgId)
+                .params("page", page)
+                .params("userid", 0)
                 .getCall(StringConvert.create(), RxAdapter.<String>create())
                 .doOnSubscribe(() -> {
                 })
@@ -119,6 +159,9 @@ public class LordDetailActivity extends BaseActivity implements View.OnClickList
      */
     private void initLordDetailData() {
         OkGo.post(HttpUrlPaths.LORD_DETAIL_URL)
+                .params("catgId", catgId)
+                .params("page", page)
+                .params("userid", 0)
                 .getCall(StringConvert.create(), RxAdapter.<String>create())
                 .doOnSubscribe(() -> {
                 })
@@ -164,7 +207,10 @@ public class LordDetailActivity extends BaseActivity implements View.OnClickList
         if (mTitle != null && !TextUtils.isEmpty(mTitle)) {
             mTvTitle.setText(mTitle);
         }
+
+        catgId = getIntent().getStringExtra("catgId");
     }
+
 
     @Override
     public void onClick(View v) {

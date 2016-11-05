@@ -11,7 +11,7 @@
         android:background="@color/whitef5f5f5">
 
         <EditText
-            android:id="@id/search_et"
+            android:id="@+id/search_et"
             android:layout_width="fill_parent"
             android:layout_height="45.0dip"
             android:layout_margin="5.0dip"

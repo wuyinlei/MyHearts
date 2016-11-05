@@ -37,14 +37,14 @@
                     android:text="@string/group_winer"/>
 
                 <ruolan.com.myhearts.widget.CircleImageView
-                    android:id="@id/group_nickimage"
+                    android:id="@+id/group_nickimage"
                     android:layout_width="30.0dip"
                     android:layout_height="30.0dip"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="5.0dip"
                     android:layout_toRightOf="@id/lb_winer"
                     android:scaleType="fitXY"
-                    app:oval="true"/>
+                   />
 
                 <TextView
                     android:id="@+id/group_nickname"

@@ -1,6 +1,7 @@
 package ruolan.com.myhearts.ui.fragment.lord;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -8,12 +9,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -105,6 +108,7 @@ public class LordFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         mLordRecyclerView.setAdapter(mLordAdapter);
         mLordAdapter.setOnItemClickListener((view1, position) -> {
             Intent intent = new Intent(getContext(),LordDetailActivity.class);
+            intent.putExtra("catgId",mLordDatas.get(position).getId());
             intent.putExtra("title",mLordDatas.get(position).getLabel());
             startActivity(intent);
             //Toast.makeText(getContext(), mLordDatas.get(position).getLabel(), Toast.LENGTH_SHORT).show();
@@ -174,5 +178,15 @@ public class LordFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         mPopupWindow.setTouchable(true);
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable(getContext().getResources()));
+
+        // 设置背景颜色变暗
+        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        lp.alpha = 0.7f;
+        getActivity().getWindow().setAttributes(lp);
+        mPopupWindow.setOnDismissListener(() -> {
+            WindowManager.LayoutParams lp1 = getActivity().getWindow().getAttributes();
+            lp1.alpha = 1f;
+            getActivity().getWindow().setAttributes(lp1);
+        });
     }
 }

@@ -61,6 +61,9 @@ public class HotFragment extends Fragment {
     private void initData() {
         OkGo.post(HttpUrlPaths.THOUGHTS_URL)
                 .params("userid",54442)
+                .params("labelid",0)
+                .params("type",2)
+                .params("page",1)
                 .getCall(StringConvert.create(), RxAdapter.<String>create())
                 .doOnSubscribe(()->{})
                 .observeOn(AndroidSchedulers.mainThread())
