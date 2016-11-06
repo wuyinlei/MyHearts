@@ -1,5 +1,6 @@
 package ruolan.com.myhearts.ui.fragment.lord;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +27,7 @@ import ruolan.com.myhearts.adapter.LordDetailAdapter;
 import ruolan.com.myhearts.entity.LordDetailBean;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
+import ruolan.com.myhearts.ui.base.BaseAdapter;
 import ruolan.com.myhearts.widget.DividerItemDecoration;
 import ruolan.com.myhearts.widget.itemanimator.SlideInOutRightItemAnimator;
 import rx.android.schedulers.AndroidSchedulers;
@@ -202,11 +204,26 @@ public class LordDetailActivity extends BaseActivity implements View.OnClickList
         detailAdapter = new LordDetailAdapter(this, mLordDetailDatas);
         mLordDetailRecyclerView.setAdapter(detailAdapter);
 
-
         mTitle = getIntent().getStringExtra("title");
         if (mTitle != null && !TextUtils.isEmpty(mTitle)) {
             mTvTitle.setText(mTitle);
         }
+
+        detailAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                LordDetailBean.ResultsBean bean = mLordDetailDatas.get(position);
+                int id = Integer.parseInt(bean.getId());
+                Intent intent = new Intent(LordDetailActivity.this,
+                        GroupDetailActivity.class);
+                intent.putExtra("id",id);
+                intent.putExtra("title",mTitle);
+                startActivity(intent);
+            }
+        });
+
+
+
 
         catgId = getIntent().getStringExtra("catgId");
     }

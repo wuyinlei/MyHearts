@@ -19,6 +19,10 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.convert.StringConvert;
 import com.lzy.okrx.RxAdapter;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +31,7 @@ import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.adapter.ThroughtAdapter;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
 import ruolan.com.myhearts.entity.ThoughtsBean;
+import ruolan.com.myhearts.event.CatgidEvent;
 import ruolan.com.myhearts.widget.DividerItemDecoration;
 import ruolan.com.myhearts.widget.itemanimator.ScaleInOutItemAnimator;
 import rx.android.schedulers.AndroidSchedulers;
@@ -49,6 +54,7 @@ public class NewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_new, container, false);
+        EventBus.getDefault().register(this);
         initView(view);
         initData();
         return view;
@@ -64,7 +70,7 @@ public class NewFragment extends Fragment {
         //labelid=0&type=1&page=1&userid=0
         OkGo.post(HttpUrlPaths.THOUGHTS_URL)
                 .params("userid",54442)
-                .params("labelid",0)
+                .params("labelid",catgId)
                 .params("type",1)
                 .params("page",1)
                 .getCall(StringConvert.create(), RxAdapter.<String>create())
@@ -80,6 +86,46 @@ public class NewFragment extends Fragment {
                         mThroughtAdapter.setResultsBeen(mThroughtDatas);
                         mRefreshLayout.setLoadMore(true);
                         mRefreshLayout.setClickable(true);
+                    }
+                },throwable -> {});
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void initPopupData(CatgidEvent event){
+        if (event!=null){
+            //int id = event.id;
+            catgId = event.id;
+            refreshId(catgId);
+        }
+    }
+
+    private int catgId  = 1;
+
+    /**
+     * 当点击popup的时候,根据所选择的分类,来展示不同分类下面的空间消息内容
+     *
+     * @param id  catgId
+     */
+    private void refreshId(int id) {
+        OkGo.post(HttpUrlPaths.THOUGHTS_URL)
+                .params("userid",54442)
+                .params("labelid",catgId)
+                .params("type",1)
+                .params("page",1)
+                .getCall(StringConvert.create(), RxAdapter.<String>create())
+                .doOnSubscribe(()->{})
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s->{
+                    Type type = new TypeToken<ThoughtsBean>(){}.getType();
+                    ThoughtsBean bean = new Gson().fromJson(s,type);
+                    if (bean.getErrorCode()==0
+                            &&bean.getResultCount()>0
+                            &&bean.getErrorStr().equals("success")){
+                        mThroughtDatas.clear();
+                        mRefreshLayout.finishRefresh();
+                        mThroughtDatas = bean.getResults();
+                        //mThroughtAdapter.notifyDataSetChanged();
+                        mThroughtAdapter.setResultsBeen(mThroughtDatas);
                     }
                 },throwable -> {});
     }
@@ -128,24 +174,33 @@ public class NewFragment extends Fragment {
      * 刷新数据
      */
     private void refreshData() {
-        OkGo.post(HttpUrlPaths.THOUGHTS_URL)
-                .params("userid",54442)
-                .getCall(StringConvert.create(), RxAdapter.<String>create())
-                .doOnSubscribe(()->{})
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s->{
-                    Type type = new TypeToken<ThoughtsBean>(){}.getType();
-                    ThoughtsBean bean = new Gson().fromJson(s,type);
-                    if (bean.getErrorCode()==0
-                            &&bean.getResultCount()>0
-                            &&bean.getErrorStr().equals("success")){
-                        mThroughtDatas.clear();
-                        mRefreshLayout.finishRefresh();
-                        mThroughtDatas = bean.getResults();
-                        //mThroughtAdapter.notifyDataSetChanged();
-                        mThroughtAdapter.setResultsBeen(mThroughtDatas);
-                    }
-                },throwable -> {});
+        refreshId(catgId);
+//        OkGo.post(HttpUrlPaths.THOUGHTS_URL)
+//                .params("userid",54442)
+//                .params("labelid",catgId)
+//                .params("type",1)
+//                .params("page",1)
+//                .getCall(StringConvert.create(), RxAdapter.<String>create())
+//                .doOnSubscribe(()->{})
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(s->{
+//                    Type type = new TypeToken<ThoughtsBean>(){}.getType();
+//                    ThoughtsBean bean = new Gson().fromJson(s,type);
+//                    if (bean.getErrorCode()==0
+//                            &&bean.getResultCount()>0
+//                            &&bean.getErrorStr().equals("success")){
+//                        mThroughtDatas.clear();
+//                        mRefreshLayout.finishRefresh();
+//                        mThroughtDatas = bean.getResults();
+//                        //mThroughtAdapter.notifyDataSetChanged();
+//                        mThroughtAdapter.setResultsBeen(mThroughtDatas);
+//                    }
+//                },throwable -> {});
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

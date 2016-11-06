@@ -18,11 +18,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.adapter.TabViewPagerAdapter;
+import ruolan.com.myhearts.event.CatgidEvent;
 import ruolan.com.myhearts.widget.ThoughtViewPager;
 
 /**
@@ -86,7 +89,7 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
                 getActivity().getResources().getString(R.string.romantic_attachment_thought),
                 getActivity().getResources().getString(R.string.friends_pay_thought),
                 getActivity().getResources().getString(R.string.psychological_disorders_thought),
-                getActivity().getResources().getString(R.string.my_thought),
+              //  getActivity().getResources().getString(R.string.my_thought),
                 getActivity().getResources().getString(R.string.other_thought)
         };
     }
@@ -155,8 +158,8 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
         mPopupAdapter.setOnItemClick((v, i, data) -> {
             mPopupAdapter.setPosition(i);
             mPopupAdapter.notifyDataSetChanged();
-
-            Toast.makeText(getContext(), data, Toast.LENGTH_SHORT).show();
+            EventBus.getDefault().post(new CatgidEvent(i));
+            //Toast.makeText(getContext(), data, Toast.LENGTH_SHORT).show();
         });
         mPopupRecylerView.setAdapter(mPopupAdapter);
 

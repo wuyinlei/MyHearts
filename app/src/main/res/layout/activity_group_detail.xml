@@ -44,7 +44,7 @@
                     android:layout_marginRight="5.0dip"
                     android:layout_toRightOf="@id/lb_winer"
                     android:scaleType="fitXY"
-                   />
+                    />
 
                 <TextView
                     android:id="@+id/group_nickname"
@@ -188,7 +188,13 @@
                     android:layout_weight="1.0"
                     android:gravity="center|left"
                     android:orientation="horizontal"
-                    android:paddingLeft="10.0dip"/>
+                    android:paddingLeft="10.0dip">
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/group_detail_member"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    </LinearLayout>
             </LinearLayout>
 
             <RelativeLayout

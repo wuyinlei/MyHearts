@@ -305,6 +305,8 @@
         </activity>
         <activity android:name=".ui.login.CorrectPasswordFirst">
         </activity>
+        <activity android:name=".ui.fragment.lord.GroupDetailActivity">
+        </activity>
     </application>
 
 </manifest>
