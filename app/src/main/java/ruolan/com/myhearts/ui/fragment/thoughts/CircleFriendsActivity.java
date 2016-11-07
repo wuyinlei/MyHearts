@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -29,11 +30,12 @@ import ruolan.com.myhearts.entity.CircleFriendsCommentBean;
 import ruolan.com.myhearts.entity.CircleFriendsUserBean;
 import ruolan.com.myhearts.entity.CircleFriendsUserBean.ResultsEntity;
 import ruolan.com.myhearts.ui.base.BaseActivity;
+import ruolan.com.myhearts.widget.FullyLinearLayoutManager;
 import ruolan.com.myhearts.widget.GlideCircleTransform;
 import ruolan.com.myhearts.widget.itemanimator.SlideInOutTopItemAnimator;
 import rx.android.schedulers.AndroidSchedulers;
 
-public class CircleFriendsActivity extends BaseActivity {
+public class CircleFriendsActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView mIvtour;
     private TextView mTvname;
@@ -47,7 +49,10 @@ public class CircleFriendsActivity extends BaseActivity {
     private TextView mTvviewcount;
     private RecyclerView mRecyclerview;
     private LinearLayout mRecomment;
-    private LinearLayout mLlrote;
+    //private LinearLayout mLlrote;
+
+    //title
+    private ImageView mIcBack,mIcReport;
 
     private int page = 1;
 
@@ -63,7 +68,8 @@ public class CircleFriendsActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-
+        mIcReport.setOnClickListener(this);
+        mIcBack.setOnClickListener(this);
     }
 
     @Override
@@ -109,6 +115,7 @@ public class CircleFriendsActivity extends BaseActivity {
                             && bean.getErrorStr().equals("success")) {
                         mCircleFriendsComments = bean.getResults();
                         if (mCircleFriendsComments.size()>0){
+                            Toast.makeText(this, "mCircleFriendsComments.size():" + mCircleFriendsComments.size(), Toast.LENGTH_SHORT).show();
                             mRecomment.setVisibility(View.VISIBLE);
                             mCommentAdapter.setDatas(mCircleFriendsComments);
                         } else {
@@ -172,11 +179,16 @@ public class CircleFriendsActivity extends BaseActivity {
     @Override
     public void initView() {
         eventid = getIntent().getStringExtra("eventid");
-        this.mLlrote = (LinearLayout) findViewById(R.id.ll_rote);
+        //this.mLlrote = (LinearLayout) findViewById(R.id.ll_rote);
         this.mRecomment = (LinearLayout) findViewById(R.id.re_comment);
         this.mRecyclerview = (RecyclerView) findViewById(R.id.recycler_view);
 
-        LinearLayoutManager manager = new LinearLayoutManager(this);
+        FullyLinearLayoutManager manager = new FullyLinearLayoutManager(this){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
         mRecyclerview.setLayoutManager(manager);
         mRecyclerview.setItemAnimator(new SlideInOutTopItemAnimator(mRecyclerview));
         mCommentAdapter = new CircleFriendsCommentAdapter(this, mCircleFriendsComments);
@@ -192,5 +204,19 @@ public class CircleFriendsActivity extends BaseActivity {
         this.mTvtime = (TextView) findViewById(R.id.tv_time);
         this.mTvname = (TextView) findViewById(R.id.tv_name);
         this.mIvtour = (ImageView) findViewById(R.id.iv_tour);
+
+        this.mIcBack = (ImageView) findViewById(R.id.ic_back);
+        this.mIcReport = (ImageView) findViewById(R.id.ic_report);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.ic_back:
+                finish();
+                break;
+            case R.id.ic_report:
+                break;
+        }
     }
 }

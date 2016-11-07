@@ -1,10 +1,6 @@
 [
     {
-        "merged": "F:\\MyHearts\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
-        "source": "F:\\MyHearts\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
-    },
-    {
-        "merged": "F:\\Users\\wuyinlei\\App\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
-        "source": "F:\\Users\\wuyinlei\\App\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
+        "merged": "/Users/wuyinlei/App/vitamio/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ic_launcher.png",
+        "source": "/Users/wuyinlei/App/vitamio/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ic_launcher.png"
     }
 ]

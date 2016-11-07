@@ -1,6 +1,7 @@
 package ruolan.com.myhearts.ui.fragment.thoughts;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -152,6 +153,13 @@ public class HotFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setItemAnimator(new ScaleInOutItemAnimator(mRecyclerView));
         mThroughtAdapter = new ThroughtAdapter(getContext(), mThroughtDatas);
+
+        mThroughtAdapter.setOnItemClick((view1, position, bean) -> {
+            Intent intent = new Intent(getActivity(),CircleFriendsActivity.class);
+            intent.putExtra("eventid",bean.getId());
+            startActivity(intent);
+        });
+
         mRecyclerView.setAdapter(mThroughtAdapter);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh);
         mRefreshLayout.setColorSchemeColors(Color.YELLOW, Color.RED, Color.BLUE, Color.GREEN);
