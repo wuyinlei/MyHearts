@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,10 +39,12 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
     private TabLayout mTabLayout;
     private ImageView mIvRemind, mIvNote;
     private TextView mTvTitle;
+    private ImageView mIvRow;
 
     private PopupWindow mPopupWindow;
 
     private RecyclerView mPopupRecylerView;
+    private LinearLayout mLlDismiss;
 
 //    <string name="all_thought">全部</string>
 //    <string name="parenting_thought">亲子教育</string>
@@ -99,6 +102,7 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
         mTvTitle.setOnClickListener(this);
         mIvRemind.setOnClickListener(this);
         mIvNote.setOnClickListener(this);
+        mIvRow.setOnClickListener(this);
     }
 
 
@@ -108,6 +112,7 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
         mTvTitle = (TextView) inflate.findViewById(R.id.tv_title);
         mViewPager = (ThoughtViewPager) inflate.findViewById(R.id.viewpager);
         mTabLayout = (TabLayout) inflate.findViewById(R.id.tab_layout);
+        mIvRow = (ImageView) inflate.findViewById(R.id.img_row);
     }
 
 
@@ -153,6 +158,7 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
         mPopupRecylerView = (RecyclerView) popupWindow.findViewById(R.id.recycler_view);
         mPopupRecylerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         mPopupRecylerView.setItemAnimator(new DefaultItemAnimator());
+        mLlDismiss = (LinearLayout) popupWindow.findViewById(R.id.ll_dismiss);
 
         mPopupAdapter = new MyPopupAdapter();
         mPopupAdapter.setOnItemClick((v, i, data) -> {
@@ -168,9 +174,14 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
         //  mReAddGroup.setOnClickListener(this);
         // mReSearchGroup = (RelativeLayout) popupWindow.findViewById(R.id.re_search_group);
         // mReSearchGroup.setOnClickListener(this);
-        mPopupWindow = new PopupWindow(popupWindow,
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT, true);
+        mPopupWindow = new PopupWindow(popupWindow);
+        mPopupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        mPopupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        mLlDismiss.setOnClickListener(view -> {
+            if (mPopupWindow != null && mPopupWindow.isShowing()) {
+                mPopupWindow.dismiss();
+            }
+        });
         mPopupWindow.setTouchable(true);
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable(getContext().getResources()));
@@ -187,12 +198,22 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
 //        });
     }
 
+    private boolean isShowing = false;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_title:
+            case R.id.img_row:
                 //initPopup();
-                mPopupWindow.showAsDropDown(v);
+                if (!isShowing ) {
+                    mPopupWindow.showAsDropDown(v);
+                    mIvRow.setBackgroundResource(R.drawable.ic_arrow_drop_down_black_24dp);
+                    isShowing = true;
+                } else if (isShowing) {
+                    mPopupWindow.dismiss();
+                    isShowing = false;
+                }
                 break;
             case R.id.img_note:
 

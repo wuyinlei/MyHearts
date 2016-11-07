@@ -1,7 +1,6 @@
 package ruolan.com.myhearts.ui.fragment.lord;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -9,15 +8,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -163,10 +159,10 @@ public class LordFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.img_group_list) {
-            if (!isShowing) {
+            if (!isShowing && mPopupWindow == null) {
                 mPopupWindow.showAsDropDown(v);
                 isShowing = true;
-            } else {
+            } else if (isShowing && mPopupWindow !=null){
                 mPopupWindow.dismiss();
                 isShowing = false;
             }

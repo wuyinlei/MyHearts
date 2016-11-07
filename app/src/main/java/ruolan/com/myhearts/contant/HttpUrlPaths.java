@@ -70,6 +70,11 @@ public class HttpUrlPaths {
     //labelid=1&type=1&page=1&userid=0  其他
     public static final String THOUGHTS_URL = BASE_URL + "social/nearuserevents_v3";
 
+    //心事详情界面   eventid=27051&userid=0
+    public static final String THOUGHTS_DETAIL_URL = BASE_URL+"social/usereventdetails_v3";
+
+    //心事详情评论URL  type=user_event&eventid=27051&userid=0
+    public static final String THOUGHTS_DETAIL_COMMENT_URL = BASE_URL + "social/loadeventcomments";
 
     //page=1&userid=0&searchtype=0  亲子教育
     //catgId=1&page=1&userid=0 情绪困扰

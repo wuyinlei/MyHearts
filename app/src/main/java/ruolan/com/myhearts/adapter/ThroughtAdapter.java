@@ -153,6 +153,7 @@ public class ThroughtAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         private RecyclerView mCommentRecycler;
         private LinearLayout mCommentRe;
         private NineGridView mPhotoRecycler;
+        private LinearLayout mLlRote;
 
 
         ThroughtViewHolder(View view) {
@@ -167,6 +168,12 @@ public class ThroughtAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             mPhotoRecycler = (NineGridView) view.findViewById(R.id.nineGrid);
             mCommentRecycler = (RecyclerView) view.findViewById(R.id.recycler_view);
             mCommentRe = (LinearLayout) view.findViewById(R.id.re_comment);
+            mLlRote = (LinearLayout) view.findViewById(R.id.ll_rote);
+            mLlRote.setOnClickListener(view1 -> {
+                if (mOnItemClick!=null){
+                    mOnItemClick.OnItemClickListener(view1,getLayoutPosition(),mResultsBeen.get(getLayoutPosition()));
+                }
+            });
         }
     }
 
@@ -287,6 +294,16 @@ public class ThroughtAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         public FooterViewHolder(View itemView) {
             super(itemView);
         }
+    }
+
+    private OnItemClick mOnItemClick;
+
+    public void setOnItemClick(OnItemClick onItemClick) {
+        mOnItemClick = onItemClick;
+    }
+
+    public interface OnItemClick{
+        void OnItemClickListener(View view,int position,ThoughtsBean.ResultsBean bean);
     }
 
 

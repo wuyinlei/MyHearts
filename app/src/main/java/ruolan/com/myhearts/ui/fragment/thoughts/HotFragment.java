@@ -90,6 +90,7 @@ public class HotFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                        // mRefreshLayout.setLoadMore(true);
                     }
                 },throwable -> {});
+
     }
 
 
@@ -128,6 +129,8 @@ public class HotFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                         mThroughtDatas = bean.getResults();
                         //mThroughtAdapter.notifyDataSetChanged();
                         mThroughtAdapter.setResultsBeen(mThroughtDatas);
+                        mRefreshLayout.setRefreshing(false);
+
                     }
                 },throwable -> {});
     }

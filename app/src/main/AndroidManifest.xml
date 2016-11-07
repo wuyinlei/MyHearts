@@ -309,6 +309,8 @@
         </activity>
         <activity android:name=".ui.fragment.lord.GroupMemberActivity">
         </activity>
+        <activity android:name=".ui.fragment.thoughts.CircleFriendsActivity">
+        </activity>
     </application>
 
 </manifest>

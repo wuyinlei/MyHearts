@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+              android:id="@+id/ll_rote"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -31,9 +32,11 @@
 
                 <TextView
                     android:id="@+id/tv_name"
+                    android:maxEms="9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="陈超明"
+                    android:maxLines="1"
                     android:textSize="@dimen/x18" />
 
                 <TextView

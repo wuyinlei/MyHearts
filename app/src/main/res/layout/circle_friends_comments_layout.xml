@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/x10">
+
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_toRightOf="@+id/img_avatar"
+        android:text="陈芷涵"
+        android:textSize="@dimen/x16"/>
+
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x5"
+        android:layout_toRightOf="@+id/img_avatar"
+        android:text="陈芷涵"
+        android:textSize="@dimen/x14"/>
+
+
+    <ImageView
+        android:id="@+id/img_avatar"
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/x40"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/img_default_head_pic"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2016-11-07 18:42"
+        android:textSize="@dimen/x14"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"/>
+
+    <View
+        android:background="@color/divider"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_below="@+id/img_avatar"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+</RelativeLayout>
