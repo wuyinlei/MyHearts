@@ -11,9 +11,9 @@
         android:id="@+id/tv_popup_title"
         android:gravity="center"
         android:textSize="@dimen/x18"
-        android:textColor="@color/white"
+        android:textColor="@color/home_title_color"
         android:layout_centerInParent="true"
         android:layout_width="@dimen/x100"
-        android:layout_height="@dimen/x30" />
+        android:layout_height="@dimen/x35" />
 
 </RelativeLayout>

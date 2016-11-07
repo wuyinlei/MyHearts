@@ -1,3 +1,4 @@
+/*
 package ruolan.com.myhearts.ui.main;
 
 import android.content.Intent;
@@ -78,9 +79,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
-    /**
+    */
+/**
      * 自己去调整
-     */
+     *//*
+
     private void initAnimation() {
         // 获取ImageView上的动画背景
         AnimationDrawable spinnerLive = (AnimationDrawable) mIvLive.getBackground();
@@ -101,9 +104,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         return mDragLayout;
     }
 
-    /**
+    */
+/**
      * 初始化布局控件
-     */
+     *//*
+
     public void initView() {
         ButterKnife.bind(this);
 
@@ -154,7 +159,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
-    /*左侧menu事件控件*/
+    */
+/*左侧menu事件控件*//*
+
     RelativeLayout mReLogin;
     LinearLayout mLiReserve;
     LinearLayout mLiFollow;
@@ -171,9 +178,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
 
-    /**
+    */
+/**
      * 添加fragment
-     */
+     *//*
+
     private void addFragment() {
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction();
@@ -188,9 +197,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
-    /**
+    */
+/**
      * 初始化Fragment
-     */
+     *//*
+
     private void initFragment() {
         mHomeFragment = new HomeFragment();
         mAdvisoryFragment = new AdvisoryFragment();
@@ -200,9 +211,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
-    /**
+    */
+/**
      * RadioGroup的点击事件
-     */
+     *//*
+
     private void initRadio() {
         mRadioGroup = (RadioGroup) findViewById(R.id.rgTabBar);
         mRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
@@ -234,11 +247,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
-    /**
+    */
+/**
      * 改变Tab
      *
      * @param checkId index
-     */
+     *//*
+
     private void changeTab(int checkId) {
         switch (checkId) {
             case TAB_HOME:
@@ -279,9 +294,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
-    /**
+    */
+/**
      * hide所有的fragment
-     */
+     *//*
+
     private void hideFragment() {
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction();
@@ -294,11 +311,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
-    /**
+    */
+/**
      * 显示Fragment
      *
      * @param tab 当前需要显示的位置
-     */
+     *//*
+
     private void showFragment(int tab) {
         hideFragment();
         FragmentTransaction transaction = getSupportFragmentManager()
@@ -368,3 +387,4 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 }
+*/

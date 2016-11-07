@@ -307,6 +307,8 @@
         </activity>
         <activity android:name=".ui.fragment.lord.GroupDetailActivity">
         </activity>
+        <activity android:name=".ui.fragment.lord.GroupMemberActivity">
+        </activity>
     </application>
 
 </manifest>

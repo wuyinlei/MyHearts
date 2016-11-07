@@ -127,7 +127,9 @@ GitHub地址：https://github.com/wuyinlei\r\n\r\n
     <string name="group_check">审         核</string>
     <string name="group_introduce">群介绍</string>
     <string name="back">返回</string>
-    
+
     <string name="description_solgn">暂无描述</string>
+
+    <string name="loading_finish">加载完成</string>
 
 </resources>

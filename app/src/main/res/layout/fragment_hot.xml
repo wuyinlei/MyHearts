@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
 
-    <com.cjj.MaterialRefreshLayout
+    <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,6 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-    </com.cjj.MaterialRefreshLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

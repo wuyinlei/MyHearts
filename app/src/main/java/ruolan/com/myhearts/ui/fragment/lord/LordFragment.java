@@ -17,7 +17,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -52,7 +54,8 @@ public class LordFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private PopupWindow mPopupWindow;
 
-    private RelativeLayout mReAddGroup,mReSearchGroup;
+    private RelativeLayout mReAddGroup, mReSearchGroup;
+    private LinearLayout mLlDismiss;
 
 
     @Override
@@ -86,7 +89,7 @@ public class LordFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                             && bean.getErrorStr().equals("success")
                             && bean.getResultCount() > 0) {
                         mLordDatas = bean.getResults();
-                        mLordAdapter.addData(mLordDatas);
+                        mLordAdapter.setDatas(mLordDatas);
                         mLordAdapter.notifyDataSetChanged();
 
                     }
@@ -107,9 +110,9 @@ public class LordFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         mLordAdapter = new LordAdapter(getContext(), mLordDatas);
         mLordRecyclerView.setAdapter(mLordAdapter);
         mLordAdapter.setOnItemClickListener((view1, position) -> {
-            Intent intent = new Intent(getContext(),LordDetailActivity.class);
-            intent.putExtra("catgId",mLordDatas.get(position).getId());
-            intent.putExtra("title",mLordDatas.get(position).getLabel());
+            Intent intent = new Intent(getContext(), LordDetailActivity.class);
+            intent.putExtra("catgId", mLordDatas.get(position).getId());
+            intent.putExtra("title", mLordDatas.get(position).getLabel());
             startActivity(intent);
             //Toast.makeText(getContext(), mLordDatas.get(position).getLabel(), Toast.LENGTH_SHORT).show();
         });
@@ -118,11 +121,13 @@ public class LordFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         mLordRefresh = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
         mLordRefresh.setColorSchemeColors(Color.RED, Color.BLUE, Color.GREEN);
         mLordRefresh.setOnRefreshListener(this);
+
+
     }
 
     @Override
     public void onRefresh() {
-        new Handler().postDelayed(() -> refreshData(),3000);
+        new Handler().postDelayed(() -> refreshData(), 3000);
     }
 
     /**
@@ -153,40 +158,55 @@ public class LordFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 });
     }
 
+    boolean isShowing = false;
+
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.img_group_list){
-            mPopupWindow.showAsDropDown(v);
-        } else if (v.getId() == R.id.re_add_group){
+        if (v.getId() == R.id.img_group_list) {
+            if (!isShowing) {
+                mPopupWindow.showAsDropDown(v);
+                isShowing = true;
+            } else {
+                mPopupWindow.dismiss();
+                isShowing = false;
+            }
+        } else if (v.getId() == R.id.re_add_group) {
+            mPopupWindow.dismiss();
             Toast.makeText(getContext(), getActivity().getResources().getString(R.string.add_lord), Toast.LENGTH_SHORT).show();
-        } else if (v.getId() == R.id.re_search_group){
+        } else if (v.getId() == R.id.re_search_group) {
+            mPopupWindow.dismiss();
             Toast.makeText(getContext(), getActivity().getResources().getString(R.string.search_lord), Toast.LENGTH_SHORT).show();
         }
     }
 
     private void initPopup() {
         View popupWindow = LayoutInflater.from(getContext())
-                .inflate(R.layout.lord_popup_window_layout,null);
+                .inflate(R.layout.lord_popup_window_layout, null);
 
         mReAddGroup = (RelativeLayout) popupWindow.findViewById(R.id.re_add_group);
         mReAddGroup.setOnClickListener(this);
         mReSearchGroup = (RelativeLayout) popupWindow.findViewById(R.id.re_search_group);
         mReSearchGroup.setOnClickListener(this);
-        mPopupWindow = new PopupWindow(popupWindow,
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT,true);
+        mPopupWindow = new PopupWindow(popupWindow);
+        mPopupWindow.setWidth(ViewGroup.LayoutParams.FILL_PARENT);
+        mPopupWindow.setHeight(ViewGroup.LayoutParams.FILL_PARENT);
         mPopupWindow.setTouchable(true);
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable(getContext().getResources()));
 
-        // 设置背景颜色变暗
-        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
-        lp.alpha = 0.7f;
-        getActivity().getWindow().setAttributes(lp);
-        mPopupWindow.setOnDismissListener(() -> {
-            WindowManager.LayoutParams lp1 = getActivity().getWindow().getAttributes();
-            lp1.alpha = 1f;
-            getActivity().getWindow().setAttributes(lp1);
+        mLlDismiss = (LinearLayout) popupWindow.findViewById(R.id.ll_dismiss);
+        mLlDismiss.setOnClickListener(view -> {
+            mPopupWindow.dismiss();
         });
+
+//        // 设置背景颜色变暗
+//        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+//        lp.alpha = 0.7f;
+//        getActivity().getWindow().setAttributes(lp);
+//        mPopupWindow.setOnDismissListener(() -> {
+//            WindowManager.LayoutParams lp1 = getActivity().getWindow().getAttributes();
+//            lp1.alpha = 1f;
+//            getActivity().getWindow().setAttributes(lp1);
+//        });
     }
 }

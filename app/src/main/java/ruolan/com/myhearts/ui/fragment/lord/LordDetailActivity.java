@@ -70,7 +70,7 @@ public class LordDetailActivity extends BaseActivity implements View.OnClickList
                      * 刷新完成后调用此方法，要不然刷新效果不消失
                      */
                     initRefresh(materialRefreshLayout);
-                    //mLordRefresh.finishRefresh();
+                    mLordRefresh.finishRefreshing();
 
                 }, 3000);
 
@@ -86,7 +86,8 @@ public class LordDetailActivity extends BaseActivity implements View.OnClickList
                     // detailAdapter.notifyDataSetChanged();
                     // mLordRefresh.finishRefreshLoadMore();
                     loadMoreData();
-                    //mLordRefresh.autoRefreshLoadMore();
+                   // mLordRefresh.autoRefreshLoadMore();
+                    mLordRefresh.finishRefreshLoadMore();
                 }, 3000);
             }
         });
@@ -117,7 +118,7 @@ public class LordDetailActivity extends BaseActivity implements View.OnClickList
                         //mLordDetailDatas.addAll(bean.getResults());
                         detailAdapter.addData(mLordDetailDatas.size(),bean.getResults());
                         detailAdapter.notifyDataSetChanged();
-                        mLordRefresh.autoRefreshLoadMore();
+                       // mLordRefresh.autoRefreshLoadMore();
                     }
                 }, throwable -> {
                 });
@@ -209,17 +210,14 @@ public class LordDetailActivity extends BaseActivity implements View.OnClickList
             mTvTitle.setText(mTitle);
         }
 
-        detailAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                LordDetailBean.ResultsBean bean = mLordDetailDatas.get(position);
-                int id = Integer.parseInt(bean.getId());
-                Intent intent = new Intent(LordDetailActivity.this,
-                        GroupDetailActivity.class);
-                intent.putExtra("id",id);
-                intent.putExtra("title",mTitle);
-                startActivity(intent);
-            }
+        detailAdapter.setOnItemClickListener((view, position) -> {
+            LordDetailBean.ResultsBean bean = mLordDetailDatas.get(position);
+            int id = Integer.parseInt(bean.getId());
+            Intent intent = new Intent(LordDetailActivity.this,
+                    GroupDetailActivity.class);
+            intent.putExtra("id",id);
+            intent.putExtra("title",mTitle);
+            startActivity(intent);
         });
 
 

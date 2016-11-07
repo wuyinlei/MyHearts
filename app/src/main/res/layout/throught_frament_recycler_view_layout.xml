@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<yyydjk.com.library.CouponView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorAccent"
+    android:id="@+id/couponView"
+    android:layout_height="200dp"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    app:cv_dash_line_color="@android:color/white"
+    app:cv_dash_line_gap="5dp"
+    app:cv_dash_line_height="0.8dp"
+    app:cv_dash_line_length="10dp"
+    app:cv_dash_line_margin_bottom="5dp"
+    app:cv_dash_line_margin_left="5dp"
+    app:cv_dash_line_margin_right="5dp"
+    app:cv_dash_line_margin_top="8dp"
+    app:cv_is_dash_line_bottom="false"
+    app:cv_is_dash_line_left="false"
+    app:cv_is_dash_line_right="false"
+    app:cv_is_dash_line_top="false"
+    app:cv_is_semicircle_bottom="true"
+    app:cv_is_semicircle_left="false"
+    app:cv_is_semicircle_right="false"
+    app:cv_is_semicircle_top="false"
+    app:cv_semicircle_color="@android:color/white"
+    app:cv_semicircle_gap="4dp"
+    app:cv_semicircle_radius="8dp">
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
 
     </android.support.v7.widget.RecyclerView>
-</LinearLayout>
+</yyydjk.com.library.CouponView>

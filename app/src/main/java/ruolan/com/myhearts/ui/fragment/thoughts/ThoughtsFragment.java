@@ -89,7 +89,7 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
                 getActivity().getResources().getString(R.string.romantic_attachment_thought),
                 getActivity().getResources().getString(R.string.friends_pay_thought),
                 getActivity().getResources().getString(R.string.psychological_disorders_thought),
-              //  getActivity().getResources().getString(R.string.my_thought),
+                //  getActivity().getResources().getString(R.string.my_thought),
                 getActivity().getResources().getString(R.string.other_thought)
         };
     }
@@ -159,6 +159,7 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
             mPopupAdapter.setPosition(i);
             mPopupAdapter.notifyDataSetChanged();
             EventBus.getDefault().post(new CatgidEvent(i));
+            mPopupWindow.dismiss();
             //Toast.makeText(getContext(), data, Toast.LENGTH_SHORT).show();
         });
         mPopupRecylerView.setAdapter(mPopupAdapter);
@@ -175,15 +176,15 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable(getContext().getResources()));
 
 
-        // 设置背景颜色变暗
-        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
-        lp.alpha = 0.7f;
-        getActivity().getWindow().setAttributes(lp);
-        mPopupWindow.setOnDismissListener(() -> {
-            WindowManager.LayoutParams lp1 = getActivity().getWindow().getAttributes();
-            lp1.alpha = 1f;
-            getActivity().getWindow().setAttributes(lp1);
-        });
+//        // 设置背景颜色变暗
+//        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+//        lp.alpha = 0.7f;
+//        getActivity().getWindow().setAttributes(lp);
+//        mPopupWindow.setOnDismissListener(() -> {
+//            WindowManager.LayoutParams lp1 = getActivity().getWindow().getAttributes();
+//            lp1.alpha = 1f;
+//            getActivity().getWindow().setAttributes(lp1);
+//        });
     }
 
     @Override
@@ -219,13 +220,40 @@ public class ThoughtsFragment extends Fragment implements View.OnClickListener {
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
             if (mPosition == position) {
-                holder.mReResponse.setBackgroundColor(getContext()
-                        .getResources()
-                        .getColor(R.color.home_title_color));
+//                holder.mReResponse.setBackgroundColor(getContext()
+//                        .getResources()
+//                        .getColor(R.color.home_title_color));
+                if (position == 1) {
+                    holder.mTvTitle.setBackgroundResource(R.drawable.home_look_more_bg_press_1);
+                    holder.mTvTitle.setTextColor(getActivity().getResources().getColor(R.color.white));
+                }
+                if (position == 2) {
+                    holder.mTvTitle.setBackgroundResource(R.drawable.home_look_more_bg_press_2);
+                    holder.mTvTitle.setTextColor(getActivity().getResources().getColor(R.color.white));
+                }
+                if (position == 3) {
+                    holder.mTvTitle.setBackgroundResource(R.drawable.home_look_more_bg_press_3);
+                    holder.mTvTitle.setTextColor(getActivity().getResources().getColor(R.color.white));
+                }
+                if (position == 4) {
+                    holder.mTvTitle.setBackgroundResource(R.drawable.home_look_more_bg_press_4);
+                    holder.mTvTitle.setTextColor(getActivity().getResources().getColor(R.color.white));
+                }
+                if (position == 5) {
+                    holder.mTvTitle.setBackgroundResource(R.drawable.home_look_more_bg_press_5);
+                    holder.mTvTitle.setTextColor(getActivity().getResources().getColor(R.color.white));
+                }
+                if (position == 6) {
+                    holder.mTvTitle.setBackgroundResource(R.drawable.home_look_more_bg_press_6);
+                    holder.mTvTitle.setTextColor(getActivity().getResources().getColor(R.color.white));
+                }
+                if (position == 7) {
+                    holder.mTvTitle.setBackgroundResource(R.drawable.home_look_more_bg_press_7);
+                    holder.mTvTitle.setTextColor(getActivity().getResources().getColor(R.color.white));
+                }
             } else {
-                holder.mReResponse.setBackgroundColor(getContext()
-                        .getResources()
-                        .getColor(R.color.white));
+                holder.mTvTitle.setBackgroundResource(R.drawable.home_look_more_bg);
+                holder.mTvTitle.setTextColor(getActivity().getResources().getColor(R.color.home_title_color));
             }
             holder.mTvTitle.setText(mDatas[position]);
         }

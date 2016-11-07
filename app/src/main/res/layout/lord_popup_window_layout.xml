@@ -1,51 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:background="@color/white"
-                android:layout_height="wrap_content">
+                android:background="#66000000"
+                android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/re_add_group"
+    <LinearLayout
+        android:id="@+id/ll_popup_window"
+        android:orientation="vertical"
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x50"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="增加分组"
-            android:textColor="@color/text_color_chengse"
-            android:textSize="@dimen/text_size_large"/>
-    </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/re_add_group"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x50"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
 
-    <View
-        android:id="@+id/view"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="增加分组"
+                android:textColor="@color/text_color_chengse"
+                android:textSize="@dimen/text_size_large"/>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@+id/re_add_group"
+            android:background="@color/divider"/>
+
+
+        <RelativeLayout
+            android:id="@+id/re_search_group"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x50"
+            android:layout_below="@+id/view"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="搜索分组"
+                android:textColor="@color/text_color_chengse"
+                android:textSize="@dimen/text_size_large"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/ll_dismiss"
+        android:layout_below="@+id/ll_popup_window"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_below="@+id/re_add_group"
-        android:background="@color/divider"/>
+        android:layout_height="match_parent">
 
+    </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/re_search_group"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x50"
-        android:layout_below="@+id/view"
-        android:layout_centerHorizontal="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="搜索分组"
-            android:textColor="@color/text_color_chengse"
-            android:textSize="@dimen/text_size_large"/>
-    </RelativeLayout>
 
 
 </RelativeLayout>

@@ -79,10 +79,10 @@ public class HttpUrlPaths {
     public static final String LORD_DETAIL_URL = BASE_URL + "social/loadGroupsByCatg";
 
     //?userid=0&groupid=309   群组详情
-    public static final String LORD_GROUP_DETAIL_URL = BASE_URL+"social/groupinfo?userid=0&groupid=309";
+    public static final String LORD_GROUP_DETAIL_URL = BASE_URL+"social/groupinfo";
 
     //群成员url   page=1&groupid=309
-    public static final String LORD_MEMBER_DETAILE_URL = BASE_URL +"social/groupmembers?page=1&groupid=309";
+    public static final String LORD_MEMBER_DETAILE_URL = BASE_URL +"social/groupmembers";
 
     //群成员详情 cuserid=0&userid=112730
     public static final String LORD_GROUP_MEMBER_DETAIL ="user/profile?cuserid=0&userid=112730";

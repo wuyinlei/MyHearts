@@ -1,7 +1,8 @@
 package ruolan.com.myhearts.ui.fragment.lord;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.content.Intent;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.lzy.okrx.RxAdapter;
 import java.lang.reflect.Type;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.adapter.GroupMemberRecommentAdapter;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
 import ruolan.com.myhearts.entity.GroupDetailBean;
 import ruolan.com.myhearts.entity.GroupDetailBean.ResultsBean;
@@ -33,6 +35,7 @@ public class GroupDetailActivity extends BaseActivity implements View.OnClickLis
             mGroupAddress, mGroupType, mGroupMember,
             mGroupSlogn;
     private RecyclerView mGroupDetailRecycler;
+    private ResultsBean mResults;
 
 
     @Override
@@ -64,8 +67,8 @@ public class GroupDetailActivity extends BaseActivity implements View.OnClickLis
                         if (bean.getErrorCode() == 0
                                 && bean.getErrorStr().equals("success")
                                 && bean.getResultCount() > 0) {
-                            ResultsBean results = bean.getResults();
-                            setData(results);
+                            mResults = bean.getResults();
+                            setData(mResults);
                         }
                     }, throwable -> {
                     });
@@ -97,6 +100,15 @@ public class GroupDetailActivity extends BaseActivity implements View.OnClickLis
         } else {
             mGroupSlogn.setText(getResources().getString(R.string.description_solgn));
         }
+
+        GroupMemberRecommentAdapter memberAdapter = new GroupMemberRecommentAdapter(this, results.getMemberAvatars());
+        mGroupDetailRecycler.setAdapter(memberAdapter);
+        memberAdapter.setOnItemClickListener((view, position) -> {
+            Intent intent = new Intent(this,GroupMemberActivity.class);
+            intent.putExtra("member",mResults.getMember());
+            intent.putExtra("groupid",mResults.getId());
+            startActivity(intent);
+        });
     }
 
 
@@ -117,6 +129,9 @@ public class GroupDetailActivity extends BaseActivity implements View.OnClickLis
         mGroupMember = (TextView) findViewById(R.id.group_member);
         mGroupSlogn = (TextView) findViewById(R.id.group_slogn);
         mGroupDetailRecycler = (RecyclerView) findViewById(R.id.group_detail_member);
+        mGroupDetailRecycler.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        mGroupDetailRecycler.setItemAnimator(new DefaultItemAnimator());
+
     }
 
     @Override

@@ -120,5 +120,6 @@ dependencies {
     compile 'cn.jiguang:jpush:2.1.8'
     testCompile 'junit:junit:4.12'
     compile project(':vitamio')
+    compile 'com.github.dongjunkun:CouponView:1.0.3'
     compile 'com.github.ctiao:DanmakuFlameMaster:0.4.5'
 }

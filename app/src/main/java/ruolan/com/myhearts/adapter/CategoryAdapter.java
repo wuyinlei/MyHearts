@@ -23,7 +23,6 @@ import ruolan.com.myhearts.entity.RoomInfo;
 public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
-    public static final int TYPE_HEADER = 0;
     public static final int TYPE_NORMAL = 1;
     private static final int TYPE_FOOTER = 2;
     private Context mContext;

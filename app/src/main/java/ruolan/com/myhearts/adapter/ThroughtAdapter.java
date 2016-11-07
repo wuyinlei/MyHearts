@@ -33,7 +33,10 @@ import ruolan.com.myhearts.widget.GlideCircleTransform;
  * Created by wuyinlei on 2016/10/22.
  */
 
-public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.ThroughtViewHolder> {
+public class ThroughtAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    public static final int TYPE_NORMAL = 1;
+    private static final int TYPE_FOOTER = 2;
 
     private List<ThoughtsBean.ResultsBean> mResultsBeen = new ArrayList<>();
     private Context mContext;
@@ -46,6 +49,17 @@ public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.Throug
         notifyDataSetChanged();
     }
 
+
+    @Override
+    public int getItemViewType(int position) {
+
+        if (position + 1 == getItemCount()) {
+            return TYPE_FOOTER;
+        }
+        return TYPE_NORMAL;
+    }
+
+
     public ThroughtAdapter(Context context, List<ThoughtsBean.ResultsBean> bean) {
         this.mContext = context;
         this.mResultsBeen = bean;
@@ -53,75 +67,84 @@ public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.Throug
 
 
     @Override
-    public ThroughtViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == TYPE_FOOTER){
+            View view = LayoutInflater.from(mContext).inflate(R.layout.item_foot,parent,false);
+            return new FooterViewHolder(view);
+        }
         View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.fragment_thourght_item_layout, parent, false);
         return new ThroughtViewHolder(view);
     }
 
-    @Override
-    public void onBindViewHolder(ThroughtViewHolder holder, int position) {
-        ThoughtsBean.ResultsBean bean = mResultsBeen.get(position);
-        Long addtime = (long) bean.getCreatedDateTime();
-        Long result_time = addtime * 1000;
-        String date = new java.text.SimpleDateFormat("MM-dd HH:mm").format(result_time);
-        Glide.with(mContext).load(bean.getAvatar()).asBitmap()
-                .transform(new GlideCircleTransform(mContext))
-                .into(holder.mIvTour);
-        holder.mTvName.setText(bean.getNickname());
-        holder.mTvTime.setText(date);
-        holder.mTvCommentCount.setText(bean.getCommentCnt());
-        holder.mTvViewCount.setText(bean.getViewCnt());
-        holder.mTvContent.setText(bean.getContent());
-        if (bean.getGender().equals("1")) {  //男生
-            holder.mIvGender.setBackgroundDrawable(mContext
-                    .getResources().getDrawable(R.drawable.sex_man1));
-        } else if (bean.getGender().equals("0")) {  //女生
-            holder.mIvGender.setBackgroundDrawable(mContext
-                    .getResources().getDrawable(R.drawable.sex_gril1));
-        }
-
-        //NineGridView nineGrid = baseViewHolder.getView(R.id.nineGrid);
-        ArrayList<ImageInfo> imageInfo = new ArrayList<>();  //获取到图片地址集合
-        //也就是用户发朋友圈的那种,添加图片
-        List<String> images = bean.getPhotos();
-        if (images != null) {
-            for (String image : images) {
-                //ImageInfo 是他的实体类,用于image的地址
-                ImageInfo info = new ImageInfo();
-                info.setThumbnailUrl(image);
-                info.setBigImageUrl(image);
-                imageInfo.add(info);
-            }
-        }
-        holder.mPhotoRecycler.setAdapter(new NineGridViewClickAdapter(mContext, imageInfo));
-
-        if (images != null && images.size() == 1) {
-            //如果用户只发了一张图片的话,就设置图片的宽和高
-            holder.mPhotoRecycler.setSingleImageSize(300);
-            holder.mPhotoRecycler.setSingleImageRatio(1);
-            //holder.mPhotoRecycler.setSingleImageRatio(images.get(0).width * 1.0f / images.get(0).height);
-        }
-
-        holder.mCommentRe.setVisibility(View.GONE);
-        List<CommentsBean> comments = bean.getComments();
-        if (comments != null && comments.size() > 0) {
-            CommentAdapter adapter = new CommentAdapter(comments);
-            holder.mCommentRe.setVisibility(View.VISIBLE);
-            holder.mCommentRecycler.setLayoutManager(new LinearLayoutManager(mContext));
-            //  holder.mCommentRecycler.addItemDecoration(new DividerItemDecoration(mContext
-            //,DividerItemDecoration.VERTICAL_LIST));
-            holder.mCommentRecycler.setItemAnimator(new DefaultItemAnimator());
-            holder.mCommentRecycler.setAdapter(adapter);
-        }
-
-
-    }
 
     @Override
     public int getItemCount() {
-        return mResultsBeen == null ? 0 : mResultsBeen.size();
+        return mResultsBeen == null ? 0 : mResultsBeen.size() + 1;
     }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof ThroughtViewHolder) {
+            ThroughtViewHolder viewHolder = (ThroughtViewHolder) holder;
+            ThoughtsBean.ResultsBean bean = mResultsBeen.get(position);
+            Long addtime = (long) bean.getCreatedDateTime();
+            Long result_time = addtime * 1000;
+            String date = new java.text.SimpleDateFormat("MM-dd HH:mm").format(result_time);
+            Glide.with(mContext).load(bean.getAvatar()).asBitmap()
+                    .transform(new GlideCircleTransform(mContext))
+                    .into(viewHolder.mIvTour);
+            viewHolder.mTvName.setText(bean.getNickname());
+            viewHolder.mTvTime.setText(date);
+            viewHolder.mTvCommentCount.setText(bean.getCommentCnt());
+            viewHolder.mTvViewCount.setText(bean.getViewCnt());
+            viewHolder.mTvContent.setText(bean.getContent());
+            if (bean.getGender().equals("1")) {  //男生
+                viewHolder.mIvGender.setBackgroundDrawable(mContext
+                        .getResources().getDrawable(R.drawable.sex_man1));
+            } else if (bean.getGender().equals("0")) {  //女生
+                viewHolder.mIvGender.setBackgroundDrawable(mContext
+                        .getResources().getDrawable(R.drawable.sex_gril1));
+            }
+
+            //NineGridView nineGrid = baseViewHolder.getView(R.id.nineGrid);
+            ArrayList<ImageInfo> imageInfo = new ArrayList<>();  //获取到图片地址集合
+            //也就是用户发朋友圈的那种,添加图片
+            List<String> images = bean.getPhotos();
+            if (images != null) {
+                for (String image : images) {
+                    //ImageInfo 是他的实体类,用于image的地址
+                    ImageInfo info = new ImageInfo();
+                    info.setThumbnailUrl(image);
+                    info.setBigImageUrl(image);
+                    imageInfo.add(info);
+                }
+            }
+            viewHolder.mPhotoRecycler.setAdapter(new NineGridViewClickAdapter(mContext, imageInfo));
+
+            if (images != null && images.size() == 1) {
+                //如果用户只发了一张图片的话,就设置图片的宽和高
+                viewHolder.mPhotoRecycler.setSingleImageSize(300);
+                viewHolder.mPhotoRecycler.setSingleImageRatio(1);
+                //holder.mPhotoRecycler.setSingleImageRatio(images.get(0).width * 1.0f / images.get(0).height);
+            }
+
+            viewHolder.mCommentRe.setVisibility(View.GONE);
+            List<CommentsBean> comments = bean.getComments();
+            if (comments != null && comments.size() > 0) {
+                CommentAdapter adapter = new CommentAdapter(comments);
+                viewHolder.mCommentRe.setVisibility(View.VISIBLE);
+                viewHolder.mCommentRecycler.setLayoutManager(new LinearLayoutManager(mContext));
+                //  holder.mCommentRecycler.addItemDecoration(new DividerItemDecoration(mContext
+                //,DividerItemDecoration.VERTICAL_LIST));
+                viewHolder.mCommentRecycler.setItemAnimator(new DefaultItemAnimator());
+                viewHolder.mCommentRecycler.setAdapter(adapter);
+            }
+
+        }
+
+    }
+
 
     class ThroughtViewHolder extends RecyclerView.ViewHolder {
 
@@ -257,5 +280,14 @@ public class ThroughtAdapter extends RecyclerView.Adapter<ThroughtAdapter.Throug
             }
         }
     }
+
+
+    class FooterViewHolder extends RecyclerView.ViewHolder {
+
+        public FooterViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
 
 }

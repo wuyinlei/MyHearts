@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
-import ruolan.com.myhearts.ui.main.MainActivity;
 import ruolan.com.myhearts.ui.base.BaseActivity;
+import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
 
 public class GuideActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
 
@@ -67,7 +67,7 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
         mViewPager.setOnPageChangeListener(this);
         mViewPager.setCurrentItem(0);
         btnStart.setOnClickListener(view -> {
-            startActivity(new Intent(GuideActivity.this, MainActivity.class));
+            startActivity(new Intent(GuideActivity.this, MainActivityDrawerLayout.class));
             finish();
         });
     }
