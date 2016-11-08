@@ -61,19 +61,15 @@ public class LiveFragment extends Fragment implements View.OnClickListener {
 
 
     private void initFragments() {
+        mFragments.add(new LivingFragment());
+        mFragments.add(new AttentationFragment());
 
-        mFragments = new ArrayList<>();
-        for (int i = 0; i < mTitles.size(); i++) {
-            mFragments.add(CategoryFragment.newInstance(i));
-        }
     }
 
     private void initTitles() {
         strings = new String[]{
-                getActivity().getResources().getString(R.string.recomment),
-                getActivity().getResources().getString(R.string.lol),
-                getActivity().getResources().getString(R.string.lushi),
-                getActivity().getResources().getString(R.string.dota2)
+                getActivity().getResources().getString(R.string.living),
+                getActivity().getResources().getString(R.string.attention),
         };
 
         for (String s : strings) {
@@ -88,7 +84,7 @@ public class LiveFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initTabs() {
-        pagerAdapter = new TabViewPagerAdapter(getChildFragmentManager(),mFragments,mTitles);
+        pagerAdapter = new TabViewPagerAdapter(getChildFragmentManager(), mFragments, mTitles);
 
         mViewPager.setAdapter(pagerAdapter);
 
@@ -113,12 +109,11 @@ public class LiveFragment extends Fragment implements View.OnClickListener {
         });
 
 
-
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.fab){
+        if (v.getId() == R.id.fab) {
             jumpToGit();
         }
     }

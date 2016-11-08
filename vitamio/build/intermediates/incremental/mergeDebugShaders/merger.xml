@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="F:\MyHearts\vitamio\src\main\shaders"/></dataSet><dataSet config="debug"><source path="F:\MyHearts\vitamio\src\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="F:\NewHearts\vitamio\src\main\shaders"/></dataSet><dataSet config="debug"><source path="F:\NewHearts\vitamio\src\debug\shaders"/></dataSet></merger>

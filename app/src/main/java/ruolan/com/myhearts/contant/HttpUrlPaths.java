@@ -96,6 +96,13 @@ public class HttpUrlPaths {
     public static final String DOUYU_API = "http://capi.douyucdn.cn/api/v1/";
 
 
+    //  page=1&userid=114726
+    //直播url
+    public static final String LIVING_STREAMING_URL = BASE_URL+"multimedia/loadLiveList_v3";
+
+    //type=live
+    public static final String LIVING_STREAMING_BANNER_URL = BASE_URL +"com/loadBanner_v2";
+
     /**
      * lol  dota2  炉石
      *

@@ -98,6 +98,9 @@
     <string name="dota2">DOTA2</string>
     <string name="lushi">炉石</string>
 
+    <string name="living">直播</string>
+    <string name="attention">关注</string>
+
     <string name="video_image">视频截图</string>
     <string name="num_people">位观众</string>
 

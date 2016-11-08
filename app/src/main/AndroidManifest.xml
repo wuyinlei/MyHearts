@@ -313,6 +313,8 @@
         </activity>
         <activity android:name=".ui.fragment.advisory.UserAbstractActivity">
         </activity>
+        <activity android:name=".ui.fragment.live.LivingBannerActivity">
+        </activity>
     </application>
 
 </manifest>

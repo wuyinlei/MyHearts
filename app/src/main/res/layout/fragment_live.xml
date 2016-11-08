@@ -1,26 +1,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/white"
-              android:orientation="vertical"
-              tools:context=".ui.fragment.live.LiveFragment">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical"
+                tools:context=".ui.fragment.live.LiveFragment">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab_layout"
+    <RelativeLayout
+        android:id="@+id/rr"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabIndicatorColor="@android:color/holo_orange_light"
-        app:tabSelectedTextColor="@android:color/holo_orange_light"
-        app:tabTextColor="@color/colorPrimary"/>
+        android:layout_height="@dimen/x50">
+
+        <ImageView
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back_new"
+            android:layout_width="@dimen/x30"
+            android:layout_height="@dimen/x30"/>
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/x200"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@android:color/holo_orange_light"
+            app:tabSelectedTextColor="@android:color/holo_orange_light"
+            app:tabTextColor="@color/colorPrimary"/>
+
+    </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
         android:src="@drawable/ic_action_new"
@@ -28,13 +45,13 @@
 
     <ruolan.com.myhearts.widget.ThoughtViewPager
         android:id="@+id/viewpager"
-        android:layout_below="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="13"
-        android:background="@android:color/white"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/rr"
+        android:layout_weight="13"
+        android:background="@android:color/white"/>
 
 </RelativeLayout>
