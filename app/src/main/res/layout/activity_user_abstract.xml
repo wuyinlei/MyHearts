@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@drawable/resume_bg"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="50.0dip">
+
+        <ruolan.com.myhearts.widget.CircleImageView
+            android:id="@+id/avatar_img"
+            android:layout_width="80.0dip"
+            android:layout_height="80.0dip"
+          />
+
+        <TextView
+            android:id="@+id/name_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10.0dip"
+            android:paddingTop="7.0dip"
+            android:text="名字"
+            android:textColor="@color/white"
+            android:textSize="15.0sp"/>
+
+        <TextView
+            android:id="@+id/qualification_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.5"
+            android:paddingBottom="30.0dip"
+            android:text="国家二级心理咨询师"
+            android:textColor="@color/white"
+            android:textSize="12.0sp"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="25.0dip"
+                android:layout_marginRight="15.0dip"
+                android:layout_weight="1.0"
+                android:background="@color/white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="咨询师简介"
+                android:textColor="@color/white"
+                android:textSize="14.0sp"/>
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="15.0dip"
+                android:layout_marginRight="25.0dip"
+                android:layout_weight="1.0"
+                android:background="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/mid_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0">
+
+        <TextView
+            android:id="@+id/content_txt"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="10.0dip"
+            android:paddingLeft="25.0dip"
+            android:paddingRight="25.0dip"
+            android:paddingTop="20.0dip"
+            android:text="我是内容"
+            android:textColor="@color/white"
+            android:textSize="13.0sp"/>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="70.0dip"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10.0dip">
+
+        <LinearLayout
+            android:id="@+id/btn_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@drawable/cancel_button_background"
+                android:text="取消"
+                android:textColor="@color/white"/>
+
+            <View
+                android:layout_width="10.0dip"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@drawable/confirm_button_background"
+                android:text="开始咨询"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/close_btn"
+            android:layout_width="50.0dip"
+            android:layout_height="50.0dip"
+            android:background="@color/transparent"
+            android:padding="5.0dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/close_btn_icon"/>
+    </LinearLayout>
+</LinearLayout>

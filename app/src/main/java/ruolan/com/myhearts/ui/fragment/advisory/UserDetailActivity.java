@@ -1,5 +1,6 @@
 package ruolan.com.myhearts.ui.fragment.advisory;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -91,14 +92,10 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
     TextView mNoticeTxt;
 
 
-
-
-
     @Override
     protected int getResultId() {
         return R.layout.activity_details_layout;
     }
-
 
 
     UserDetailBean.ResultsBean mUserDatas = new UserDetailBean.ResultsBean();
@@ -108,27 +105,29 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
 
         //以下注释的代码是请求网络的数据，但是这个网络的数据请求特别慢，可能他们后台做了手脚(哈哈)
         OkGo.post(HttpUrlPaths.USER_DETAIL_INFO)
-                .params("userid",userid)
-                .params("cuserid",cuserid)
+                .params("userid", userid)
+                .params("cuserid", cuserid)
                 .getCall(StringConvert.create(), RxAdapter.<String>create())
-                .doOnSubscribe(()->{})
+                .doOnSubscribe(() -> {
+                })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s->{
-                            Type type = new TypeToken<UserDetailBean>(){}.getType();
-                    UserDetailBean bean = new Gson().fromJson(s,type);
-                    if (bean.getErrorCode() == 0
-                            && bean.getErrorStr().equals("success")
-                            && bean.getResultCount()>0){
-                        mUserDatas = bean.getResults();
+                .subscribe(s -> {
+                            Type type = new TypeToken<UserDetailBean>() {
+                            }.getType();
+                            UserDetailBean bean = new Gson().fromJson(s, type);
+                            if (bean.getErrorCode() == 0
+                                    && bean.getErrorStr().equals("success")
+                                    && bean.getResultCount() > 0) {
+                                mUserDatas = bean.getResults();
 
-                        updateUi(mUserDatas);
-                    }
-                }
-                ,throwable -> {});
+                                updateUi(mUserDatas);
+                            }
+                        }
+                        , throwable -> {
+                        });
 
 
     }
-
 
 
     private void updateUi(UserDetailBean.ResultsBean user) {
@@ -149,24 +148,24 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
         mCounselorTag2.setText(getResources().getString(R.string.tag2));
         mCounselorTag3.setVisibility(View.VISIBLE);
         mCounselorTag3.setText(getResources().getString(R.string.tag3));
-       // String[]tags =userTags.split("、");  //这个暂时分割不出来，用java跑是可以分割出来的，有点，，，，，，
+        // String[]tags =userTags.split("、");  //这个暂时分割不出来，用java跑是可以分割出来的，有点，，，，，，
 
-       // mCounselorTag1.setText(tags[0]);
-       // mCounselorTag2.setText(tags[1]);
-       // mCounselorTag3.setText(tags[2]);
+        // mCounselorTag1.setText(tags[0]);
+        // mCounselorTag2.setText(tags[1]);
+        // mCounselorTag3.setText(tags[2]);
         mCounselorStudioTxt.setText(user.getClinicName());
         mCounselorQualificationTxt.setText(user.getHonor());
         mCounselorResumeTxt.setText(user.getResume());
         //String seeCount = "5";
         //模拟的几个
-        String seeCount = CommemUtils.getDirectSedding("5",this);
+        String seeCount = CommemUtils.getDirectSedding("5", this);
 
 
         mCounselorLiveCount.setText(seeCount);
 
-        String cmtCount = CommemUtils.getUserComment(user.getCmtCnt(),this);
+        String cmtCount = CommemUtils.getUserComment(user.getCmtCnt(), this);
         mUserCommentTxt.setText(cmtCount);
-        String gitCount = CommemUtils.getGifCount(user.getGiftNum(),this);
+        String gitCount = CommemUtils.getGifCount(user.getGiftNum(), this);
 
         mGiftCountTxt.setText(gitCount);
 
@@ -234,7 +233,7 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
 
     }
 
-    int height ;
+    int height;
 
     @Override
     protected void initListener() {
@@ -251,7 +250,7 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.action_back_btn:
                 finish();
                 break;
@@ -262,6 +261,13 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
 
             case R.id.more_resume_btn:
 
+                Intent intent = new Intent(this,UserAbstractActivity.class);
+                intent.putExtra("img",mUserDatas.getAvatar());
+                intent.putExtra("name",mUserDatas.getNickname());
+                intent.putExtra("advisory",mUserDatas.getHonor());
+                intent.putExtra("abstract",mUserDatas.getResume());
+                startActivity(intent);
+                //overridePendingTransition(R.anim.slide_right_in,R.anim.push_left_out);
                 break;
 
         }
@@ -310,8 +316,8 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
             float scale = (float) scrollY / height;
             float alpha = (255 * scale);
             mActionTitleTxt.setTextColor(Color.argb((int) alpha, 255, 255, 255));
-           // mActionTitleTxt.setBackgroundColor(Color.argb((int) alpha, 144, 155, 180));
-            mContentHeadView.setBackgroundColor(Color.argb((int) alpha,255,255,255));
+            // mActionTitleTxt.setBackgroundColor(Color.argb((int) alpha, 144, 155, 180));
+            mContentHeadView.setBackgroundColor(Color.argb((int) alpha, 255, 255, 255));
         } else {
             mActionTitleTxt.setTextColor(Color.argb((int) 255, 144, 155, 180));
 

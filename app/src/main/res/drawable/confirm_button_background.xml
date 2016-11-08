@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="2.0dip" />
+    <gradient android:startColor="@android:color/white" android:endColor="@android:color/black" android:useLevel="true" android:angle="45.0" android:type="radial" android:centerX="0.0" android:centerY="0.0" android:gradientRadius="90.0" android:centerColor="@android:color/black" />
+    <padding android:left="2.0dip" android:top="2.0dip" android:right="2.0dip" android:bottom="2.0dip" />
+    <size android:height="50.0dip" android:width="600.0dip" />
+    <solid android:color="@color/order_finished" />
+    <stroke android:width="1.0dip" android:color="@color/order_finished" />
+</shape>

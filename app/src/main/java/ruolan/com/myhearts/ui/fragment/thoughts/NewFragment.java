@@ -192,6 +192,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         mThroughtAdapter.setOnItemClick((view1, position, bean) -> {
             Intent intent = new Intent(getActivity(),CircleFriendsActivity.class);
             intent.putExtra("eventid",bean.getId());
+            intent.putExtra("commentCount",bean.getCommentCnt());
             startActivity(intent);
         });
 

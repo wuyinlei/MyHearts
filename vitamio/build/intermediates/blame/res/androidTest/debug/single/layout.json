@@ -1,6 +1,10 @@
 [
     {
-        "merged": "/Users/wuyinlei/App/vitamio/build/intermediates/res/merged/androidTest/debug/layout/mediacontroller.xml",
-        "source": "/Users/wuyinlei/App/vitamio/build/intermediates/bundles/debug/res/layout/mediacontroller.xml"
+        "merged": "F:\\MyHearts\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\mediacontroller.xml",
+        "source": "F:\\MyHearts\\vitamio\\build\\intermediates\\bundles\\debug\\res\\layout\\mediacontroller.xml"
+    },
+    {
+        "merged": "F:\\Users\\wuyinlei\\App\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\mediacontroller.xml",
+        "source": "F:\\Users\\wuyinlei\\App\\vitamio\\build\\intermediates\\bundles\\debug\\res\\layout\\mediacontroller.xml"
     }
 ]

@@ -311,6 +311,8 @@
         </activity>
         <activity android:name=".ui.fragment.thoughts.CircleFriendsActivity">
         </activity>
+        <activity android:name=".ui.fragment.advisory.UserAbstractActivity">
+        </activity>
     </application>
 
 </manifest>
