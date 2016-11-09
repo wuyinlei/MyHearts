@@ -135,5 +135,6 @@ GitHub地址：https://github.com/wuyinlei\r\n\r\n
 
     <string name="loading_finish">加载完成</string>
     <string name="register_loading">正在注册中...</string>
+    <string name="loading">加载中...</string>
 
 </resources>

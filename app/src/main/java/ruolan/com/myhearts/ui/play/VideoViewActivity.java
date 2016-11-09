@@ -6,33 +6,26 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.TrafficStats;
-import android.os.Handler;
-import android.os.Message;
-import android.support.annotation.NonNull;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nineoldandroids.animation.ObjectAnimator;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.security.spec.MGF1ParameterSpec;
 import java.util.HashMap;
 import java.util.Timer;
-import java.util.TimerTask;
 
-import cn.qqtheme.framework.util.LogUtils;
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.widget.VideoView;
 import master.flame.danmaku.controller.IDanmakuView;
@@ -56,7 +49,7 @@ import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.widget.CustomMediaController;
 
 /**
- *  播放在线视频流界面
+ * 播放在线视频流界面
  */
 public class VideoViewActivity extends BaseActivity {
 
@@ -75,6 +68,8 @@ public class VideoViewActivity extends BaseActivity {
      */
     private Long currentPosition = (long) 0;
     private String mVideoPath = "";
+    private String mVideoTitle = "";
+
     /**
      * setting
      */
@@ -94,6 +89,8 @@ public class VideoViewActivity extends BaseActivity {
         return mVideoView;
     }
 
+    Timer mTimer = null;
+
     @Override
     public void initView() {
         this.mLoadinglinearlayout = (LinearLayout) findViewById(R.id.loading_LinearLayout);
@@ -105,7 +102,6 @@ public class VideoViewActivity extends BaseActivity {
         initTanMuViews();
         initVideoSettings();
 
-        new Timer().schedule(task,1000,2000);  // 1s后启动任务，每2s执行一次
 
     }
 
@@ -114,44 +110,48 @@ public class VideoViewActivity extends BaseActivity {
 
 
     private long getTotalRxBytes() {
-        return TrafficStats.getUidRxBytes(getApplicationInfo().uid)==TrafficStats.UNSUPPORTED ? 0 :(TrafficStats.getTotalRxBytes()/1024);//转为KB
+        return TrafficStats.getUidRxBytes(getApplicationInfo().uid) == TrafficStats.UNSUPPORTED ? 0 : (TrafficStats.getTotalRxBytes() / 1024);//转为KB
     }
-
-    TimerTask task = new TimerTask() {
-        @Override
-        public void run() {
-            showNetSpeed();
-        }
-    };
-
-    private Handler mHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            // TODO: 2016/11/9    //在这里获取网速，实时更新网速
-            String speed = (String) msg.obj;
-            //Toast.makeText(VideoViewActivity.this, speed, Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    /**
-     * 显示网络速度
-     */
-    private void showNetSpeed() {
-
-        long nowTotalRxBytes = getTotalRxBytes();
-        long nowTimeStamp = System.currentTimeMillis();
-        long speed = ((nowTotalRxBytes - lastTotalRxBytes) * 1000 / (nowTimeStamp - lastTimeStamp));//毫秒转换
-
-        lastTimeStamp = nowTimeStamp;
-        lastTotalRxBytes = nowTotalRxBytes;
-
-        Message msg = mHandler.obtainMessage();
-        msg.what = 100;
-        msg.obj = String.valueOf(speed) + " kb/s";
-
-        mHandler.sendMessage(msg);//更新界面
-    }
+//
+//    TimerTask task = new TimerTask() {
+//        @Override
+//        public void run() {
+//            showNetSpeed();
+//        }
+//    };
+//
+//    private Handler mHandler = new Handler(){
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            // TODO: 2016/11/9    //在这里获取网速，实时更新网速
+//            String speed = (String) msg.obj;
+//            if (mediaController!=null){
+//                mediaController.setNetWorkSpeedTv(speed);
+//                Toast.makeText(VideoViewActivity.this, "success", Toast.LENGTH_SHORT).show();
+//            }
+//            //Toast.makeText(VideoViewActivity.this, speed, Toast.LENGTH_SHORT).show();
+//        }
+//    };
+//
+//    /**
+//     * 显示网络速度
+//     */
+//    private void showNetSpeed() {
+//
+//        long nowTotalRxBytes = getTotalRxBytes();
+//        long nowTimeStamp = System.currentTimeMillis();
+//        long speed = ((nowTotalRxBytes - lastTotalRxBytes) * 1000 / (nowTimeStamp - lastTimeStamp));//毫秒转换
+//
+//        lastTimeStamp = nowTimeStamp;
+//        lastTotalRxBytes = nowTotalRxBytes;
+//
+//        Message msg = mHandler.obtainMessage();
+//        msg.what = 100;
+//        msg.obj = String.valueOf(speed) + " kb/s";
+//
+//        mHandler.sendMessage(msg);//更新界面
+//    }
 
 
     /**
@@ -162,6 +162,7 @@ public class VideoViewActivity extends BaseActivity {
     private BaseDanmakuParser mParser;
     private BaseCacheStuffer.Proxy mCacheStufferAdapter = new BaseCacheStuffer.Proxy() {
         private Drawable mDrawable;
+
         @Override
         public void prepareDrawing(final BaseDanmaku danmaku, boolean fromWorkerThread) {
             if (danmaku.text instanceof Spanned) { // 根据你的条件检查是否需要需要更新弹幕
@@ -173,25 +174,20 @@ public class VideoViewActivity extends BaseActivity {
                         String url = "http://www.bilibili.com/favicon.ico";
                         InputStream inputStream = null;
                         Drawable drawable = mDrawable;
-                        if(drawable == null) {
+                        if (drawable == null) {
                             try {
                                 URLConnection urlConnection = new URL(url).openConnection();
                                 inputStream = urlConnection.getInputStream();
                                 drawable = BitmapDrawable.createFromStream(inputStream, "bitmap");
                                 mDrawable = drawable;
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
                             } catch (IOException e) {
                                 e.printStackTrace();
-                            } finally {
-                                //IOUtils.closeQuietly(inputStream);
                             }
                         }
                         if (drawable != null) {
                             drawable.setBounds(0, 0, 100, 100);
-                            SpannableStringBuilder spannable = createSpannable(drawable);
-                            danmaku.text = spannable;
-                            if(mDanmakuView != null) {
+                            danmaku.text = createSpannable(drawable);
+                            if (mDanmakuView != null) {
                                 mDanmakuView.invalidateDanmaku(danmaku, false);
                             }
                             return;
@@ -212,12 +208,15 @@ public class VideoViewActivity extends BaseActivity {
      * 初始化弹幕相关
      */
     private void initTanMuViews() {
-        mediaController = new CustomMediaController(this);
+        mediaController = new CustomMediaController(this, mVideoTitle);
+        if (!TextUtils.isEmpty(mVideoTitle)) {
+            mediaController.setFileName(mVideoTitle);
+        }
         // 设置最大显示行数
-        HashMap<Integer, Integer> maxLinesPair = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> maxLinesPair = new HashMap<>();
         maxLinesPair.put(BaseDanmaku.TYPE_SCROLL_RL, 5); // 滚动弹幕最大显示5行
         // 设置是否禁止重叠
-        HashMap<Integer, Boolean> overlappingEnablePair = new HashMap<Integer, Boolean>();
+        HashMap<Integer, Boolean> overlappingEnablePair = new HashMap<>();
         overlappingEnablePair.put(BaseDanmaku.TYPE_SCROLL_RL, true);
         overlappingEnablePair.put(BaseDanmaku.TYPE_FIX_TOP, true);
         //初始化
@@ -255,18 +254,20 @@ public class VideoViewActivity extends BaseActivity {
                 public void onDanmakuClick(BaseDanmaku latest) {
                     //Log.d("DFM", "onDanmakuClick text:" + latest.text);
                 }
+
                 @Override
                 public void onDanmakuClick(IDanmakus danmakus) {
-                  //  Log.d("DFM", "onDanmakuClick danmakus size:" + danmakus.size());
+                    //  Log.d("DFM", "onDanmakuClick danmakus size:" + danmakus.size());
                 }
             });
             mDanmakuView.showFPS(true);
 //          mDanmakuView.prepare(mParser, mContext);
-            mediaController.setTanMuView(mDanmakuView,mContext,mParser);
+            mediaController.setTanMuView(mDanmakuView, mContext, mParser);
             mDanmakuView.enableDanmakuDrawingCache(true);
             ((View) mDanmakuView).setOnClickListener(view -> mediaController.show());
         }
     }
+
     private BaseDanmakuParser createParser(InputStream stream) {
         if (stream == null) {
             return new BaseDanmakuParser() {
@@ -288,6 +289,7 @@ public class VideoViewActivity extends BaseActivity {
         return parser;
 
     }
+
     private SpannableStringBuilder createSpannable(Drawable drawable) {
         String text = "bitmap";
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text);
@@ -298,20 +300,21 @@ public class VideoViewActivity extends BaseActivity {
         return spannableStringBuilder;
     }
 
- //   public static final String VIDEO_PATH="videoName";
+    //   public static final String VIDEO_PATH="videoName";
 
     private void getDataFromIntent() {
         Intent Intent = getIntent();
         if (Intent != null && Intent.getExtras().containsKey(Contants.VIDEO_PATH)) {
             mVideoPath = Intent.getExtras().getString(Contants.VIDEO_PATH);
+            mVideoTitle = Intent.getExtras().getString(Contants.VIDEO_TITLE);
         }
     }
 
-    private void initviews() {
-       // mVideoView = (VideoView) findViewById(R.id.surface_view);
-     //   mLoadingLayout=(LinearLayout) findViewById(R.id.loading_LinearLayout);
-       // mLoadingImg=(ImageView) findViewById(R.id.loading_image);
-    }
+//    private void initviews() {
+//        // mVideoView = (VideoView) findViewById(R.id.surface_view);
+//        //   mLoadingLayout=(LinearLayout) findViewById(R.id.loading_LinearLayout);
+//        // mLoadingImg=(ImageView) findViewById(R.id.loading_image);
+//    }
 
     private void initVideoSettings() {
         mVideoView.requestFocus();
@@ -331,77 +334,58 @@ public class VideoViewActivity extends BaseActivity {
 
     private void preparePlayVideo() {
         startLoadingAnimator();
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                // TODO Auto-generated method stub
-                stopLoadingAnimator();
+        mVideoView.setOnPreparedListener(mediaPlayer -> {
+            // TODO Auto-generated method stub
+            stopLoadingAnimator();
 
-                if (currentPosition > 0) {
-                    mVideoView.seekTo(currentPosition);
-                } else {
-                    mediaPlayer.setPlaybackSpeed(1.0f);
-                }
-                startPlay();
+            if (currentPosition > 0) {
+                mVideoView.seekTo(currentPosition);
+            } else {
+                mediaPlayer.setPlaybackSpeed(1.0f);
             }
+            startPlay();
         });
-        mVideoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-            @Override
-            public boolean onInfo(MediaPlayer arg0, int arg1, int arg2) {
-                switch (arg1) {
-                    case MediaPlayer.MEDIA_INFO_BUFFERING_START:
-                        //开始缓存，暂停播放
-                      // LogUtils.i(LogUtils.LOG_TAG, "开始缓存");
-                        startLoadingAnimator();
-                        if (mVideoView.isPlaying()) {
-                            stopPlay();
-                            needResume = true;
-                        }
-                        break;
-                    case MediaPlayer.MEDIA_INFO_BUFFERING_END:
-                        //缓存完成，继续播放
-                        stopLoadingAnimator();
-                        if (needResume) startPlay();
+        mVideoView.setOnInfoListener((arg0, arg1, arg2) -> {
+            switch (arg1) {
+                case MediaPlayer.MEDIA_INFO_BUFFERING_START:
+                    //开始缓存，暂停播放
+                    // LogUtils.i(LogUtils.LOG_TAG, "开始缓存");
+                    startLoadingAnimator();
+                    if (mVideoView.isPlaying()) {
+                        stopPlay();
+                        needResume = true;
+                    }
+                    break;
+                case MediaPlayer.MEDIA_INFO_BUFFERING_END:
+                    //缓存完成，继续播放
+                    stopLoadingAnimator();
+                    if (needResume) startPlay();
                     //    LogUtils.i(LogUtils.LOG_TAG, "缓存完成");
-                        break;
-                    case MediaPlayer.MEDIA_INFO_DOWNLOAD_RATE_CHANGED:
-                        //显示 下载速度
-                     //   LogUtils.i("download rate:" + arg2);
-                        break;
-                }
-                return true;
+                    break;
+                case MediaPlayer.MEDIA_INFO_DOWNLOAD_RATE_CHANGED:
+                    //显示 下载速度
+                    //   LogUtils.i("download rate:" + arg2);
+                    break;
             }
+            return true;
         });
-        mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-            }
+        mVideoView.setOnCompletionListener(mp -> {
         });
-        mVideoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-            @Override
-            public boolean onError(MediaPlayer mp, int what, int extra) {
+        mVideoView.setOnErrorListener((mp, what, extra) -> {
 //                LogUtils.i(LogUtils.LOG_TAG, "what=" + what);
-                return false;
-            }
+            return false;
         });
-        mVideoView.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
-            @Override
-            public void onSeekComplete(MediaPlayer mp) {
-            }
+        mVideoView.setOnSeekCompleteListener(mp -> {
         });
-        mVideoView.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
-            @Override
-            public void onBufferingUpdate(MediaPlayer mp, int percent) {
-               // LogUtils.i(LogUtils.LOG_TAG, "percent" + percent);
-            }
+        mVideoView.setOnBufferingUpdateListener((mp, percent) -> {
+            // LogUtils.i(LogUtils.LOG_TAG, "percent" + percent);
         });
     }
 
     private ObjectAnimator mOjectAnimator;
 
-    @NonNull
     private void startLoadingAnimator() {
-        if(mOjectAnimator==null){
+        if (mOjectAnimator == null) {
             mOjectAnimator = ObjectAnimator.ofFloat(mLoadingImg, "rotation", 0f, 360f);
         }
         mLoadinglinearlayout.setVisibility(View.VISIBLE);
@@ -438,7 +422,7 @@ public class VideoViewActivity extends BaseActivity {
     protected void onDestroy() {
         // TODO Auto-generated method stub
         super.onDestroy();
-        if(mVideoView!=null){
+        if (mVideoView != null) {
             mVideoView.stopPlayback();
             mVideoView = null;
         }
@@ -447,33 +431,38 @@ public class VideoViewActivity extends BaseActivity {
             mDanmakuView.release();
             mDanmakuView = null;
         }
+        if (mTimer != null) {
+            mTimer.cancel();  //销毁定时任务
+        }
     }
 
     /**
      * 获取视频当前帧
-     * @return
+     *
+     * @return  bitmap
      */
     public Bitmap getCurrentFrame() {
-        if(mVideoView!=null){
+        if (mVideoView != null) {
             MediaPlayer mediaPlayer = mVideoView.getmMediaPlayer();
-            return  mediaPlayer.getCurrentFrame();
+            return mediaPlayer.getCurrentFrame();
         }
         return null;
     }
+
     /**
      * 快退(每次都快进视频总时长的1%)
      */
     public void speedVideo() {
-        if(mVideoView!=null){
+        if (mVideoView != null) {
             long duration = mVideoView.getDuration();
             long currentPosition = mVideoView.getCurrentPosition();
-            long goalduration=currentPosition+duration/10;
-            if(goalduration>=duration){
+            long goalduration = currentPosition + duration / 10;
+            if (goalduration >= duration) {
                 mVideoView.seekTo(duration);
-            }else{
+            } else {
                 mVideoView.seekTo(goalduration);
             }
-           // T.showToastMsgShort(this, StringUtils.generateTime(goalduration));
+            // T.showToastMsgShort(this, StringUtils.generateTime(goalduration));
         }
     }
 
@@ -481,24 +470,27 @@ public class VideoViewActivity extends BaseActivity {
      * 快退(每次都快退视频总时长的1%)
      */
     public void reverseVideo() {
-        if(mVideoView!=null){
+        if (mVideoView != null) {
             long duration = mVideoView.getDuration();
             long currentPosition = mVideoView.getCurrentPosition();
-            long goalduration=currentPosition-duration/10;
-            if(goalduration<=0){
+            long goalduration = currentPosition - duration / 10;
+            if (goalduration <= 0) {
                 mVideoView.seekTo(0);
-            }else{
+            } else {
                 mVideoView.seekTo(goalduration);
             }
-          //  T.showToastMsgShort(this, StringUtils.generateTime(goalduration));
+            //  T.showToastMsgShort(this, StringUtils.generateTime(goalduration));
         }
     }
+
     /**
      * 设置屏幕的显示大小
      */
     public void setVideoPageSize(int currentPageSize) {
-        if(mVideoView!=null){
-            mVideoView.setVideoLayout(currentPageSize,0);
+        if (mVideoView != null) {
+            mVideoView.setVideoLayout(currentPageSize, 0);
         }
     }
+
+
 }

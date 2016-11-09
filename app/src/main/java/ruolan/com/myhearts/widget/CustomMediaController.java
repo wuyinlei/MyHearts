@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
+import android.net.TrafficStats;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.RequiresApi;
+import android.text.TextUtils;
 import android.view.Display;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -19,9 +21,14 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
@@ -97,13 +104,19 @@ public class CustomMediaController extends MediaController {
         }
     };
 
-    public CustomMediaController(Context context) {
+    Timer mTimer = null;
+    private String mVideoTitle;
+
+    public CustomMediaController(Context context,String title) {
         super(context);
         this.mContext = context;
+        mVideoTitle = title;
         activity = (VideoViewActivity) context;
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         mMaxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         mGestureDetector = new GestureDetector(mContext, new VolumeBrightnesGestureListener());
+        mTimer = new Timer(true);
+        mTimer.schedule(task,1000,2000);  // 1s后启动任务，每2s执行一次
     }
 
     @Override
@@ -117,6 +130,9 @@ public class CustomMediaController extends MediaController {
 
     @Override
     protected void initOtherView() {
+
+        initTopView();
+
         mtanMuSwitch = (Switch) mRoot.findViewById(R.id.switch_tanmu);
         mtanMuSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -181,6 +197,92 @@ public class CustomMediaController extends MediaController {
             }
             return false;
         });
+    }
+
+    private TextView mMediacontrollerFileName;  //文件名
+    private TextView mNetWorkSpeedTv;  //网速
+    private TextView mCurrentTimeTv; //当前时间
+
+    private void initTopView() {
+        mMediacontrollerFileName = (TextView) mRoot.findViewById(R.id.mediacontroller_file_name);
+        mNetWorkSpeedTv = (TextView) mRoot.findViewById(R.id.net_work_speed_tv);
+        mCurrentTimeTv = (TextView) mRoot.findViewById(R.id.currenttime_tv);
+
+        setData();
+    }
+
+
+    private long lastTotalRxBytes = 0;
+    private long lastTimeStamp = 0;
+
+
+    private long getTotalRxBytes() {
+        return TrafficStats.getUidRxBytes(mContext.getApplicationInfo().uid)==TrafficStats.UNSUPPORTED ? 0 :(TrafficStats.getTotalRxBytes()/1024);//转为KB
+    }
+
+    TimerTask task = new TimerTask() {
+        @Override
+        public void run() {
+            showNetSpeed();
+        }
+    };
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            // TODO: 2016/11/9    //在这里获取网速，实时更新网速
+            String speed = (String) msg.obj;
+            if (!TextUtils.isEmpty(speed)){
+                mNetWorkSpeedTv.setText(speed);
+            }
+            //Toast.makeText(VideoViewActivity.this, speed, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
+    /**
+     * 显示网络速度
+     */
+    private void showNetSpeed() {
+
+        long nowTotalRxBytes = getTotalRxBytes();
+        long nowTimeStamp = System.currentTimeMillis();
+        long speed = ((nowTotalRxBytes - lastTotalRxBytes) * 1000 / (nowTimeStamp - lastTimeStamp));//毫秒转换
+
+        lastTimeStamp = nowTimeStamp;
+        lastTotalRxBytes = nowTotalRxBytes;
+
+        Message msg = mHandler.obtainMessage();
+        msg.what = 100;
+        msg.obj = String.valueOf(speed) + " kb/s";
+
+        mHandler.sendMessage(msg);//更新界面
+    }
+
+
+
+    private void setData() {
+
+        if (!TextUtils.isEmpty(mVideoTitle)){
+            mMediacontrollerFileName.setText(mVideoTitle);
+        }
+
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");//设置日期格式
+        String data = format.format(new Date());
+        mCurrentTimeTv.setText(data);
+
+    }
+
+    private String speed,mFileName;
+
+    @Override
+    public void setFileName(String fileName) {
+        mFileName = fileName;
+    }
+
+    public void setNetWorkSpeedTv(String speed) {
+        this.speed = speed;
     }
 
     private void endGesture() {

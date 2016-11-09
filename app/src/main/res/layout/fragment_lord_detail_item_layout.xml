@@ -107,7 +107,7 @@
     <RelativeLayout
         android:id="@+id/loading_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_36"
+        android:layout_height="@dimen/x36"
         android:gravity="center"
         android:visibility="gone"
         android:orientation="horizontal">

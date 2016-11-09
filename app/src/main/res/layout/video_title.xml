@@ -12,16 +12,18 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentLeft="true"
         android:gravity="center_vertical"
+
         android:orientation="horizontal"
         >
 
-        <ImageView
-            android:id="@+id/mediacontroller_lock_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/mediacontroller_unlock"
-            />
+        <!--<ImageView-->
+            <!--android:id="@+id/mediacontroller_lock_img"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:visibility="invisible"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:background="@drawable/mediacontroller_unlock"-->
+            <!--/>-->
 
         <TextView
             android:id="@+id/mediacontroller_file_name"
@@ -29,8 +31,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="@dimen/x15"
             android:ellipsize="marquee"
+            android:maxEms="13"
             android:singleLine="true"
             android:text="videoname"
             android:textSize="12dp"
@@ -52,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:ellipsize="marquee"
             android:singleLine="true"
             android:text="117kB/s"
@@ -65,32 +68,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:ellipsize="marquee"
             android:singleLine="true"
             android:text="15:12"
             android:textSize="12dp"
             />
 
-        <TextView
-            android:id="@+id/download_precent_tv"
-            style="@style/MediaController_Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="15dp"
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:text="38%"
-            android:textSize="12dp"
-            />
+        <!--<TextView-->
+            <!--android:id="@+id/download_precent_tv"-->
+            <!--style="@style/MediaController_Text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:ellipsize="marquee"-->
+            <!--android:singleLine="true"-->
+            <!--android:text="38%"-->
+            <!--android:visibility="invisible"-->
+            <!--android:textSize="12dp"-->
+            <!--/>-->
 
-        <ImageView
-            android:id="@+id/mediacontroller_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/mediacontroller_setting"
-            />
+        <!--<ImageView-->
+            <!--android:id="@+id/mediacontroller_setting"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:visibility="invisible"-->
+            <!--android:background="@drawable/mediacontroller_setting"-->
+            <!--/>-->
     </LinearLayout>
 </RelativeLayout>

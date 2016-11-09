@@ -39,7 +39,7 @@ import rx.android.schedulers.AndroidSchedulers;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LivingFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class LivingFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mRefreshLayout;
@@ -128,9 +128,10 @@ public class LivingFragment extends Fragment implements SwipeRefreshLayout.OnRef
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mLivingAdapter = new LivingAdapter(getContext());
         mLivingAdapter.setOnItemClickListener((view1, position, categoryBean) -> {
-                Intent intent = new Intent(getActivity(), VideoViewActivity.class);
-                intent.putExtra(Contants.VIDEO_PATH, categoryBean.getFiles());
-                getActivity().startActivity(intent);
+            Intent intent = new Intent(getActivity(), VideoViewActivity.class);
+            intent.putExtra(Contants.VIDEO_PATH, categoryBean.getFiles());
+            intent.putExtra(Contants.VIDEO_TITLE, categoryBean.getTitle());
+            getActivity().startActivity(intent);
         });
 
         mRecyclerView.setVisibility(View.INVISIBLE);
@@ -162,7 +163,7 @@ public class LivingFragment extends Fragment implements SwipeRefreshLayout.OnRef
     boolean isHasMore = false;
 
     private void getMoreData() {
-        if (isHasMore){
+        if (isHasMore) {
             mLivingAdapter.notifyItemRemoved(mLivingAdapter.getItemCount());
             Toast.makeText(getActivity(), getActivity().getResources()
                     .getString(R.string.loading_finish), Toast.LENGTH_SHORT).show();
@@ -208,11 +209,11 @@ public class LivingFragment extends Fragment implements SwipeRefreshLayout.OnRef
         View view = LayoutInflater.from(getContext())
                 .inflate(R.layout.living_header_banner_layout, recyclerView, false);
         mHeaderBanner = (ImageView) view.findViewById(R.id.img_banner);
-        mHeaderBanner.setOnClickListener(v->{
-            if (beanResults!=null){
-                Intent intent = new Intent(getActivity(),LivingBannerActivity.class);
-                intent.putExtra("title",beanResults.get(0).getTitle());
-                intent.putExtra("webview",beanResults.get(0).getUrl());
+        mHeaderBanner.setOnClickListener(v -> {
+            if (beanResults != null) {
+                Intent intent = new Intent(getActivity(), LivingBannerActivity.class);
+                intent.putExtra("title", beanResults.get(0).getTitle());
+                intent.putExtra("webview", beanResults.get(0).getUrl());
                 startActivity(intent);
             }
         });
