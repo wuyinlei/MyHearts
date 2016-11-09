@@ -30,7 +30,7 @@ import ruolan.com.myhearts.ui.fragment.home.HomeFragment;
 import ruolan.com.myhearts.ui.fragment.live.LiveFragment;
 import ruolan.com.myhearts.ui.fragment.lord.LordFragment;
 import ruolan.com.myhearts.ui.fragment.thoughts.ThoughtsFragment;
-import ruolan.com.myhearts.widget.DragLayout;
+import ruolan.com.myhearts.widget.left.DragLayout;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 

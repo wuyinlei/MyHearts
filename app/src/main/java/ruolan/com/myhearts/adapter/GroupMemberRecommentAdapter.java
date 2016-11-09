@@ -9,7 +9,7 @@ import java.util.List;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.ui.base.BaseViewHolder;
 import ruolan.com.myhearts.ui.base.SimpleAdapter;
-import ruolan.com.myhearts.widget.GlideCircleTransform;
+import ruolan.com.myhearts.widget.transform.GlideCircleTransform;
 
 /**
  * Created by Administrator on 2016/11/7.

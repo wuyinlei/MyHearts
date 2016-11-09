@@ -26,7 +26,7 @@ import ruolan.com.myhearts.adapter.GroupMemberAdapter;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
 import ruolan.com.myhearts.entity.GroupMemberBean;
 import ruolan.com.myhearts.ui.base.BaseActivity;
-import ruolan.com.myhearts.widget.CustomPrograss;
+import ruolan.com.myhearts.widget.dialog.CustomPrograss;
 import ruolan.com.myhearts.widget.itemanimator.SlideInOutTopItemAnimator;
 import rx.android.schedulers.AndroidSchedulers;
 

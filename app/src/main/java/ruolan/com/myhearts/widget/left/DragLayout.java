@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.widget;
+package ruolan.com.myhearts.widget.left;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -18,6 +18,8 @@ import android.widget.RelativeLayout;
 import com.nineoldandroids.view.ViewHelper;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.widget.CustomRelativeLayout;
+import ruolan.com.myhearts.widget.ViewDragHelper;
 
 /**
  * 使用ViewRragHelper实现侧滑效果功能

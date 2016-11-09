@@ -35,7 +35,7 @@ import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.entity.MyUser;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.widget.CircleImageView;
-import ruolan.com.myhearts.widget.GlideCircleTransform;
+import ruolan.com.myhearts.widget.transform.GlideCircleTransform;
 
 public class UserActivity extends BaseActivity implements View.OnClickListener {
 

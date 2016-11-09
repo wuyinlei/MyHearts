@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ruolan.com.myhearts.widget.DragLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                         xmlns:tools="http://schemas.android.com/tools"
-                                         android:id="@+id/drawer_layout"
-                                         android:layout_width="match_parent"
-                                         android:layout_height="match_parent"
-                                         tools:context="ruolan.com.myhearts.ui.main.MainActivity">
+<ruolan.com.myhearts.widget.left.DragLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                            xmlns:tools="http://schemas.android.com/tools"
+                                            android:id="@+id/drawer_layout"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            tools:context="ruolan.com.myhearts.ui.main.MainActivity">
 
 
     <RelativeLayout
@@ -24,4 +24,4 @@
     </ruolan.com.myhearts.widget.CustomRelativeLayout>
 
 
-</ruolan.com.myhearts.widget.DragLayout>
+</ruolan.com.myhearts.widget.left.DragLayout>

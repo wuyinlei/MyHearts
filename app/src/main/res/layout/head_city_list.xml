@@ -11,7 +11,7 @@
         android:layout_marginTop="10dp"
         android:textColor="@color/bg"
         android:textSize="14sp" />
-    <ruolan.com.myhearts.widget.CityGridView
+    <ruolan.com.myhearts.widget.city.CityGridView
         android:id="@+id/gridview_hot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

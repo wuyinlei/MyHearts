@@ -176,7 +176,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <ruolan.com.myhearts.widget.FlyBanner
+            <ruolan.com.myhearts.widget.carousel.FlyBanner
                 android:id="@+id/fly_banner"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x120"/>

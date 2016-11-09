@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -22,7 +21,6 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -49,18 +47,17 @@ import ruolan.com.myhearts.entity.HomeBannerBean;
 import ruolan.com.myhearts.entity.HomeBannerOne;
 import ruolan.com.myhearts.entity.HomeBannerTwo;
 import ruolan.com.myhearts.entity.HomeNewsBean;
-import ruolan.com.myhearts.entity.LordBean;
 import ruolan.com.myhearts.entity.MarqueeBean;
 import ruolan.com.myhearts.event.LoginEvent;
 import ruolan.com.myhearts.event.LoginOut;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
-import ruolan.com.myhearts.ui.base.BaseAdapter;
 import ruolan.com.myhearts.ui.fragment.advisory.UserDetailActivity;
 import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
+import ruolan.com.myhearts.utils.NetUtils;
 import ruolan.com.myhearts.utils.Utils;
 import ruolan.com.myhearts.widget.CircleImageView;
-import ruolan.com.myhearts.widget.FlyBanner;
-import ruolan.com.myhearts.widget.FullyLinearLayoutManager;
+import ruolan.com.myhearts.widget.dialog.CustomPrograss;
+import ruolan.com.myhearts.widget.carousel.FlyBanner;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
@@ -111,7 +108,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
     private OrationAdapter mHomeNewAdapter;
     SwipeRefreshLayout mRefreshLayout;
 
-    LinearLayout mLlOne,mLlTwo,mLlThree,mLlFour;
+    LinearLayout mLlOne, mLlTwo, mLlThree, mLlFour;
+
     /**
      * 初始化布局控件
      *
@@ -169,9 +167,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
         mLlOne = (LinearLayout) view.findViewById(R.id.ll_adversory_one);
         mLlTwo = (LinearLayout) view.findViewById(R.id.ll_adversory_two);
 
-        mLlThree= (LinearLayout) view.findViewById(R.id.ll_adversory_three);
+        mLlThree = (LinearLayout) view.findViewById(R.id.ll_adversory_three);
 
-        mLlFour= (LinearLayout) view.findViewById(R.id.ll_adversory_four);
+        mLlFour = (LinearLayout) view.findViewById(R.id.ll_adversory_four);
 
     }
 
@@ -186,16 +184,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
         initView(view);
         initListener();
 
-        //刚开始进入界面的时候显示开头
-        mScrollView.smoothScrollTo(0, 0);
-        initBanner();
-        initMarqueeData();
-        initAdvisoryData();
-        initRecommentOne();
-        initRecommentTwo();
-        initData();
+        boolean online = NetUtils.isOnline(getActivity());
+        //判断是否有网络  如果没有网络就提示用户
+        if (online) {
+            CustomPrograss.show(getActivity(), getActivity().getResources()
+                    .getString(R.string.loading), false, null);
+            //刚开始进入界面的时候显示开头
+            mScrollView.smoothScrollTo(0, 0);
+            initBanner();
+            initMarqueeData();
+            initAdvisoryData();
+            initRecommentOne();
+            initRecommentTwo();
+            initData();
+        } else {
 
-
+        }
         return view;
     }
 
@@ -229,6 +233,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                             && bean.getErrorStr().equals("success")
                             && bean.getResults().size() > 0) {
                         mHomeNewsData = bean.getResults();
+                        CustomPrograss.disMiss();
                         mHomeNewAdapter = new OrationAdapter(getContext(), mHomeNewsData);
                         mHotRecyclerView.setAdapter(mHomeNewAdapter);
                         mHomeNewAdapter.setOnItemClickListener((view, position) -> {

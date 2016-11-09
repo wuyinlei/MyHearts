@@ -155,5 +155,14 @@
         <item name="android:layout_centerVertical">true</item>
     </style>
 
+    <declare-styleable name="SubmitButton">
+        <attr name="sub_btn_background" format="color" />
+        <attr name="sub_btn_tick_color" format="color" />
+        <attr name="sub_btn_line_color" format="color" />
+        <attr name="sub_btn_ripple_color" format="color" />
+        <attr name="sub_btn_duration" format="integer" />
+    </declare-styleable>
+
+
 
 </resources>

@@ -102,6 +102,7 @@ public class LivingFragment extends Fragment implements SwipeRefreshLayout.OnRef
     private void initView(View view) {
         this.mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
         mRefreshLayout.setColorSchemeColors(Color.YELLOW, Color.RED, Color.BLUE, Color.GREEN);
+        //能够模拟进入就刷新
         mRefreshLayout.post(() -> mRefreshLayout.setRefreshing(true));
         mRefreshLayout.setOnRefreshListener(this);
 

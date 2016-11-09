@@ -32,9 +32,8 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/text_size"
             android:background="@drawable/img_lisks_more"
-            android:text="@string/customer_service"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_middle"/>
+
+            />
     </RelativeLayout>
 
 

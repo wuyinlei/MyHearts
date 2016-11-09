@@ -26,7 +26,7 @@ import java.util.List;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.entity.ThoughtsBean;
 import ruolan.com.myhearts.entity.ThoughtsBean.ResultsBean.CommentsBean;
-import ruolan.com.myhearts.widget.GlideCircleTransform;
+import ruolan.com.myhearts.widget.transform.GlideCircleTransform;
 
 
 /**

@@ -54,7 +54,7 @@
                     android:textSize="@dimen/text_size_middle"/>
             </RelativeLayout>
 
-            <ruolan.com.myhearts.widget.FlyBanner
+            <ruolan.com.myhearts.widget.carousel.FlyBanner
                 android:id="@+id/fly_banner"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"/>
@@ -321,7 +321,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:text="查看更多"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_color_chengse"
                     android:textSize="@dimen/text_size_large"/>
             </RelativeLayout>
 

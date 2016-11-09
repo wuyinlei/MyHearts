@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.widget;
+package ruolan.com.myhearts.widget.city;
 
 import android.content.Context;
 import android.graphics.Canvas;

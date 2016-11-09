@@ -19,7 +19,7 @@ import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.entity.MyUser;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.utils.PreferencesUtils;
-import ruolan.com.myhearts.widget.CustomPrograss;
+import ruolan.com.myhearts.widget.dialog.CustomPrograss;
 
 public class UpdateUserActivity extends BaseActivity implements View.OnClickListener {
 

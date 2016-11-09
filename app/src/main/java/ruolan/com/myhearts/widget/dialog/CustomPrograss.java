@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.widget;
+package ruolan.com.myhearts.widget.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

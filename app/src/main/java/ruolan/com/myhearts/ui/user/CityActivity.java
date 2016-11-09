@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -30,8 +29,8 @@ import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.utils.KeyBoard;
 import ruolan.com.myhearts.utils.PinyinComparator;
 import ruolan.com.myhearts.utils.PreferencesUtils;
-import ruolan.com.myhearts.widget.ClearCityEditText;
-import ruolan.com.myhearts.widget.SideBar;
+import ruolan.com.myhearts.widget.city.ClearCityEditText;
+import ruolan.com.myhearts.widget.city.SideBar;
 
 public class CityActivity extends BaseActivity {
     private List<RegionInfo> countyList;//用于存放县一级的城市名

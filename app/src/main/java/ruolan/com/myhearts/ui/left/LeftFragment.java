@@ -30,7 +30,7 @@ import ruolan.com.myhearts.ui.main.MainActivityDrawerLayout;
 import ruolan.com.myhearts.ui.left.setting.SettingActivity;
 import ruolan.com.myhearts.ui.user.UserActivity;
 import ruolan.com.myhearts.utils.PreferencesUtils;
-import ruolan.com.myhearts.widget.GlideCircleTransform;
+import ruolan.com.myhearts.widget.transform.GlideCircleTransform;
 
 /**
  * Created by Administrator on 2016/10/24.

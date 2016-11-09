@@ -1,4 +1,4 @@
-package ruolan.com.myhearts.widget;
+package ruolan.com.myhearts.widget.carousel;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import ruolan.com.myhearts.R;
+import ruolan.com.myhearts.widget.ThoughtViewPager;
 
 
 public class FlyBanner extends RelativeLayout {

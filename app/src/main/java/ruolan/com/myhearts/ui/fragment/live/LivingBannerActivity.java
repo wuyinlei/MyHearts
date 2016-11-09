@@ -13,6 +13,9 @@ import android.widget.TextView;
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 
+/**
+ * 直播banner详情界面
+ */
 public class LivingBannerActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView mImgback;

@@ -146,7 +146,7 @@ public class LordFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                         mLordDatas.clear();
                         mLordDatas = bean.getResults();
                         //mLordAdapter.a(mLordDatas);
-                        mLordAdapter.notifyDataSetChanged();
+                        mLordAdapter.setDatas(mLordDatas);
                         mLordRefresh.setRefreshing(false);
                     }
                 }, throwable -> {
@@ -159,10 +159,10 @@ public class LordFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.img_group_list) {
-            if (!isShowing && mPopupWindow == null) {
+            if (!isShowing ) {
                 mPopupWindow.showAsDropDown(v);
                 isShowing = true;
-            } else if (isShowing && mPopupWindow !=null){
+            } else if (isShowing ){
                 mPopupWindow.dismiss();
                 isShowing = false;
             }

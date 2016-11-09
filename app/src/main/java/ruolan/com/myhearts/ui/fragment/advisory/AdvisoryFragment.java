@@ -29,11 +29,10 @@ import ruolan.com.myhearts.adapter.AdvisoryAdapter;
 import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.entity.AdvisoryBannerBean;
 import ruolan.com.myhearts.entity.AdvisoryBannerBean.ResultsBean;
-import ruolan.com.myhearts.entity.AdvisoryBean;
 import ruolan.com.myhearts.entity.AdvisoryFragmentBean;
 import ruolan.com.myhearts.utils.Utils;
 import ruolan.com.myhearts.widget.DividerItemDecoration;
-import ruolan.com.myhearts.widget.FlyBanner;
+import ruolan.com.myhearts.widget.carousel.FlyBanner;
 import ruolan.com.myhearts.widget.itemanimator.SlideInOutTopItemAnimator;
 
 public class AdvisoryFragment extends Fragment {

@@ -17,7 +17,7 @@
             android:layout_height="@dimen/x25"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/text_size"
-            android:src="@drawable/ic_back"
+            android:src="@drawable/ic_back_new"
             android:scaleType="centerCrop"/>
 
         <TextView

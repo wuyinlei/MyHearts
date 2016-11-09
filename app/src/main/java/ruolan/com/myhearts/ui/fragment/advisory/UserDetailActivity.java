@@ -6,7 +6,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -34,7 +33,7 @@ import ruolan.com.myhearts.contant.HttpUrlPaths;
 import ruolan.com.myhearts.entity.UserDetailBean;
 import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.utils.CommemUtils;
-import ruolan.com.myhearts.widget.GlideCircleTransform;
+import ruolan.com.myhearts.widget.transform.GlideCircleTransform;
 import rx.android.schedulers.AndroidSchedulers;
 
 public class UserDetailActivity extends BaseActivity implements View.OnClickListener, ObservableScrollViewCallbacks {

@@ -5,6 +5,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 
+import ruolan.com.myhearts.widget.left.DragLayout;
+
 
 public class CustomRelativeLayout extends RelativeLayout {
     private DragLayout dl;

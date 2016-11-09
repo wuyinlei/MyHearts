@@ -28,6 +28,7 @@ import ruolan.com.myhearts.utils.PreferencesUtils;
 import ruolan.com.myhearts.utils.RegularUtils;
 import ruolan.com.myhearts.utils.ToastUtils;
 import ruolan.com.myhearts.widget.ClearEditText;
+import ruolan.com.myhearts.widget.dialog.CustomPrograss;
 
 public class RegisterSecondActivity extends BaseActivity implements View.OnClickListener {
 
@@ -65,7 +66,6 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
         mEdittxtCode = (ClearEditText) findViewById(R.id.edittxt_code);
         mBtnReSend = (Button) findViewById(R.id.btn_reSend);
         mEditName = (ClearEditText) findViewById(R.id.edittxt_name);
-
 
     }
 
@@ -155,40 +155,37 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
         public void afterEvent(final int event, final int result,
                                final Object data) {
 
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+            runOnUiThread(() -> {
 
-                    if (result == SMSSDK.RESULT_COMPLETE) {
-                        if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+                if (result == SMSSDK.RESULT_COMPLETE) {
+                    if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
 
-                            HashMap<String, Object> phoneMap = (HashMap<String, Object>) data;
-                            String country = (String) phoneMap.get("country");
-                            String phone = (String) phoneMap.get("phone");
+                        HashMap<String, Object> phoneMap = (HashMap<String, Object>) data;
+                        String country = (String) phoneMap.get("country");
+                        String phone1 = (String) phoneMap.get("phone");
 
-                            doRegister();
-                            // dialog.setMessage("正在提交注册信息");
-                            // dialog.show();;
-                        }
-                    } else {
-
-                        // 根据服务器返回的网络错误，给toast提示
-                        try {
-                            ((Throwable) data).printStackTrace();
-                            Throwable throwable = (Throwable) data;
-
-                            JSONObject object = new JSONObject(
-                                    throwable.getMessage());
-                            String des = object.optString("detail");
-                            if (!TextUtils.isEmpty(des)) {
-//                                ToastUtils.show(RegActivity.this, des);
-                                return;
-                            }
-                        } catch (Exception e) {
-                            SMSLog.getInstance().w(e);
-                        }
-
+                        doRegister();
+                        // dialog.setMessage("正在提交注册信息");
+                        // dialog.show();;
                     }
+                } else {
+
+                    // 根据服务器返回的网络错误，给toast提示
+                    try {
+                        ((Throwable) data).printStackTrace();
+                        Throwable throwable = (Throwable) data;
+
+                        JSONObject object = new JSONObject(
+                                throwable.getMessage());
+                        String des = object.optString("detail");
+                        if (!TextUtils.isEmpty(des)) {
+//                                ToastUtils.show(RegActivity.this, des);
+                            return;
+                        }
+                    } catch (Exception e) {
+                        SMSLog.getInstance().w(e);
+                    }
+
                 }
             });
         }
@@ -198,6 +195,8 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
      * 进行注册
      */
     private void doRegister() {
+        CustomPrograss.show(this,getResources()
+                .getString(R.string.register_loading),false,null);
         String userName = mEditName.getText().toString().trim();
         final MyUser myUser = new MyUser();
         if (RegularUtils.isUsername(userName)) {
@@ -208,12 +207,21 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
                 @Override
                 public void done(MyUser myUser, BmobException e) {
                     if (e == null) {
-                        Toast.makeText(RegisterSecondActivity.this,getResources().getString(R.string.register_success), Toast.LENGTH_SHORT).show();
-                        PreferencesUtils.putString(RegisterSecondActivity.this,Contants.USER_NAME,userName);
-                        PreferencesUtils.putString(RegisterSecondActivity.this,Contants.USER_PASSWORD,pwd);
-                        startActivity(new Intent(RegisterSecondActivity.this, LoginActivity.class));
+                        Toast.makeText(RegisterSecondActivity.this,getResources().getString(R.string.register_success),
+                                Toast.LENGTH_SHORT).show();
+                        PreferencesUtils.putString(RegisterSecondActivity.this,
+                                Contants.USER_NAME,userName);
+                        PreferencesUtils.putString(RegisterSecondActivity.this,
+                                Contants.USER_PASSWORD,pwd);
+                        startActivity(new Intent(RegisterSecondActivity.this,
+                                LoginActivity.class));
+                        CustomPrograss.disMiss();
                     } else {
                         //注册失败
+                        Toast.makeText(RegisterSecondActivity.this,
+                                getResources().getString(R.string.register_failed),
+                                Toast.LENGTH_SHORT).show();
+                        CustomPrograss.disMiss();
                     }
                 }
             }));

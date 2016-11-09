@@ -51,14 +51,14 @@
             android:textSize="30.0dip"
             android:visibility="invisible" />
 
-        <ruolan.com.myhearts.widget.SideBar
+        <ruolan.com.myhearts.widget.city.SideBar
             android:id="@+id/sidrbar"
             android:layout_width="30.0dip"
             android:layout_height="match_parent"
             android:layout_gravity="right|center" />
     </FrameLayout>
 
-    <ruolan.com.myhearts.widget.ClearCityEditText
+    <ruolan.com.myhearts.widget.city.ClearCityEditText
         android:id="@+id/filter_edit"
         android:layout_width="match_parent"
         android:layout_height="38dp"

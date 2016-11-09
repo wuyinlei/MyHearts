@@ -1,13 +1,12 @@
 package ruolan.com.myhearts.ui.fragment.thoughts;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,15 +32,14 @@ import ruolan.com.myhearts.entity.CircleFriendsCommentBean;
 import ruolan.com.myhearts.entity.CircleFriendsUserBean;
 import ruolan.com.myhearts.entity.CircleFriendsUserBean.ResultsEntity;
 import ruolan.com.myhearts.ui.base.BaseActivity;
-import ruolan.com.myhearts.ui.fragment.lord.GroupMemberActivity;
-import ruolan.com.myhearts.widget.CustomPrograss;
+import ruolan.com.myhearts.widget.dialog.CustomPrograss;
 import ruolan.com.myhearts.widget.FullyLinearLayoutManager;
-import ruolan.com.myhearts.widget.GlideCircleTransform;
+import ruolan.com.myhearts.widget.transform.GlideCircleTransform;
 import ruolan.com.myhearts.widget.MyScrollview;
 import ruolan.com.myhearts.widget.itemanimator.SlideInOutTopItemAnimator;
 import rx.android.schedulers.AndroidSchedulers;
 
-public class CircleFriendsActivity extends BaseActivity implements View.OnClickListener {
+public class CircleFriendsActivity extends BaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private ImageView mIvtour;
     private TextView mTvname;
@@ -55,13 +53,14 @@ public class CircleFriendsActivity extends BaseActivity implements View.OnClickL
     private TextView mTvviewcount;
     private RecyclerView mRecyclerview;
     private LinearLayout mRecomment;
-    //private LinearLayout mLlrote;
+    private LinearLayout mLlrote;
 
     private MyScrollview mScrollView;
     private SwipeRefreshLayout mRefreshLayout;
 
     //title
     private ImageView mIcBack, mIcReport;
+
 
     private int page = 1;
 
@@ -85,6 +84,52 @@ public class CircleFriendsActivity extends BaseActivity implements View.OnClickL
     public void initData() {
         super.initData();
 
+        new Handler().postDelayed(() -> {
+            initContent();
+            initComment();
+        },1000);
+
+    }
+
+    /**
+     * 请求评论数据
+     */
+    private void initComment() {
+        OkGo.get(HttpUrlPaths.THOUGHTS_DETAIL_COMMENT_URL)
+                .params("type", "user_event")
+                .params("eventid", eventid)
+                .params("page", page)
+                .params("userid", 0)
+                .getCall(StringConvert.create(), RxAdapter.<String>create())
+                .doOnSubscribe(() -> {
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+                    Type type = new TypeToken<CircleFriendsCommentBean>() {
+                    }.getType();
+                    CircleFriendsCommentBean bean = new Gson().fromJson(s, type);
+                    if (bean.getErrorCode() == 0
+                            && bean.getResultCount() > 0
+                            && bean.getErrorStr().equals("success")) {
+                        mCircleFriendsComments = bean.getResults();
+                        mRefreshLayout.setRefreshing(false);
+                        mScrollView.setVisibility(View.VISIBLE);
+                        if (mCircleFriendsComments.size() > 0) {
+                            //Toast.makeText(this, "mCircleFriendsComments.size():" + mCircleFriendsComments.size(), Toast.LENGTH_SHORT).show();
+                            mRecomment.setVisibility(View.VISIBLE);
+                            mCommentAdapter.setDatas(mCircleFriendsComments);
+                        } else {
+                            mRecomment.setVisibility(View.GONE);
+                        }
+                    }
+                }, throwable -> {
+                });
+    }
+
+    /**
+     * 请求内容数据
+     */
+    private void initContent() {
         OkGo.get(HttpUrlPaths.THOUGHTS_DETAIL_URL)
                 .params("userid", 0)
                 .params("eventid", eventid)
@@ -104,37 +149,6 @@ public class CircleFriendsActivity extends BaseActivity implements View.OnClickL
                     }
                 }, throwable -> {
                 });
-
-
-        OkGo.get(HttpUrlPaths.THOUGHTS_DETAIL_COMMENT_URL)
-                .params("type", "user_event")
-                .params("eventid", eventid)
-                .params("page", page)
-                .params("userid", 0)
-                .getCall(StringConvert.create(), RxAdapter.<String>create())
-                .doOnSubscribe(() -> {
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s -> {
-                    Type type = new TypeToken<CircleFriendsCommentBean>() {
-                    }.getType();
-                    CircleFriendsCommentBean bean = new Gson().fromJson(s, type);
-                    if (bean.getErrorCode() == 0
-                            && bean.getResultCount() > 0
-                            && bean.getErrorStr().equals("success")) {
-                        mCircleFriendsComments = bean.getResults();
-                        if (mCircleFriendsComments.size() > 0) {
-                            //Toast.makeText(this, "mCircleFriendsComments.size():" + mCircleFriendsComments.size(), Toast.LENGTH_SHORT).show();
-                            mRecomment.setVisibility(View.VISIBLE);
-                            mCommentAdapter.setDatas(mCircleFriendsComments);
-                        } else {
-                            mRecomment.setVisibility(View.GONE);
-                        }
-                    }
-                }, throwable -> {
-                });
-
-
     }
 
     private void initUI(ResultsEntity resultsEntity) {
@@ -195,9 +209,14 @@ public class CircleFriendsActivity extends BaseActivity implements View.OnClickL
         mCommentCount = Integer.parseInt(getIntent().getStringExtra("commentCount"));
 
         totalPage = mCommentCount / 30 + 1;
-        //this.mLlrote = (LinearLayout) findViewById(R.id.ll_rote);
+        this.mLlrote = (LinearLayout) findViewById(R.id.ll_rote);
         this.mRecomment = (LinearLayout) findViewById(R.id.re_comment);
         this.mRecyclerview = (RecyclerView) findViewById(R.id.recycler_view);
+
+        mRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
+        mRefreshLayout.setColorSchemeColors(Color.YELLOW, Color.RED, Color.BLUE, Color.GREEN);
+        mRefreshLayout.post(() -> mRefreshLayout.setRefreshing(true));
+        mRefreshLayout.setOnRefreshListener(this);
 
         FullyLinearLayoutManager manager = new FullyLinearLayoutManager(this) {
             @Override
@@ -249,7 +268,7 @@ public class CircleFriendsActivity extends BaseActivity implements View.OnClickL
         this.mIcReport = (ImageView) findViewById(R.id.ic_report);
 
         mScrollView = (MyScrollview) findViewById(R.id.scrollView);
-
+        mScrollView.setVisibility(View.INVISIBLE);
         mScrollView.setOnZdyScrollViewListener(() -> {
             //加载更多数据
             CustomPrograss.show(CircleFriendsActivity.this,
@@ -305,5 +324,14 @@ public class CircleFriendsActivity extends BaseActivity implements View.OnClickL
             case R.id.ic_report:
                 break;
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        mCircleFriendsComments.clear();
+        new Handler().postDelayed(() -> {
+            initContent();
+            initComment();
+        },3000);
     }
 }

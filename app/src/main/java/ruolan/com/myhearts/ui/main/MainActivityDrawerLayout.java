@@ -37,7 +37,7 @@ import ruolan.com.myhearts.ui.fragment.thoughts.ThoughtsFragment;
 import ruolan.com.myhearts.ui.left.LeftFragment;
 import ruolan.com.myhearts.utils.ExampleUtil;
 import ruolan.com.myhearts.utils.PreferencesUtils;
-import ruolan.com.myhearts.widget.DragLayout;
+import ruolan.com.myhearts.widget.left.DragLayout;
 
 public class MainActivityDrawerLayout extends BaseActivity implements View.OnClickListener {
 
