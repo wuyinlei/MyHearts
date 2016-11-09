@@ -19,6 +19,7 @@ import ruolan.com.myhearts.widget.transform.GlideCircleTransform;
 
 /**
  * Created by Administrator on 2016/11/8.
+ *
  */
 
 public class LivingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -88,6 +89,11 @@ public class LivingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     .asBitmap().placeholder(R.drawable.group_detail_default)
                     .error(R.drawable.group_detail_default)
                     .into(viewHolder.mRadioLiveBanner);
+            viewHolder.mRadioLiveBanner.setOnClickListener(view -> {
+                if (mOnItemClickListener !=null){
+                    mOnItemClickListener.OnItemClick(view,pos,entity);
+                }
+            });
             Glide.with(mContext)
                     .load(entity.getAvatar())
                     .asBitmap().placeholder(R.drawable.img_default_head_pic)
@@ -136,7 +142,7 @@ public class LivingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         mOnItemClickListener = onItemClickListener;
     }
 
-    interface OnItemClickListener {
+    public interface OnItemClickListener {
         void OnItemClick(View view, int position, ResultsEntity categoryBean);
     }
 

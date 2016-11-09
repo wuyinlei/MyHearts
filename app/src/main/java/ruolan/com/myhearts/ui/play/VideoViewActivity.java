@@ -5,6 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.TrafficStats;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -15,6 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nineoldandroids.animation.ObjectAnimator;
 
@@ -23,7 +27,10 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.spec.MGF1ParameterSpec;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cn.qqtheme.framework.util.LogUtils;
 import io.vov.vitamio.MediaPlayer;
@@ -98,7 +105,54 @@ public class VideoViewActivity extends BaseActivity {
         initTanMuViews();
         initVideoSettings();
 
+        new Timer().schedule(task,1000,2000);  // 1s后启动任务，每2s执行一次
+
     }
+
+    private long lastTotalRxBytes = 0;
+    private long lastTimeStamp = 0;
+
+
+    private long getTotalRxBytes() {
+        return TrafficStats.getUidRxBytes(getApplicationInfo().uid)==TrafficStats.UNSUPPORTED ? 0 :(TrafficStats.getTotalRxBytes()/1024);//转为KB
+    }
+
+    TimerTask task = new TimerTask() {
+        @Override
+        public void run() {
+            showNetSpeed();
+        }
+    };
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            // TODO: 2016/11/9    //在这里获取网速，实时更新网速
+            String speed = (String) msg.obj;
+            //Toast.makeText(VideoViewActivity.this, speed, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    /**
+     * 显示网络速度
+     */
+    private void showNetSpeed() {
+
+        long nowTotalRxBytes = getTotalRxBytes();
+        long nowTimeStamp = System.currentTimeMillis();
+        long speed = ((nowTotalRxBytes - lastTotalRxBytes) * 1000 / (nowTimeStamp - lastTimeStamp));//毫秒转换
+
+        lastTimeStamp = nowTimeStamp;
+        lastTotalRxBytes = nowTotalRxBytes;
+
+        Message msg = mHandler.obtainMessage();
+        msg.what = 100;
+        msg.obj = String.valueOf(speed) + " kb/s";
+
+        mHandler.sendMessage(msg);//更新界面
+    }
+
 
     /**
      * 弹幕

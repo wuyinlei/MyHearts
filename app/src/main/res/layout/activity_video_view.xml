@@ -17,21 +17,22 @@
         android:id="@+id/loading_LinearLayout"
         android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_centerVertical="true"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_below="@+id/surface_view"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_centerHorizontal="true"
+        >
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/loading_image"
+            android:layout_gravity="center"
             android:background="@drawable/ic_launcher_vplayer"
             />
 
         <TextView
             android:layout_width="wrap_content"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="很卖萌的加载中~~~"

@@ -28,9 +28,12 @@ import java.util.List;
 
 import ruolan.com.myhearts.R;
 import ruolan.com.myhearts.adapter.LivingAdapter;
+import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
 import ruolan.com.myhearts.entity.LivingBannerBean;
 import ruolan.com.myhearts.entity.LivingBean;
+import ruolan.com.myhearts.ui.play.VideoViewActivity;
+import ruolan.com.myhearts.ui.play.VideoViewLiveActivity;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
@@ -124,6 +127,12 @@ public class LivingFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mLivingAdapter = new LivingAdapter(getContext());
+        mLivingAdapter.setOnItemClickListener((view1, position, categoryBean) -> {
+                Intent intent = new Intent(getActivity(), VideoViewActivity.class);
+                intent.putExtra(Contants.VIDEO_PATH, categoryBean.getFiles());
+                getActivity().startActivity(intent);
+        });
+
         mRecyclerView.setVisibility(View.INVISIBLE);
         mRecyclerView.setAdapter(mLivingAdapter);
 

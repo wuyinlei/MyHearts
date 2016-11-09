@@ -1,6 +1,7 @@
 package ruolan.com.myhearts.ui.fragment.live;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,6 +28,8 @@ import ruolan.com.myhearts.adapter.CategoryAdapter;
 import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
 import ruolan.com.myhearts.entity.RoomInfo;
+import ruolan.com.myhearts.ui.play.VideoViewActivity;
+import ruolan.com.myhearts.ui.play.VideoViewLiveActivity;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
@@ -99,15 +102,15 @@ public class CategoryFragment extends Fragment implements SwipeRefreshLayout.OnR
         mRecyclerview.setAdapter(mCategoryAdapter);
         mCategoryAdapter.setOnItemClickListener((view1, position, dataEntity) -> {
             // TODO: 2016/11/3 先禁止观看   等优化好之后再次开放 
-//            if (position%2==0) {
-//                Intent intent = new Intent(getActivity(), VideoViewActivity.class);
-//                intent.putExtra(Contants.VIDEO_PATH, "http://125.39.142.86/data2/video09/2016/03/01/3871799-102-1615.mp4");
-//                getActivity().startActivity(intent);
-//            } else {
-//                Intent intent = new Intent(getActivity(), VideoViewLiveActivity.class);
-//                intent.putExtra(Contants.VIDEO_PATH,"rtmp://live.hkstv.hk.lxdns.com/live/hks");
-//                getActivity().startActivity(intent);
-//            }
+            if (position%2==0) {
+                Intent intent = new Intent(getActivity(), VideoViewActivity.class);
+                intent.putExtra(Contants.VIDEO_PATH, "http://125.39.142.86/data2/video09/2016/03/01/3871799-102-1615.mp4");
+                getActivity().startActivity(intent);
+            } else {
+                Intent intent = new Intent(getActivity(), VideoViewLiveActivity.class);
+                intent.putExtra(Contants.VIDEO_PATH,"rtmp://live.hkstv.hk.lxdns.com/live/hks");
+                getActivity().startActivity(intent);
+            }
         });
 
 
