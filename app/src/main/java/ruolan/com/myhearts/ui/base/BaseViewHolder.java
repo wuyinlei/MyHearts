@@ -22,16 +22,13 @@ public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public BaseViewHolder(View itemView,BaseAdapter.OnItemClickListener onItemClickListener){
         super(itemView);
         itemView.setOnClickListener(this);
-
         this.mOnItemClickListener =onItemClickListener;
-        this.views = new SparseArray<View>();
+        this.views = new SparseArray<>();
     }
 
     public TextView getTextView(int viewId) {
         return retrieveView(viewId);
     }
-
-
 
     public CheckBox getCheckBox(int viewId) {
         return retrieveView(viewId);

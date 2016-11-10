@@ -73,16 +73,34 @@ compile 'com.github.bumptech.glide:glide:3.7.0'
 ###2016-10-27日更新
 * 1、用户详情界面
 * 2、更新用户信息界面
+
+###最新更新
+* 1、加入朋友圈详情
+* 2、加入视频url，可以播放往期视频
+* 3、加入修改密码功能(仅限于注册用户)
+
 #####图展示
 ![](http://ww2.sinaimg.cn/mw690/006jcGvzgw1f97047vblrj30u01hck1r.jpg)
 ![](http://ww1.sinaimg.cn/mw690/006jcGvzgw1f9705oy34aj30u01hcq5r.jpg)
 ![](http://ww2.sinaimg.cn/mw690/006jcGvzgw1f9705xndnoj30u01hc777.jpg)
 ![](http://ww3.sinaimg.cn/mw690/006jcGvzgw1f9706446j4j30u01hcadr.jpg)
 
-###如何运行此项目
+#####更新图展示
+![](http://ww3.sinaimg.cn/mw690/006jcGvzgw1f9msfmfr8lj30u01hc7ir.jpg)
+![](http://ww4.sinaimg.cn/mw690/006jcGvzgw1f9msg8rk5oj30u01hcn2p.jpg)
+![](http://ww1.sinaimg.cn/mw690/006jcGvzgw1f9msir6iboj30u01hc7hz.jpg)
+![](http://ww1.sinaimg.cn/mw690/006jcGvzgw1f9msj02pkuj30u01hc43w.jpg)
+![](http://ww4.sinaimg.cn/mw690/006jcGvzgw1f9msj7ye24j30u01hcdus.jpg)
+![](http://ww1.sinaimg.cn/mw690/006jcGvzgw1f9msjgoqhlj30u01hctgw.jpg)
+
+###如何运行此项目(确保google依赖库是同一个版本的，)
 * 第一步：下载此项目的zip包到本地，并进行解压
 * 第二步：进入app目录(此时可以看到src和其他文件夹)，复制这个路径地址
 * 第三步：打开AS，新建一个功能(Project)，然后File-->New-->Import Module ，把路径复制进入到输入框，点击确定即可。
+* 注意：由于项目中使用了lambda表达式，确保sdk版本在24及以上
+
+###MyHearts交流群（刚开，哈哈）
+群号：136471108（进群交流技术，本人技术也不是很好，但是我相信，大家一起交流，会有很好的提升）
 
 
 
