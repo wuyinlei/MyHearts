@@ -31,6 +31,7 @@ public class TabViewPagerAdapter extends FragmentPagerAdapter {
         super(fm);
     }
 
+
     /**
      *
      * @param fragment   添加的fragment

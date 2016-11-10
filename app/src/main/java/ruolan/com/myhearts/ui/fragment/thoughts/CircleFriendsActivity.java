@@ -87,7 +87,7 @@ public class CircleFriendsActivity extends BaseActivity implements View.OnClickL
         new Handler().postDelayed(() -> {
             initContent();
             initComment();
-        },1000);
+        },500);
 
     }
 

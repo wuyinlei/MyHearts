@@ -10,15 +10,7 @@
     <RelativeLayout
         android:id="@+id/rr"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x50">
-
-        <ImageView
-            android:layout_marginLeft="@dimen/x10"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_back_new"
-            android:layout_width="@dimen/x30"
-            android:layout_height="@dimen/x30"/>
-
+        android:layout_height="@dimen/x40">
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
@@ -26,9 +18,18 @@
             android:layout_centerVertical="true"
             android:layout_width="@dimen/x200"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="@android:color/holo_orange_light"
-            app:tabSelectedTextColor="@android:color/holo_orange_light"
-            app:tabTextColor="@color/colorPrimary"/>
+            app:tabIndicatorHeight="0dp"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabTextColor="@color/colorAccent"/>
+
+
+        <View
+            android:id="@+id/line_divider_top"
+            android:layout_width="0.6dip"
+            android:layout_height="25.0dip"
+            android:layout_centerInParent="true"
+            android:background="@color/divider" />
+
 
     </RelativeLayout>
 

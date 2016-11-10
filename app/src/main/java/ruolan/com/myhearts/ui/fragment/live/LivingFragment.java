@@ -69,7 +69,7 @@ public class LivingFragment extends Fragment implements SwipeRefreshLayout.OnRef
         new Handler().postDelayed(() -> {
             delayInitData();
             initBannerData();
-        }, 2000);
+        }, 500);
     }
 
     /**

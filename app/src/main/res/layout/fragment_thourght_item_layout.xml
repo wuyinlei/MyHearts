@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:id="@+id/ll_rote"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:layout_width="@dimen/x60"
             android:layout_height="@dimen/x60"
             android:layout_marginLeft="@dimen/x10"
-            android:layout_marginTop="@dimen/x10" />
+            android:layout_marginTop="@dimen/x10"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,34 +32,34 @@
 
                 <TextView
                     android:id="@+id/tv_name"
-                    android:maxEms="9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="陈超明"
+                    android:maxEms="9"
                     android:maxLines="1"
-                    android:textSize="@dimen/x18" />
+                    android:text="陈超明"
+                    android:textSize="@dimen/x18"/>
 
                 <TextView
                     android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="10-22 12-15" />
+                    android:text="10-22 12-15"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/x3"
                     android:layout_toLeftOf="@+id/tv_time"
-                    android:background="@drawable/live_time_icon" />
+                    android:background="@drawable/live_time_icon"/>
 
                 <ImageView
                     android:id="@+id/image_gender"
-                    android:layout_marginLeft="@dimen/x10"
-                    android:layout_toRightOf="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/tucao_man" />
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_toRightOf="@+id/tv_name"
+                    android:background="@drawable/tucao_man"/>
 
             </RelativeLayout>
 
@@ -68,10 +68,10 @@
                 android:id="@+id/tv_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:layout_marginTop="@dimen/x10"
                 android:layout_marginBottom="@dimen/x10"
-                android:maxLines="6" />
+                android:layout_marginTop="@dimen/x10"
+                android:ellipsize="end"
+                android:maxLines="6"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -100,7 +100,7 @@
                     android:id="@+id/iv_type"
                     android:layout_width="@dimen/x20"
                     android:layout_height="@dimen/x20"
-                    android:background="@drawable/userdynamic_type" />
+                    android:background="@drawable/userdynamic_type"/>
 
 
                 <TextView
@@ -109,7 +109,7 @@
                     android:layout_marginLeft="@dimen/x5"
                     android:layout_toRightOf="@+id/iv_type"
                     android:text="其他"
-                    android:textSize="@dimen/x14" />
+                    android:textSize="@dimen/x14"/>
 
                 <TextView
                     android:id="@+id/tv_comment_count"
@@ -124,7 +124,7 @@
                     android:layout_height="@dimen/x20"
                     android:layout_marginRight="@dimen/x10"
                     android:layout_toLeftOf="@+id/tv_comment_count"
-                    android:background="@drawable/commen_icon_de" />
+                    android:background="@drawable/commen_icon_de"/>
 
                 <TextView
                     android:id="@+id/tv_view_count"
@@ -132,43 +132,43 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/x20"
                     android:layout_toLeftOf="@+id/iv_comment"
-                    android:text="34" />
+                    android:text="34"/>
 
                 <ImageView
                     android:layout_width="@dimen/x20"
                     android:layout_height="@dimen/x20"
                     android:layout_marginRight="@dimen/x10"
                     android:layout_toLeftOf="@+id/tv_view_count"
-                    android:background="@drawable/tucao_view" />
+                    android:background="@drawable/tucao_view"/>
             </RelativeLayout>
 
         </LinearLayout>
     </LinearLayout>
 
     <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1px"-->
-        <!--android:background="@color/divider" />-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1px"-->
+    <!--android:background="@color/divider" />-->
 
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/re_comment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <View
-            android:background="@color/divider"
-            android:layout_below="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="1px" />
+            android:layout_height="1px"
+            android:layout_below="@+id/recycler_view"
+            android:background="@color/divider"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
-            android:layout_marginTop="@dimen/x5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x20"
-            android:padding="@dimen/x10" />
+            android:layout_marginTop="@dimen/x5"
+            android:padding="@dimen/x10"/>
 
 
     </LinearLayout>

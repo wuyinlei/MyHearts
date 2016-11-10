@@ -1,16 +1,24 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="ruolan.com.myhearts.ui.fragment.live.AttentationFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+              android:orientation="vertical"
+                tools:context="ruolan.com.myhearts.ui.fragment.live.NewsFragment">
 
-  <TextView
-      android:text="您还没关注任何人,赶紧去关注吧！！！"
-      android:textSize="@dimen/x24"
-      android:gravity="center"
-      android:layout_centerVertical="true"
-      android:layout_centerHorizontal="true"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@android:color/holo_orange_light"
+        app:tabSelectedTextColor="@android:color/holo_orange_light"
+        app:tabTextColor="@color/colorPrimary"/>
+
+    <ruolan.com.myhearts.widget.ThoughtViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"/>
+
+</LinearLayout>

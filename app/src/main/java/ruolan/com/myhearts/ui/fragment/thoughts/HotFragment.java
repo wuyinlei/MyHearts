@@ -275,6 +275,6 @@ public class HotFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
     @Override
     public void onRefresh() {
-        new Handler().postDelayed(() -> refreshData(),3000);
+        new Handler().postDelayed(() -> refreshData(),1500);
     }
 }

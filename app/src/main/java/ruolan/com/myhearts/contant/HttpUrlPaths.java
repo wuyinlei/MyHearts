@@ -40,7 +40,7 @@ public class HttpUrlPaths {
     public static final String HOME_RECOMMENT_TWO_BANNER = BASE_URL + "psychology/dailyExam";
 
     //首页我要倾诉  咨询url
-    public static final String HOME_POUR_OUT_CONSULT_URL=BASE_URL+"consultant/loadWebcallConsultants";
+    public static final String HOME_POUR_OUT_CONSULT_URL = BASE_URL + "consultant/loadWebcallConsultants";
 
 
     //tag  http://api.xinliji.me/consultant/loadTags  分类
@@ -71,7 +71,7 @@ public class HttpUrlPaths {
     public static final String THOUGHTS_URL = BASE_URL + "social/nearuserevents_v3";
 
     //心事详情界面   eventid=27051&userid=0
-    public static final String THOUGHTS_DETAIL_URL = BASE_URL+"social/usereventdetails_v3";
+    public static final String THOUGHTS_DETAIL_URL = BASE_URL + "social/usereventdetails_v3";
 
     //心事详情评论URL  type=user_event&eventid=27051&userid=0
     public static final String THOUGHTS_DETAIL_COMMENT_URL = BASE_URL + "social/loadeventcomments";
@@ -84,13 +84,13 @@ public class HttpUrlPaths {
     public static final String LORD_DETAIL_URL = BASE_URL + "social/loadGroupsByCatg";
 
     //?userid=0&groupid=309   群组详情
-    public static final String LORD_GROUP_DETAIL_URL = BASE_URL+"social/groupinfo";
+    public static final String LORD_GROUP_DETAIL_URL = BASE_URL + "social/groupinfo";
 
     //群成员url   page=1&groupid=309
-    public static final String LORD_MEMBER_DETAILE_URL = BASE_URL +"social/groupmembers";
+    public static final String LORD_MEMBER_DETAILE_URL = BASE_URL + "social/groupmembers";
 
     //群成员详情 cuserid=0&userid=112730
-    public static final String LORD_GROUP_MEMBER_DETAIL ="user/profile?cuserid=0&userid=112730";
+    public static final String LORD_GROUP_MEMBER_DETAIL = "user/profile?cuserid=0&userid=112730";
 
     //直播url
     public static final String DOUYU_API = "http://capi.douyucdn.cn/api/v1/";
@@ -98,10 +98,10 @@ public class HttpUrlPaths {
 
     //  page=1&userid=114726
     //直播url
-    public static final String LIVING_STREAMING_URL = BASE_URL+"multimedia/loadLiveList_v3";
+    public static final String LIVING_STREAMING_URL = BASE_URL + "multimedia/loadLiveList_v3";
 
     //type=live
-    public static final String LIVING_STREAMING_BANNER_URL = BASE_URL +"com/loadBanner_v2";
+    public static final String LIVING_STREAMING_BANNER_URL = BASE_URL + "com/loadBanner_v2";
 
     /**
      * lol  dota2  炉石
@@ -131,4 +131,52 @@ public class HttpUrlPaths {
     public static String getDouyuAllSubChannels() {
         return DOUYU_API + "getColumnDetail?shortName=game";
     }
+
+    public static final String COMPUTER_BASE_URL = "http://121.42.174.82/api/catalogs/";
+
+    /**
+     * 获取到新闻资讯列表
+     *
+     * @param type       资讯类型
+     * @param startIndex 开始位置
+     * @param endIndex   结束位置
+     * @return url
+     */
+    public static String getNewsData(String type, int startIndex, int endIndex) {
+        return COMPUTER_BASE_URL + type + "/articles?startIndex=" + startIndex + "&endIndex=" + endIndex;
+    }
+
+
+    /**
+     * 获取到新闻轮播图列表
+     *
+     * @param type 资讯类型
+     * @return url
+     */
+    public static String getNewBanner(String type) {
+        return COMPUTER_BASE_URL + type +
+                "/articles/headline?startIndex=0&endIndex=5";
+    }
+
+    //头条轮播  url
+    //http://121.42.174.82/api/catalogs/higo/articles/headline?startIndex=0&endIndex=5
+//头条咨询 url   分页加载startIndex      endIndex(这两个参数)
+    // http://121.42.174.82/api/catalogs/higo/articles?startIndex=0&endIndex=19
+
+//玩家轮播
+    //  http://121.42.174.82/api/catalogs/player/articles/headline?startIndex=0&endIndex=5
+//玩家咨询
+    // http://121.42.174.82/api/catalogs/player/articles?startIndex=0&endIndex=19
+
+//业界轮播
+    // http://121.42.174.82/api/catalogs/look/articles/headline?startIndex=0&endIndex=5
+//业界咨询
+    // http://121.42.174.82/api/catalogs/look/articles?startIndex=0&endIndex=19
+
+//科技宅轮播
+    //  http://121.42.174.82/api/catalogs/indoorsfun/articles/headline?startIndex=0&endIndex=5
+//科技宅咨询
+    // http://121.42.174.82/api/catalogs/indoorsfun/articles?startIndex=0&endIndex=19
+
+
 }

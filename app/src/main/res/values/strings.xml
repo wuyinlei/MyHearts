@@ -99,7 +99,7 @@
     <string name="lushi">炉石</string>
 
     <string name="living">直播</string>
-    <string name="attention">关注</string>
+    <string name="attention">新闻</string>
 
     <string name="video_image">视频截图</string>
     <string name="num_people">位观众</string>
@@ -136,5 +136,12 @@ GitHub地址：https://github.com/wuyinlei\r\n\r\n
     <string name="loading_finish">加载完成</string>
     <string name="register_loading">正在注册中...</string>
     <string name="loading">加载中...</string>
+
+
+    <!--新闻type-->
+    <string name="higo">头条</string>
+    <string name="player">玩家</string>
+    <string name="indoorsfun">科技宅</string>
+    <string name="look">业界</string>
 
 </resources>

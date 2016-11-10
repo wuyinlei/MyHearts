@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +61,7 @@ public class LiveFragment extends Fragment implements View.OnClickListener {
 
     private void initFragments() {
         mFragments.add(new LivingFragment());
-        mFragments.add(new AttentationFragment());
+        mFragments.add(new NewsFragment());
 
     }
 
@@ -85,30 +84,9 @@ public class LiveFragment extends Fragment implements View.OnClickListener {
 
     private void initTabs() {
         pagerAdapter = new TabViewPagerAdapter(getChildFragmentManager(), mFragments, mTitles);
-
-        mViewPager.setAdapter(pagerAdapter);
-
         mViewPager.setAdapter(pagerAdapter);
         mTablayout.setupWithViewPager(mViewPager);
         mTablayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        mTablayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                Log.d("LiveFragment", "tab.getText():" + tab.getText());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-
     }
 
     @Override
