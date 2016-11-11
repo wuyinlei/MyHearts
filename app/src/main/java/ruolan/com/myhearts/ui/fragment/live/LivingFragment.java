@@ -170,7 +170,7 @@ public class LivingFragment extends Fragment implements SwipeRefreshLayout.OnRef
             return;
         }
         page++;
-        OkGo.get(HttpUrlPaths.LIVING_STREAMING_URL)
+        OkGo.post(HttpUrlPaths.LIVING_STREAMING_URL)
                 .params("userid", "54442")
                 .params("page", page)
                 .getCall(StringConvert.create(), RxAdapter.<String>create())

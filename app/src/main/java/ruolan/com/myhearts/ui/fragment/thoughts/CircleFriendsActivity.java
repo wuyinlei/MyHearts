@@ -273,7 +273,7 @@ public class CircleFriendsActivity extends BaseActivity implements View.OnClickL
             //加载更多数据
             CustomPrograss.show(CircleFriendsActivity.this,
                     getResources().getString(R.string.loading), false, null);
-            new Handler().postDelayed(() -> getMoreData(),3000);
+            new Handler().postDelayed(() -> getMoreData(),1000);
         });
     }
 
@@ -332,6 +332,6 @@ public class CircleFriendsActivity extends BaseActivity implements View.OnClickL
         new Handler().postDelayed(() -> {
             initContent();
             initComment();
-        },3000);
+        },1000);
     }
 }

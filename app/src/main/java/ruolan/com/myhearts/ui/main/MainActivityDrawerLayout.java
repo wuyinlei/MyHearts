@@ -20,7 +20,6 @@ import com.nineoldandroids.view.ViewHelper;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.update.BmobUpdateAgent;
 import cn.jpush.android.api.JPushInterface;
@@ -162,7 +161,6 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
      * 初始化布局控件
      */
     public void initView() {
-        ButterKnife.bind(this);
 
         BmobUpdateAgent.setUpdateOnlyWifi(false);  //判断是否是wifi网络
         BmobUpdateAgent.update(this); //检测是否有更新

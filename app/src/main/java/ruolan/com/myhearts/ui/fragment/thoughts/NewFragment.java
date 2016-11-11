@@ -73,7 +73,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         OkGo.post(HttpUrlPaths.THOUGHTS_URL)
                 .params("userid", 54442)
                 .params("labelid", catgId)
-                .params("type", 1)
+                .params("type", 2)
                 .params("page", 1)
                 .getCall(StringConvert.create(), RxAdapter.<String>create())
                 .doOnSubscribe(() -> {
@@ -115,7 +115,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         OkGo.post(HttpUrlPaths.THOUGHTS_URL)
                 .params("userid", 54442)
                 .params("labelid", catgId)
-                .params("type", 1)
+                .params("type", 2)
                 .params("page", 1)
                 .getCall(StringConvert.create(), RxAdapter.<String>create())
                 .doOnSubscribe(() -> {
@@ -147,7 +147,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         OkGo.post(HttpUrlPaths.THOUGHTS_URL)
                 .params("userid", 54442)
                 .params("labelid", catgId)
-                .params("type", page)
+                .params("type", 2)
                 .params("page", 1)
                 .getCall(StringConvert.create(), RxAdapter.<String>create())
                 .doOnSubscribe(() -> {
@@ -211,7 +211,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                             getMoreData();
                             isLoading = false;
                             mThroughtAdapter.notifyItemRemoved(mThroughtAdapter.getItemCount());
-                        }, 3000);
+                        }, 1000);
                     }
                 }
             }

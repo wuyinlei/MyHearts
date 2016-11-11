@@ -36,8 +36,9 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return mHeaderView;
     }
 
-    public NewsAdapter(Context context) {
+    public NewsAdapter(Context context,List<NewsBean.DatasEntity> entities) {
         this.mContext = context;
+        mEntities = entities;
     }
 
     public void setEntities(List<NewsBean.DatasEntity> entities) {
@@ -89,9 +90,12 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     .error(R.drawable.group_detail_default)
                     .placeholder(R.drawable.group_detail_default)
                     .into(viewHolder.mNewsPic);
-            viewHolder.mNewsViewCount.setText(entity.getViews());
+            viewHolder.mNewsViewCount.setText(entity.getViews()+"");
             viewHolder.mNewsTitle.setText(entity.getTitle());
             viewHolder.mNewsPublishTime.setText(entity.getPublishTime());
+            if (entity.getSummary() !=null){
+                viewHolder.mNewsSubTitle.setText(entity.getSummary()+"");
+            }
         }
     }
 
@@ -104,7 +108,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mNewsPic;
-        private TextView mNewsTitle,mNewsViewCount,mNewsPublishTime;
+        private TextView mNewsTitle,mNewsViewCount,mNewsPublishTime,mNewsSubTitle;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -112,6 +116,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mNewsTitle = (TextView) itemView.findViewById(R.id.news_title);
             mNewsViewCount = (TextView) itemView.findViewById(R.id.news_count_see);
             mNewsPublishTime = (TextView) itemView.findViewById(R.id.publish_time);
+            mNewsSubTitle = (TextView) itemView.findViewById(R.id.news_sub_title);
         }
     }
 
