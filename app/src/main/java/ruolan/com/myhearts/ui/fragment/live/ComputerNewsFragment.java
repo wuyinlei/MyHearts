@@ -1,6 +1,7 @@
 package ruolan.com.myhearts.ui.fragment.live;
 
 import android.app.VoiceInteractor;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import ruolan.com.myhearts.adapter.LivingAdapter;
 import ruolan.com.myhearts.adapter.NewsAdapter;
 import ruolan.com.myhearts.contant.Contants;
 import ruolan.com.myhearts.contant.HttpUrlPaths;
+import ruolan.com.myhearts.entity.LivingBean;
 import ruolan.com.myhearts.entity.NewsBannerBean;
 import ruolan.com.myhearts.entity.NewsBean;
 import ruolan.com.myhearts.widget.carousel.FlyBanner;
@@ -54,6 +56,8 @@ public class ComputerNewsFragment extends Fragment implements SwipeRefreshLayout
     //轮播图
     private String bannerUrl;
 
+    private String title;
+
     private int startIndex = 0;
     private int endIndex = 19;
 
@@ -71,20 +75,23 @@ public class ComputerNewsFragment extends Fragment implements SwipeRefreshLayout
     private FlyBanner mFlyBanner;
 
 
-    public static ComputerNewsFragment newInstance(String index) {
+    public static ComputerNewsFragment newInstance(String index, String title) {
         // Required empty public constructor
         Bundle bundle = new Bundle();
         bundle.putString(Contants.INDEX, index);
+        bundle.putString(Contants.TITLE, title);
         ComputerNewsFragment fragment = new ComputerNewsFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_computer_news_layout, container, false);
         mType = getArguments().getString(Contants.INDEX);
+        title = getArguments().getString(Contants.TITLE);
         bannerUrl = HttpUrlPaths.getNewBanner(mType);
         newsUrl = HttpUrlPaths.getNewsData(mType, startIndex, endIndex);
         initView(view);
@@ -109,6 +116,14 @@ public class ComputerNewsFragment extends Fragment implements SwipeRefreshLayout
                             mDatasEntities = bean.getDatas();
                             totalPage = bean.getEndIndex() / 20;
                             mNewsAdapter = new NewsAdapter(getContext(), mDatasEntities);
+
+                            mNewsAdapter.setOnItemClickListener((view, position, categoryBean) -> {
+                                Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+                                intent.putExtra("id", categoryBean.getId());
+                                intent.putExtra(Contants.TITLE, title);
+                                startActivity(intent);
+                            });
+
                             mRecyclerView.setAdapter(mNewsAdapter);
                             mNewsAdapter.setEntities(mDatasEntities);
                             setHeaderView();
@@ -163,7 +178,11 @@ public class ComputerNewsFragment extends Fragment implements SwipeRefreshLayout
                             }
                             mFlyBanner.setImagesUrl(imgBanner);
                             mFlyBanner.setOnItemClickListener(position -> {
-
+                                String id = bannerBean.getDatas().get(position).getId();
+                                Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+                                intent.putExtra("id", id);
+                                intent.putExtra(Contants.TITLE, title);
+                                startActivity(intent);
                             });
                         }
                     }

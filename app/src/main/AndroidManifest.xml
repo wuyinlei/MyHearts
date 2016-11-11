@@ -315,6 +315,8 @@
         </activity>
         <activity android:name=".ui.fragment.live.LivingBannerActivity">
         </activity>
+        <activity android:name=".ui.fragment.live.NewsDetailActivity">
+        </activity>
     </application>
 
 </manifest>

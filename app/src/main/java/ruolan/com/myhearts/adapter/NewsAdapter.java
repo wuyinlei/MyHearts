@@ -1,6 +1,7 @@
 package ruolan.com.myhearts.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,6 +97,12 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             if (entity.getSummary() !=null){
                 viewHolder.mNewsSubTitle.setText(entity.getSummary()+"");
             }
+
+            viewHolder.mCardView.setOnClickListener(view -> {
+                if (mOnItemClickListener!=null){
+                    mOnItemClickListener.OnItemClick(view,pos,entity);
+                }
+            });
         }
     }
 
@@ -109,6 +116,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         private ImageView mNewsPic;
         private TextView mNewsTitle,mNewsViewCount,mNewsPublishTime,mNewsSubTitle;
+        private CardView mCardView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -117,6 +125,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mNewsViewCount = (TextView) itemView.findViewById(R.id.news_count_see);
             mNewsPublishTime = (TextView) itemView.findViewById(R.id.publish_time);
             mNewsSubTitle = (TextView) itemView.findViewById(R.id.news_sub_title);
+            mCardView = (CardView) itemView.findViewById(R.id.card_view);
         }
     }
 
@@ -127,9 +136,9 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    private LivingAdapter.OnItemClickListener mOnItemClickListener;
+    private OnItemClickListener mOnItemClickListener;
 
-    public void setOnItemClickListener(LivingAdapter.OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
     }
 

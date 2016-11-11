@@ -34,8 +34,8 @@ public class NewsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_attentation, container, false);
         initView(view);
-        initFragments();
         initTitles();
+        initFragments();
         initTabs();
         return view;
     }
@@ -66,7 +66,7 @@ public class NewsFragment extends Fragment {
     private void initFragments() {
         mFragments = new ArrayList<>();
         for (int i = 0; i < type.length; i++) {
-            mFragments.add(ComputerNewsFragment.newInstance(type[i]));
+            mFragments.add(ComputerNewsFragment.newInstance(type[i],mTitles.get(i)));
         }
 
     }

@@ -134,6 +134,8 @@ public class HttpUrlPaths {
 
     public static final String COMPUTER_BASE_URL = "http://121.42.174.82/api/catalogs/";
 
+    public static final String COMPUTER_BASE_DETAIL = "http://121.42.174.82/api/articles/";
+
     /**
      * 获取到新闻资讯列表
      *
@@ -156,6 +158,10 @@ public class HttpUrlPaths {
     public static String getNewBanner(String type) {
         return COMPUTER_BASE_URL + type +
                 "/articles/headline?startIndex=0&endIndex=5";
+    }
+
+    public static String getNewsDetailUrl(String id) {
+        return COMPUTER_BASE_DETAIL + id;
     }
 
     //头条轮播  url
