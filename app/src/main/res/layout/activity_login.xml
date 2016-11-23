@@ -159,13 +159,34 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/re_login"
+        android:layout_width="@dimen/x280"
+        android:layout_height="@dimen/x50"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/login_bg"
+        android:layout_below="@+id/rl_memory"
+        android:layout_alignRight="@+id/et_password"
+        android:layout_alignEnd="@+id/et_password"
+        android:layout_marginRight="7dp"
+        android:layout_marginEnd="7dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="登    录"
+            android:textColor="@color/load_more_color"
+            android:textSize="@dimen/x24"/>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="@dimen/x240"
         android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:weightSum="3"
         android:layout_below="@+id/third_party_login"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="@dimen/x20"
-        android:weightSum="3">
+        android:layout_centerHorizontal="true">
 
         <ImageView
             android:id="@+id/qq_login"
@@ -192,28 +213,6 @@
             android:background="@drawable/login_wx"/>
 
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/re_login"
-        android:layout_width="@dimen/x280"
-        android:layout_height="@dimen/x50"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/login_bg"
-        android:layout_below="@+id/rl_memory"
-        android:layout_alignRight="@+id/et_password"
-        android:layout_alignEnd="@+id/et_password"
-        android:layout_marginRight="7dp"
-        android:layout_marginEnd="7dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="登    录"
-            android:textColor="@color/load_more_color"
-            android:textSize="@dimen/x24"/>
     </RelativeLayout>
 
 

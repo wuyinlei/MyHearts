@@ -24,10 +24,10 @@ import ruolan.com.myhearts.utils.ManifestUtil;
 
 /**
  * Created by Administrator on 2016/10/20.
+ *
  */
 
-public class MyApplication
-        extends Application {
+public class MyApplication extends Application {
 
 
     private static MyApplication mInstance;
@@ -62,7 +62,7 @@ public class MyApplication
             BmobUpdateAgent.initAppVersion();
         }
 
-        JPushInterface.init(this);     		// 初始化 JPush
+        JPushInterface.init(this);            // 初始化 JPush
 
 
         //短信验证
@@ -127,8 +127,6 @@ public class MyApplication
     }
 
 
-
-
     /**
      * Picasso 加载
      */
@@ -137,7 +135,8 @@ public class MyApplication
         @Override
         public void onDisplayImage(Context context, ImageView imageView, String url) {
             Glide.with(context).load(url)//
-                    .placeholder(R.drawable.ic_default_image)//
+                    //  不要这句，要么出现点击的时候，第一次出现居左显示，在次点击会正常显示，glide的bug
+                   // .placeholder(R.drawable.ic_default_image)
                     .error(R.drawable.ic_default_image)//
                     .into(imageView);
         }
