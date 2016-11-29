@@ -23,7 +23,7 @@ public class CustomPrograss extends Dialog {
         super(context);
     }
 
-    public CustomPrograss(Context context, int themeResId) {
+    private CustomPrograss(Context context, int themeResId) {
         super(context, themeResId);
     }
 
@@ -45,7 +45,7 @@ public class CustomPrograss extends Dialog {
     /**
      * 给Dialog设置提示信息
      *
-     * @param message
+     * @param message 需要显示的信息
      */
     public void setMessage(CharSequence message) {
         if (message != null && message.length() > 0) {
@@ -63,7 +63,7 @@ public class CustomPrograss extends Dialog {
      * @param message        提示
      * @param cancelable     是否按返回键取消
      * @param cancelListener 按下返回键监听
-     * @return
+     * @return CustomPrograss
      */
     public static CustomPrograss show(Context context, CharSequence message, boolean cancelable, OnCancelListener cancelListener) {
         sPrograss = new CustomPrograss(context, R.style.Custom_Progress);

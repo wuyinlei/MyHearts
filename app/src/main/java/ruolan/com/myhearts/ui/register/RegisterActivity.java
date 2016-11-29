@@ -26,6 +26,7 @@ import ruolan.com.myhearts.ui.base.BaseActivity;
 import ruolan.com.myhearts.utils.ToastUtils;
 import ruolan.com.myhearts.widget.CheckBox;
 import ruolan.com.myhearts.widget.ClearEditText;
+import ruolan.com.myhearts.widget.dialog.CustomPrograss;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
@@ -177,6 +178,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         if (code.startsWith("+")) {
             code = code.substring(1);
         }
+        CustomPrograss.show(this,getResources().getString(R.string.waiting),false,null);
 
         Intent intent = new Intent(this, RegisterSecondActivity.class);
         intent.putExtra("phone", phone);
@@ -186,6 +188,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         startActivity(intent);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        CustomPrograss.disMiss();
+    }
 
     private String[] getCurrentCountry() {
         String mcc = getMCC();

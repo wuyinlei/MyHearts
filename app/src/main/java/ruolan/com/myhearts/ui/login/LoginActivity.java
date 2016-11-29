@@ -38,7 +38,10 @@ import ruolan.com.myhearts.ui.register.RegisterActivity;
 import ruolan.com.myhearts.utils.PreferencesUtils;
 import ruolan.com.myhearts.utils.Util;
 import ruolan.com.myhearts.widget.CheckBox;
+import ruolan.com.myhearts.widget.dialog.CustomPrograss;
 import rx.Subscriber;
+
+import static ruolan.com.myhearts.R.id.re_login;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
@@ -107,6 +110,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
      * @param pwd  密码
      */
     private void toLogin(String name, String pwd) {
+
+        CustomPrograss.show(this, getResources().getString(R.string.loading), false, null);
         final BmobUser bmobUser = new BmobUser();
         bmobUser.setUsername(name);
         bmobUser.setPassword(pwd);
@@ -114,6 +119,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         bmobUser.loginObservable(BmobUser.class).subscribe(new Subscriber<BmobUser>() {
             @Override
             public void onCompleted() {
+                CustomPrograss.disMiss();
                 Toast.makeText(LoginActivity.this,
                         getResources().getString(R.string.login_success),
                         Toast.LENGTH_SHORT).show();
@@ -121,7 +127,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
             @Override
             public void onError(Throwable e) {
-
+                CustomPrograss.disMiss();
             }
 
             @Override
@@ -129,8 +135,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
 
                 if (!mIsPasswordMemory.isChecked()) {  //如果用户没有点击记住密码  那就清除密码
+                    PreferencesUtils.putBoolean(LoginActivity.this, "is_select", false);
                     PreferencesUtils.putString(LoginActivity.this, Contants.USER_PASSWORD, "");
                 } else { //否则就保存密码
+                    PreferencesUtils.putBoolean(LoginActivity.this, "is_select", true);
                     PreferencesUtils.putString(LoginActivity.this, Contants.USER_PASSWORD, pwd);
                 }
 
@@ -156,11 +164,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mTencent = Tencent.createInstance("1105704769", this.getApplicationContext());
         mInfo = new UserInfo(this, mTencent.getQQToken());
 
-        mReLogin = (RelativeLayout) findViewById(R.id.re_login);
+        mReLogin = (RelativeLayout) findViewById(re_login);
         mReLogin.setOnClickListener(this);
         mEtPhone = (EditText) findViewById(R.id.et_phone);
         mEtPassword = (EditText) findViewById(R.id.et_password);
         mIsPasswordMemory = (CheckBox) findViewById(R.id.is_password_memory);
+        boolean isSelect = PreferencesUtils.getBoolean(LoginActivity.this, "is_select");
+        mIsPasswordMemory.setChecked(isSelect);
         mTvForgetPassword = (TextView) findViewById(R.id.tv_forget_password);
         mRegisterAccount = (TextView) findViewById(R.id.register_account);
         mApplicationConsultant = (TextView) findViewById(R.id.application_consultant);
@@ -180,7 +190,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 startActivity(intent);
                 break;
 
-            case R.id.re_login:
+            case re_login:
                 if (!TextUtils.isEmpty(mName) && !TextUtils.isEmpty(mPwd))
                     toLogin(mName, mPwd);
                 break;

@@ -137,6 +137,7 @@ GitHub地址：https://github.com/wuyinlei\r\n\r\n
     <string name="register_loading">正在注册中...</string>
     <string name="loading">加载中...</string>
 
+    <string name="waiting">请稍后...</string>
 
     <!--新闻type-->
     <string name="higo">头条</string>
