@@ -57,12 +57,14 @@ public class NewsDetailActivity extends BaseActivity {
                         Type type = new TypeToken<NewsDetailBean>() {
                         }.getType();
                         NewsDetailBean bean = new Gson().fromJson(s, type);
+                        String htmlData = bean.getContent()
+                                .replace("<img", "<img style='max-width:100%;height:auto;'");
                         mTvname.setText(bean.getTitle());
                         if (bean.getEditorName() != null) {
                             mTvauthor.setText(bean.getEditorName() + "");
                         }
                         mTvpublishtime.setText(bean.getPublishTime());
-                        mWebview.loadData(bean.getContent(), "text/html; charset=UTF-8", null);
+                        mWebview.loadData(htmlData, "text/html; charset=UTF-8", null);
 
                     }, throwable -> {
                     });

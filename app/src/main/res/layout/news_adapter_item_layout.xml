@@ -32,7 +32,6 @@
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginTop="@dimen/x10"
             android:layout_marginRight="@dimen/x10"
-            android:maxLines="1"
             android:textSize="@dimen/x18"/>
 
         <TextView

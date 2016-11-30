@@ -42,11 +42,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:maxLines="1"
-                android:padding="@dimen/x10"
-                android:text="雷军、罗永浩微博哦互抛媚眼"
+                android:padding="10dp"
                 android:textColor="@color/black595959"
-                android:textSize="@dimen/x20"/>
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/tv_author_des"

@@ -14,6 +14,7 @@ import ruolan.com.myhearts.R;
 
 /**
  * Created by renren on 2016/9/12.
+ *
  */
 public class CustomPrograss extends Dialog {
 

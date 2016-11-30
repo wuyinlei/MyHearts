@@ -10,12 +10,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.nineoldandroids.view.ViewHelper;
 
 import org.greenrobot.eventbus.EventBus;
@@ -238,6 +240,25 @@ public class MainActivityDrawerLayout extends BaseActivity implements View.OnCli
 //
 //    RelativeLayout mReSetting;
 //
+
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+                new MaterialDialog.Builder(MainActivityDrawerLayout.this)
+                        .title(getResources().getString(R.string.tip))
+                        .content(getResources().getString(R.string.exit))
+                        .negativeText(getResources().getString(R.string.cancel))
+                        .onNegative((dialog, which) -> dialog.dismiss()).positiveText(getResources().getString(R.string.ok))
+                        .onPositive((dialog, which) -> {
+                            finish();
+                            dialog.dismiss();
+                        }).show();
+                return true;
+            }
+        return super.onKeyDown(keyCode, event);
+    }
 
 
     /**
