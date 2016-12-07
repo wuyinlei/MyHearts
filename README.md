@@ -1,9 +1,10 @@
-﻿# 简介
+# 简介
 
 高仿某app，数据抓取获得，持续更新中：
 ##MyHearts交流群（刚开，哈哈）
 群号：136471108（进群交流技术，本人技术也不是很好，但是我相信，大家一起交流，会有很好的提升）
-
+###关于如何运行项目
+在本页的最下面有了详细的解答。
 ###界面展示：
 ####登录界面：
 ![](http://ww1.sinaimg.cn/mw690/006jcGvzgw1f93rpi0f08j30u01hcdq2.jpg)
@@ -97,12 +98,30 @@ compile 'com.github.bumptech.glide:glide:3.7.0'
 ![](http://ww1.sinaimg.cn/mw690/006jcGvzgw1f9msjgoqhlj30u01hctgw.jpg)
 
 ###如何运行此项目(确保google依赖库是同一个版本的，)
+#####方法一(最简单，但是可能有点慢(根据翻墙速度))
+* 打开as(Android Studio)-->最上方菜单选择VCS-->Checkout from Version Control --> Github(可能会让你输入你的github密码)
+* 然后输入这个网址https://github.com/wuyinlei/MyHearts，点击确定就行。
+* 当然这个需要你已经安装配置好了GIT
+#####方法二
 * 第一步：下载此项目的zip包到本地，并进行解压
 * 第二步：进入app目录(此时可以看到src和其他文件夹)，复制这个路径地址
 * 第三步：打开AS，新建一个功能(Project)，然后File-->New-->Import Module ，把路径复制进入到输入框，点击确定即可。
+* 注意：在工程级的build.gradle文件中，输入一下代码(要不然编译不过)
+```
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+        //Bmob的maven仓库地址，必须填写
+
+       // maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
+    }
+}
+```
 * 注意：由于项目中使用了lambda表达式，确保sdk版本在24及以上
+###最后注意
+如果是有些第三方库，没有拉取下来，对于不重要的，排除网络请求、图片加载等，可以把一些无关紧要的去除，然后有关的代码注释，也是可以成功的，最后推荐翻墙的(可以用于一般的翻墙)
+[可以用于翻墙，点击跳转][1]，已经提供了如何翻墙，如何具体实现，看下里面的注释即可。相信你是可以看懂并且去实现的。
 
 
-
-
-
+  [1]: https://laod.cn/hosts/2016-google-hosts.html
