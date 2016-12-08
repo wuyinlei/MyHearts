@@ -250,6 +250,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
                 .closeDrawer(GravityCompat.START);
         if (!isTologin) {
             startActivity(intent);
+          //  getActivity().finish();
         }
 
     }

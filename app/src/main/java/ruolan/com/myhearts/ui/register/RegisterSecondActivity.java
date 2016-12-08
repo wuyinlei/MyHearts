@@ -210,9 +210,9 @@ public class RegisterSecondActivity extends BaseActivity implements View.OnClick
                         Toast.makeText(RegisterSecondActivity.this,getResources().getString(R.string.register_success),
                                 Toast.LENGTH_SHORT).show();
                         PreferencesUtils.putString(RegisterSecondActivity.this,
-                                Contants.USER_NAME,userName);
+                                "user",userName);
                         PreferencesUtils.putString(RegisterSecondActivity.this,
-                                Contants.USER_PASSWORD,pwd);
+                                "pwd",pwd);
                         startActivity(new Intent(RegisterSecondActivity.this,
                                 LoginActivity.class));
                         CustomPrograss.disMiss();

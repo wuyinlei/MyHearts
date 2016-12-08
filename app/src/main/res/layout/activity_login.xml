@@ -27,7 +27,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/x20"
         android:background="@drawable/et_view_bg_layout"
-        android:hint="手机号码"
+        android:hint="用户名称"
         android:paddingLeft="@dimen/x20"
         android:textColor="@color/white"
         android:textColorHint="@color/white"/>

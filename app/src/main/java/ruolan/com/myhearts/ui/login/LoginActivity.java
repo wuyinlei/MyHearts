@@ -78,18 +78,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mQqLogin.setOnClickListener(this);
         mRegisterAccount.setOnClickListener(this);
         mTvForgetPassword.setOnClickListener(this);
+        mReLogin.setOnClickListener(this);
     }
 
     @Override
     public void initData() {
-        mUserName = PreferencesUtils.getString(this, Contants.USER_NAME);
-        mPassWord = PreferencesUtils.getString(this, Contants.USER_PASSWORD);
-        if (!TextUtils.isEmpty(mUserName)) {
-            mEtPhone.setText(mUserName);
-        }
-        if (!TextUtils.isEmpty(mPassWord)) {
-            mEtPassword.setText(mPassWord);
-        }
 
         mName = mEtPhone.getText().toString().trim();
 //        if (!RegularUtils.isMobileExact(name)){
@@ -136,19 +129,22 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                 if (!mIsPasswordMemory.isChecked()) {  //如果用户没有点击记住密码  那就清除密码
                     PreferencesUtils.putBoolean(LoginActivity.this, "is_select", false);
-                    PreferencesUtils.putString(LoginActivity.this, Contants.USER_PASSWORD, "");
+                    PreferencesUtils.putString(LoginActivity.this, "pwd", "");
+                    PreferencesUtils.putString(LoginActivity.this,"user","");
                 } else { //否则就保存密码
                     PreferencesUtils.putBoolean(LoginActivity.this, "is_select", true);
-                    PreferencesUtils.putString(LoginActivity.this, Contants.USER_PASSWORD, pwd);
+                    PreferencesUtils.putString(LoginActivity.this, "pwd", pwd);
+                    PreferencesUtils.putString(LoginActivity.this,"user",name);
                 }
 
-                MyUser myUser = new MyUser();
-                myUser.setUsername(name);
+
+                MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
+             //   myUser.setUsername(name);
                 EventBus.getDefault().post(new LoginEvent(myUser));
 
-                Intent intent = new Intent(LoginActivity.this, MainActivityDrawerLayout.class);
-                intent.putExtra(Contants.IS_COME_FROM_LOGIN, true);
-                startActivity(intent);
+               // Intent intent = new Intent(LoginActivity.this, MainActivityDrawerLayout.class);
+              //  intent.putExtra(Contants.IS_COME_FROM_LOGIN, true);
+               // startActivity(intent);
                 finish();
             }
 
@@ -165,7 +161,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mInfo = new UserInfo(this, mTencent.getQQToken());
 
         mReLogin = (RelativeLayout) findViewById(re_login);
-        mReLogin.setOnClickListener(this);
+
         mEtPhone = (EditText) findViewById(R.id.et_phone);
         mEtPassword = (EditText) findViewById(R.id.et_password);
         mIsPasswordMemory = (CheckBox) findViewById(R.id.is_password_memory);
@@ -178,6 +174,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mSinaLogin = (ImageView) findViewById(R.id.sina_login);
         mWxLogin = (ImageView) findViewById(R.id.wx_login);
 
+        String username = PreferencesUtils.getString(this, "user");
+        String password = PreferencesUtils.getString(this, "pwd");
+        if (!TextUtils.isEmpty(username)) {
+            mEtPhone.setText(username);
+        }
+        if (!TextUtils.isEmpty(password)) {
+            mEtPassword.setText(password);
+        }
 
     }
 
@@ -191,6 +195,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
             case re_login:
+                mName = mEtPhone.getText().toString().trim();
+                mPwd = mEtPassword.getText().toString().trim();
                 if (!TextUtils.isEmpty(mName) && !TextUtils.isEmpty(mPwd))
                     toLogin(mName, mPwd);
                 break;
