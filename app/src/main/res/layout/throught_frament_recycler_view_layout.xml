@@ -7,7 +7,7 @@
               android:orientation="vertical"
     >
 
-    <yyydjk.com.library.CouponView
+    <ruolan.com.myhearts.widget.coupon.CouponView
         android:id="@+id/couponView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
-    </yyydjk.com.library.CouponView>
+    </ruolan.com.myhearts.widget.coupon.CouponView>
 
 
     <LinearLayout

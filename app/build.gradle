@@ -133,7 +133,7 @@ dependencies {
     //极光推送
     compile 'cn.jiguang:jpush:2.1.8'
     //优惠券view
-    compile 'com.github.dongjunkun:CouponView:1.0.3'
+    //compile 'com.github.dongjunkun:CouponView:1.0.3'
     //bilibili 弹幕
     compile 'com.github.ctiao:DanmakuFlameMaster:0.4.5'
     testCompile 'junit:junit:4.12'

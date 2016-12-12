@@ -188,7 +188,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
         //判断是否有网络  如果没有网络就提示用户
         if (online) {
             CustomPrograss.show(getActivity(), getActivity().getResources()
-                    .getString(R.string.loading), false, null);
+                    .getString(R.string.loading), true, null);
             //刚开始进入界面的时候显示开头
             mScrollView.smoothScrollTo(0, 0);
             initBanner();

@@ -102,11 +102,13 @@ compile 'com.github.bumptech.glide:glide:3.7.0'
 * 打开as(Android Studio)-->最上方菜单选择VCS-->Checkout from Version Control --> Github(可能会让你输入你的github密码)
 * 然后输入这个网址https://github.com/wuyinlei/MyHearts，点击确定就行。
 * 当然这个需要你已经安装配置好了GIT
+
+
 #####方法二
 * 第一步：下载此项目的zip包到本地，并进行解压
 * 第二步：进入app目录(此时可以看到src和其他文件夹)，复制这个路径地址
 * 第三步：打开AS，新建一个功能(Project)，然后File-->New-->Import Module ，把路径复制进入到输入框，点击确定即可。
-* 注意：在工程级的build.gradle文件中，输入一下代码(要不然编译不过)
+* ~~注意：在工程级的build.gradle文件中，输入一下代码(要不然编译不过)~~(以下代码不需要进行添加了，代码已经copy到本地，防止拉取不到)
 ```
 allprojects {
     repositories {
